@@ -1,0 +1,22 @@
+.THIS.slds-container_medium.branch-registration {
+    background-color: #fff;
+    color:#009dd4;
+    position: relative;
+    margin:auto;
+    /*text-align:center;*/
+}
+.THIS  .slds-select_container.slds-select_container-acckey{
+    width: 92%;
+    float: left;
+}
+.THIS .slds-form-element__label{
+    color:#009dd4;
+}
+.THIS .slds-button-add-acckey{
+    margin-left: 5px;
+    font-size: 18px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    line-height: 1.5rem;
+    margin-top: 2px; 
+}

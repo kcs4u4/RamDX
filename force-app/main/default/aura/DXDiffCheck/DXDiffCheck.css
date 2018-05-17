@@ -1,0 +1,17 @@
+.THIS .slds-text-title_caps .slds-table-header{
+    font-weight:bold;
+}
+
+.THIS .slds-text-title_caps .slds-table-header>span{
+    color:#015BA7;
+}
+
+.THIS td.change-type{
+    width:2%;
+}
+.THIS td.change-content{
+    width:48%;
+}
+.THIS td.change-content>.slds-truncate{
+    max-width:450px;
+}

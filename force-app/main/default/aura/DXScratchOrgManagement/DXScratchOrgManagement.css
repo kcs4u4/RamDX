@@ -1,0 +1,57 @@
+.THIS .scratch-org-container .table-container {
+    max-width: 99%;
+    max-height:54vh;
+    overflow-y:auto;
+}
+.THIS .dx-header{
+     color:#009dd4;
+     font-size:14px;
+}
+.THIS .slds-modal__header {
+      background-color:#e1e1ea;
+     color:#009dd4;
+}
+
+.THIS .scratch-org-container .table-container th>.slds-truncate_class {
+      color:#009dd4;
+      text-align:center;
+}
+.THIS .scratch-org-container #scratch-org-list-table th .slds-truncate{
+    text-align:center;
+}
+.THIS .scratch-org-container #scratch-org-list-table td .slds-truncate{
+    font-size:11px;
+    text-align:center;
+    text-transform: none;
+}
+
+.THIS .scratch-org-container #scratch-org-list-table td .slds-icon--small {
+    width: 0.8rem;
+    height: 0.8rem;
+}
+.THIS .scratch-org-container #scratch-org-list-table td .slds-icon-action-remove {
+    padding: .3rem;
+}
+.THIS .scratch-org-container #scratch-org-list-table td .slds-icon.slds-icon-text-default {
+    width: 1.3rem;
+    height: 1.3rem;
+}
+.THIS .slds-button-back svg{
+    width:1.5rem;
+}
+.THIS .dx-header>h1{
+    text-align: center;
+    font-size: 1.5rem;
+    color: #0070d2;
+    margin-bottom: 10px;
+}
+.THIS .scratch-org-heading label{
+    font-size: 1rem;
+    font-weight: bold;    
+}
+.THIS .scratch-org-heading span{
+    font-size: 1rem;
+    color: #0070d2;
+    font-style: oblique;
+    font-weight: 600;   
+}

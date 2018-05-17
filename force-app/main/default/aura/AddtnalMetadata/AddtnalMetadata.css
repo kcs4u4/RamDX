@@ -1,0 +1,38 @@
+.THIS .add-metadata__modal{
+    min-height: 300px;
+    padding: 0 1rem 1rem 1rem;
+}
+.THIS .add-metadata__modal .slds-icon_container{
+    position: absolute;
+    right: 0px;
+}
+.THIS .add-metadata__modal .slds-accordion__summary-action{
+    font-size: 0.8em;
+}
+.THIS .add-metadata__modal .slds-accordion__section svg{
+    transform: rotate(-90deg);
+}
+.THIS .add-metadata__modal .slds-accordion__section.slds-is-open svg{
+    transform: rotate(0deg);
+}
+.THIS .slds-form-element__label>span{
+    overflow: hidden;
+    display: inline-block;
+    width: 133px;
+    text-overflow: ellipsis;
+    white-space: nowrap;	
+}
+.THIS .slds-modal__container.addMetadata-modal{
+    width:80%;
+    max-width: unset;
+}
+.THIS .slds-modal__container.addMetadata-modal .slds-modal__content{
+    position:relative;
+}
+.THIS .slds-loading{
+    display: inline-block !important;
+    width: 25px;
+}
+.THIS .slds-hide{
+    display:none;
+}

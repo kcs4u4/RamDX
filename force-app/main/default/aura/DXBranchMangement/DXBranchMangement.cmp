@@ -1,0 +1,102 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <aura:attribute name="createBranch" type="Boolean"/>
+    <aura:attribute name="registerBranch" type="boolean" default="false"/>
+    <aura:attribute name="reponame" type="String"/>
+    <aura:attribute name="repourl" type="String"/>
+    <aura:attribute name="repoid" type="String"/>
+    <aura:attribute name="scmtype" type="String" default="git"/>
+    <aura:attribute name="branchList" type="Object[]" />
+    <aura:attribute name="newRemoteBranches" type="Map[]" />
+    <aura:attribute name="isModalVisible" type="Boolean" default="false"/>
+    <aura:attribute name="isBranchlist" type="Boolean" default="false"/>
+    <aura:attribute name="sfdxFolderName" type="String" default="force-app"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="refreshBranches" event="c:flagHandler" action="{!c.refreshBranches}"/>
+    <aura:if isTrue="{!not(v.isModalVisible)}">
+        <div class="slds-p-around_medium branchlist-container">
+            <!--<c:LtngDatatable keyField="repoid" columns="{!v.branchListColumns}" mydata="{!v.branchList}" hideCheckboxColumn="true"/>-->
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead class="slds-text-head">
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate_class" title="Branch Name" >Branch Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate_class" title="Repository Name">Repository Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate_class" title="Type">Type</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate_class" title="Created Date">Created Date</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate_class" title="Unregister"></div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate_class" title="SFDX Format">SFDX Format</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.branchList}" var="branch">
+                        <tr>
+                            <td scope="col">
+                                <div class="slds-truncate" title="{!branch.scmtype}">{!branch.name}</div>
+                            </td>
+                            <td scope="col">
+                                <div class="slds-truncate" title="{!branch.remoteurl}">{!branch.reponame}</div>
+                            </td>
+                            <td scope="col">
+                                <div class="slds-truncate" title="{!branch.accesskey}">{!branch.type}</div>
+                            </td>
+                            <td scope="col">
+                                <div class="slds-truncate" title="{!branch.registeredby}">{!branch.createddate}</div>
+                            </td>
+                            <td scope="col">
+                                <div class="slds-truncate" title="{!branch.name}" ><a href="javascript:void(0)" data-repoid="{!v.repoid}" data-branchname="{!branch.name}" data-reponame="{!v.reponame}" data-scmtype="{!v.scmtype}" onclick="{!c.unRegister}">unregister</a></div>
+                            </td>
+                            <td scope="col">
+                                <div class="slds-truncate" title="Convert" >
+                                    <button class="slds-button_brand" data-repoid="{!v.repoid}" data-branchname="{!branch.name}" data-reponame="{!v.reponame}" data-scmtype="{!v.scmtype}" data-method="{!if(empty(branch.sfdxfoldername),'convertApiSrcToSfdxSrc','revertSfdxSrcToApiSrc')}" onclick="{!c.showModal}">
+                                        <aura:if isTrue="{!empty(branch.sfdxfoldername)}" >
+                                            Convert
+                                            <aura:set attribute="else">
+                                                Revert
+                                            </aura:set>
+                                        </aura:if>
+                                    </button>
+                                </div>
+                                
+                            </td>
+                        </tr>   
+                    </aura:iteration>
+                </tbody>
+            </table>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.createBranch}">
+        <c:DXCreateBranch isVisible="{!v.isVisible}" isModalVisible="{!v.createBranch}" reponame="{!v.reponame}" branchList="{!v.branchList}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.registerBranch}">
+        <c:DXBranchRegister isVisible="{!v.isVisible}" branchList="{!v.branchList}" repourl="{!v.repourl}" registerBranch="{!v.registerBranch}" reponame="{!v.reponame}" newRemoteBranches="{!v.newRemoteBranches}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.isModalVisible}">
+        <div class="demo-only" >
+            <div class="slds-modal__container slds-modal__container-custom">
+                <div class="slds-modal__content slds-p-around--medium slds-form slds-form_compound">
+                    <b>Convert Branch</b>
+                    <lightning:input name="sfdxFolderName" aura:id="sfdxFolderName" label="Sfdx Folder Name" value="{!v.sfdxFolderName}" placeholder="Please Enter" required="true" messageWhenValueMissing="Please enter the response"/> 
+                    <footer class="slds-modal__footer slds-text-align_center">
+                        <lightning:button label="Cancel" onclick="{!c.cancelModal}"
+                                          variant="neutral" />
+                        <lightning:button label="Convert" onclick="{!c.Convert}"
+                                          variant="brand" />
+                    </footer>
+                    <div class="slds-backdrop slds-backdrop_open"></div>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

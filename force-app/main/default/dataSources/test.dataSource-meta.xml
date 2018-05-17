@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalDataSource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <certificate>SelfSignedCert_30Oct2017_121336</certificate>
+    <customConfiguration>{"environment":"PROD","apiVersion":"40.0","timeout":"120","searchEnabled":"true"}</customConfiguration>
+    <endpoint>https://login.salesforce.com</endpoint>
+    <isWritable>true</isWritable>
+    <label>test</label>
+    <principalType>PerUser</principalType>
+    <protocol>Password</protocol>
+    <type>SfdcOrg</type>
+    <username>kcs4u4@gmail.com</username>
+</ExternalDataSource>

@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="compName" type="String"/>
+    <aura:attribute name="compAttrs" type="Object" default="{}"/>
+    <aura:attribute name="index" type="Integer" default="0"/>
+    <aura:attribute name="isActive" type="String" default="false"/>
+    <aura:attribute name="tabClass" type="String" default="{!'slds-p-vertical_medium'+if(v.isActive=='true',' slds-show',' slds-hide')}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div id="{!'context-tab-panel-'+v.index}" class="{!v.tabClass}" role="tabpanel" aria-labelledby="context-tab-id-1">
+        <div aura:id="body">
+        </div>
+    </div>
+</aura:component>

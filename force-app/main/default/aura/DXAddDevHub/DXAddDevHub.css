@@ -1,0 +1,10 @@
+.THIS .slds-modal__container{
+    color:#009dd4;
+}
+.THIS .slds-form-element__label{
+    color:#009dd4;
+}
+
+.THIS .single.sf-env.select.uiInput.uiInputSelect.uiInput--default.uiInput--select{
+    background-image:none;
+}

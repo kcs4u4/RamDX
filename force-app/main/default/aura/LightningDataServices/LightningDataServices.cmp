@@ -1,0 +1,51 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="ContactController">
+    <aura:attribute name="recordId" type="String" default="0037F00000UVWNq"/>
+    <aura:attribute name="contactList" type="contact[]"/>
+    <aura:attribute name="record" type="Object" />
+    <aura:attribute name="simpleRecord" type="Contact" default="{ 'sobjectType': 'Contact' }"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <force:recordData aura:id="recordData" recordId="{!v.recordId}"
+                      targetRecord="{!v.record}"
+                      targetFields="{!v.simpleRecord}"
+                      layoutType="FULL"/>
+    <!--<div class="recordName">
+        <p class="slds-text-heading__medium">
+            {!v.simpleRecord.FirstName}///// {!v.simpleRecord.LastName} /// {!v.recordId}
+            <force:inputField value="{!v.simpleRecord.FirstName}"/>
+            <force:inputField value="{!v.simpleRecord.LastName}"/>
+            <force:inputField value="{!v.simpleRecord.Level__c}"/>
+        </p>
+    </div>-->
+    <force:recordEdit recordId="{!v.recordId}" />
+<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+                <th scope="col">
+                    <div class="slds-truncate" title="Contact Id">Contact Id</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Phone">Phone</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Email">Email</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.contactList}" var="con">
+                <tr>
+                    <th scope="row" data-label="Opportunity Name">
+                        <div class="slds-truncate" title="Contact Id"><a href="javascript:void(0);" onclick="{!c.getDetails}" data-recid="{!con.Id}">{!con.Id}</a></div>
+                    </th>
+                    <td data-label="Account Name">
+                        <div class="slds-truncate" title="Phone">{!con.Phone}</div>
+                    </td>
+                    <td data-label="Close Date">
+                        <div class="slds-truncate" title="Email">{!con.Email}</div>
+                    </td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+    
+</aura:component>

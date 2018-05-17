@@ -1,0 +1,110 @@
+<aura:component controller="DXAPIServices" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <ltng:require scripts="/resource/jquery" afterScriptsLoaded="{!c.afterLoaded}"/>
+    <aura:attribute name="isVisible" type="Boolean" default="false"/>
+    <aura:attribute name="curDevHub" type="Object" />
+    <aura:attribute name="curScrOrg" type="Object" />
+    <aura:attribute name="isModalVisible" type="boolean" default="false"/>
+    <aura:attribute name="isDelete" type="boolean" default="false"/>
+    <aura:attribute name="isNew" type="boolean" default="false"/>
+    <aura:attribute name="flag" type="boolean" default="false"/>
+    <aura:attribute name="hubid" type="String"/>
+    <aura:attribute name="hubusername" type="String" />
+    <aura:attribute name="hubalias" type="String" />
+    <aura:attribute name="soid" type="String" />
+    <aura:attribute name="soname" type="String" />
+    <aura:attribute name="ScrOrgList" type="Object[]" default="[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="refreshSoList" event="c:flagHandler" action="{!c.doInit}"/>
+    <aura:handler name="unRegister" event="c:flagHandler" action="{!c.unRegister}"/>
+    <c:loading isVisible="{!v.isVisible}"/>
+     
+    <div aura:id="main">    
+        <div class="scratch-org-container">
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_1-of-6">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.goBack}"> Go Back</button>  
+                </div>
+                <div class="slds-col slds-size_4-of-6">
+                    <header class="dx-header">
+                        <h1>Scratch Orgs List</h1>
+                    </header>
+                    <div class="slds-text-align_center slds-p-bottom_medium scratch-org-heading"><label>DevHub Name</label>:<span>{!v.hubalias}</span>&nbsp;/&nbsp;<label>DevHub Username</label>:<span>{!v.hubusername}</span></div>
+                </div>
+                <div class="slds-col slds-size_1-of-6">
+                    <button class="slds-float_right slds-button slds-button_brand" onclick="{!c.showModal}">Create Scratch Org</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer" id="scratch-org-list-table">
+                    <thead class="slds-modal__header">
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate_class" title="Alias Name">Alias Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate_class" title="User Name">User Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate_class" title="Edition">Edition</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate_class" title="DevHub Name">Created Date</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate_class" title="Expiration Date">Expiration Date</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate_class" title="Status">Status</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate_class" title="Instance Url">Actions</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.ScrOrgList}" var="so" indexVar="i">
+                            <tr class="slds-text-title_caps">
+                                <td scope="col">
+                                    <div class="slds-truncate" title="{!so.name}">{!so.name}</div>
+                                </td>
+                                <td scope="col">
+                                    <div class="slds-truncate" title="{!so.username}">{!so.username}</div>
+                                </td>
+                                <td scope="col">
+                                    <div class="slds-truncate" title="{!so.edition}">{!so.edition}</div>
+                                </td>
+                                <td scope="col">
+                                    <div class="slds-truncate" title="{!so.createddate}">{!so.createddate}</div>
+                                </td>
+                                <td scope="col">
+                                    <div class="slds-truncate" title="{!so.expirydate}">{!so.expirydate}</div>
+                                </td>
+                                <td scope="col">
+                                    <div class="slds-truncate" title="{!so.status}">{!so.status}</div>
+                                </td>
+                                <td scope="col">
+                                    <div class="slds-truncate" title="{!so.orgurl}">
+                                        <aura:if isTrue="{!so.status!='Expired'}">
+                                            <a href="javascript:void(0)" onclick="{!c.scratchOrgURL}" data-soid="{!so.id}" data-soname="{!so.name}" data-sousername="{!so.username}"><c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#new_window" class="slds-icon slds-icon-text-default slds-icon--small" containerClass="slds-icon_container null slds-icon__svg--default"/></a>
+                                            <a href="javascript:void(0)" class="slds-m-left_small" onclick="{!c.showModal1}" data-soid="{!so.id}" data-soname="{!so.name}" data-sousername="{!so.username}" data-hubid="{!v.hubusername}"><c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#reset_password" class="slds-icon slds-icon-text-default" id="{!'sorg-'+i}"/></a>
+                                        </aura:if>
+                                        <a href="javascript:void(0)" class="slds-m-left_small" onclick="{!c.delScratchOrg}" data-soid="{!so.id}" data-soname="{!so.name}" data-sousername="{!so.username}" data-hubid="{!v.hubusername}"><c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#delete" class="slds-icon slds-icon-text-default"   id="{!'sorg-'+i}"/></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </aura:iteration>   
+                    </tbody>
+                </table> 
+            </div>
+        </div>  
+        <aura:if isTrue="{!v.isModalVisible}">
+            <c:DXCreateScratchOrg flag="{!v.isModalVisible}" hubid="{!v.hubid}" hubusername="{!v.hubusername}" hubalias="{!v.hubalias}"/>   
+        </aura:if>  
+        <aura:if isTrue="{!v.isNew}">
+            <c:DXScratchOrgSendCredentials isNew="{!v.isNew}" soid="{!v.soid}" soname="{!v.soname}"/>   
+        </aura:if> 
+        <aura:if isTrue="{!v.isDelete}">
+            <c:ConfirmDeleteScratchOrg isDelete="{!v.isDelete}"/>
+        </aura:if>
+    </div>
+</aura:component>

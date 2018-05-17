@@ -1,0 +1,9 @@
+.THIS .demo-only{
+    /*position: absolute;
+    width: 99%;
+    height: 100%;*/
+}
+.THIS .slds-spinner_container{
+    width: 100%;
+    height: 100%;
+}

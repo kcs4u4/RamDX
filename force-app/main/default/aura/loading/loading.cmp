@@ -1,0 +1,22 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="isVisible" type="Boolean" default="false"/>
+    <aura:handler event="aura:waiting" action="{!c.waiting}"/> 
+    <aura:handler event="aura:doneWaiting" action="{!c.doneWaiting}"/>
+    <aura:if isTrue="{!v.isVisible}">
+        <div id="Accspinner" sytle="display:none;">
+            <div class="demo-only demo--inverse">
+                <div class="slds-spinner_container">
+                    <div role="status" class="slds-spinner slds-spinner_medium">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                        <!--<img src="/resource/loading"/>-->
+                    </div>
+                    <div class="slds-align--absolute-center" style="height:100%;z-index:9999">
+                        <span class="spinner-text" aura:id="loadingMsg"></span>
+                    </div>
+                </div>
+            </div>   
+        </div>
+    </aura:if>
+</aura:component>

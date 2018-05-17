@@ -1,0 +1,31 @@
+<aura:component controller="DXAPIServices" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <ltng:require scripts="/resource/jquery"/>
+    <aura:attribute name="flag" type="boolean" default="false"/>
+    <aura:attribute name="hubid" type="String" />
+    <aura:attribute name="hubusername" type="String" />
+    <aura:attribute name="hubalias" type="String" />
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <style>
+        .oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+        z-index: -1;
+        }
+    </style>
+    <div class="demo-only">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create Scratch Org</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="position:relative;">
+                    <c:loading isVisible="{!v.isVisible}"/>
+                    <c:CreateScratchOrg aura:id="cso" isVisible="{!v.isVisible}" flag="{!v.flag}" hubid="{!v.hubid}" hubusername="{!v.hubusername}" hubalias="{!v.hubalias}" />
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_brand" onclick="{!c.addScrOrg}">Create</button>
+                    <button class="slds-button slds-button_neutral" onclick="{!c.hideModal}">Cancel</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>        
+</aura:component>

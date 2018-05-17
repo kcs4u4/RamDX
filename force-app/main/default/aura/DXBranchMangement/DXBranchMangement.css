@@ -1,0 +1,7 @@
+.THIS .slds-clearfix{
+    clear:both;
+}
+.THIS .slds-container_small.slds-box{
+    margin: auto;
+    margin-top: 30px;
+}

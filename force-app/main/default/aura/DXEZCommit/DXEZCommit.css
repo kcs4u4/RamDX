@@ -1,0 +1,50 @@
+.THIS .slds-container_medium{
+    margin:auto;
+}
+.THIS .slds-page-header__title{
+     color:#009dd4;
+}
+.THIS .slds-form-element__label{
+    color:#009dd4;
+}
+.THIS .slds-metadata-container{
+    /*min-height:250px;*/
+    border:1px solid rgb(216, 221, 230)
+}
+.THIS .icon-wrapper{
+    position:absolute;
+    right:0
+}
+.THIS .slds-error{
+    color: rgb(194, 57, 52);
+    font-size: .75rem;
+    margin-top: .5rem;
+    display: block;
+}
+
+
+.THIS.slds-container_large{
+    margin:auto;
+}
+
+.THIS.slds-report-container .slds-box{
+    display:flex;
+    margin-bottom:10px;
+}
+.THIS.slds-report-container .slds-box .slds-dl_inline{
+    flex:1
+}
+
+.THIS.slds-report-container .slds-tabs_scoped__content{
+    overflow:auto;
+}
+
+.THIS.slds-report-container .slds-tabs_scoped__content #tab-scoped-2 td .slds-truncate{
+    font-size:0.85em;
+}
+.THIS td[data-label="members"]{
+    word-break: break-all;
+}
+.THIS td[data-label="members"] .slds-truncate{
+    white-space: pre-wrap;
+}

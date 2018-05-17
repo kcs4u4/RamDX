@@ -1,0 +1,33 @@
+.THIS .slds-modal__container{
+     max-width: 50rem !important;
+}
+.THIS .slds-form-element__label{
+    color:#009dd4;
+}
+.THIS .uiInput--checkbox input, .THIS input.uiInput--checkbox{
+    display:inline-block;
+    margin:2px;
+}
+.THIS .uiInput--select.has-error.select{
+    border-color: rgb(216, 221, 230);
+    box-shadow: rgb(255, 255, 255) 0 0 0 1px inset;
+}
+.THIS .slds-select.select.uiInput.uiInputSelect.uiInput--default.uiInput--select{
+    background-image:none;
+}
+.THIS .slds-select.org-edition{
+    height:36px;
+}
+.THIS .slds-modal__footer{
+    text-align:center;
+}
+.THIS .slds-select[size] option, .THIS .slds-select[multiple] option {
+    font-size:11px;
+}
+.THIS lightning-slider>.slds-form-element>.slds-form-element__label{
+	display:none;
+}
+.THIS lightning-slider>.slds-form-element>.slds-form-element__control>.slds-slider{
+	width: 228px;
+    margin-left: 20px;
+}

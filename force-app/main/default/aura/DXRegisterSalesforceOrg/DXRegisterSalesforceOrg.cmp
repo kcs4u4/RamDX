@@ -1,0 +1,123 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="DXAPIServices">
+    <ltng:require scripts="/resource/jquery" />
+    <aura:attribute name="isNew" type="boolean" default="false"/>
+    <aura:attribute name="isStandard" type="boolean" default="false"/>
+    <aura:attribute name="hubInfo" type="Map" />
+    <aura:attribute name="sfRegMap" type="Map" default="{'sforgname':'',
+                                                        'orgtype':'Dev',
+                                                        'env':'Production or Development Edition',
+                                                        'sfurl':'https://login.salesforce.com',
+                                                        'username':'',
+                                                        'password':'',
+                                                        'token':''
+                                                        }"/>
+    <aura:attribute name="auth" type="string" default="OAuth"/>
+    <aura:registerEvent name="cmpEvent" type="c:flagHandler"/>
+    <div class="demo-only" >
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container slds-modal__container-custom">
+                <header class="slds-modal__header">
+                    <!--<button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.cancel}">
+                        <c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#close" class="slds-button__icon slds-button__icon_large" />
+                    </button>-->
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Salesforce Org Registration</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around--medium slds-form slds-form_compound">
+                    <fieldset class="slds-form-element">
+                        <div class="slds-form-element__group">
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-2">
+                                    <label class="slds-form-element__label" for="text-input-id-1">
+                                        <abbr class="slds-required" title="required">*</abbr> Salesforce Org Name</label>
+                                    <div class="slds-form-element__control">
+                                        <ui:inputText aura:id="sforgname" class="slds-input" placeholder="Salesforce Org Name" value="{!v.sfRegMap.sforgname}"/>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-2">
+                                    <label class="slds-form-element__label" for="select-01">Select Org Type</label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <ui:inputSelect class="single" aura:id="sfOrgType" value="{!v.sfRegMap.orgtype}">
+                                                <ui:inputSelectOption text="Dev"/>
+                                                <ui:inputSelectOption text="Integration"/>
+                                                <ui:inputSelectOption text="QA"/>
+                                                <ui:inputSelectOption text="Production"/>
+                                            </ui:inputSelect>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="slds-form-element__row">
+                                <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-2">
+                                    <label class="slds-form-element__label" for="select-02">Environment</label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <ui:inputSelect class="single sf-env" aura:id="sfEnv" value="{!v.sfRegMap.env}" change="{!c.checkEnvironment}">
+                                                <ui:inputSelectOption text="Production or Development Edition"/>
+                                                <ui:inputSelectOption text="SandBox"/>
+                                                <ui:inputSelectOption text="Pre-Release"/>
+                                                <ui:inputSelectOption text="Custom URL"/>
+                                            </ui:inputSelect>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-2">
+                                    <label class="slds-form-element__label" for="input-id-02">Salesforce Org URL</label>
+                                    <div class="slds-form-element__control">
+                                        <ui:inputText aura:id="sfurl" class="slds-input" placeholder="Salesforce Org URL" value="{!v.sfRegMap.sfurl}" disabled="{!empty(v.sfRegMap.sfurl)?false:true}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-form-element__row">    
+                                <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-2">
+                                    <label class="slds-form-element__label" for="select-03">
+                                        <abbr class="slds-required" title="required">*</abbr>Authentication Type</label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <ui:inputSelect class="single" aura:id="auth" change="{!c.selectAuth}" value="{!v.auth}">
+                                                <ui:inputSelectOption text="OAuth"/>
+                                                <ui:inputSelectOption text="Standard"/>
+                                            </ui:inputSelect>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-2">
+                                    <aura:if isTrue="{!v.auth=='Standard'}">
+                                        <label class="slds-form-element__label" for="User Name">
+                                            <abbr class="slds-required" title="required">*</abbr> User Name</label>
+                                        <div class="slds-form-element__control">
+                                            <ui:inputText aura:id="User_Name" class="slds-input" placeholder="User Name" value="{!v.sfRegMap.username}"/>
+                                        </div> 
+                                    </aura:if>
+                                </div>
+                            </div> 
+                            <aura:if isTrue="{!v.auth=='Standard'}">
+                                <div class="slds-form-element__row">    
+                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-2">
+                                        <label class="slds-form-element__label" for="Password">
+                                            <abbr class="slds-required" title="required">*</abbr>Password</label>
+                                        <div class="slds-form-element__control">
+                                            <ui:inputSecret aura:id="Password" class="slds-input" placeholder="Password" value="{!v.sfRegMap.password}"/>
+                                        </div>                                    
+                                    </div> 
+                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-2">
+                                        <label class="slds-form-element__label" for="Security Token">
+                                            <abbr class="slds-required" title="required">*</abbr>Security Token</label>
+                                        <div class="slds-form-element__control">
+                                            <ui:inputSecret aura:id="Security_Token" class="slds-input" placeholder="Security Token" value="{!v.sfRegMap.token}"/>
+                                        </div>                                 
+                                    </div>
+                                </div>  
+                            </aura:if>
+                            <div class="slds-form-element slds-size_1-of-1 slds-text-align_center slds-p-top_large">
+                                <button class="slds-button slds-button_brand" onclick="{!c.checkValidation}">Validate &#38; Save</button>
+                                <button class="slds-button slds-button_brand" onclick="{!c.cancel}">Cancel</button>                                
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>  
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+</aura:component>

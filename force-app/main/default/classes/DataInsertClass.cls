@@ -1,0 +1,18 @@
+public class DataInsertClass {
+    public static void dataInsert(){
+        list<String> languages = new list<String>{'English', 'German', 'Spanish', 'French', 'Italian', 'Japanese', 'Swedish', 'Korean', 'Chinese (Traditional)', 'Chinese (Simplified)', 'Portuguese (Brazil)', 'Dutch', 'Danish', 'Thai', 'Finnish', 'Russian', 'Spanish (Mexico)', 'Norwegian', 'Hungarian', 'Polish', 'Czech', 'Turkish', 'Indonesian', 'Romanian', 'Vietnamese', 'Ukrainian', 'Hebrew', 'Greek', 'Bulgarian', 'English (UK)', 'Arabic', 'Slovak', 'Portuguese (European)', 'Croatian', 'Slovene', 'French (Canadian)', 'Georgian', 'Serbian (Cyrillic)', 'Serbian (Latin)', 'English (Australian)', 'English (Malaysian)', 'English (Indian)', 'English (Phillipines)', 'English (Canadian)', 'Romanian (Moldova)', 'Bosnian', 'Macedonian', 'Latvian', 'Lithuanian', 'Estonian', 'Albanian', 'Montenegrin', 'Maltese', 'Irish', 'Basque', 'Welsh', 'Icelandic', 'Malay', 'Tagalog', 'Luxembourgish', 'Romansh', 'Armenian', 'Hindi', 'Urdu', 'Bengali', 'German (Austria)', 'German (Switzerland)', 'Tamil', 'Arabic (Algeria)', 'Arabic (Bahrain)', 'Arabic (Egypt)', 'Arabic (Iraq)', 'Arabic (Jordan)', 'Arabic (Kuwait)', 'Arabic (Lebanon)', 'Arabic (Libya)', 'Arabic (Morocco)', 'Arabic (Oman)', 'Arabic (Qatar)', 'Arabic (Saudi Arabia)', 'Arabic (Sudan)', 'Arabic (Syria)', 'Arabic (Tunisia)', 'Arabic (United Arab Emirates)', 'Arabic (Yemen)', 'Chinese (Singapore)', 'Chinese (Hong Kong)', 'English (Hong Kong)', 'English (Ireland)', 'English (Singapore)', 'English (South Africa)', 'French (Belgium)', 'French (Luxembourg)', 'French (Switzerland)', 'German (Belgium)', 'German (Luxembourg)', 'Italian (Switzerland)', 'Dutch (Belgium)', 'Spanish (Argentina)', 'Spanish (Bolivia)', 'Spanish (Chile)', 'Spanish (Colombia)', 'Spanish (Costa Rica)', 'Spanish (Dominican Republic)', 'Spanish (Ecuador)', 'Spanish (El Salvador)', 'Spanish (Guatemala)', 'Spanish (Honduras)', 'Spanish (Nicaragua)', 'Spanish (Panama)', 'Spanish (Paraguay)', 'Spanish (Peru)', 'Spanish (Puerto Rico)', 'Spanish (United States)', 'Spanish (Uruguay)', 'Spanish (Venezuela)', 'Catalan'};
+            
+            list<String> languageCodes = new list<String>{'en_US', 'de', 'es', 'fr', 'it', 'ja', 'sv', 'ko', 'zh_TW', 'zh_CN', 'pt_BR', 'nl_NL', 'da', 'th', 'fi', 'ru', 'es_MX', 'no', 'hu', 'pl', 'cs', 'tr', 'in', 'ro', 'vi', 'uk', 'iw', 'el', 'bg', 'en_GB', 'ar', 'sk', 'pt_PT', 'hr', 'sl', 'fr_CA', 'ka', 'sr', 'sh', 'en_AU', 'en_MY', 'en_IN', 'en_PH', 'en_CA', 'ro_MD', 'bs', 'mk', 'lv', 'lt', 'et', 'sq', 'sh_ME', 'mt', 'ga', 'eu', 'cy', 'is', 'ms', 'tl', 'lb', 'rm', 'hy', 'hi', 'ur', 'bn', 'de_AT', 'de_CH', 'ta', 'ar_DZ', 'ar_BH', 'ar_EG', 'ar_IQ', 'ar_JO', 'ar_KW', 'ar_LB', 'ar_LY', 'ar_MA', 'ar_OM', 'ar_QA', 'ar_SA', 'ar_SD', 'ar_SY', 'ar_TN', 'ar_AE', 'ar_YE', 'zh_SG', 'zh_HK', 'en_HK', 'en_IE', 'en_SG', 'en_ZA', 'fr_BE', 'fr_LU', 'fr_CH', 'de_BE', 'de_LU', 'it_CH', 'nl_BE', 'es_AR', 'es_BO', 'es_CL', 'es_CO', 'es_CR', 'es_DO', 'es_EC', 'es_SV', 'es_GT', 'es_HN', 'es_NI', 'es_PA', 'es_PY', 'es_PE', 'es_PR', 'es_US', 'es_UY', 'es_VE', 'ca'};
+                
+                list<dxLanguages__c> langList = new list<dxLanguages__c>();
+        
+        for(Integer i=0;i<languages.size();i++){
+            dxLanguages__c language = new dxLanguages__c();
+            language.name = languageCodes[i];
+            language.LanguageName__c = languages[i];
+            langList.add(language);
+        }
+        
+        insert langList;
+    }
+}

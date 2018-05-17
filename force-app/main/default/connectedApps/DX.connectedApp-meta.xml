@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>ramdx@autorabit.com</contactEmail>
+    <label>DX</label>
+    <oauthConfig>
+        <callbackUrl>https://c.na78.visual.force.com/apex/test
+https://dx-war-dev-ed.my.salesforce.com/apex/test</callbackUrl>
+        <certificate>MIIDnjCCAoYCCQCobr+LdltdLjANBgkqhkiG9w0BAQsFADCBkDELMAkGA1UEBhMCSU4xEjAQBgNVBAgMCVRlbGFuZ2FuYTESMBAGA1UEBwwJSHlkZXJhYmFkMRIwEAYDVQQKDAlBdXRvUkFCSVQxEjAQBgNVBAsMCUF1dG9SQUJJVDENMAsGA1UEAwwERFhBUjEiMCAGCSqGSIb3DQEJARYTcmFtLmN0NDM1QGdtYWlsLmNvbTAeFw0xODAxMjkxMTU2MTZaFw0xOTAxMjkxMTU2MTZaMIGQMQswCQYDVQQGEwJJTjESMBAGA1UECAwJVGVsYW5nYW5hMRIwEAYDVQQHDAlIeWRlcmFiYWQxEjAQBgNVBAoMCUF1dG9SQUJJVDESMBAGA1UECwwJQXV0b1JBQklUMQ0wCwYDVQQDDAREWEFSMSIwIAYJKoZIhvcNAQkBFhNyYW0uY3Q0MzVAZ21haWwuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1VyMoE9OrYhDYMHDIhIo5qJRyfmMSIdRpj6ejG3zvAUe18frCDt3iBTT6kvdi4QknAiAGVtJ3W+x9wH0mpnNNR+3x7KvZZZPMUxIcWEz+avc9FYEbW504RHuCmd9z+0XhOCahy+2SUNRjpM4wXrSLDXP8SQ1v444VV9qDzq0Law93cnf5a5SdH6oV0VWSJU+AxWWj8HO1D8UsIUSYSgvlvgBtbObyBC8/tRD5vrHMF4G1KOlSrfGmxbYbVPmqngEBPftOF1vahEhOLoLJfyKtMYeKxKGgFYcXB9Boly9ZBX4RSAHXz1XaTEHEF0N9yuaarHpL1HuWetPuNwzoyVWZQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQBc3q2j2OY927p8hH9js6RQT1zyGTauMZdKpWLKfxTx0449VWWvqV5elNYPaC43Z798xihCuH5hkVVgS1Nw2gblZfGIAjmHP9jOLfsFgxh4spg5ppz3GmBx3y5fO0aKgIHCFZzjMZJvXHl0kTQZEZUjoWSd8nb7DIjprCGCSpLxHuehvqGmQ+aBN/j3MjAP5mF5RceT5+NKL/BFLpxsNsp7QK1anPJHwrr9PF2LahF34gkkCvDwewkWAm0TUg1jUNZI3AUKzen8LnwiUUOoM8CEetlFE86YwReGEQgxAMVBZm0fPL7CBHOK6eABa8/98F6AmKb7uOknTUb9I0YdmzHo</certificate>
+        <scopes>Basic</scopes>
+        <scopes>Api</scopes>
+        <scopes>Web</scopes>
+        <scopes>Full</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+</ConnectedApp>

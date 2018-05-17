@@ -1,0 +1,25 @@
+.THIS .devhub-container{
+    margin-top: 20px;
+    background: #fff;
+    height: 60vh;
+    overflow-y: auto;
+}
+.THIS .slds-text-head {
+      background-color:#e1e1ea;
+}
+.THIS .slds-truncate-class {
+      color:#009dd4;
+}
+.THIS.oneAnchorHeader {
+    margin: 0;
+    padding: 1rem;
+    border-bottom: 1px solid rgb(216, 221, 230);
+    background: rgb(244, 246, 249);
+    height: 80px;
+}
+.THIS .slds-button_brand {
+    text-align:right;
+}
+.THIS .slds-btn-container .slds-button_neutral{
+    margin-top:10px;
+}

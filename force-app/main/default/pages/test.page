@@ -1,0 +1,28 @@
+<apex:page showHeader="false" controller="testCtrl">
+    <apex:includeScript value="{!$Resource.jqueryNew}"/>
+    <apex:slds />
+    <apex:form >
+        
+        <div class="slds-form-element">
+  <div class="slds-form-element__control">
+    <span class="slds-checkbox">
+      <apex:inputCheckbox id="chk1"/>
+      <label class="slds-checkbox__label" for="checkbox-2">
+        <span class="slds-checkbox_faux"></span>
+        <span class="slds-form-element__label">Checkbox Label</span>
+      </label>
+    </span>
+  </div>
+</div>
+<apex:commandButton action="{!testMthd}" value="save"/>
+    </apex:form>
+    <script>
+        $(document).ready(function(){
+            var $chk = $("input[id$='chk1']");
+            $chk.next('label').attr('for',$chk.attr('id'));
+        });
+        window.onbeforeunload = function(e) {
+return "You have unsaved data";
+};
+    </script>
+</apex:page>

@@ -1,0 +1,13 @@
+.THIS.User_Story_Management{
+
+}
+.THIS .slds-path__stage{
+    color:#fff;
+}
+.THIS .slds-path__item{
+    flex:none;
+    padding-right:5px;
+}
+.THIS .slds-path__nav{
+    justify-content: center;
+}

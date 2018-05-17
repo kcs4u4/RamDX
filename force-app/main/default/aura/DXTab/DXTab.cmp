@@ -1,0 +1,23 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="tabTile" type="String" default="Place Holder"/>
+    <aura:attribute name="tabIndex" type="Integer" default="0"/>
+    <aura:attribute name="isActive" type="String" default="false"/>
+    <aura:attribute name="listItemClass" type="String" default="{!'slds-context-bar__item slds-context-bar__item_tab'+if(v.isActive=='true',' slds-is-active','')}"/>
+    <aura:registerEvent name="selectItemEvent" type="c:flagHandler"/>
+    <aura:registerEvent name="closeItemEvent" type="c:flagHandler"/>
+	<li class="{!v.listItemClass}" role="presentation" tabindex="{!v.tabIndex}" title="{!v.tabTile}">
+          <a href="javascript:void(0);" class="slds-context-bar__label-action" role="tab" title="Tab Item 2" tabindex="{!v.tabIndex}" onclick="{!c.selectItem}">
+            <div class="slds-icon_container" title="Case">
+              <c:svg svgPath="/resource/slds/assets/icons/standard-sprite/svg/symbols.svg#case" class="slds-icon slds-icon_small slds-icon-text-default" />
+              <span class="slds-assistive-text">Case</span>
+            </div>
+            <span class="slds-truncate" title="Tab Item 2">{!v.tabTile}</span>
+          </a>
+          <div class="slds-context-bar__icon-action slds-col_bump-left slds-p-left_none">
+            <button class="slds-button slds-button_icon slds-button_icon-container slds-button_icon-x-small" tabindex="-1" title="Close Tab Item 2" onclick="{!c.closeItem}">
+              <c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#close" class="slds-button__icon" />
+              <span class="slds-assistive-text">Close Tab Item 2</span>
+            </button>
+          </div>
+        </li>
+</aura:component>

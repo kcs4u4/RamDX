@@ -1,0 +1,107 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="DXAPIServices">
+    <ltng:require scripts="/resource/jquery,/resource/momentjs,/resource/aljs" afterScriptsLoaded="{!c.doInit}"/>
+    <aura:attribute name="accesskeyList" type="Object[]" default="[]"/>
+    <aura:attribute name="repositoryDetailsList" type="Object[]" default="[]"/>
+    <aura:attribute name="reponame" type="String"/>
+    <aura:attribute name="repourl" type="String"/>
+     <aura:attribute name="repoid" type="String"/>
+    <aura:attribute name="repositoryList" type="String[]" default="[]"/>
+    <aura:attribute name="isBranchDetailsVisible" type="Boolean" default="false"/>
+    <aura:attribute name="branchList" type="Object[]" />
+    <aura:attribute name="isModalVisible" type="boolean" default="false"/>
+    <aura:attribute name="isModal" type="boolean" default="false"/>
+    <aura:handler name="cmpEvent" event="c:flagHandler" action="{!c.handleComponentEvent}"/>
+    <aura:handler name="getList" event="c:flagHandler" action="{!c.showRepoList}"/>
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <aura:attribute name="createBranch" type="boolean" default="false"/>
+    <aura:attribute name="registerBranch" type="boolean" default="false"/>
+    <c:loading isVisible="{!v.isVisible}"/>
+    <aura:if isTrue="{!v.isBranchDetailsVisible}">
+        <div aura:id="branchlist">
+            <div>
+                <a href="javascript:void(0)" onclick="{!c.backToRepoList}"><lightning:icon iconName="utility:back" size="small" alternativeText="Back"/></a>
+                <lightning:button variant="brand" label="Create Branch" class="slds-m-left_small slds-float_right" onclick="{! c.createBranch }" />
+                <lightning:button variant="brand" label="Register a Branch" class="slds-m-left_small slds-float_right" onclick="{! c.registerBranch }" />
+            </div>
+            <c:DXBranchMangement repoid="{!v.repoid}" repourl="{!v.repourl}" isVisible="{!v.isVisible}" branchList="{!v.branchList}" reponame="{!v.reponame}" createBranch="{!v.createBranch}" registerBranch="{!v.registerBranch}"/>
+        </div>
+        <aura:set attribute="else">
+            <div aura:id="main">   
+                <div class="slds-text-align_right slds-m-top_large slds-btn-container">
+                    <div class="dx-header slds-text-align_left">&nbsp;&nbsp;&nbsp; <aura:if isTrue="{!not(v.isModalVisible)}"><b>Repositories List</b></aura:if>
+                        <div class="slds-button-group" role="group" data-aljs="icon-group">
+                            <!--<button id="icon-2" class="slds-button slds-button__icon-border slds-is-selected" onclick="{!c.showRepoList}">
+                        Repositories List
+                    </button>
+                            <button id="icon-3" class="slds-button slds-button__icon-border slds-not-selected" >
+                                Register Repository
+                            </button>-->
+                            <lightning:button variant="brand" label="Register Repository" class="slds-m-left_small slds-float_right" onclick="{!c.showModal}" />
+                        </div>
+                    </div>
+                </div>
+                <aura:if isTrue="{!not(v.isModalVisible)}">
+                    <div class="table-container">
+                        <div class="slds-form slds-form_compound">
+                            <fieldset class="slds-form-element">
+                                <div class="slds-text-align_right">
+                                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                                        <thead class="slds-text-head">
+                                            <tr class="slds-text-title_caps">
+                                                <th scope="col">
+                                                    <div class="slds-truncate_class" title="Repository Name" >Repository Name</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate_class" title="Type">Type</div>
+                                                </th>
+                                                <th scope="col">
+                                                    <div class="slds-truncate_class" title="URL">URL</div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <aura:iteration items="{!v.repositoryDetailsList}" var="repo">
+                                                <tr>
+                                                    <td scope="col">
+                                                        <div class="slds-truncate" title="{!repo.name}" ><a href="javascript:void(0)" onclick="{!c.getBranchList}" name="{!repo.name}" id="{!repo.id}" data-repourl="{!repo.remoteurl}">{!repo.name}</a></div>
+                                                    </td>
+                                                    <td scope="col">
+                                                        <div class="slds-truncate" title="{!repo.scmtype}">{!repo.scmtype}</div>
+                                                    </td>
+                                                    <td scope="col">
+                                                        <div class="slds-truncate" title="{!repo.remoteurl}">{!repo.remoteurl}</div>
+                                                    </td>
+                                                </tr>   
+                                            </aura:iteration>
+                                        </tbody>
+                                    </table>
+                                </div>  
+                            </fieldset>
+                        </div>
+                    </div>  
+                </aura:if>    
+                <aura:if isTrue="{!v.isModalVisible}">
+                    <style>
+                        .oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+                        z-index: -1;
+                        }
+                    </style>
+                    <div class="slds-clearfix"></div>
+                    <div class="demo-only" >
+                        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal__small">
+                            <div class="slds-modal__container slds-modal__container-custom">
+                                <div class="slds-modal__content slds-p-around--medium slds-form slds-form_compound">
+                                    <c:DXRegisterRepository flag="{!v.isModalVisible}" accflag="{!v.isModal}" repositoryList="{!v.repositoryList}" accesskeyList="{!v.accesskeyList}"/>    
+                                </div>
+                            </div>
+                        </section>
+                        <div class="slds-backdrop slds-backdrop_open"></div>
+                    </div>
+                </aura:if> 
+                <aura:if isTrue="{!v.isModal}">
+                    <c:DXCredentialManager flag="{!v.isModal}" accesskeyList="{!v.accesskeyList}" />   
+                </aura:if>    
+            </div>
+        </aura:set>
+    </aura:if>   
+</aura:component>

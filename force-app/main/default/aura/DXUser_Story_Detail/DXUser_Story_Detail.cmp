@@ -1,0 +1,100 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <aura:attribute name="isAddNote" type="Boolean" default="false"/>
+    <aura:attribute name="story" type="Object"/>
+    <aura:attribute name="notesList" type="Map[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="refreshNotes" event="c:flagHandler" action="{!c.doInit}"/>
+    <div class="user-story-detail-container">
+        <button class="slds-button slds-button-back" onclick="{!c.goBack}"><c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#back" class="slds-icon slds-icon-text-default" /></button>
+        <div class="slds-box slds-m-bottom_large">
+            <div class="slds-grid slds-grid_align-spread">
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">User Story:</span><span class="detail-data">{!v.story.id}</span></div>
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Description:</span><span class="detail-data">{!v.story.description}</span></div>
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Deployed To:</span><span class="detail-data">{!v.story.id}</span></div>
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Created By:</span><span class="detail-data">{!v.story.reporter}</span></div>
+            </div>
+            <div class="slds-grid slds-grid_align-spread slds-m-top_small">
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Assigned To:</span><span class="detail-data">Ram</span></div>
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Status:</span><span class="detail-data">{!v.story.status}</span></div>
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Created Date:</span><span class="detail-data">{!v.story.createddate}</span></div>
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Release Date:</span><span class="detail-data">{!v.story.releasedate}</span></div>
+            </div>
+            <div class="slds-grid slds-grid_align-spread slds-m-top_small">
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Scratch Org:</span><span class="detail-data">{!v.story.scratchOrg}</span></div>
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Created on:</span><span class="detail-data">{!v.story.scratchorgcreateddate}</span></div>
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Exipires on:</span><span class="detail-data">{!v.story.scratchorgexpirationdate}</span></div>
+                <div class="slds-medium-size_1-of-4"></div>
+            </div>
+            <div class="slds-grid slds-grid_align-spread slds-m-top_small">
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Repository:</span><span class="detail-data">{!v.story.reponame}</span></div>
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Branch:</span><span class="detail-data">{!v.story.branch}</span></div>
+                <div class="slds-medium-size_1-of-4"><span class="detail-title">Url</span><span class="detail-data">{!v.story.repourl}</span></div>
+                <div class="slds-medium-size_1-of-4"></div>
+            </div>
+        </div>    
+        <c:DXProcessPath story="{!v.story}"/>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <th scope="col">
+                        <div class="slds-truncate" title="Label Name">Label Name</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Revision No">Revision No.</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Date">Date</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Committed By">Committed By</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Committed Info">Committed Info  </div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Comment">Comment</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="text-align:center" colspan="6">No commit history found</td></tr>
+            </tbody>
+        </table>
+        <hr class="divider"/>
+        <div class="note-wrapper">
+            <div class="slds-text-align_right slds-p-vertical_x-small"><button class="slds-button slds-button_brand" onclick="{!c.addNote}">Add Note</button></div>
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="CreatedBy">CreatedBy</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Date">Date</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Notes">Notes</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:if isTrue="{!not(empty(v.notesList))}">
+                        <aura:iteration items="{!v.notesList}" var="note">
+                            <tr>
+                                <td>{!note.createdby}</td>
+                                <td>{!note.createddate}</td>
+                                <td>{!note.notes}</td>
+                            </tr>
+                        </aura:iteration>
+                        <aura:set attribute="else">
+                            <tr><td style="text-align:center" colspan="3">No notes history found</td></tr>
+                        </aura:set>
+                    </aura:if> 
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <aura:if isTrue="{!v.isAddNote}">
+        <c:DXAddNote story="{!v.story}" isAddNote="{!v.isAddNote}"/>
+    </aura:if>
+</aura:component>

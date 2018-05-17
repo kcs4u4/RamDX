@@ -1,0 +1,10 @@
+<aura:component >
+    <aura:attribute name="hideCheckboxColumn" type="Boolean" default="false"/>
+    <aura:attribute name="keyField" type="String" default="Id"/>
+    <aura:attribute name="columns" type="Object[]"/>
+	<aura:attribute name="mydata" type="Object[]"/>
+    <aura:attribute name="mycolumns" type="Object[]"/>
+    <aura:attribute name="sortedBy" type="string" default="" />
+    <aura:attribute name="sortedDirection" type="string" default="asc" />
+    <lightning:datatable data="{! v.mydata }" columns="{! v.columns}" keyField="{!v.keyField}" onsort="{!c.columnSorting}" sortedBy="{!v.sortedBy}" sortedDirection="{!v.sortedDirection}" onrowselection="{!c.onrowselection}" hideCheckboxColumn="{!v.hideCheckboxColumn}"/>
+</aura:component>

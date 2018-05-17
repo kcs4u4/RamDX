@@ -1,0 +1,149 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="DXAPIServices">
+    <aura:attribute name="isLabel" type="boolean" default="false"/>
+    <aura:attribute name="isModal" type="boolean" default="false"/>
+    <aura:attribute name="addLabelModalVisible" type="Boolean" default="false"/>
+    <aura:attribute name="label" type="String" default="None"/>
+    <aura:attribute name="EZCommitLabel" type="Object" />
+    <aura:attribute name="customLabels" type="String[]"/>
+    <aura:attribute name="statusList" type="String[]"/>
+    <aura:attribute name="almProjects" type="Object[]"/>
+    <aura:attribute name="sprintsList" type="Object[]"/>
+    <aura:attribute name="workItems" type="Object[]"/>
+ 	<aura:attribute name="almType" type="String" default="Select ALM Type"/> 
+    <aura:attribute name="projKey" type="String" default="Select Project"/> 
+    <aura:attribute name="sprint" type="String" default="Select"/> 
+    <aura:attribute name="workItem" type="String" default="Select"/>
+    <aura:attribute name="releaseNames" type="String[]"/>
+    <aura:attribute name="customLabel" type="String" default="None"/>
+    <aura:attribute name="fetchChangesMap" type="Map" default="{
+                                                               'usersList':'',
+                                                               'reponame':'',
+                                                               'branch':'',
+                                                               'sforgname':''
+                                                               }"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <div class="demo-only" style="width:300px;">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container slds-label__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">New Label</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_small" id="modal-content-id-1">
+                    <div aura:id="main">
+                        <fieldset class="slds-form-element">
+                            <div class="slds-form-element__group">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-1">
+                                        <div class="slds-form-element__row">
+                                            <div class="slds-grid slds-wrap">
+                                                <div class="slds-form-element slds-size_1-of-1 slds-medium-size_11-of-12">
+                                                    <label class="slds-form-element__label" for="Label">Label</label>
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-select_container">
+                                                            <ui:inputSelect class="slds-select"  value="{!v.label}" change="{!c.doInit}">
+                                                                <ui:inputSelectOption text="None" label="None" value="true"/>
+                                                                <ui:inputSelectOption text="Custom Label" label="Custom Label"/>
+                                                                <ui:inputSelectOption text="Release Label" label="Release Label"/>
+                                                                <ui:inputSelectOption text="Alm Label" label="Alm Label"/>
+                                                            </ui:inputSelect>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--<div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-12"></div>-->
+                                                <aura:if isTrue="{!v.label=='Release Label'}">
+                                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_11-of-12">
+                                                        <label class="slds-form-element__label" for="Label Name" >Release Name</label>
+                                                        <div class="slds-form-element__control">
+                                                            <div class="slds-select_container">
+                                                                <ui:inputSelect aura:id="customLabels" class="slds-select"  value="{!v.customLabel}">
+                                                                    <ui:inputSelectOption text="None" label="None"/>
+                                                                    <aura:iteration items="{!v.releaseNames}" var="release">
+                                                                        <ui:inputSelectOption text="{!release}" label="{!release}"/>
+                                                                    </aura:iteration>
+                                                                </ui:inputSelect>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-12"></div>
+                                                </aura:if>
+                                                <aura:if isTrue="{!or(v.label=='Custom Label',v.label=='Release Label')}">
+                                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_11-of-12">
+                                                        <label class="slds-form-element__label" for="Label Name" >{!v.label}</label>
+                                                        <div class="slds-form-element__control">
+                                                            <div class="slds-select_container">
+                                                                <ui:inputSelect aura:id="customLabels" class="slds-select" value="{!v.customLabel}">
+                                                                    <ui:inputSelectOption text="None" label="None"/>
+                                                                    <aura:iteration items="{!v.customLabels}" var="label">
+                                                                        <ui:inputSelectOption text="{!label.name}" label="{!label.name}"/>
+                                                                    </aura:iteration>
+                                                                </ui:inputSelect>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-12">
+                                                        <button class="slds-button slds-button_brand slds-button-add-acckey" onclick="{!c.addCustomLabel}">+</button>
+                                                    </div>
+                                                </aura:if>
+                                                <aura:if isTrue="{!v.label=='Alm Label'}">
+                                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_11-of-12">
+                                                        <lightning:select name="Type" label="Type" onchange="{!c.getAlmProjects}" value="{!v.almType}">
+                                                            <option value="Select ALM Type">Select ALM Type</option>
+                                                            <option value="autorabit">AutoRabit</option>
+                                                            <option value="jira">JIRA</option>
+                                                        </lightning:select>
+                                                    </div>
+                                                    <!--<div class="slds-form-element slds-size_1-of-1 slds-medium-size_1-of-12"></div>-->
+                                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_11-of-12">
+                                                        <lightning:select name="Project" label="Project" onchange="{!c.projectChange}" value="{!v.projKey}" >
+                                                            <option value="Select Project">Select Project</option>
+                                                            <aura:iteration items="{!v.almProjects}" var="proj">
+                                                            	<option value="{!proj.id}">{!proj.name}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </div>
+                                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_11-of-12">
+                                                        <lightning:select name="Planned For" label="Planned For" onchange="{!c.getWorkItems}" value="{!v.sprint}">
+                                                            <option value="Select">Select</option>
+                                                            <aura:iteration items="{!v.sprintsList}" var="sprint">
+                                                            	<option value="{!sprint.name+'$'+sprint.id}">{!sprint.name}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </div>
+                                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_11-of-12">
+                                                        <lightning:select name="WorkItems" label="Work Items" onchange="{!c.getSatusList}" value="{!v.workItem}">
+                                                            <option value="Select">Select</option>
+                                                            <aura:iteration items="{!v.workItems}" var="wi">
+                                                            	<option value="{!wi.name}">{!wi.id}&nbsp;{!wi.name}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </div>
+                                                    <div class="slds-form-element slds-size_1-of-1 slds-medium-size_11-of-12">
+                                                        <lightning:select name="Status" label="Status" >
+                                                            <option value="Select">Select</option>
+                                                            <aura:iteration items="{!v.statusList}" var="status">
+                                                            	<option value="{!status}">{!status}</option>
+                                                            </aura:iteration>
+                                                        </lightning:select>
+                                                    </div>
+                                                </aura:if>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>     
+                        </fieldset>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.cancel}">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick="{!c.addLabel}">Ok</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+    <aura:if isTrue="{!v.isModal}">
+        <c:DXEZCommitNewLabel isModal="{!v.isModal}" customLabels="{!v.customLabels}" fetchChangesMap="{!v.fetchChangesMap}"/>
+    </aura:if>
+</aura:component>

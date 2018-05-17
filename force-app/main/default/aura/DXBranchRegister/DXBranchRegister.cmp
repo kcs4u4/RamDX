@@ -1,0 +1,63 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <aura:attribute name="reponame" type="String"/>
+    <aura:attribute name="repourl" type="String"/>
+    <aura:attribute name="scmtype" type="String" default="git"/>
+    <aura:attribute name="newRemoteBranches" type="Map[]" />
+    <aura:attribute name="registerBranch" type="boolean" default="false"/>
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <aura:attribute name="branchList" type="Object[]" />
+    <aura:attribute name="branchNamesList" type="String[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:registerEvent name="refreshBranches" type="c:flagHandler"/>
+    <style>
+        .oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+        z-index: -1;
+        }
+    </style>
+    <div class="demo-only" style="height: 640px;">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-text-align_center">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Register Branch</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium reg-slds-modal__content" id="modal-content-id-1">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead class="slds-text-head">
+                            <tr class="slds-text-title_caps">
+                                <th scope="col">
+                                    <div class="slds-truncate_class" title="Branch Name" >Branch Name</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate_class" title="Repository Name">Last Commit Date</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.newRemoteBranches}" var="branch" indexVar="i">
+                                <tr>
+                                    <td scope="col">
+                                        <div class="slds-truncate" title="name">
+                                            <lightning:input aura:id="branch" type="checkbox" label="{!branch.name}" name="{!branch.name}" class="{!'branch-'+i}" checked="{!branch.isSel}" onchange="{!c.checkBranchDetails}"/>
+                                        </div>
+                                    </td>
+                                    <td scope="col">
+                                        <div class="slds-truncate" title="date">
+                                            <ui:inputDate aura:id="dateField" label="" value="{!branch.date}" class="{!'date-'+i}" displayDatePicker="true" change="{!c.checkDate}"/>
+                                        </div>
+                                    </td>
+                                </tr>   
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="slds-modal__footer slds-text-align_center">
+                    <lightning:button label="Cancel" onclick="{!c.cancelModal}"
+                                      variant="neutral" />
+                    <lightning:button label="Register" onclick="{!c.regBranch}"
+                                      variant="brand" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>	
+</aura:component>

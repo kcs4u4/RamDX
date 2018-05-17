@@ -1,0 +1,58 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <aura:attribute name="isModalVisible" type="Boolean" default="false"/>
+    <aura:attribute name="reponame" type="String"/>
+    <aura:attribute name="parentBranch" type="String"/>
+    <aura:attribute name="branchType" type="String"/>
+    <aura:attribute name="displayName" type="String"/>
+    <aura:attribute name="isSfdx" type="Boolean" default="false"/>
+    <aura:attribute name="sfdxFolderName" type="String" default="force-app"/>
+    <aura:attribute name="scmtype" type="String" default="git"/>
+    <aura:attribute name="RemoteBranches" type="String[]" default="[]"/>
+    <aura:attribute name="BranchTypes" type="String[]" default="[]"/>
+    <aura:attribute name="branchList" type="Object[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:registerEvent name="refreshBranches" type="c:flagHandler"/>
+    <style>
+        .oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+        z-index: -1;
+        }
+    </style>
+    <div class="demo-only" style="height: 640px;">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header slds-text-align_center">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create Branch</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-container_small create-branch">
+                        <lightning:input name="BranchName" aura:id="branchName" label="Branch Name" value="{!v.displayName}" placeholder="Please Enter" required="true" messageWhenValueMissing="Please enter the response"/>
+                        <lightning:select class="slds-m-top_xx-small" name="pbranch" aura:id="pbranch" label="Parent Branch" value="{!v.parentBranch}" required="true" messageWhenValueMissing="Please enter the response">
+                            <option text="Select" value="Select"/>
+                            <aura:iteration items="{!v.RemoteBranches}" var="branch">
+                                <option text="{!branch}" value="{!branch}"/>
+                            </aura:iteration>
+                        </lightning:select>
+                        <lightning:select class="slds-m-top_xx-small" name="btype" aura:id="btype" label="Branch Type" value="{!v.branchType}" required="true" messageWhenValueMissing="Please enter the response">
+                            <option text="Select" value="Select"/>
+                            <aura:iteration items="{!v.BranchTypes}" var="type">
+                                <option text="{!type}" value="{!type}"/>
+                            </aura:iteration>
+                        </lightning:select>
+                        <lightning:input class="slds-m-top_xx-small" type="checkbox" label="Check-in with sfdx folder structure" name="blue" checked="{!v.isSfdx}"/>
+                        <aura:if isTrue="{!v.isSfdx}">
+                            <lightning:input class="slds-m-top_xx-small" name="sfdxFolderName" aura:id="sfdxFolderName" label="Sfdx Folder Name" value="{!v.sfdxFolderName}" placeholder="Please Enter" required="true" messageWhenValueMissing="Please enter the response"/>
+                        </aura:if>
+                    </div>    
+                </div>
+                <footer class="slds-modal__footer slds-text-align_center">
+                    <lightning:button label="Cancel" onclick="{!c.cancelModal}"
+                                      variant="neutral" />
+                    <lightning:button label="Save" onclick="{!c.handleSaveContact}"
+                                      variant="brand" />
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>	
+</aura:component>

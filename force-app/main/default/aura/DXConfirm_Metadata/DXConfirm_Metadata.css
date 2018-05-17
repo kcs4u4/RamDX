@@ -1,0 +1,12 @@
+.THIS .slds-text-head {
+      background-color:#e1e1ea;
+}
+.THIS .slds-modal__header{
+   color:#009dd4;
+}
+.THIS .slds-truncate-class {
+      color:#009dd4;
+}
+.THIS .slds-modal__content{
+    max-height:40vh;
+}

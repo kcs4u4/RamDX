@@ -1,0 +1,8 @@
+.THIS h2.slds-text-heading_medium.slds-hyphenate{
+    font-weight:bold;
+}
+
+.THIS .slds-modal__container{
+   	max-width: none;
+    width: 90%
+}

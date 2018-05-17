@@ -1,0 +1,36 @@
+.THIS .slds-section .icon-wrapper .slds-section__title-action-icon {
+    transform: rotate(-180deg);
+}
+
+.THIS .slds-section.slds-is-open .icon-wrapper .slds-section__title-action-icon{
+    transform: rotate(0deg);
+}
+.THIS .slds-page-header__title{
+     color:#009dd4;
+}
+.THIS .icon-wrapper{
+    position:absolute;
+    right:0
+}
+.THIS .slds-section__content{
+    display:none;
+}
+.THIS .slds-section.slds-is-open .slds-section__content{
+    display:block;
+}
+.THIS .slds-button.slds-section__title-action{
+    display:block;
+}
+.THIS.slds-fetch-changes-container{
+    height: 43vh;
+    overflow-y: auto;
+}
+.THIS.slds-fetch-changes-container .slds-section__title{
+    position:relative;
+}
+.THIS.slds-fetch-changes-container .slds-section__title input.metadata
+{
+  	position: absolute;
+    z-index: 1;
+    left: 10px;  
+}

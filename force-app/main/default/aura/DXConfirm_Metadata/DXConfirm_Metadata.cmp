@@ -1,0 +1,107 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="isCommitAndConfirm" type="Boolean" default="false"/>
+    <aura:attribute name="confirm" type="boolean" default="false"/>
+    <aura:attribute name="EZCommit" type="boolean" default="false"/>
+    <aura:attribute name="metadataMembers" type="Object[]" />
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <aura:attribute name="fetchChangesMap" type="Map" default="{
+                                                               'usersList':'',
+                                                               'reponame':'',
+                                                               'branch':'',
+                                                               'sforgname':'',
+                                                               'dxfoldername':'force-app',
+                                                               'repoUrl':'',
+                                                               'comment':'',
+                                                               'isSfdx':false
+                                                               }" access="global"/>
+    
+    <aura:registerEvent name="cmpEvent" type="c:flagHandler"/>
+    <aura:if isTrue="{!and(v.confirm,v.metadataMembers.length>0)}">
+        <div class="demo-only">
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Deployment Summary</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <div class="slds-grid slds-wrap slds-p-vertical_small">
+                            <div class="slds-col slds-size_2-of-12">
+                                Source Org	
+                            </div>
+                            <div class="slds-col slds-size_10-of-12">
+                                {!v.fetchChangesMap.reponame}
+                            </div>
+                            <div class="slds-col slds-size_2-of-12">
+                                Repository	
+                            </div>
+                            <div class="slds-col slds-size_10-of-12">
+                                {!v.fetchChangesMap.repoUrl}
+                            </div>
+                            <div class="slds-col slds-size_2-of-12">
+                                Branch	
+                            </div>
+                            <div class="slds-col slds-size_10-of-12">
+                                {!v.fetchChangesMap.branch}
+                            </div>
+                        </div>
+                        <!--<div class="slds-truncate" title="THEAD">Below metadata members will be deployed to destination org:</div>-->
+                        <div>
+                            <table class="slds-table slds-table_bordered slds-table_cell-buffer metadata-table">
+                                <thead class="slds-text-head">
+                                    <tr class="slds-text-title_caps">
+                                        <th scope="col">
+                                            <div class="slds-truncate-class" title="Name">Type</div>
+                                        </th>
+                                        <th scope="col">
+                                            <div class="slds-truncate-class" title="Members">Members</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <aura:iteration items="{!v.metadataMembers}" var="member">
+                                        <tr>
+                                            <td scope="row" data-label="Name">
+                                                <div class="slds-truncate" title="Name">{!member.name}</div>
+                                            </td>
+                                            <td scope="row" data-label="members">
+                                                <div class="slds-truncate" title="members">
+                                                    {!member.members}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </aura:iteration>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-p-vertical_small">
+                            <div class="slds-col slds-size_4-of-12">
+                            </div>
+                            <div class="slds-col slds-size_5-of-12 slds-p-vertical_xx-small">
+                                <lightning:input type="checkbox" label="Check-in with DX folder structure" checked="{!v.fetchChangesMap.isSfdx}" />
+                            </div>
+                            <aura:if isTrue="{!v.fetchChangesMap.isSfdx}">
+                                <div class="slds-col slds-size_4-of-12 slds-p-vertical_xx-small">
+                                    Folder Name	
+                                </div>
+                                <div class="slds-col slds-size_5-of-12 slds-p-vertical_xx-small">
+                                    <ui:inputText class="slds-input" value="{!v.fetchChangesMap.dxfoldername}" updateOn="click"/>
+                                </div>
+                            </aura:if>
+                            <div class="slds-col slds-size_4-of-12 slds-p-vertical_xx-small">
+                                Check-in Comment
+                            </div>
+                            <div class="slds-col slds-size_5-of-12 slds-p-vertical_xx-small">
+                                <ui:inputTextArea aura:id="comments" class="slds-textarea" cols="5" value="{!v.fetchChangesMap.comment}" rows="2"/>
+                            </div>
+                        </div>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick="{!c.confirmData}">Cancel</button>
+                        <button class="slds-button slds-button_brand" onclick="{!c.exeDeploy}">Ok</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+    </aura:if>
+</aura:component>

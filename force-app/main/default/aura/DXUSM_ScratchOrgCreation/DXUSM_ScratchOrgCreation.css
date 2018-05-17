@@ -1,0 +1,43 @@
+.THIS .slds-form-element__label{
+    color:#009dd4;
+}
+.THIS .uiInput--checkbox input, .THIS input.uiInput--checkbox{
+    display:inline-block;
+    margin:2px;
+}
+.THIS .uiInput--select.has-error.select{
+    border-color: rgb(216, 221, 230);
+    box-shadow: rgb(255, 255, 255) 0 0 0 1px inset;
+}
+.THIS .slds-select.select.uiInput.uiInputSelect.uiInput--default.uiInput--select{
+    background-image:none;
+}
+.THIS .select-error{
+    color:red;
+    font-size: .75rem; 
+    margin-top: .5rem; 
+    display: block;
+}
+.THIS .slds-modal__container {
+    max-width: 50rem!important;
+    width:100%;
+}
+
+.THIS .btn-grp{
+    margin-bottom:10px;
+    text-align: center;
+    display:block;
+}
+.THIS .btn-grp .slds-button{
+    line-height:30px;
+}
+.THIS .devhub-select .slds-form-element__label,.THIS .so-select .slds-form-element__label{
+    display:none;
+}
+.THIS .devhub-select .slds-form-element__control,.THIS .so-select .slds-form-element__control{
+    width:100%;
+}
+.THIS #assign{
+    max-width: 350px;
+    margin: auto;
+}

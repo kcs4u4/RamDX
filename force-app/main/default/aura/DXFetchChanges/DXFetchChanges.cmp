@@ -1,0 +1,55 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <!--<aura:attribute name="fetchChanges" type="Object"/>-->
+    <aura:attribute name="fetchChangesList" type="Object[]"/>
+    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
+    <aura:attribute name="metadataMembers" type="Object[]" />
+    <aura:attribute name="metadataMap" type="Object"/>
+    <h1 class="slds-page-header__title slds-truncate slds-align-middle slds-text-align_center slds-m-bottom_small" title="Metadata Members">Metadata Members </h1>
+    <div class="slds-fetch-changes-container">
+        <aura:iteration items="{!v.fetchChangesList}" var="obj" indexVar="i">
+            <div class="slds-section" >
+                <h3 class="slds-section__title">
+                    <input type="checkbox" id="{!obj.name+'-'+i}" class="metadata" onclick="{!c.storeDetails}" name="{!obj.name}"/>
+                    <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" data-index="{!i}" onclick="{!c.showMetadata}"> 
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="slds-truncate" title="{!obj.name}" data-index="{!i}" >{!obj.name}</span> 
+                        <span class="icon-wrapper" data-index="{!i}" onclick="{!c.showMetadata}">
+                            <c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#switch" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" />
+                        </span>
+                    </button> 
+                </h3>
+                <aura:if isTrue="{!obj.showMembers}">
+                    <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                            <thead>
+                                <tr class="slds-text-title_caps">
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="File Name">File Name</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Fullname">Fullname</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="Manageablestate">Manageablestate</div>
+                                    </th>
+                                    <th scope="col">
+                                        <div class="slds-truncate" title="modifieddate">Modified Date</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <aura:iteration items="{!obj.members}" var="item" indexVar="j">
+                                    <tr>
+                                        <td data-label="filename"><div class="slds-truncate" title="filename"><input type="checkbox" id="{!obj.name+'-'+i+'-'+j}" class="member" name="{!item.fullname}" data-filename="{!item.filename}" data-manageablestate="{!item.manageablestate}" data-modifieddate="{!item.modifieddate}" onclick="{!c.storeDetails}"/>&nbsp;{!item.filename}</div></td>
+                                        <td data-label="fullname"><div class="slds-truncate" title="fullname">{!item.fullname}</div></td>
+                                        <td data-label="manageablestate"><div class="slds-truncate" title="fullname">{!item.manageablestate}</div></td>
+                                        <td data-label="modifieddate"><div class="slds-truncate" title="fullname">{!item.modifieddate}</div></td>
+                                    </tr>
+                                </aura:iteration>
+                            </tbody>
+                        </table>
+                    </div>
+                </aura:if>
+            </div>
+        </aura:iteration>
+    </div>     
+</aura:component>

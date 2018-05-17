@@ -1,0 +1,166 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <aura:attribute name="hubid" type="String" />
+    <aura:attribute name="hubusername" type="String" />
+    <aura:attribute name="hubalias" type="String" />
+    <aura:attribute name="fetchChangesList" type="Object[]"/>
+    <aura:attribute name="isShowChanges" type="Boolean" default="false"/>
+    <aura:attribute name="isShowCommitReport" type="Boolean" default="false"/>
+    <aura:attribute name="isFetchChanges" type="Boolean" default="true"/>
+    <aura:attribute name="isCommitAndConfirm" type="Boolean" default="false"/>
+    <aura:attribute name="confirm" type="Boolean" default="false"/>
+    <aura:attribute name="ScrOrgList" type="Object[]" default="[]"/>
+    <aura:attribute name="repositoryDetailsList" type="Object[]" default="[]"/>
+    <aura:attribute name="BranchList" type="Object[]" default="[]"/>
+    <aura:attribute name="UserList" type="Object[]" default="[]"/>
+    <aura:attribute name="EZCommitLabel" type="Object" />
+    <aura:attribute name="commitReport" type="Map" default="{'report':{},'success':[],'failure':[]}"/>
+    <aura:attribute name="metadataMap" type="Object"/>
+    <aura:attribute name="metadataMembers" type="Object[]" />
+    <aura:attribute name="compareMetadataMembers" type="Object[]" />
+    <aura:attribute name="source" type="String"/>
+    <aura:attribute name="destination" type="String"/>
+    <aura:attribute name="branch" type="String"/>
+    <aura:attribute name="isVisible" type="Boolean" default="false"/>
+    <aura:attribute name="addLabelModalVisible" type="Boolean" default="false"/>
+    <aura:attribute name="addMDModalVisible" type="Boolean" default="false"/>
+    <aura:attribute name="commitLabel" type="String" default="None"/>
+    <aura:attribute name="labelType" type="String" default="None"/>
+    <aura:attribute name="fetchChangesMap" type="Map" default="{
+                                                               'usersList':'',
+                                                               'reponame':'',
+                                                               'branch':'',
+                                                               'sforgname':'',
+                                                               'dxfoldername':'force-app',
+                                                               'repoUrl':'',
+                                                               'comment':'',
+                                                               'isSfdx':false
+                                                               }" access="global"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:handler name="cmpEvent" event="c:flagHandler" action="{!c.commitChanges}"/>
+    <aura:handler name="commitConfirm" event="c:flagHandler" action="{!c.confirmCommit}"/>
+    <aura:handler name="cancelConfrm" event="c:flagHandler" action="{!c.cancelCommit}"/>
+    <aura:registerEvent name="appLauncher" type="c:flagHandler"/>
+    <c:loading isVisible="{!v.isVisible}"/>
+    
+    <div aura:id="main" >
+        <aura:if isTrue="{!v.isFetchChanges}">
+            <h1 class="slds-page-header__title slds-truncate slds-align-middle slds-text-align_center slds-m-bottom_small cFetchChangesComp cEZ_Commit" title="Metadata Members">New Commit </h1>
+            <div class="slds-container_medium slds-box slds-p-vertical_large">
+                <div class="slds-grid slds-wrap slds-grid_pull-padded">
+                    <!-- first row start -->  
+                    <div class="slds-p-horizontal_small slds-size_1-of-1 slds-small-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="select-01">Salesforce Org:</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select class="slds-select" id="srcOrg" onchange="{!c.selectDeloyment}">
+                                        <option>Select Salesforce Org</option>
+                                        <aura:iteration items="{!v.ScrOrgList}" var="org">
+                                            <option data-rec-id="{!org.id}" value="{!org.name}">{!org.name}</option>
+                                        </aura:iteration> 
+                                    </select>
+                                </div>
+                            </div>
+                        </div>          
+                    </div>
+                    <div class="slds-p-horizontal_small slds-size_1-of-1 slds-small-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="user">Author:</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select class="slds-select" id="user" onchange="{!c.selectDeloyment}">
+                                        <option>All</option>
+                                        <aura:iteration items="{!v.UserList}" var="val">
+                                            <option data-name="{!val}" value="{!val}">{!val}</option>
+                                        </aura:iteration> 
+                                    </select>
+                                </div>
+                            </div>
+                        </div>      
+                    </div>
+                    <div class="slds-p-horizontal_small slds-size_1-of-1 slds-small-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="Repository">Repository:</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select class="slds-select" id="Repository" onchange="{!c.selectDeloyment}">
+                                        <option>Select</option>
+                                        <aura:iteration items="{!v.repositoryDetailsList}" var="rep">
+                                            <option data-rec-id="{!rep.id}" value="{!rep.name}" data-url="{!rep.remoteurl}">{!rep.name}</option>
+                                        </aura:iteration>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>          
+                    </div>
+                    <div class="slds-p-horizontal_small slds-size_1-of-1 slds-small-size--1-of-2">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="Branch">Branch</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <select class="slds-select" id="Branch" onchange="{!c.selectDeloyment}">
+                                        <option>Select</option>
+                                        <aura:iteration items="{!v.BranchList}" var="branch">
+                                            <option data-name="{!branch.name}" value="{!branch.name}">{!branch.name}</option>
+                                        </aura:iteration> 
+                                    </select>
+                                </div>
+                            </div>
+                        </div>      
+                    </div>
+                    <div class="slds-p-top_large slds-size_1-of-1 slds-small-size--1-of-1 slds-text-align_center">
+                        <button class="slds-button slds-button_brand" onclick="{!c.fetchChanges}">Fetch Changes</button>    
+                    </div>
+                </div>      
+            </div>
+        </aura:if>
+    </div>
+    <aura:if isTrue="{!and(v.isShowChanges,v.fetchChangesList.length>0)}">
+        <div class="slds-p-vertical_small slds-text-align_right">
+            <lightning:button variant="brand" label="Additional Metadata" onclick="{!c.additionalMetadata}" />
+        </div>
+        <aura:if isTrue="{!v.addMDModalVisible}">
+            <style>
+                .oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+                z-index: -1;
+                }
+            </style>
+            <c:AddtnalMetadata addMDModalVisible="{!v.addMDModalVisible}" fetchChangesList="{!v.fetchChangesList}" sfOrgName="{!v.fetchChangesMap.sforgname}"/>
+        </aura:if>
+        <c:DXFetchChanges fetchChangesList="{!v.fetchChangesList}" metadataMap="{!v.metadataMap}"/>
+        <aura:if isTrue="{!or(and(v.isCommitAndConfirm,v.compareMetadataMembers.length>0),and(v.isShowChanges,v.fetchChangesList.length>0))}">
+            <div class="slds-p-vertical_small slds-text-align_right">
+                <lightning:button variant="brand" label="Add Label" onclick="{!c.addLabelToEzCommit}" />
+            </div>
+            <aura:if isTrue="{!v.addLabelModalVisible}">
+                <c:DXEZCommitLabel EZCommitLabel="{!v.EZCommitLabel}" fetchChangesMap="{!v.fetchChangesMap}" addLabelModalVisible="{!v.addLabelModalVisible}" aura:id="commitLabel" customLabel="{!v.commitLabel}" label="{!v.labelType}"/>
+            </aura:if>
+        </aura:if>
+        <div class="slds-text-align_center slds-p-vertical_medium">
+            <button class="slds-button slds-button_brand slds-btn-commit" onclick="{!c.confirmCommit}">Commit</button>
+            <button class="slds-button slds-button_brand slds-btn-commit" onclick="{!c.compareCommit}">Compare &amp; Commit</button>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!and(v.isCommitAndConfirm,v.compareMetadataMembers.length>0)}">
+        <c:DXEZCompareAndCommit compareMetadataMembers="{!v.compareMetadataMembers}" metadataMap="{!v.metadataMap}" isCommitAndConfirm="{!v.isCommitAndConfirm}" fetchChangesMap="{!v.fetchChangesMap}" branch="{!v.branch}" source="{!v.source}" destination="{!v.destination}" />
+    </aura:if>
+    <aura:if isTrue="{!v.confirm}">
+        <style>
+            .oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+            z-index: -1;
+            }
+        </style>
+        <c:DXConfirm_Metadata confirm="{!v.confirm}" metadataMembers="{!v.metadataMembers}" isCommitAndConfirm="{!v.isCommitAndConfirm}" fetchChangesMap="{!v.fetchChangesMap}" />
+    </aura:if>
+    <aura:if isTrue="{!v.isShowCommitReport}">
+        <style>
+            .oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+            z-index: -1;
+            }
+        </style>
+        <c:DXEZCommitReport commitReport="{!v.commitReport}"/>
+        <div class="slds-text-align_center slds-p-vertical_medium">
+            <button class="slds-button slds-button_brand slds-btn-commit" onclick="{!c.newCommit}">New EZCommit</button>
+        </div>
+    </aura:if>
+</aura:component>

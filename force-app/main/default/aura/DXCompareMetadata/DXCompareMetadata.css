@@ -1,0 +1,32 @@
+.THIS.slds-comp-md-container .slds-section__title{
+    position:relative;
+}
+
+.THIS.slds-comp-md-container .slds-section__title .metadata{
+    position:absolute;
+    z-index:1;
+    left:10px;
+}
+
+.THIS.slds-comp-md-container .slds-section__title .slds-icon_container{
+    position:absolute;
+    right:0;
+}
+
+.THIS.slds-comp-md-container .slds-section .slds-section__content{
+    padding-left:10px;
+    padding-right:10px;
+}
+
+.THIS .slds-section .slds-section__content {
+    display:none;
+}
+.THIS .slds-section.slds-is-open .slds-section__content {
+    padding-top: .75rem;
+    visibility: visible;
+    display:block;
+    opacity: 1;
+    height: auto;
+    max-height: 200px;
+    overflow: auto;
+}

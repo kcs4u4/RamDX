@@ -1,0 +1,61 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >	
+    <aura:attribute name="flag" type="boolean" default="false"/>
+    <aura:attribute name="sfOrgMap" type="Map" default="{
+                                                        'env':'Production or Development Edition',
+                                                        'sfurl':'https://login.salesforce.com',
+                                                        }"/>
+    <style>
+        .oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+        	z-index: -1;
+        }
+    </style>
+    <div class="demo-only" >
+        <section role="dialog" style="width: 500px;margin: auto;" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Register DEV Hub</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-form slds-m-top_large"  > 
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="username">User Name</label>
+                            <div class="slds-form-element__control">
+                                <ui:inputText aura:id="username" class="slds-input" placeholder="UserName" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="Alias">Alias Name</label>
+                            <div class="slds-form-element__control">
+                                <ui:inputText aura:id="alias" class="slds-input" placeholder="Alias Name" />
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="select-02">Environment</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <ui:inputSelect class="single sf-env" aura:id="sfEnv" value="{!v.sfOrgMap.env}" change="{!c.checkEnvironment}">
+                                        <ui:inputSelectOption text="Production or Development Edition"/>
+                                        <ui:inputSelectOption text="SandBox"/>
+                                        <ui:inputSelectOption text="Pre-Release"/>
+                                        <ui:inputSelectOption text="Custom URL"/>
+                                    </ui:inputSelect>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label" for="input-id-02">Salesforce Org URL</label>
+                            <div class="slds-form-element__control">
+                                <ui:inputText aura:id="sfurl" class="slds-input" placeholder="Salesforce Org URL" value="{!v.sfOrgMap.sfurl}" disabled="{!empty(v.sfOrgMap.sfurl)?false:true}"/>
+                            </div>
+                        </div>                            
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.hideModal}">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick="{!c.addDevHub}">Register</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>        
+</aura:component>

@@ -1,0 +1,123 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="DXAPIServices">
+    <ltng:require scripts="/resource/jquery,/resource/momentjs,/resource/aljs" afterScriptsLoaded="{!c.doInit}" />
+    <aura:attribute name="isVisible" type="Boolean" default="false"/>
+    <aura:attribute name="story" type="Object"/>
+    <aura:attribute name="AlmType" type="Object[]" default="[]"/>
+    <aura:attribute name="AlmProjects" type="Object[]" default="[]"/>
+    <aura:attribute name="AlmSprints" type="Object[]" default="[]"/>
+    <aura:attribute name="AlmUserStories" type="Object[]" default="[]"/>
+    <aura:attribute name="UserManagement" type="Map" default="{
+                                                              'Almtype':'Select',
+                                                              'AlmProject':'Select',
+                                                              'PlannedFor':'Select',
+                                                              'almProjId':''
+                                                              }"/>
+    <!--<aura:handler name='init' value='{!this}' action="{!c.doInit}"/>-->
+    <aura:handler name="refreshStories" event="c:flagHandler" action="{!c.getUserStories}"/>
+    <c:loading isVisible="{!v.isVisible}"/>
+    <div class="User_Story_Management">
+        <div class="slds-container_fluid" aura:id="main">
+            <aura:if isTrue="{!empty(v.story)}">
+                <div class="slds-container_large slds-form slds-form_compound slds-form_compound-dx slds-p-top_large">
+                    <div class="slds-form-element__row">
+                        <div class="slds-form-element slds-size_1-of-4">
+                            <label class="slds-form-element__label" for="select-01">ALM Type*</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <ui:inputSelect aura:id="levels" change="{!c.getAlmProjects}" class="slds-select" value="{!v.UserManagement.Almtype}">
+                                        <!--<ui:inputSelectOption text="Select" label="Select"/>-->
+                                        <aura:iteration items="{!v.AlmType}" var="org">
+                                            <ui:inputSelectOption text="{!org.uilabel}" label="{!org.uilabel}"/>
+                                        </aura:iteration>
+                                    </ui:inputSelect>  
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-form-element slds-size_1-of-4">
+                            <label class="slds-form-element__label" for="select-01">ALM Project*</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <ui:inputSelect aura:id="levels" change="{!c.getAlmSprints}" class="slds-select" value="{!v.UserManagement.AlmProject}">
+                                        <ui:inputSelectOption text="Select" label="Select"/>
+                                        <aura:iteration items="{!v.AlmProjects}" var="org">
+                                            <ui:inputSelectOption text="{!org.name}" label="{!org.name}" />
+                                        </aura:iteration>    
+                                    </ui:inputSelect>  
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-4">
+                            <label class="slds-form-element__label" for="Planned_For">Planned For*</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-select_container">
+                                    <ui:inputSelect aura:id="planned" class="slds-select" value="{!v.UserManagement.PlannedFor}">
+                                        <ui:inputSelectOption text="Select" label="Select"/>
+                                        <aura:iteration items="{!v.AlmSprints}" var="org">
+                                            <ui:inputSelectOption text="{!org.name}" label="{!org.name}" />
+                                        </aura:iteration>    
+                                    </ui:inputSelect>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-form-element slds-size_1-of-4 slds-p-top_large slds-button-get_User">
+                            <button class="slds-button slds-button_brand" onclick="{!c.getUserStories}">Get User Stories</button>
+                        </div>
+                    </div>
+                    
+                </div> 
+                <c:loading />
+                <div class="table-container slds-m-top_large">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer" id="ALM-User-Stories-table">
+                        <thead class="slds-modal__header">
+                            <tr class="slds-text-title_caps">
+                                <th scope="col">
+                                    <div class="slds-truncate_class" title="User Story">User Story</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate_class" title="Description">Description</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate_class" title="Status">Status</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate_class" title="Scratch Org">Scratch Org</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate_class" title="Branch">Branch</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate_class" title="Commit Revisions">Commit Revisions</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate_class" title="reporter">Reporter</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate_class" title="Deployed To">Deployed To</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.AlmUserStories}" var="story" indexVar="i">
+                                <tr>
+                                    <td><div class="slds-truncate" title="User Story"><a href="javascript:void(0)" onclick="{!c.goToUserStoryMgmt}" data-story="{!i}">{!story.id}</a></div></td>
+                                    <td><div class="slds-truncate" title="Description">{!story.description}</div></td>
+                                    <td><div class="slds-truncate" title="Status">{!story.status}</div></td>
+                                    <td><div class="slds-truncate" title="Scratch Org">{!story.scratchOrg}</div></td>
+                                    <td><div class="slds-truncate" title="Branch">{!story.branch}</div></td>
+                                    <td><div class="slds-truncate" title="Commit Revisions">{!story.commitrevisions}</div></td>
+                                    <td><div class="slds-truncate" title="Reporter">{!story.reporter}</div></td>
+                                    <td><div class="slds-truncate" title="Reporter">{!story.reporter}</div></td>
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </div>
+                 <aura:set attribute="else">
+                     <c:DXUser_Story_Detail story="{!v.story}"/>
+    			</aura:set>
+            </aura:if>
+        </div>
+    </div>
+    
+</aura:component>

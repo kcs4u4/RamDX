@@ -1,0 +1,67 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="DXAPIServices">
+    <ltng:require scripts="/resource/jquery,/resource/momentjs,/resource/aljs" afterScriptsLoaded="{!c.doInit}" />
+    <aura:attribute name="isNew" type="boolean" default="false"/>
+    <aura:attribute name="hubInfo" type="Map" />
+    <aura:attribute name="SfOrgList" type="Object[]" default="[]"/>
+    <!--<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>-->
+    <aura:handler name="cmpEvent" event="c:flagHandler" action="{!c.doInit}"/>
+    <div id="sfMgContainer">
+        <div class="slds-text-align_right slds-p-vertical_medium">
+             <div class="dx-header slds-text-align_left">&nbsp;&nbsp;&nbsp; <b>Registered Salesforce Orgs </b><button class="slds-float_right slds-button slds-button_brand" onclick="{!c.showModal}">Register Org</button></div>
+        </div>
+        <div class="sfOrgs-table-container">
+         
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead class="slds-text-head">
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate-class" title="Name">Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate-class" title="environment">Environment</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate-class" title="instanceurl">Instanceurl</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate-class" title="auth type">Auth Type</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate-class" title="Type">Type</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate-class" title="ACTION">ACTION</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.SfOrgList}" var="sfOrg" indexVar="i">
+                        <tr>
+                            <td data-label="{!sfOrg.name}">
+                                <div class="slds-truncate" title="{!sfOrg.name}">{!sfOrg.name}</div>
+                            </td>
+                            <td data-label="{!sfOrg.env}">
+                                <div class="slds-truncate" title="{!sfOrg.environment}">{!sfOrg.environment}</div>
+                            </td>
+                            <td data-label="{!sfOrg.instanceurl}">
+                                <div class="slds-truncate" title="{!sfOrg.instanceurl}">{!sfOrg.instanceurl}</div>
+                            </td>
+                            <td data-label="{!sfOrg.authenticationtype}">
+                                <div class="slds-truncate" title="{!sfOrg.authenticationtype}">{!sfOrg.authenticationtype}</div>
+                            </td>
+                            <td data-label="{!sfOrg.type}">
+                                <div class="slds-truncate" title="{!if(empty(sfOrg.hubkey),'Org','Scratch Org')}">{!if(empty(sfOrg.hubkey),'Org','Scratch Org')}</div>
+                            </td>
+                            <td data-label="Action">
+                                <div class="slds-truncate" ><a href="javascript:void(0)" onclick="{!c.deleteScrOrg}" data-sfOrgId="{!sfOrg.id}" data-sfOrgName="{!sfOrg.name}"><c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#delete" class="slds-icon slds-icon-text-default" id="{!'sorg-'+i}" /></a></div>
+                            </td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>           
+        </div>
+        <aura:if isTrue="{!v.isNew}">
+            <c:DXRegisterSalesforceOrg isNew="{!v.isNew}" hubInfo="{!v.hubInfo}"/>
+        </aura:if>
+    </div>
+</aura:component>

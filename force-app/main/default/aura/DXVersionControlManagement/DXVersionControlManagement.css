@@ -1,0 +1,78 @@
+.THIS{
+    background:#fff;
+    padding:10px;
+}
+.THIS .dx-rep-container{
+    
+}
+.THIS .slds-text-head {
+      background-color:#e1e1ea;
+}
+.THIS .slds-truncate_class {
+      color:#009dd4;
+}
+.THIS .dx-rep-container .slds-form-element__label:nth-child(1){
+    font-size: 11px; 
+}
+.THIS .dx-rep-container .slds-form-element__label.slds-text-title_caps:nth-child(1){
+    font-size: 14px; 
+    font-weight:bold; 
+    margin-bottom:20px;
+}
+.THIS .slds-modal__header{
+    /*text-align:left;*/
+}
+.THIS .dx-rep-container .slds-truncate:only-child {
+    font-size: 0.8em;
+}
+.THIS .dx-rep-container .slds-table {
+    margin-top:20px;
+}
+.THIS .dx-rep-container .slds-form.slds-form_compound{
+    margin-top:50px;
+}
+
+.THIS .slds-select.select.uiInput.uiInputSelect.uiInput--default.uiInput--select{
+    background-image:none;
+}
+.THIS .slds-select_container:after {
+    top: 1.1rem;
+}
+
+.THIS .uiInput--select.has-error.select{
+    border-color: rgb(253, 253, 253);
+    box-shadow: rgb(216, 221, 230) 0 0 0 1px inset;
+}
+.THIS .dx-header{
+     color:#009dd4;
+     font-size:14px;
+}
+.THIS .slds-button-group .slds-button--icon-border{
+    width: auto;
+    height: auto;
+    padding:10px;
+}
+.THIS .slds-button-group {
+    float:right;
+}
+.THIS .slds-clearfix{
+    clear:both;
+}
+.THIS .slds-container_small.slds-box{
+    margin: auto;
+    margin-top: 30px;
+}
+.THIS .table-container{
+    clear:both;
+    height:60vh;
+    overflow-y:auto;
+}
+.THIS .slds-btn-container{
+    overflow: auto;
+    margin-bottom: 20px;    
+}
+.THIS .branchlist-container{
+    clear:both;
+	height:400px;
+    overflow-y:auto;
+}

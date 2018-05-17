@@ -1,0 +1,31 @@
+.THIS.user-story-detail-container {
+    background:#fff;
+    padding:0 20px;
+    /*height:80vh;*/
+}
+.THIS.user-story-detail-container .slds-list_inline{
+    display:flex;
+    justify-content: center;
+    margin-bottom:10px;
+}
+.THIS .detail-title{
+    font-size: 1.1em;
+    font-weight: bold;
+}
+.THIS .detail-data{
+    padding-left:10px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+    font-size:0.9em;
+}
+.THIS .slds-button-back svg{
+    width:1.5rem;
+}
+.THIS .note-wrapper{
+    padding-top:10px;
+}
+.THIS .divider{
+    border-width:3px;
+}

@@ -1,0 +1,187 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <ltng:require scripts="/resource/jquery"/>
+    <aura:attribute name="isVisible" type="Boolean" default="false"/>
+    <aura:attribute name="flag" type="boolean" default="false"/>
+    <aura:attribute name="dxFeatures" type="String[]"/>
+    <aura:attribute name="dxOrgPreferences" type="String[]"/>
+    <aura:attribute name="dxCountries" type="Object[]"/>
+    <aura:attribute name="dxLanguages" type="Object[]"/>
+    <aura:attribute name="hubid" type="String" />
+    <aura:attribute name="hubusername" type="String" />
+    <aura:attribute name="hubalias" type="String" />
+    <aura:attribute name="almuserstoryid" type="String"/>
+    <aura:attribute name="currComp" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:registerEvent name="refreshStories" type="c:flagHandler"/>
+    <aura:registerEvent name="refreshSoList" type="c:flagHandler"/>
+    <aura:method name="create" action="{!c.addScrOrg}"/>
+	<aura:method name="cancel" action="{!c.hideModal}"/>
+    <div class="slds-form slds-form_compound slds-p-horizontal_small" style="position:relative">
+        <div class="slds-form-element__row">
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="username">User Name</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputText aura:id="username" class="slds-input" placeholder="UserName" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="Alias">Alias Name</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputText aura:id="alias" class="slds-input" placeholder="Alias Name" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form-element__row">
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="description">Description</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputText aura:id="description" class="slds-input" placeholder="Description" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="Alias">Add Sample Data</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputCheckbox aura:id="sampledata"/>&nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form-element__row">
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="Edition">Edition</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <ui:inputSelect class="slds-select org-edition" aura:id="dxEdition" required="true">
+                                    <ui:inputSelectOption text="Developer" value="true"/>
+                                    <ui:inputSelectOption text="professional"/>
+                                    <ui:inputSelectOption text="Enterprise"/>
+                                    <ui:inputSelectOption text="Group"/>
+                                </ui:inputSelect>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="days">Duration Days</label>
+                        <div class="slds-form-element__control">
+                            <!--<ui:inputText aura:id="days" class="slds-input" placeholder="UserName" value="7"/>-->
+                            <lightning:slider step="1" value="7" aura:id="days" label="Duration" max="30"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form-element__row">
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="OrgPreferences">Org Preferences</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <select class="slds-select" id="OrgPreferences" required="true" multiple="true" size="3">
+                                    <aura:iteration items="{!v.dxOrgPreferences}" var="preference">
+                                        <Option>{!preference}</Option>
+                                    </aura:iteration>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="Features">Features</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <select class="slds-select" id="dxFeatures" required="true" multiple="true" size="3">
+                                    <aura:iteration items="{!v.dxFeatures}" var="feature">
+                                        <Option>{!feature}</Option>
+                                    </aura:iteration>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form-element__row">
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="username">Organization</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputText aura:id="organization" class="slds-input" placeholder="Organization" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="Alias">Admin Email</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputText aura:id="email" class="slds-input" placeholder="Admin Email" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slds-form-element__row">
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="country">Country</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <select class="slds-select" id="country" required="true" >
+                                    <option value="">Select Country</option>
+                                    <aura:iteration items="{!v.dxCountries}" var="country">
+                                        <Option value="{!country.name}">{!country.name}</Option>
+                                    </aura:iteration>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-size_1-of-2">
+                <div class="slds-form slds-form_horizontal">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="Language">Language</label>
+                        <div class="slds-form-element__control">
+                            <div class="slds-select_container">
+                                <select class="slds-select" id="dxLanguages" required="true" >
+                                    <option value="">Select Language</option>
+                                    <aura:iteration items="{!v.dxLanguages}" var="language">
+                                        <Option value="{!language.name}">{!language.name}</Option>
+                                    </aura:iteration>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

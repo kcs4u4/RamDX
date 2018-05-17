@@ -1,0 +1,20 @@
+.THIS .btn-grp .slds-button{
+    line-height:1.2rem;
+}
+.THIS .create-branch{
+    padding-top: 10px;
+}
+.THIS .slds-container_small{
+    max-width: 20rem;
+    margin: auto;
+}
+.THIS .slds-modal__content.usm-assign-branch{
+    min-height:350px;
+}
+.THIS .uiInput--datetime .datePicker-openIcon {
+    bottom: 10px;
+}
+.THIS .uiInput--input .input,.THIS .uiInput--input.input{
+	margin-left: 5px;
+    min-height: calc(1.9rem + 2px);
+}

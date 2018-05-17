@@ -1,0 +1,54 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <aura:attribute name="addMDModalVisible" type="Boolean" default="false"/>
+    <aura:attribute name="sfOrgName" type="String" />
+    <aura:attribute name="metadataList" type="Object[]" />
+    <aura:attribute name="isVisible" type="Boolean" default="false"/>
+    <aura:attribute name="metadataMap" type="Map" default="{}"/>
+    <aura:attribute name="fetchChangesList" type="Object[]"/>
+    <aura:attribute name="tempFetchChangesList" type="Object[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+   
+    <c:loading isVisible="{!v.isVisible}"/>
+    <div class="demo-only">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container addMetadata-modal">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Additional Metadata </h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium add-metadata__modal" id="modal-content-id-1">
+                    <c:loading isVisible="{!v.isVisible}"/>
+                    <ul class="slds-accordion">
+                        <aura:iteration items="{!v.metadataList}" var="md" indexVar="i">
+                            <li class="slds-accordion__list-item" >
+                                <section class="slds-accordion__section">
+                                    <div class="slds-accordion__summary">
+                                        <h3 class="slds-text-heading_small slds-accordion__summary-heading">
+                                            <button data-index="{!i}" class="slds-button slds-button_reset slds-accordion__summary-action" onclick="{!c.getMDMembers}">
+                                                <lightning:icon iconName="utility:switch" size="x-small" alternativeText="" />
+                                                <span class="slds-truncate" title="{!md.name}">{!md.name} <ui:spinner aura:id="spinner" isVisible="false" class="{!md.name}"/></span>
+                                            </button>
+                                        </h3>
+                                    </div>
+                                    <div aria-hidden="false" class="slds-accordion__content slds-p-horizontal_medium" id="{!'accordion-details-'+i}">
+                                        <div class="slds-grid slds-wrap">
+                                            <aura:iteration items="{!md.members}" var="member" indexVar="j">
+                                                <div class="slds-col slds-size_3-of-12">
+                                                    <lightning:input type="checkbox" tabindex="{!i+'-'+j}" label="{!member.fullname}" name="{!md.name}" title="{!member.fullname}" checked="{!member.isChecked}" onchange="{!c.captureMetadata}"/>
+                                                </div>
+                                            </aura:iteration>
+                                        </div>
+                                    </div>
+                                </section>
+                            </li>
+                        </aura:iteration>
+                    </ul>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.cancelModal}">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick="{!c.saveList}">Save</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+</aura:component>

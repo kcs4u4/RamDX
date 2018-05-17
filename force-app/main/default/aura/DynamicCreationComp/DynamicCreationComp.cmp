@@ -1,0 +1,15 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="str" type="String" required="true" default="Suguna"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    ---------------{!v.str}-----------
+    <p>Dynamically created button</p>
+    {!v.body}
+    <lightning:select name="selectItem" label="Select an item" aura:id="select">
+    </lightning:select>
+    <ui:inputSelect aura:id="uiselect">
+        <ui:inputSelectOption text="All Primary" label="All Contacts" value="true"/>
+        <ui:inputSelectOption text="All Primary" label="All Primary"/>
+        <ui:inputSelectOption text="All Secondary" label="All Secondary"/>
+    </ui:inputSelect>
+    <forceChatter:feed type="groups"/>
+</aura:component>

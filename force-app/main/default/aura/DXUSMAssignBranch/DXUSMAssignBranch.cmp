@@ -1,0 +1,91 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <aura:attribute name="errorCount" type="Integer" default="0"/>
+    <aura:attribute name="selectErrorMessage" type="String" default="Please choose one."/>
+    <aura:attribute name="currComp" type="String"/>
+    <aura:attribute name="newBranchName" type="String"/>
+    <aura:attribute name="story" type="Object"/>
+    <aura:attribute name="branchType" type="String" default="new-branch"/>
+    <aura:attribute name="isSfdx" type="Boolean" default="false"/>
+    <aura:attribute name="repoList" type="Map[]"/>
+    <aura:attribute name="ARBranchList" type="Map[]"/>
+    <aura:attribute name="branchList" type="String[]"/>
+    <aura:attribute name="branchTypes" type="String[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="demo-only" style="height: 640px;">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Assign Branch</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium usm-assign-branch" id="modal-content-id-1">
+                    <lightning:buttonGroup class="btn-grp">
+                        <lightning:button aura:id="btn" label="Create and assign new branch" class="slds-button--brand" onclick="{!c.assignBranch}" name="new-branch"/>
+                        <lightning:button aura:id="btn" label="Assign existing registered branch" onclick="{!c.assignBranch}" name="registered-branch"/>
+                        <lightning:button aura:id="btn" label="Register and assign branch" onclick="{!c.assignBranch}" name="assign-branch"/>
+                    </lightning:buttonGroup>
+                    <div class="slds-container_small create-branch">
+                        <lightning:select name="Repository" aura:id="repo" label="Repository"  onchange="{!c.getBranches}" messageWhenValueMissing="{!v.selectErrorMessage}" required="true">
+                            <option value="">choose one...</option>
+                            <aura:iteration items="{!v.repoList}" var="repo">
+                                <option value="{!repo.name+'-'+repo.scmtype+'-'+repo.remoteurl}">{!repo.name}</option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </div>
+                    <aura:if isTrue="{!v.branchType=='new-branch'}">
+                        <div class="slds-container_small">
+                            <lightning:input type="text" name="input-name" aura:id="newbranchname" label="Branch Name" value="{!v.newBranchName}" class="slds-m-top_x-small" messageWhenValueMissing="{!v.selectErrorMessage}" required="true"/>
+                            <lightning:select name="ParentBranch" aura:id="parentBranch" label="Parent Branch" class="slds-m-top_x-small" messageWhenValueMissing="{!v.selectErrorMessage}" required="true">
+                                <option value="">choose one...</option>
+                                <aura:iteration items="{!v.branchList}" var="branch">
+                                    <option value="{!branch}">{!branch}</option>
+                                </aura:iteration>
+                            </lightning:select>
+                            <lightning:select name="BranchType" aura:id="branchType" label="Branch Type" class="slds-m-top_x-small" messageWhenValueMissing="{!v.selectErrorMessage}" required="true">
+                                <option value="">choose one...</option>
+                                <aura:iteration items="{!v.branchTypes}" var="type">
+                                    <option value="{!type}">{!type}</option>
+                                </aura:iteration>
+                            </lightning:select>
+                            <lightning:input type="checkbox" label="Check-in with DX folder structure" checked="{!v.isSfdx}" name="sfdx" class="slds-m-top_x-small"/>
+                            <aura:if isTrue="{!v.isSfdx}">
+                                <lightning:input type="text" name="input-name" aura:id="folderName" label="Folder Name" value="force-app" class="slds-m-top_x-small" messageWhenValueMissing="Please enter folder name." required="true"/>
+                            </aura:if>
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!v.branchType=='registered-branch'}">
+                        <div class="slds-container_small register-branch">
+                            <lightning:select name="Branch" label="Branch" aura:id="rbranch" class="slds-m-top_x-small" messageWhenValueMissing="{!v.selectErrorMessage}" required="true">
+                                <option value="">choose one...</option>
+                                <aura:iteration items="{!v.ARBranchList}" var="branch">
+                                    <option value="{!branch.name}">{!branch.name}</option>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                    </aura:if>
+                    <aura:if isTrue="{!v.branchType=='assign-branch'}">
+                        <div class="slds-container_small register-branch">
+                            <div class="slds-grid slds-wrap">
+                                <div class="slds-col slds-size_1-of-2">
+                                    <lightning:select name="Branch" label="Branch" aura:id="abranch"  class="slds-m-top_x-small" messageWhenValueMissing="{!v.selectErrorMessage}" required="true">
+                                        <option value="">choose one...</option>
+                                        <aura:iteration items="{!v.branchList}" var="branch">
+                                            <option value="{!branch}">{!branch}</option>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                <div class="slds-col slds-size_1-of-2 slds-p-top_x-small">
+                                    <ui:inputDate aura:id="expdate" label="Last Commit Date"   displayDatePicker="true" change="{!c.checkDate}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </aura:if>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.cancel}">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick="{!c.createBranch}">Create</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>    
+</aura:component>

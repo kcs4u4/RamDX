@@ -1,0 +1,6 @@
+<aura:event type="APPLICATION" description="Event template">
+    <aura:attribute name="variant" type="String"/>
+    <aura:attribute name="header" type="String"/>
+    <aura:attribute name="message" type="String"/>
+    <aura:attribute name="mode" type="String"/>
+</aura:event>

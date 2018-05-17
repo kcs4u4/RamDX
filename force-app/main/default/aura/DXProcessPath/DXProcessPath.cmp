@@ -1,0 +1,103 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <ltng:require scripts="/resource/jquery"/>
+    <aura:attribute name="story" type="Object"/>
+    <aura:attribute name="ScrOrgList" type="Object[]" default="[]"/>
+    <aura:attribute name="currComp" type="String"/>
+    <aura:registerEvent name="appLauncher" type="c:flagHandler"/>
+    <div class="user-story-process-path"> 
+        <div class="slds-path">
+            <div class="slds-grid slds-path__track">
+                <div class="slds-grid slds-path__scroller-container">
+                    <div class="slds-path__scroller" role="application">
+                        <div class="slds-path__scroller_inner">
+                            <ul class="slds-path__nav" role="listbox" aria-orientation="horizontal">
+                                <aura:if isTrue="{!empty(v.story.scratchOrg)}">
+                                    <li class="slds-path__item slds-is-complete" role="modal" title="Create Scratch Org">
+                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" title="Create Scratch Org" id="path-1" role="option" tabindex="-1" onclick="{!c.gotoURL}">
+                                            <span class="slds-path__stage" title="Create Scratch Org">
+                                                Create Scratch Org
+                                            </span>
+                                            <span class="slds-path__title" title="Create Scratch Org">Create Scratch Org</span>
+                                        </a>
+                                    </li>
+                                </aura:if>
+                                <aura:if isTrue="{!empty(v.story.branch)}">
+                                    <li class="slds-path__item slds-is-complete" role="modal" title="Assign Branch">
+                                        <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-2" role="option" tabindex="-1" onclick="{!c.gotoURL}">
+                                            <span class="slds-path__stage">
+                                                Assign Branch
+                                            </span>
+                                            <span class="slds-path__title">Assign Branch</span>
+                                        </a>
+                                    </li>
+                                </aura:if>
+                                <li class="slds-path__item slds-is-complete" role="tab" title="Load Metadata" data-component-name="DXDeployment"> 
+                                    <a aria-selected="true" class="slds-path__link" href="javascript:void(0);" id="path-3" role="option" tabindex="0" onclick="{!if(empty(v.story.scratchOrg),'',c.gotoURL)}">
+                                        <span class="slds-path__stage">
+                                            Load Metadata
+                                        </span>
+                                        <span class="slds-path__title">Load Metadata</span>
+                                    </a>
+                                </li>
+                                <li class="slds-path__item slds-is-current slds-is-active" role="tab" title="New Commit" data-component-name="DXEZCommit">
+                                    <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-4" role="option" tabindex="-1" onclick="{!if(empty(v.story.scratchOrg),'',c.gotoURL)}">
+                                        <span class="slds-path__stage">
+                                            New Commit
+                                        </span>
+                                        <span class="slds-path__title">New Commit</span>
+                                    </a>
+                                </li>
+                                <li class="slds-path__item slds-is-incomplete" role="tab" title="New Merge" data-component-name="DXUSMMerge">
+                                    <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-5" role="option" tabindex="-1" onclick="{!c.gotoURL}">
+                                        <span class="slds-path__stage">
+                                            New Merge
+                                        </span>
+                                        <span class="slds-path__title">New Merge</span>
+                                    </a>
+                                </li>
+                                <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                    <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-5" role="option" tabindex="-1" onclick="{!c.gotoURL}">
+                                        <span class="slds-path__stage">
+                                            New Deployment
+                                        </span>
+                                        <span class="slds-path__title">New Deployment</span>
+                                    </a>
+                                </li>
+                                <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                    <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-5" role="option" tabindex="-1" onclick="{!c.gotoURL}">
+                                        <span class="slds-path__stage">
+                                            Validate Scratch Org
+                                        </span>
+                                        <span class="slds-path__title">Validate Scratch Org</span>
+                                    </a>
+                                </li>
+                                <li class="slds-path__item slds-is-incomplete" role="presentation">
+                                    <a aria-selected="false" class="slds-path__link" href="javascript:void(0);" id="path-5" role="option" tabindex="-1" onclick="{!c.gotoURL}">
+                                        <span class="slds-path__stage">
+                                            Run Apex Tests
+                                        </span>
+                                        <span class="slds-path__title">Run Apex Tests</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <aura:if isTrue="{!v.currComp=='Create Scratch Org'}">
+        <c:DXUSM_ScratchOrgCreation currComp="{!v.currComp}" usmId="{!v.story.id}" story="{!v.story}"/>
+    </aura:if>
+    <aura:if isTrue="{!v.currComp=='Assign Branch'}">
+        <style>
+            .oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+            z-index: -1;
+            }
+        </style>
+        <c:DXUSMAssignBranch currComp="{!v.currComp}" story="{!v.story}"/>
+    </aura:if>
+    <!--<aura:if isTrue="{!v.currComp=='Load Metadata'}">
+        <c:DXDeployment ScrOrgList="{!v.ScrOrgList}"/>
+    </aura:if>-->
+</aura:component>

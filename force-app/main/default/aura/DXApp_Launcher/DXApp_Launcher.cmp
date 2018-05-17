@@ -1,0 +1,61 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <style>
+        body,.cDX_Main{
+        	overflow:hidden;
+            padding: 0 0 0 0;
+        	height:100%;
+        }
+        .oneHeader.slds-global-header_container#oneHeader,.slds-context-bar.slds-context-bar_tabs.dx-navbar {
+        z-index: -1;
+        }
+    </style>
+    
+    <aura:attribute name="appLauncherItems" type="Object[]"/>
+    <aura:attribute name="isAppLauncherVisible" type="Boolean" default="false"/>
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <aura:registerEvent name="appLauncher" type="c:flagHandler"/>
+    
+    <div class="demo-only" style="height:584px;">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick="{!c.appLauncherTrigger}">
+                        <c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#close" class="slds-button__icon slds-button__icon_large" />
+                        <!--<lightning:icon iconName="utility:close" variant="close" class="slds-button__icon slds-button__icon_large"/>-->
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">DX App Launcher</h2>
+                </header>
+                <div class="modal-body scrollable slds-modal__content slds-p-around--medium" id="modal-content-id-1" style="height:70%">
+                    <div id="appsContent">
+                        <ul class="slds-grid slds-grid_pull-padded slds-wrap">
+                            <aura:iteration items="{!v.appLauncherItems}" var="app" indexVar="i">
+                                <aura:if isTrue="{!app.active__c}">
+                                    <li class="slds-p-horizontal_small slds-size_1-of-1 slds-medium-size_1-of-3" title="{!app.Name}" data-component-name="{!app.componentName__c}">
+                                        <a aria-describedby="drag-instructions" draggable="true" href="javascript:void(0);" onclick="{!c.addTab}" class="slds-app-launcher__tile slds-text-link_reset slds-is-draggable">
+                                            <div class="slds-app-launcher__tile-figure">
+                                                <span class="slds-avatar slds-avatar_large"><abbr class="{!'slds-avatar__initials slds-icon-custom-'+(16*(i+1))}" title="company name">{!app.appIcon__c}</abbr></span>
+                                                <span class="slds-icon_container" title="Drag item to a new location">
+                                                    <!--<lightning:icon iconName="utility:rows" variant="rows" class="slds-icon slds-icon_x-small slds-icon-text-default"/>-->
+                                                    <c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#rows" class="slds-icon slds-icon_x-small slds-icon-text-default" />
+                                                </span>
+                                            </div>
+                                            <div class="slds-app-launcher__tile-body">
+                                                <span class="slds-text-link">{!app.Name}</span>
+                                                <p class="visibleDescription" id="visibleDescription">
+                                                    The primary internal Salesforce org. Used to run our...
+                                                    <span class="moreElement" id="moreElement" data-aura-rendered-by="476:1544;a"><div class="tooltip-trigger uiTooltip" aria-describedby="tt-for-477:1544;a" tabindex="-1" data-aura-rendered-by="483:1544;a" data-aura-class="uiTooltip" id="483:1544;a"><span data-aura-rendered-by="478:1544;a"><a class="moreAnchorElement" href="#" id="moreAnchorElement" data-aura-rendered-by="479:1544;a" draggable="false">More</a></span><span class="tooltip-invisible" role="tooltip" id="tt-for-477:1544;a" data-aura-rendered-by="485:1544;a">Manage your sales process with accounts, leads, opportunities, and more</span></div></span>
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </aura:if>
+                            </aura:iteration>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>  
+</aura:component>

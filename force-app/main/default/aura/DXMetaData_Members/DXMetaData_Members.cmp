@@ -1,0 +1,76 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="DXAPIServices">
+    <ltng:require scripts="/resource/jquery" afterScriptsLoaded="{!c.checkToggle}"/>
+    <aura:attribute name="isMetadataMembersVisible" type="boolean" default="false"/> 
+    <aura:attribute name="compareMetadataMembers" type="Object[]" />
+    <aura:attribute name="isMetadataReportVisible" type="boolean" default="false"/>
+    <aura:attribute name="confirm" type="boolean" default="false"/>
+    <aura:attribute name="metadataList" type="Object[]" default="[]"/>
+    <aura:attribute name="metadataMembers" type="Object[]" />
+    <aura:attribute name="agent" type="String" default="git"/>
+    <aura:attribute name="deployMetaDataMap" type="Map"/>
+    <aura:attribute name="deploymentOrgInfo" type="Map"/>
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <aura:attribute name="source" type="String"/>
+    <aura:attribute name="destination" type="String"/>
+    <aura:attribute name="deploymentReport" type="Map" default="{'report':{},'success':[],'failure':[]}"/>
+    <aura:attribute name="metaDataMap" type="Map" default="{'reponame':'',
+                                                           'labelName':'',
+                                                           'destOrgname':'',
+                                                           'srcOrgname':'',
+                                                           'srcusername':'',
+                                                           'dpmsource':'',
+                                                           'type':'',
+                                                           'branch':'' 
+                                                           }"/>
+    <aura:handler name="cmpEvent" event="c:flagHandler" action="{!c.exeDeploy}"/>
+    <aura:handler name="commitConfirm" event="c:flagHandler" action="{!c.confirmData}"/>
+    <aura:registerEvent name="appEvent" type="c:notificationHandler"/>
+    <div class="slds-container_fluid slds-container">
+        <aura:if isTrue="{!empty(v.compareMetadataMembers)}">
+            <h1 class="slds-page-header__title slds-truncate slds-align-middle slds-text-align_center slds-m-bottom_small" title="Metadata Members">Metadata Types</h1>
+            <div class="slds-metadata-container">
+                <aura:iteration items="{!v.metadataList}" var="data" indexVar="i">
+                    <div class="slds-box slds-box_x-small slds-theme_shade slds-m-bottom_small"> 
+                        <span>
+                            <!--<ui:inputCheckbox value="{!data.isSel}" name="{!data.name}" class="{!'checkbox-'+i}" aura:id="{!'checkbox-'+i}"/>-->
+                            <input type="checkbox" name="{!data.name}" id="{!'checkbox-'+i}" class="metadata"/>
+                            <label class="slds-checkbox__label" for="{!'checkbox-'+i}">
+                                &nbsp;<span class="slds-form-element__label">{!data.name}</span>
+                            </label>
+                            <ui:spinner aura:id="spinner" class="slds-hide"/>
+                        </span>
+                        <a href="javascript:void(0);" class="slds-float_right" data-index="{!i}" data-label="{!data.name}" data-obj="{!data}" onclick="{!c.getDataMemebrs}"> <aura:if isTrue="{!not(empty(data.members))}">Hide<aura:set attribute="else">Show</aura:set> </aura:if> Members</a>
+                    </div>
+                    <aura:if isTrue="{!not(empty(data.members))}">
+                        <div class="metadata-sub-members">
+                            <ul class="metadata-list">
+                                <aura:iteration items="{!data.members}" var="member" indexVar="j">
+                                    <li><div class="slds-form-element">
+                                        <div class="slds-form-element__control">
+                                            <span class="">
+                                                <!--<ui:inputCheckbox value="{!or(data.isSel,member.isSel)}"  name="{!data.name}" class="{!'checkbox-'+i+'-'+j}" />-->
+                                                <input type="checkbox" class="sub-metadata" data-parentid="{!'checkbox-'+i}" data-parent-name="{!data.name}" name="{!member.name}" id="{!'checkbox-'+i+'-'+j}"/>
+                                                <label class="slds-checkbox__label" for="{!'checkbox-'+i+'-'+j}">
+                                                    &nbsp;<span class="slds-form-element__label">{!member.name}</span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                        </div>
+                                    </li>
+                                </aura:iteration>
+                            </ul> 
+                        </div>
+                    </aura:if>
+                </aura:iteration>
+            </div>
+            <div class="slds-text-align_center">
+                <button class="slds-button slds-button_brand" onclick="{!c.confirmData}">Deploy</button>
+                <button class="slds-button slds-button_brand" onclick="{!c.compareAndDeploy}">Compare Orgs &#38; Deploy</button>
+            </div>
+        </aura:if>
+        <c:DXConfirm_Metadata confirm="{!v.confirm}" metadataMembers="{!v.metadataMembers}" isVisible="{!v.isVisible}"/>
+        <aura:if isTrue="{!not(empty(v.compareMetadataMembers))}">
+            <c:DXCompareMetadata metaDataMap="{!v.metaDataMap}" source="{!v.source}" destination="{!v.destination}" compareMetadataMembers="{!v.compareMetadataMembers}" metadataMembers="{!v.metadataMembers}" isVisible="{!v.isVisible}"/>
+        </aura:if>
+    </div>
+</aura:component>

@@ -1,0 +1,72 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <aura:attribute name="compareMetadataMembers" type="Object[]" />
+    <aura:attribute name="metadataMembers" type="Object[]" />
+    <aura:attribute name="compareMetadataMap" type="Object" />
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <aura:attribute name="isCommitAndConfirm" type="Boolean" default="false"/>
+    <aura:attribute name="source" type="String"/>
+    <aura:attribute name="destination" type="String"/>
+    <aura:attribute name="isModalVisible" type="Boolean" default="false"/>
+    <aura:attribute name="diffChanges" type="Object[]"/> 
+    <aura:attribute name="metaDataMap" type="Map" default="{'repoid':'',
+                                                           'labelName':'',
+                                                           'destOrgname':'',
+                                                           'srcOrgname':'',
+                                                           'dpmsource':'',
+                                                           'type':'',
+                                                           'branch':'' 
+                                                           }"/>
+    <aura:registerEvent name="commitConfirm" type="c:flagHandler"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-comp-md-container">
+        <aura:iteration items="{!v.compareMetadataMembers}" var="obj" indexVar="i">
+            <div class="slds-section">
+                <h3 class="slds-section__title">
+                    <input type="checkbox" id="{!obj.name+'-'+i}" class="metadata" name="{!obj.name}"/>
+                    <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action" onclick="{!c.toggleExpandSelection}"><c:svg svgPath="/resource/slds/assets/icons/utility-sprite/svg/symbols.svg#switch" class="slds-section__title-action-icon slds-button__icon slds-button__icon_left meta-svg" />&nbsp;&nbsp;&nbsp;&nbsp;<span class="slds-truncate" title="{!obj.name}">{!obj.name}</span></button> 
+                </h3>
+                <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                        <thead>
+                            <tr class="slds-text-title_caps">
+                                <!--<th scope="col">
+                                    <div class="slds-truncate" title="MetadataMember">Metadata Member</div>
+                                </th>-->
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Fullname">Fullname</div>
+                                </th>
+                                 <th scope="col">
+                                    <div class="slds-truncate" title="Diff">Diff</div>
+                                </th>
+                                <!--<th scope="col">
+                                    <div class="slds-truncate" title="Manageablestate">Manageablestate</div>
+                                </th>
+                               
+                                <th scope="col">
+                                    <div class="slds-truncate" title="modifieddate">Modified Date</div>
+                                </th>-->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!obj.members}" var="item" indexVar="j">
+                                <tr>
+                                    <!--<td data-label="MetadataMember"><div class="slds-truncate" title="MetadataMember"><input type="checkbox" id="{!obj.name+'-'+i+'-'+j}" class="member" name="{!item.destination}" data-filename="{!item.filename}" data-manageablestate="{!item.manageablestate}" data-modifieddate="{!item.modifieddate}" onclick="{!c.storeDetails}"/></div></td>-->
+                                    <td data-label="fullname"><div class="slds-truncate" title="fullname"><input type="checkbox" id="{!obj.name+'-'+i+'-'+j}" class="sub-metadata" name="{!item.source}" data-filename="{!item.filename}" data-manageablestate="{!item.manageablestate}" data-modifieddate="{!item.modifieddate}" data-parentid="{!obj.name+'-'+i}" data-parent-name="{!obj.name}" onclick="{!c.storeDetails}"/>&nbsp;{!item.source}</div></td>
+                                    <td data-label="diff"><div class="slds-truncate" title="diff"><aura:if isTrue="{!item.diff}"><a href="javascript:void(0)" onclick="{!c.getDiffDetails}" data-type="{!obj.name}" data-fullname="{!item.source}"  >get diff</a><aura:set attribute="else">no diff</aura:set></aura:if></div></td>
+                                    <!--<td data-label="manageablestate"><div class="slds-truncate" title="manageablestate">{!item.manageablestate}</div></td>
+                                    <td data-label="modifieddate"><div class="slds-truncate" title="modifieddate">{!item.modifieddate}</div></td>-->
+                                </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </aura:iteration>
+    </div>
+    <div class="slds-text-align_center slds-p-vertical_medium">
+        <button class="slds-button slds-button_brand slds-btn-commit" onclick="{!c.confirmCommit}">Deploy</button>
+    </div>
+    <aura:if isTrue="{!v.isModalVisible}">
+        <c:DXDiffCheck isModalVisible="{!v.isModalVisible}" source="{!v.source}" destination="{!v.destination}" diffChanges="{!v.diffChanges}"/>
+    </aura:if>
+</aura:component>

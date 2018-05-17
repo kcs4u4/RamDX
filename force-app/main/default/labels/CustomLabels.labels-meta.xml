@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>DX_CallbackURL</fullName>
+        <categories>connected app details</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DX_CallbackURL</shortDescription>
+        <value>https://dx-war-dev-ed.lightning.force.com/one/one.app</value>
+    </labels>
+    <labels>
+        <fullName>DX_ClientId</fullName>
+        <categories>connected app details</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DX_ClientId</shortDescription>
+        <value>3MVG9Y6d_Btp4xp6DOP05x_8o9rkFHDMBw1XKgMXo9lb5xhXa1Tu.Ftz9.S.3t6SSWcWY_nrkYNiVkBqePdhM</value>
+    </labels>
+    <labels>
+        <fullName>SFDX_Server</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>SFDX_Server</shortDescription>
+        <value>https://sfdx.autorabit.com/rabitservices?wsdl</value>
+    </labels>
+</CustomLabels>

@@ -1,0 +1,57 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="isModalVisible" type="Boolean" default="false"/>
+    <aura:attribute name="diffChanges" type="Object[]"/> 
+    <aura:attribute name="source" type="String"/>
+    <aura:attribute name="destination" type="String"/>
+    <aura:attribute name="branch" type="String"/>
+    <style>
+    	.oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+        	z-index: -1;
+        }
+    </style>
+    <div class="demo-only">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Compare Metadata</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_col-bordered">
+                        <thead>
+                            <tr class="slds-text-title_caps">
+                                <th scope="col" colspan="2">
+                                    <div class="slds-truncate slds-table-header" title="Source">Source: <span>{!v.source}</span></div>
+                                </th>
+                                <th scope="col" colspan="2">
+                                    <div class="slds-truncate slds-table-header" title="Destination">Destination: <span>{!v.destination}</span><aura:if isTrue="{!not(empty(v.branch))}">&nbsp;|&nbsp;Branch: <span>{!v.branch}</span></aura:if></div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <aura:iteration items="{!v.diffChanges}" var="change" indexVar="i">
+                                    <tr>
+                                        <td data-label="left" class="change-type">
+                                            <div class="slds-truncate" title="left">{!change.leftType}</div>
+                                        </td>
+                                        <td data-label="left" class="change-content">
+                                            <div class="slds-truncate" title="{!change.leftContent}">{!change.leftContent}</div>
+                                        </td>
+                                        <td data-label="right" class="change-type">
+                                            <div class="slds-truncate" title="right">{!change.rightType}</div>
+                                        </td>
+                                        <td data-label="right" class="change-content">
+                                            <div class="slds-truncate" title="{!change.rightContent}">{!change.rightContent}</div>
+                                        </td>
+                                    </tr>
+                            </aura:iteration>
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_brand" onclick="{!c.closeModal}">Close</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div> 
+</aura:component>

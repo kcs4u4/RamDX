@@ -1,0 +1,47 @@
+.THIS{
+    background:#fff;
+    padding:10px;
+}
+.THIS .salesforce-org-container .slds-container_small{
+    margin:auto;
+    max-width:320px;
+}
+.THIS .slds-text-head {
+      background-color:#e1e1ea;
+}
+
+.THIS .slds-truncate-class {
+      color:#009dd4;
+}
+.THIS .dx-header{
+     color:#009dd4;
+     font-size:14px;
+}
+.THIS .salesforce-org-container .dx-header{
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  
+}
+.THIS .salesforce-org-container .slds-form-element{
+    margin-bottom:20px;
+}
+.THIS .salesforce-org-container .slds-form-element label{
+   /* display:none;*/
+}
+.THIS .salesforce-org-container .slds-btn-wrapper{
+	text-align:center;
+}
+.THIS .select.uiInput.uiInputSelect.uiInput--default.uiInput--select{
+    background-image:none;
+}
+.THIS .sfOrgs-table-container{
+    overflow-y: auto;
+    height: 54vh
+}
+
+.THIS .slds-icon.slds-icon-text-default {
+    width: 1.5rem;
+    height: 1.5rem;
+}

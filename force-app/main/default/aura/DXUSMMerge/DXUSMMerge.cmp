@@ -1,0 +1,99 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <aura:attribute name="mergeLabelErrorMsg" type="String"/>
+    <aura:attribute name="comment" type="String"/>
+    <aura:attribute name="mergeLabel" type="String"/>
+    <aura:attribute name="errorCount" type="Integer" default="0"/>
+    <aura:attribute name="story" type="Object"/>
+    <aura:attribute name="toBranchList" type="Map[]"/>
+    <aura:attribute name="mergeTypeList" type="String[]"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <div class="slds-container_medium slds-box">
+        <div class="slds-grid slds-wrap">
+            <div class="slds-col slds-size_4-of-12 slds-p-right_x-small">
+                <lightning:input name="repo" label="Repository" value="{!v.story.reponame}" disabled="true"/>
+            </div>
+            <div class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small">
+                <lightning:input name="fromBranch" label="From Branch" value="{!v.story.branch}" disabled="true"/>
+            </div>
+            <div class="slds-col slds-size_4-of-12 slds-p-horizontal_x-small">
+                <lightning:select aura:id="toBranch" name="toBranch" label="To Branch"  messageWhenValueMissing="Please select branch." required="true">
+                    <option value="">choose one...</option>
+                    <aura:iteration items="{!v.toBranchList}" var="branch">
+                        <aura:if isTrue="{!v.story.branch!=branch.name}">
+                            <option value="{!branch.name}">{!branch.name}</option>
+                        </aura:if>
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-p-top_large">
+                <ui:outputText value="{!'Repository URL : '+v.story.repourl}"/>
+            </div>	
+            <div class="slds-col slds-size_4-of-12 slds-p-top_large">
+                <ui:outputText value="Merge Type"/>
+            </div>
+            <div class="slds-col slds-size_4-of-12 slds-is-relative">
+                <lightning:select aura:id="mergeType" name="mergeType" label=""  onchange="{!c.getMergeTypeDetails}" messageWhenValueMissing="Please select merge type." required="true">
+                    <option value="">choose one...</option>
+                    <option value="1">Entire Branch</option>
+                    <option value="2">Single Revision</option>
+                    <option value="3">Release labels</option>
+                    <option value="4">Commit labels</option>
+                </lightning:select>
+                <ui:spinner aura:id="mTypeSpinner" class="slds-hide"/>
+            </div>
+            <div class="slds-col slds-size_4-of-12"></div>
+            <aura:if isTrue="{!not(empty(v.mergeTypeList))}">
+                <div class="slds-col slds-size_4-of-12 slds-p-top_large">
+                    <ui:outputText value="Single Revision"/>
+                </div>
+                <div class="slds-col slds-size_4-of-12">
+                    <lightning:select aura:id="singleRevision" name="singleRevision" label=""  onchange="{!c.getMergeTypeDetails}" messageWhenValueMissing="Please select valid revision." required="true">
+                        <option value="">choose one...</option>
+                        <aura:iteration items="{!v.mergeTypeList}" var="revision">
+                            <option value="{!revision}">{!revision}</option>
+                        </aura:iteration>    
+                    </lightning:select>
+                </div>
+                <div class="slds-col slds-size_4-of-12"></div>
+            </aura:if>
+            <div class="slds-col slds-size_4-of-12 slds-p-top_large">
+                <ui:outputText value="Conflict Resolution Strategy"/>
+            </div>
+            <div class="slds-col slds-size_4-of-12">
+                <lightning:select aura:id="crs" name="CRS" label="" >
+                    <option value="Manually resolve conflicts">Manually resolve conflicts</option>
+                    <option value="Choose file from source">Choose file from source</option>
+                    <option value="Choose file from destination">Choose file from destination</option>
+                </lightning:select>
+            </div>
+            <div class="slds-col slds-size_4-of-12"></div>
+            <div class="slds-col slds-size_4-of-12 slds-p-top_large">
+                <ui:outputText value="Merge label name"/>
+            </div>
+            <div class="slds-col slds-size_4-of-12 slds-is-relative">
+                <ui:inputText aura:id="mergeLabelName" class="slds-input slds-m-top_large" value="{!v.mergeLabel}" label=" "  keyup="{!c.copyValue}" updateOn="keyup" blur="{!c.checkLabelExist}"/>
+                <ui:spinner aura:id="spinner" class="slds-hide"/>
+            </div>
+            <div class="slds-col slds-size_4-of-12"></div>  
+            <div class="slds-col slds-size_4-of-12 slds-p-top_large">
+                <ui:outputText value="Comment "/>
+            </div>
+            <div class="slds-col slds-size_4-of-12">
+                <lightning:textarea aura:id="comment" label="" value="{!v.comment}"/>
+            </div>
+            <div class="slds-col slds-size_4-of-12"></div> 
+            <div class="slds-col slds-size_4-of-12 slds-p-top_large">
+                <ui:outputText value="Send Merge Report To"/>
+            </div>
+            <div class="slds-col slds-size_4-of-12 slds-is-relative">
+                <lightning:textarea aura:id="emailList" label="" />
+                <lightning:helptext content="Please enter the emailid(s) with comma(,) separated " />
+            </div>
+            <div class="slds-col slds-size_4-of-12"></div>   
+        </div>
+        <div class="slds-p-top_small slds-text-align_center">
+            <lightning:button variant="brand" label="Dry Run" onclick="{! c.mergingBranch }" />
+            <lightning:button variant="brand" label="Merge" onclick="{! c.mergingBranch }" />
+        </div>
+    </div>
+</aura:component>

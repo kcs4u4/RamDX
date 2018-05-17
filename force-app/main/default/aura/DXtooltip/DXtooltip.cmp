@@ -1,0 +1,4 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" >
+    <aura:attribute name="text" type="String"/>
+    {!v.text}
+</aura:component>

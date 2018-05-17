@@ -1,0 +1,6 @@
+<aura:event type="Component" access="GLOBAL" description="Event template">
+    <aura:attribute name="flag" type="boolean" default="false"/>
+    <aura:attribute name="htmlnode" type="object"/>
+    <aura:attribute name="compName" type="String"/>
+    <aura:attribute name="appLauncher" type="Object"/>
+</aura:event>

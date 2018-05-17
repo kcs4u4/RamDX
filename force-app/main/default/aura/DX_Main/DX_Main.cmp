@@ -1,0 +1,49 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="DXAPIServices">
+    <head>
+        <title>DX AutoRABIT</title>
+        <style>
+            .oneFlexipage>header,.bBottom>one-appnav{
+            visibility:hidden !important;
+            position:fixed !important;
+            top:0 !important;
+            display:none !important;
+            }
+            .slds-template_default#brandBand_1{
+            padding:0 !important;
+            }
+            .slds-global-header__logo img{
+            max-width:132px !important;
+            }
+            
+        </style>
+    </head>
+    <ltng:require scripts="/resource/jquery,/resource/momentjs,/resource/aljs,/resource/cometd" afterScriptsLoaded="{!c.scriptsLoaded}" />    
+    <aura:attribute name="isAppLauncherVisible" type="Boolean" default="false"/>
+    <aura:attribute name="appLauncherItems" type="Object[]"/>
+    <aura:handler name="selectItemEvent" event="c:flagHandler" action="{!c.handleListItems}"/>
+    <aura:handler name="closeItemEvent" event="c:flagHandler" action="{!c.closeItem}"/>
+    <aura:handler name="appLauncher" event="c:flagHandler" action="{!c.addTab}"/>
+    <aura:handler event="c:notificationHandler" action="{!c.showAlert}"/>
+    <aura:attribute name="cometd" type="Object"/>
+    <aura:attribute name="sessionId" type="String"/>
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    
+    <div class="demo-only">
+        <div class="slds-context-bar slds-context-bar_tabs dx-navbar">
+            <div class="slds-context-bar__primary"><div class="slds-context-bar__item slds-context-bar__dropdown-trigger slds-dropdown-trigger slds-dropdown-trigger_click slds-no-hover"><div class="slds-context-bar__icon-action"><lightning:dynamicIcon type="waffle" alternativeText="Your calculation is running." onclick="{!c.appLauncherTrigger}"/></div><span class="slds-context-bar__label-action slds-context-bar__app-name"><span class="slds-truncate" title="App Name">AutoRABIT DX</span></span></div></div>
+            <div class="slds-context-bar__vertical-divider"></div>
+            <div class="slds-context-bar__secondary">
+                <ul class="slds-grid" role="tablist" aura:id="navList" id="navList">
+                    
+                </ul>
+            </div>
+        </div>
+        <div aura:id="tabpanelswrapper" id="tabpanelswrapper" class="tabpanelswrapper">   
+            
+        </div>    
+    </div>
+    <aura:if isTrue="{!v.isAppLauncherVisible}">
+        <c:DXApp_Launcher isAppLauncherVisible="{!v.isAppLauncherVisible}" appLauncherItems="{!v.appLauncherItems}" isVisible="{!v.isVisible}"/>
+    </aura:if>
+</aura:component>

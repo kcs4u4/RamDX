@@ -1,0 +1,42 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="DXAPIServices">
+    <aura:attribute name="isModal" type="boolean" default="false"/>
+    <aura:attribute name="customLabel" type="Map" default="{
+                                                               'label':'',
+                                                               'description':''
+                                                               }"/>
+    <aura:attribute name="customLabels" type="String[]"/>
+    <aura:attribute name="fetchChangesMap" type="Map" default="{
+                                                               'usersList':'',
+                                                               'repoid':'',
+                                                               'branch':'',
+                                                               'sforgid':''
+                                                               }"/>
+    <div class="demo-only" style="width:300px;">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">New Label</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="Label Name">Label Name</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputText aura:id="LabelName" value="{!v.customLabel.label}" class="slds-input" placeholder="Label Name" />
+                        </div>
+                    </div>
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="textarea-id-01">Description</label>
+                        <div class="slds-form-element__control">
+                            <ui:inputTextArea aura:id="description" value="{!v.customLabel.description}" class="slds-textarea" placeholder="Placeholder Text"/>
+                        </div>
+                    </div>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.cancel}">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick="{!c.addLabel}">Ok</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>
+</aura:component>

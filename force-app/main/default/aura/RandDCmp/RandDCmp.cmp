@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="RandDCtrl">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="ename" type="String" default="Ram"/>
+    <a class="slds-button slds-button_brand" href="/apex/test" target="__blank">New Page</a>
+</aura:component>

@@ -1,0 +1,69 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" controller="DXAPIServices">   
+    <ltng:require scripts="/resource/jquery" afterScriptsLoaded="{!c.scriptLoad}"/>
+    <aura:attribute name="isVisible" type="Boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="isModalVisible" type="boolean" default="false"/>
+    <aura:attribute name="isUnregister" type="boolean" default="false"/>
+    <aura:attribute name="curDevHub" type="Object" />
+    <aura:attribute name="DevHubList" type="Object[]" default="[]"/>
+    <aura:attribute name="Spinner" type="boolean" default="false" />
+    <c:loading isVisible="{!v.isVisible}"/>
+   
+    <div aura:id="main">
+        <aura:if isTrue="{!empty(v.curDevHub)}">
+            <div class="bRight" data-aura-rendered-by="200:0">
+                <div class="slds-btn-container slds-text-align_right"><button class="slds-button slds-button_neutral" onclick="{!c.showModal}">Register DevHub</button></div>
+            </div>            
+            <div class="devhub-container"> 
+                <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                    <thead class="slds-text-head">
+                        <tr class="slds-text-title_caps">
+                            <th scope="col">
+                                <div class="slds-truncate-class" title="Alias Name" >Alias Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate-class" title="User Name">User Name</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate-class" title="Client Id">Client Id</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate-class" title="Instance Url">Instance Url</div>
+                            </th>
+                            <th scope="col">
+                                <div class="slds-truncate-class" title="">Actions</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.DevHubList}" var="hub">
+                            <tr>
+                                <th scope="row" data-label="Alias Name" >
+                                    <div class="slds-truncate" title="Alias Name"><a href="javascript:void(0)" data-recId="{!hub.hubid}" data-username="{!hub.username}" data-alias="{!hub.alias}" onclick="{!c.goToScratchOrgList}">{!hub.alias}</a></div>
+                                </th>
+                                <td data-label="User Name">
+                                    <div class="slds-truncate" title="User Name">{!hub.username}</div>
+                                </td>
+                                <td data-label="Client Id">
+                                    <div class="slds-truncate" title="Client Id"> {!hub.orgname}</div>
+                                </td>
+                                <td data-label="Instance Url">
+                                    <div class="slds-truncate" title="Instance Url">{!hub.instanceurl}</div>
+                                </td>
+                                <td>
+                                    <div class="slds-truncate" title="id"><a href="javascript:void(0)" onclick="{!c.unRegister}" id="{!'hid-'+hub.alias}">Un Register</a></div>
+                                </td>
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{!v.isModalVisible}">
+            <c:DXAddDevHub flag="{!v.isModalVisible}"/>     
+        </aura:if>
+        <aura:if isTrue="{!not(empty(v.curDevHub))}">
+            <c:DXScratchOrgManagement hubid="{!v.curDevHub.hubid}" hubusername="{!v.curDevHub.hubusername}" hubalias="{!v.curDevHub.hubalias}" curDevHub="{!v.curDevHub}" />     
+        </aura:if>
+    </div>        
+</aura:component>

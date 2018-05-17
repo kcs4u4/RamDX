@@ -1,0 +1,31 @@
+.THIS  .slds-form_compound-dx .slds-select_container{
+    width: 70%;
+    float: left;
+}
+.THIS .slds-button slds-button_brand{
+    margin-left: 5px;
+    font-size: 18px;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    line-height: 1.5rem;
+    margin-top: 3px; 
+}
+
+.THIS.User_Story_Management{
+    background:#fff;
+    padding:0 20px;
+    /*height:80vh;*/
+}
+.THIS.User_Story_Management [class^="slds-container_"]{
+    margin:auto;
+}
+.THIS .slds-select.select.uiInput.uiInputSelect.uiInput--default.uiInput--select{
+    background-image:none;
+}
+.THIS #ALM-User-Stories-table{
+    table-layout: fixed
+}
+.THIS div.table-container{
+    height:53vh;
+    overflow:auto;
+}

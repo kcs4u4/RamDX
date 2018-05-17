@@ -1,0 +1,87 @@
+<aura:component controller="DXAPIServices" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <ltng:require scripts="/resource/jquery"/>
+    <aura:attribute name="story" type="Object"/>
+    <aura:attribute name="usmId" type="String"/>
+    <aura:attribute name="currComp" type="String"/>
+    <aura:attribute name="DevHubList" type="Map[]" default="[]"/>
+    <aura:attribute name="ScrOrgList" type="Map[]" default="[]"/>
+    <aura:attribute name="DevHub" type="Object" default="{}"/>
+    <aura:attribute name="dxFeatures" type="String[]"/>
+    <aura:attribute name="dxOrgPreferences" type="String[]"/>
+    <aura:attribute name="isVisible" type="boolean" default="false"/>
+    <aura:attribute name="type" type="String" default="new"/>
+    <aura:registerEvent name="refreshStories" type="c:flagHandler"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <style>
+        .oneHeader.slds-global-header_container#oneHeader,.cDX_Main .slds-context-bar.slds-context-bar_tabs.dx-navbar {
+        z-index: -1;
+        }
+    </style>
+    
+    <div class="demo-only">
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open slds-modal_large">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Create and Assign Scratch Org</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="position:relative;">
+                    <c:loading isVisible="{!v.isVisible}"/>
+                    <lightning:buttonGroup class="btn-grp">
+                        <lightning:button aura:id="btn" label="Create and assign new Scratch Org" class="slds-button--brand" onclick="{!c.createOrAssignScratchOrg}" name="new"/>
+                        <lightning:button aura:id="btn" label="Assign existing Scratch Org" onclick="{!c.createOrAssignScratchOrg}" name="assign"/>
+                    </lightning:buttonGroup>
+                    <div class="slds-form slds-form_compound slds-p-horizontal_small" style="position:relative" id="{!v.type}">
+                        <div class="slds-form-element__row">
+                            <div class="{!if(v.type=='new','slds-size_1-of-2','slds-size_1-of-1')}">
+                                <div class="slds-form slds-form_horizontal">
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label" for="Dev HUB Name">Dev HUB Name</label>
+                                        <div class="slds-form-element__control">
+                                            <lightning:select aura:id="dxDevHub" required="true" onchange="{!c.getDevHubDetails}" class="devhub-select">
+                                                <option value="">Select</option>
+                                                <aura:iteration items="{!v.DevHubList}" var="hub" indexVar="i">
+                                                    <option text="{!hub.hubname}" value="{!hub.hubname+'-'+i}" />
+                                                </aura:iteration>
+                                            </lightning:select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-size_1-of-2"></div>
+                        </div>
+                    </div>
+                    <aura:if isTrue="{!v.type=='new'}">
+                        <c:CreateScratchOrg aura:id="cso" isVisible="{!v.isVisible}" flag="{!v.currComp}" hubid="{!v.DevHub.uid}" hubusername="{!v.DevHub.username}" hubalias="{!v.DevHub.hubname}" almuserstoryid="{!v.usmId}" currComp="{!v.currComp}"/>
+                        <aura:set attribute="else">
+                            <div class="slds-form slds-form_compound slds-p-horizontal_small" style="position:relative"  id="{!v.type}">
+                                <div class="slds-form-element__row">
+                                    <div class="slds-size_1-of-1">
+                                        <div class="slds-form slds-form_horizontal">
+                                            <div class="slds-form-element">
+                                                <label class="slds-form-element__label" for="Scratch Org Name">Scratch Org Name</label>
+                                                <div class="slds-form-element__control">
+                                                    <lightning:select aura:id="soSelect" required="true" onchange="{!c.ScrOrgList}" class="so-select">
+                                                        <option value="">Select</option>
+                                                        <aura:iteration items="{!v.ScrOrgList}" var="so" indexVar="i">
+                                                            <option text="{!so.name}" value="{!so.name+'$'+i}" />
+                                                        </aura:iteration>
+                                                    </lightning:select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="slds-size_1-of-2"></div>
+                                </div>
+                            </div>
+                        </aura:set>
+                    </aura:if>
+                </div>
+                <footer class="slds-modal__footer">
+                    <button class="slds-button slds-button_neutral" onclick="{!c.hideModal}">Cancel</button>
+                    <button class="slds-button slds-button_brand" onclick="{!c.addScrOrg}">Add</button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </div>        
+</aura:component>
