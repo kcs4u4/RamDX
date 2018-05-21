@@ -804,4 +804,9 @@
         <members>xxx</members>
         <name>ApexClass</name>
     </types>
+    <types>
+        <members>AAAA</members>
+        <members>A_XLS</members>
+        <name>ApexPage</name>
+    </types>
 </Package>

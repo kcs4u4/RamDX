@@ -1,0 +1,10 @@
+<apex:page standardController="A__c" extensions="A_XLS" contentType="application/vnd.ms-excel#SalesForceExport.xls" cache="true">
+    <apex:pageBlock title="Export Results" >
+       <apex:pageBlockTable value="{!A__c}" var="c">
+            <apex:column value="{!c.ID}"/>
+             <apex:column value="{!c.Price__c}"/>
+             <apex:column value="{!c.Email__c}"/>                
+        </apex:pageBlockTable> 
+       
+    </apex:pageBlock>
+</apex:page>
