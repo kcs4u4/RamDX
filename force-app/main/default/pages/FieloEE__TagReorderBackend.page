@@ -1,0 +1,4 @@
+<apex:page tabStyle="FieloEE__Tag__c" standardController="FieloEE__Tag__c" recordSetVar="tags" >
+    <apex:sectionHeader title="{!$ObjectType.FieloEE__Tag__c.LabelPlural}"/>
+    <c:OrderRecords nameObject="Tag__c" urlSave="{!$CurrentPage.URL}" btnSave="true" urlSaveAndClose="/{!$ObjectType.FieloEE__Tag__c.KeyPrefix}" btnSaveAndClose="true" urlCancel="/{!$ObjectType.FieloEE__Tag__c.KeyPrefix}" btnCancel="true" />
+</apex:page>

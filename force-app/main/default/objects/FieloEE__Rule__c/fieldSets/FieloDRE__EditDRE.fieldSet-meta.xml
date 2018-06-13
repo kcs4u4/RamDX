@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloDRE__EditDRE</fullName>
+    <availableFields>
+        <field>FieloEE__Description__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </availableFields>
+    <description>RuleEditBackEnd page(DRE)</description>
+    <label>EditDRE</label>
+</FieldSet>

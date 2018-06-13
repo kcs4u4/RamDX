@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Component__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>The component through which this content feed will be showed.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the component that will show this content feed.</inlineHelpText>
+    <label>Component</label>
+    <referenceTo>FieloEE__Component__c</referenceTo>
+    <relationshipName>News</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

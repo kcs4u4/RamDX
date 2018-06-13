@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Rule_Name_Empty</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISBLANK( Name )</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage>Name must be completed</errorMessage>
+</ValidationRule>

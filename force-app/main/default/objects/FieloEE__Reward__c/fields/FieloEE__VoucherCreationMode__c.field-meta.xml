@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__VoucherCreationMode__c</fullName>
+    <deprecated>false</deprecated>
+    <description>If voucher numbers are from a provider, vouchers are Preload, if the system creates them, they are Random</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Determine whether the codes to get points will be preloaded or automatic</inlineHelpText>
+    <label>Stock Management</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Controlled By Quantity</fullName>
+                <default>true</default>
+                <label>Controlled By Quantity</label>
+            </value>
+            <value>
+                <fullName>Controlled By Item</fullName>
+                <default>false</default>
+                <label>Controlled By Item</label>
+            </value>
+            <value>
+                <fullName>Unlimited</fullName>
+                <default>false</default>
+                <label>Unlimited</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

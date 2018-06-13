@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__SetGeoLocation</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Set Geo Location</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/29.0/connection.js")}
+{!REQUIRESCRIPT("https://maps.googleapis.com/maps/api/js?v=3&amp;sensor=false")}
+
+var branchs = sforce.connection.query("SELECT Id, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Street__c, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}City__c, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}State__c, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}ZipCode__c, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Country__c, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Latitude__c, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Longitude__c FROM {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Branch__c WHERE Id = \&#39;{!FieloEE__Branch__c.Id}\&#39; ");
+var branch = branchs.getArray("records")[0];
+
+var geocoder = new google.maps.Geocoder();
+var address =&#39;&#39;;
+address += (branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Street__c != null)?&#39;,&#39;+branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Street__c:&#39;&#39;;
+address += (branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}City__c != null)?&#39;,&#39;+branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}City__c:&#39;&#39;;
+address += (branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}State__c != null)?&#39;,&#39;+branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}State__c:&#39;&#39;;
+address += (branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}ZipCode__c != null)?&#39;,&#39;+branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}ZipCode__c:&#39;&#39;;
+address += (branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Country__c != null)?&#39;,&#39;+branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Country__c:&#39;&#39;;
+
+if(address.length &gt; 0){
+address = address.substring(1);
+
+geocoder.geocode( { &#39;address&#39;: address}, function(results, status) {
+if (status == google.maps.GeocoderStatus.OK) {
+branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Latitude__c = results[0].geometry.location.lat();
+branch.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Longitude__c = results[0].geometry.location.lng();
+}else{
+alert(&#39;{!$Label.fieloee__serviceunavailable}&#39;);
+}
+var branchUpdate = [];
+branchUpdate.push(branch);
+result = sforce.connection.update(branchUpdate);
+parent.location.href = "{!FieloEE__Branch__c.Id}";
+});
+}else{
+alert(&#39;{!$Label.fieloee__pleasefilladdressinformation}&#39;);
+}</url>
+</WebLink>

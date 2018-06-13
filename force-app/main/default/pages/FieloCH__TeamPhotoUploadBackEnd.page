@@ -1,0 +1,3 @@
+<apex:page standardController="FieloCH__Team__c">
+	<FieloEE:PhotoUpload myObject="{!FieloCH__Team__c}" saveInRecordField="true" attachField="{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}AttachmentId__c" />
+</apex:page>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ExcludeComponentFields__c</fullName>
+    <defaultValue>&#39;FieloEE__FieldSet__c,FieloEE__FieldSet2__c,FieloEE__CCS__c,FieloEE__Text__c&#39;</defaultValue>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Exclude Component Fields</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

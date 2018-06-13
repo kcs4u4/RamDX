@@ -1,0 +1,3 @@
+<apex:page id="page" standardController="FieloEE__Rule__c" extensions="FieloDRE.RuleEditRedirectController" action="{!checkRecordType}">
+    <!-- Esta pagina solo redireccion a la Visualforce Standard de Fielo o a la Custom para las Rules que perteneces a otro objeto distinto a Transaction -->
+</apex:page>

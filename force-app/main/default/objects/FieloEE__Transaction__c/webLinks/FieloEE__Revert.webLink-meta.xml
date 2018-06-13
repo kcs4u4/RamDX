@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Revert</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Revert</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/25.0/connection.js")}
+{!REQUIRESCRIPT("/soap/ajax/15.0/apex.js")}
+
+var prefix = &#39;{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}&#39;.replace(&#39;__&#39;, &#39;.&#39;);
+
+var status = sforce.apex.execute(prefix+&#39;TransactionUtil&#39;, &#39;revertTransaction&#39;, {tranId: &#39;{!FieloEE__Transaction__c.Id}&#39;});
+
+alert(status);</url>
+</WebLink>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__TransactionProcessOnline__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Checkin this option will record all transactions online when they occur. If unchecked, you will have to register them offline.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Decide if you would rather register every transaction online when it happens, or offline altogether as a pack.</inlineHelpText>
+    <label>Transaction Process Online</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

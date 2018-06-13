@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__ManagePhoto</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Manage Photos</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>"/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}ChallengeRewardPhotoEditBackend?id={!FieloCH__Challenge__c.Id}&amp;retUrl={!FieloCH__Challenge__c.Id}"</url>
+</WebLink>

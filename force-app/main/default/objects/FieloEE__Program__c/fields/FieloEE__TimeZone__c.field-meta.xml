@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__TimeZone__c</fullName>
+    <deprecated>false</deprecated>
+    <description>International time zone you want to set for your program.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set the time zone for your program.</inlineHelpText>
+    <label>Time Zone</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>en_US</fullName>
+                <default>false</default>
+                <label>en_US</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

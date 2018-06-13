@@ -1,0 +1,179 @@
+<apex:page showHeader="false" standardStylesheets="false">
+
+    <apex:stylesheet value="/sCSS/Theme2/en/help.css"/>
+
+    hlp = {!JSINHTMLENCODE($CurrentPage.parameters.hlp)}
+    
+    <!-- SITE TEMPLATE SETTINGS -->
+        <!-- SiteLogo -->
+           <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'SiteLogo'}">
+               <h1 class="helpHead1">{!$Label.Logo}</h1>
+               <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infologohelppage}" /></div>
+               
+               <fieldset class="note">
+                   <legend>Note </legend>
+                   <div class="noteBody">
+                       <img align="left" src="images/help/helpNote_icon.gif" />
+                       <p id="FacetNote">
+                           Not all components support facets. Those that do are listed in the Standard Component Reference.
+                       </p>
+                   </div>
+               </fieldset>
+               
+           </apex:panelGroup>
+            
+           <!-- CustomizeSite -->
+           <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'CustomizeSite'}">
+               <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__layoutconfiguration}" /></h1>
+               <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infomemberportalhelppage}" /></div>
+           </apex:panelGroup>
+           
+           <!-- SiteBanner -->
+           <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'SiteBanner'}">
+               <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__banner}" /></h1>
+               <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infobannershelppage}" /></div>
+           </apex:panelGroup>
+           
+           <!-- SiteMenu -->
+           <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'SiteMenu'}">
+               <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__menu}" /></h1>
+               <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infomenuhelppage}" /></div>
+           </apex:panelGroup>    
+    <!-- SITE TEMPLATE SETTINGS -->
+
+    <!-- PROMOTIONS -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'Promotions'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__reward} {!$Label.fieloee__promotions}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infopromotionshelppage}" /></div>
+        </apex:panelGroup>    
+    <!-- PROMOTIONS -->
+
+    <!-- BRANCHS -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'Branchs'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__branchs}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infobrancheshelppage}" /></div>
+        </apex:panelGroup>    
+    <!-- BRANCHS -->
+
+    <!-- LEVELS -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'Levels'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__levels}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infolevelshelppage}" /></div>
+        </apex:panelGroup>    
+    <!-- LEVELS -->
+
+    <!-- METRICS -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'Metrics'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__metrics}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infometricshelppage}" /></div>
+        </apex:panelGroup>    
+    <!-- METRICS -->
+
+    <!-- RULES -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'Rules'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__rules}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__inforuleshelppage}" /></div>
+        </apex:panelGroup>    
+    <!-- RULES -->
+
+    <!-- REDEMPTION RULE -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'RedemptionsRules'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__redemptionrules}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__inforedemptionruleshelppage}" /></div>
+        </apex:panelGroup>    
+    <!-- REDEMPTION RULE -->
+
+    <!-- AGREEMENTS -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'Agreements'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__agreement}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infoagreementshelppage}" /></div>
+        </apex:panelGroup>
+    <!-- AGREEMENTS -->
+    
+    <!-- PRIZE EDIT -->
+        <!-- PrizeDetails -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'PrizeDetails'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__reward} {!$Label.fieloee__details}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__inforewardhelppage}" /></div>
+        </apex:panelGroup>
+        
+        <!-- PrizeTags -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'PrizeTags'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__reward} {!$Label.fieloee__tags}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infotagshelppage}" /></div>
+        </apex:panelGroup>
+        
+        <!-- PrizePhotoUpload -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'PrizePhotoUpload'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__reward} {!$Label.fieloee__photoupload}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__inforewardphotouploadhelppage}" /></div>
+        </apex:panelGroup>
+        
+        <!-- PrizeGenerateItems -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'PrizeGenerateItems'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__generateitems}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infogeneraterewarditemshelppage}" /></div>
+        </apex:panelGroup>
+    <!-- PRIZE EDIT -->
+    
+    <!-- PROPERTIES -->
+        <!-- PropertiesMain -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'PropertiesMain'}">
+            <h1 class="helpHead1"><apex:outputText value="Fielo Properties Settings" /></h1>
+            <div id="FacetInfo" class="p">
+                <div class="fignone">Request user autorization</div>
+                <p>The user need an autorization to start using the account after his finish his registration.</p>
+                <div class="fignone">Identification code type</div>
+                <p>Algorithm by which validates that the user is unique.</p>
+                <div class="fignone">TimeOut orphan transactions</div>
+                <p>Days of life time of the transaction if for any reason, not completed.</p>
+                <div class="fignone">Metric batch every</div>
+                <p>Periodicity of the process for collect data for reports.</p>
+            </div>
+        </apex:panelGroup>
+        
+        <!-- PropertiesTransaction -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'PropertiesTransaction'}">
+            <h1 class="helpHead1"><apex:outputText value="Fielo Transaction Properties" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="Extra points for the user who refer a new user and extra points for the user who finish the registration." /></div>
+        </apex:panelGroup>
+        
+        <!-- PropertiesCaptcha -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'PropertiesCaptcha'}">
+            <h1 class="helpHead1"><apex:outputText value="Fielo Captcha Properties" /></h1>
+            <div id="FacetInfo" class="p">A CAPTCHA is a type of challenge-response test used in computing as an attempt to ensure that the response is generated by a person.</div>
+            <fieldset class="note">
+                <legend>Note </legend>
+                <div class="noteBody">
+                    <img align="left" src="{!URLFOR($Resource.images, 'helpNote_icon.gif')}" />
+                    <p id="FacetNote">
+                        Go to <a href="https://www.recaptcha.net" target="_blank">www.recaptcha.net</a> to get your public and secret keys.
+                    </p>
+                </div>
+            </fieldset>
+        </apex:panelGroup>
+        
+        <!-- PropertiesFacebook -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'PropertiesFacebook'}">
+            <h1 class="helpHead1"><apex:outputText value="Fielo Facebook Properties" /></h1>
+            <div id="FacetInfo" class="p">
+                <p>This option is for allow users to use Facebook to register in the site. Is necessary to have a Facebook account with the Developer Aplication. Facebook provides you the Aplication Id and Secret info.</p>
+                <p>Also can change the default text for the <b>Share on Facebook</b>, the title, subtitle and the message.</p>
+            </div>
+        </apex:panelGroup>
+    <!-- PROPERTIES -->
+
+    <!-- REDEMPTION -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'Redemption'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__redemption}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__inforedemptionshelppage}" /></div>
+        </apex:panelGroup>    
+    <!-- REDEMPTION 
+
+    <!-- TRANSACTION -->
+        <apex:panelGroup rendered="{!JSINHTMLENCODE($CurrentPage.parameters.hlp) == 'Transaction'}">
+            <h1 class="helpHead1"><apex:outputText value="{!$Label.fieloee__transaction}" /></h1>
+            <div id="FacetInfo" class="p"><apex:outputText value="{!$Label.fieloee__infotransactionhelppage}" /></div>
+        </apex:panelGroup>
+    <!-- TRANSACTION -->
+</apex:page>

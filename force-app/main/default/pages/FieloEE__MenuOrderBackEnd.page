@@ -1,0 +1,10 @@
+<apex:page StandardController="FieloEE__Menu__c" tabStyle="FieloEE__Menu__c" >
+    <apex:panelGroup rendered="{!($CurrentPage.parameters.placement != null)}" >
+        <apex:sectionHeader title="{!$ObjectType.FieloEE__Menu__c.Label}" subtitle="{!$CurrentPage.parameters.placement}" />
+        <c:OrderRecords nameObject="Menu__c" urlSave="{!$CurrentPage.URL}" btnSave="true" urlSaveAndClose="{!IF(NOT(ISNULL($CurrentPage.parameters.retURL)), $CurrentPage.parameters.retURL, '/'+$ObjectType.FieloEE__Menu__c.KeyPrefix)}" btnSaveAndClose="true" urlCancel="{!IF(NOT(ISNULL($CurrentPage.parameters.retURL)), $CurrentPage.parameters.retURL, '/'+$ObjectType.FieloEE__Menu__c.KeyPrefix)}" btnCancel="true" condition="Placement__c ='{!$CurrentPage.parameters.placement}' AND Menu__c = null AND Program__c = '{!$CurrentPage.parameters.programId}' " />
+    </apex:panelGroup>
+    <apex:panelGroup rendered="{!($CurrentPage.parameters.Id != null)}" >        
+        <apex:sectionHeader title="{!$ObjectType.FieloEE__Menu__c.Label}" subtitle="{!FieloEE__Menu__c.Name}" />
+        <c:OrderRecords nameObject="Menu__c" urlSave="{!$CurrentPage.URL}" btnSave="true" urlSaveAndClose="/{!FieloEE__Menu__c.Id}" btnSaveAndClose="true" urlCancel="/{!FieloEE__Menu__c.Id}" btnCancel="true" condition="Menu__c = '{!FieloEE__Menu__c.Id}'" />
+    </apex:panelGroup>
+</apex:page>

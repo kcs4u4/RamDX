@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__OrderBy__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The order in which rewards are showed in the catalog.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Choose the order criteria for rewards.</inlineHelpText>
+    <label>Order By</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Name - Points</fullName>
+                <default>false</default>
+                <label>Name - Points</label>
+            </value>
+            <value>
+                <fullName>Points - Name</fullName>
+                <default>false</default>
+                <label>Points - Name</label>
+            </value>
+            <value>
+                <fullName>Name</fullName>
+                <default>true</default>
+                <label>Name</label>
+            </value>
+            <value>
+                <fullName>Points</fullName>
+                <default>false</default>
+                <label>Points</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

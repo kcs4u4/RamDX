@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Dynamic</fullName>
+    <active>true</active>
+    <description>Once you define the criteria of the segment, when the member performs an operation the system calculates online the member’s segment.</description>
+    <label>Dynamic</label>
+</RecordType>

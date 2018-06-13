@@ -1,0 +1,18 @@
+<apex:page sidebar="false" showHeader="false" standardStylesheets="false" >
+	<apex:composition template="{!$Site.Template}">
+		<apex:define name="body">
+			<div class="container-fluid">
+				<legend><apex:outputText value="{!$Label.fieloee__profile}" /></legend>
+				<c:MemberView />
+				
+				<legend><apex:outputText value="{!$ObjectType.FieloEE__Transaction__c.labelplural}" /></legend>
+				<c:MemberTransactionView filters="false" recordsPerPage="5"/>
+				
+				<legend><apex:outputText value="{!$Label.fieloee__redemptiondetails}" /></legend>
+				<c:MemberRedemptionsView filters="false" recordsPerPage="5"/>
+
+				<c:MemberBadges />
+			</div>
+		</apex:define>
+	</apex:composition> 
+</apex:page>

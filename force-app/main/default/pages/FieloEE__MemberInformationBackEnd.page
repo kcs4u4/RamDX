@@ -1,0 +1,56 @@
+<apex:page standardController="FieloEE__Member__c" standardStylesheets="false" showHeader="false" sidebar="false">
+    <style>
+        .HighlightsMemeberInfo              { font-family:Helvetica; }
+        .HighlightsMemeberInfo td           { background: #D95D2E; color: #FFFFFF; }
+        .HighlightsMemeberInfo td a         { text-decoration: none !important; color: #FFFFFF; }
+        .HighlightsMemeberInfo td a:hover   { color: #8E452A; }
+    </style>
+    <apex:form >
+        <table style="width: 100%; height:120px;" cellspacing="4" class="HighlightsMemeberInfo">
+            <tr>
+                <td style="background: none;">
+                    <apex:image value="/servlet/servlet.FileDownload?file={!FieloEE__Member__c.FieloEE__imageId__c}" rendered="{!NOT(ISBLANK(FieloEE__Member__c.FieloEE__imageId__c))}" height="80"/>
+                    <apex:image value="{!URLFOR($Resource.FieloEE__images, 'avatar.jpg')}" rendered="{!(ISBLANK(FieloEE__Member__c.FieloEE__imageId__c))}" height="80"/>
+                </td>
+                <td style="width: 20%; padding-left: 20px;">
+                    <strong style="font-size: 20px;">
+                        <apex:outputField value="{!FieloEE__Member__c.FieloEE__LastName__c}"/><br/>
+                        <apex:outputField value="{!FieloEE__Member__c.FieloEE__FirstName__c}"/>
+                    </strong>
+                </td>
+                <td style="width: 20%;" align="Center">
+                    <strong style="font-size: 55px;">
+                        <apex:outputField value="{!FieloEE__Member__c.FieloEE__Points__c}"/>
+                    </strong>
+                    <small>
+                        <apex:outputText value="{!$Label.fieloee__points}"/>
+                    </small>
+                </td>
+                <td style="width: 40%;">
+                    <table cellspacing="10">
+                        <apex:repeat value="{!$ObjectType.FieloEE__Member__c.FieldSets.FieloEE__HighlightSection}" var="f">
+                            <tr>
+                                <td>
+                                    <strong>
+                                        <apex:outputText value="{!$ObjectType.FieloEE__Member__c.Fields[f].label}"/>
+                                    </strong>
+                                </td>
+                                <td>
+                                    <apex:outputField value="{!FieloEE__Member__c[f]}" />
+                                </td>
+                            </tr>
+                        </apex:repeat>
+                    </table>
+                </td>
+                <td style="text-transform: uppercase;width: 20%;font-size: 16px;font-weight: bold;height: 90px;padding: 6px 8px;text-align: left;" align="Center">
+                     <table style="height:100%">
+                         <tr><td style="height: 100%;vertical-align: middle;">
+                           <apex:outputText value="{!FieloEE__Member__c.FieloEE__LevelReadOnly__c}" style="display: block;overflow-y: auto;height: 70px;margin-top: 10px;" />
+                         </td></tr>
+                     </table>
+
+                </td>
+            </tr>
+        </table>
+    </apex:form>
+</apex:page>

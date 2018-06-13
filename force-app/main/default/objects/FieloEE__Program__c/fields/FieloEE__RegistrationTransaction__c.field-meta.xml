@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__RegistrationTransaction__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Checking this option will give points to new members for registering in the program.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this option if you want to reward new members for registering.</inlineHelpText>
+    <label>Registration Incentive</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

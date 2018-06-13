@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Reward_Program_Validation</fullName>
+    <active>true</active>
+    <description>Checks that the reward belongs to the same program as the challenge.</description>
+    <errorConditionFormula>AND(
+    NOT( ISBLANK(FieloCH__Reward__c) ) ,
+    FieloCH__Reward__r.FieloEE__Program__c !=  FieloCH__Challenge__r.FieloCH__Program__c)</errorConditionFormula>
+    <errorMessage>The Reward does not belong to the same Program as the Challenge.</errorMessage>
+</ValidationRule>

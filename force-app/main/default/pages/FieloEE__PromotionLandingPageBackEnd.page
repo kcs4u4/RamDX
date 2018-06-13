@@ -1,0 +1,102 @@
+<apex:page tabStyle="FieloEE__Promotion__c" standardController="FieloEE__Promotion__c" extensions="FieloEE.PromotionLandingPageBackEndController" recordSetVar="part" action="{!init}">
+<apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+
+<!--  START STYLES -->
+    <style>
+        .bold { font-weight: bold; }
+        .col_50 { width:50%; }
+        .col_50 .pbHeader { border: none !important; }
+        .col_50 .pbHeader table{ border: none !important; }
+        .col_50 .pbSubsection { background-color: #FFFFFF !important; border: 1px solid #E8E8E8; margin: 5px 0 0; padding: 5px; }
+        .col_50 .pbSubsection td{ border: none !important; }
+        .reportsAndTools { width: 100%; }
+        
+        .splash_title       { font-size:26px; color:#777777; font-weight:bold; }
+        .splash_main        { font-size:18px; color:#777777; }
+        .splash_subtitle    { font-size:16px; color:#111111; text-align:center; }
+        .splash_text        { font-size:12px; color:#777777; }
+        .splash_numbers     { font-family:helvetica; font-size:28px; color:#2D64CB; font-weight:bold; }
+    </style>
+<!--  END STYLES -->
+
+<!--  START LANDING PAGE -->
+
+    <apex:form >
+        
+        <style>
+            a                       { text-decoration:none;}
+            .page_header            {clear:both;}
+            .page_title             { float:left; width:300px;margin-bottom: 10px;}
+            .bPageTitle             { margin-bottom: 5px;}
+            .program_header         { font-size:11px; color:#999999; line-height:20px;}
+            .program_header .name a { font-size:40px; color:#cccccc; line-height:60px; font-weight:bold; }
+            .links                  { display:none; }
+            .pbBody                 { overflow:auto; }
+        </style>
+        
+        <div class="page_header">
+            <div class="page_title">
+                <apex:sectionHeader title="{!$ObjectType.FieloEE__Promotion__c.label}" subtitle="{!$Label.fieloee__titlehome}"/>
+                <apex:outputLabel value="{!$Label.fieloee__view}:"/>&nbsp; 
+                <apex:selectList value="{!filterId}" size="1"> 
+                    <apex:selectOptions value="{!listviewoptions}"/> 
+                </apex:selectList> 
+                <apex:commandButton value="{!$Label.fieloee__go}!" action="/{!ObjectPrefix}?fcf={!LEFT(filterId, 15)}"/> &nbsp;
+                <apex:commandLink value="{!$Label.fieloee__edit}" action="/ui/list/FilterEditPage?id={!LEFT(filterId, 15)}&retURL=/{!ObjectPrefix}?fcf={!LEFT(filterId, 15)}&cancelURL=/apex/PromotionLandingPageBackEnd"/>  
+            </div>
+            <div class="page_buttons"><c:BackEndSupport helpPage="{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}PromotionHelpBackEnd" /></div>
+
+        </div>
+        
+        <div class="program_header">
+            <apex:pageBlock id="programPageBlock" rendered="{!programs.size > 1}">
+                <div style="float:left" class="name">
+                    <apex:outputLink value="{!'/'+programId}">{!program.Name}</apex:outputLink>
+                </div>
+                <div style="float:right">
+                    <div class="picklist">
+                        <div>{!$Label.fieloee__changeprogram}</div>
+                        <apex:selectList value="{!programId}" multiselect="false" size="1" onchange="refreshInfo();" >
+                            <apex:selectOptions value="{!programs}"/>
+                        </apex:selectList>
+                    </div>
+                </div>
+            </apex:pageBlock>
+        </div>
+        <apex:actionFunction action="{!changeProgram}" name="refreshInfo" /><!--rerender="programPageBlock, recentRecords, tools"-->
+        
+        
+    </apex:form>
+    
+    <!--  START COMPONENT RECENT RECORDS  -->
+    <c:RecentRecords id="recentRecords" object="{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Promotion__c" title="{!$Label.fieloee__titlerecentpromotions}" limit="10" condition="Program__c = '{!programId}'" idProgram="{!programId}" />
+    <!--  END COMPONENT RECENT RECORDS  -->
+    
+    <!--  START REPORTS AND TOOLS  -->
+    <apex:panelGrid styleClass="reportsAndTools" columns="2" columnClasses="col_50">
+        <apex:pageBlock title="{!$Label.fieloee__titlelandingpagereports}">
+            <apex:pageBlockSection collapsible="FALSE">
+                <apex:repeat value="{!Reports}" var="report">
+                    <apex:outputLink value="/{!report.Id}">{!report.Name}</apex:outputLink><br/>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection collapsible="FALSE">
+                <apex:outputLink styleClass="bold" value="/{!ReportPrefix}" >{!$Label.fieloee__gotoreports} »</apex:outputLink>
+            </apex:pageBlockSection>
+        </apex:pageblock>
+        
+        <apex:pageBlock id="tools" title="{!$Label.fieloee__titlelandingpagetools}" >
+            <apex:pageBlockSection collapsible="FALSE" columns="1">
+                <apex:outputLink value="{!$Page.PromotionTimeLine }" >{!$Label.fieloee__promotiontimeline}</apex:outputLink>
+                <apex:outputLink value="{!URLFOR( $Page.FieloEE__RuleDefaultEditBackEnd, null, [Id=defaultRuleId,retURL=$CurrentPage.URL] )}" rendered="{!!ISNULL(defaultRuleId)}">{!$Label.fieloee__defaultrule}</apex:outputLink>
+                <apex:outputLink value="{!URLFOR( $Page.FieloEE__PromotionCreateBackEnd, null, [progId=programId,retURL=$CurrentPage.URL] )}" rendered="{!ISNULL(defaultRuleId)}" >{!$Label.fieloee__defaultrule}</apex:outputLink>
+                <apex:outputLink value="/{!RulesPrefix}" >{!$Label.fieloee__rules}</apex:outputLink>
+                <apex:outputLink value="/{!$ObjectType.FieloEE__RedemptionRule__c.KeyPrefix}">{!$Label.fieloee__manageprofiling} </apex:outputLink>
+            </apex:pageBlockSection>
+        </apex:pageblock>
+    </apex:panelGrid>
+    <!--  END REPORTS AND TOOLS  -->
+
+<!--  END LANDING PAGE -->
+
+</apex:page>

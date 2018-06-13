@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ProfileCompleteness__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The dregree of completeness of this member&#39;s profile.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Here you can see how complete is the member&#39;s profile.</inlineHelpText>
+    <label>Profile completeness</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

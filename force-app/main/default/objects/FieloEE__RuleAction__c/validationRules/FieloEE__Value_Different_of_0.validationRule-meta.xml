@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Value_Different_of_0</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( AND ( OR( ISPICKVAL( FieloEE__ConvertionType__c , &#39;Factor&#39; ) , ISPICKVAL( FieloEE__ConvertionType__c , &#39;Multiplier&#39; ) ) ,  FieloEE__ConvertionValue__c == 0 ) , true , false )</errorConditionFormula>
+    <errorMessage>You must put a value different of 0</errorMessage>
+</ValidationRule>

@@ -1,0 +1,86 @@
+<apex:page showHeader="false" sidebar="false">
+        <!-- Bootstrap -->        
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'FontAwesome/css/font-awesome.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+        <!-- Fin Bootstrap -->
+           <style>
+        a:hover { color:#6BC9DB !important; }
+        .bold   { font-weight: bold; }
+        .col_33 { width:33%; }
+        .col_33 .pbHeader { border: none !important; }
+        .col_33 .pbHeader table{ border: none !important; }
+        .col_33 .pbSubsection { background-color: #FFFFFF !important; border: 1px solid #E8E8E8; margin: 5px 0 0; padding: 5px; }
+        .col_33 .pbSubsection td{ border: none !important; }
+        .pageblocks { width: 100%; }
+        
+        .splash_title       { font-size:26px; color:#777777; font-weight:bold; }
+        .splash_main        { font-size:18px; color:#777777; }
+        .splash_subtitle    { font-size:16px; color:#111111; text-align:center; }
+        .splash_text        { font-size:12px; color:#777777; margin:2px 10px; }
+        .splash_numbers     { font-family:helvetica; font-size:28px; color:#2D64CB; font-weight:bold; }
+        
+        .pbSubheader            { color:red; }
+        
+        .ul_menu                { margin:0; padding:0; }
+        .ul_menu li             { margin:0; padding:2px 0; border-bottom:1px dashed #cccccc; list-style:none; }
+        .ul_menu li ul          { margin:0; padding:0; }
+        .ul_menu li ul li       { padding-left:20px; border-top:1px dashed #eeeeee; border-bottom:none; }
+        
+        .ul_menu .col_menu      { vertical-align:middle !important; }
+        .ul_menu .col_comp      { vertical-align:middle !important; padding:0 3px; }
+        .ul_menu .col_comp a    { color:#cccccc; }
+        .ul_menu .col_comp img  { width:16px; margin:0; }
+        
+        .icon_comp          { background:#333333; width:16px; height:16px; float:left; margin:0 2px; }
+        .icon_comp:hover    { background:#6BC9DB; }
+        
+        h3  { line-height:20px; }
+    </style>
+        <div style="width:800px; margin:20px;">
+            <div class="splash_title"><apex:outputText value="{!$Label.fieloee__frontend}"/></div>
+            <div style="position:relative; margin:50px auto 20px;">
+                <div style="overflow:auto">
+                    <div style="float:left; width:203px; height:199px; background:no-repeat url({!URLFOR($Resource.images, 'splash/frontend.png')});"></div>
+                    <div style="float:left; width:570px; margin:40px 0 0 20px;" class="splash_main">{!$Label.SplashFrontendMain}</div>
+                </div>
+                
+                <div style="potition:relative; overflow:auto; margin-top:20px;">
+                    <div style="height:50px;">
+                        <div style="float:left; width:140px; text-align:center;" class="splash_numbers">1</div>
+                        <div style="float:left"><apex:image value="{!URLFOR($Resource.FieloEE__images, 'splash/flecha.png')}"/></div>
+                        <div style="float:left; width:115px; text-align:center;" class="splash_numbers">2</div>
+                        <div style="float:left"><apex:image value="{!URLFOR($Resource.FieloEE__images, 'splash/flecha.png')}"/></div>
+                        <div style="float:left; width:115px; text-align:center;" class="splash_numbers">3</div>
+                        <div style="float:left"><apex:image value="{!URLFOR($Resource.FieloEE__images, 'splash/flecha.png')}"/></div>
+                        <div style="float:left; width:115px; text-align:center;" class="splash_numbers">4</div>
+                        <div style="float:left"><apex:image value="{!URLFOR($Resource.FieloEE__images, 'splash/flecha.png')}"/></div>
+                        <div style="float:left; width:115px; text-align:center;" class="splash_numbers">5</div>
+                    </div>
+                    
+                    <div style="float:left; width:160px;">
+                        <div class="splash_subtitle"><apex:outputText value="{!$Label.fieloee__splashfrontendsitetitle}" escape="false"/></div>
+                        <div class="splash_text"><apex:outputText value="{!$Label.fieloee__splashfrontendsitetext}"/></div>
+                    </div>
+                    <div style="float:left; width:159px; border-left:1px dotted #cccccc;">
+                        <div class="splash_subtitle"><apex:outputText value="{!$Label.fieloee__splashfrontendfrontendtitle}" escape="false"/></div>
+                        <div class="splash_text"><apex:outputText value="{!$Label.fieloee__splashfrontendfrontendtext}"/></div>
+                    </div>
+                    <div style="float:left; width:159px; border-left:1px dotted #cccccc;">
+                        <div class="splash_subtitle"><apex:outputText value="{!$Label.fieloee__splashfrontendlayouttitle}" escape="false"/></div>
+                        <div class="splash_text"><apex:outputText value="{!$Label.fieloee__splashfrontendlayouttext}"/></div>
+                    </div>
+                    <div style="float:left; width:159px; border-left:1px dotted #cccccc;">
+                        <div class="splash_subtitle"><apex:outputText value="{!$Label.fieloee__splashfrontendhomepagetitle}" escape="false"/></div>
+                        <div class="splash_text"><apex:outputText value="{!$Label.fieloee__splashfrontendhomepagetext}"/></div>
+                    </div>
+                    <div style="float:left; width:159px; border-left:1px dotted #cccccc;">
+                        <div class="splash_subtitle"><apex:outputText value="{!$Label.fieloee__splashfrontendmenutitle}" escape="false"/></div>
+                        <div class="splash_text"><apex:outputText value="{!$Label.fieloee__splashfrontendmenutext}"/></div>
+                    </div>
+                </div>
+            </div>
+        </div>  
+        
+
+</apex:page>

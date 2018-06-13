@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Closed_Order</fullName>
+    <active>false</active>
+    <errorConditionFormula>AND(   ISPICKVAL(FieloEE__Status__c, &#39;Close&#39;) ,ISCHANGED(FieloEE__Points__c) )</errorConditionFormula>
+    <errorMessage>The order is closed.</errorMessage>
+</ValidationRule>

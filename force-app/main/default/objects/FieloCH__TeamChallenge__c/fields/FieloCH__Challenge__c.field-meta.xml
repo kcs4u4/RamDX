@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Challenge__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Challenge</label>
+    <referenceTo>FieloCH__Challenge__c</referenceTo>
+    <relationshipLabel>Teams Challenge</relationshipLabel>
+    <relationshipName>TeamsChallenge</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

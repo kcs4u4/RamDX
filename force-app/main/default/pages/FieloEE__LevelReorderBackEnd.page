@@ -1,0 +1,13 @@
+<apex:page standardController="FieloEE__Level__c" extensions="FieloEE.LevelOrderBackEndExtension" recordSetVar="levels">
+    <apex:sectionHeader title="{!$ObjectType.FieloEE__Level__c.LabelPlural}"/>
+    
+    <apex:form rendered="{!programs.size > 1}" >
+    <div>{!$Label.fieloee__changeprogram}</div>
+        <apex:selectList value="{!programId}" multiselect="false" size="1"  >                        
+            <apex:selectOptions value="{!programs}" />                
+            <apex:actionSupport event="onchange" />                
+        </apex:selectList>        
+    </apex:form>
+    <apex:pageMessages />
+    <c:OrderRecords Id="comp" nameObject="Level__c" condition="{!wherecondition}" urlSave="{!$CurrentPage.URL}" btnSave="true" urlSaveAndClose="/{!$ObjectType.FieloEE__Level__c.KeyPrefix}" btnSaveAndClose="true" urlCancel="/{!$ObjectType.FieloEE__Level__c.KeyPrefix}" btnCancel="true" />
+</apex:page>

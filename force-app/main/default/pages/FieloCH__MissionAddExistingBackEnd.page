@@ -1,0 +1,68 @@
+<apex:page standardController="FieloCH__Challenge__c" extensions="FieloCH.MissionAddExistingBackEndExtension" >
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'thickbox/thick.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__js, 'thickbox/thick.css')}"/>
+    <apex:includescript value="{!URLFOR($Resource.FieloEE__js, 'JQueryOrder/jquery-ui-personalized-1.5.3.js')}"/>
+    
+    <script>
+        function checkAll(cb){
+            var inputElem = document.getElementsByTagName("input");
+            for(var i = 0; i < inputElem.length; i++){
+                if(inputElem[i].id.indexOf("checkedone") != -1)
+                    inputElem[i].checked = cb.checked;
+            }
+        }   
+    </script>    
+    
+    <apex:sectionHeader title="{!$ObjectType.FieloCH__Challenge__c.Label} {!FieloCH__Challenge__c.Name}"/>
+    <apex:form >
+    	<apex:pageBlock rendered="{!(FieloCH__Challenge__c.FieloCH__IsActive__c)}" >
+            <apex:pageMessage summary="{!$Label.fieloch__infocannotaddmissions}" severity="info" strength="2"/>
+       		<apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="{!$Label.fieloee__back}" action="{!cancel}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+        <apex:pageBlock rendered="{!!FieloCH__Challenge__c.FieloCH__IsActive__c && missions.size < 1}" >
+        	<apex:pageMessage summary="{!$Label.fieloch__infonomissions}" severity="info" strength="2"/>
+       		<apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="{!$Label.fieloee__back}" action="{!cancel}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        
+        <apex:pageBlock Title="{!$Label.fieloch__selectmissions}" rendered="{!!FieloCH__Challenge__c.FieloCH__IsActive__c && missions.size > 0}" > 
+            <apex:pageBlockButtons > 
+                <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!doCancel}"/>     
+                <apex:commandButton value="{!$Label.fieloch__addmissions}" action="{!doSaveSelectedMissions}"/>        
+            </apex:pageBlockButtons> 
+            <apex:pageBlockSection Title="{!$Label.fieloch__listavailablemissions}" collapsible="false"> 
+                <apex:pagemessages />
+            </apex:pageBlockSection>
+            <apex:pageBlockTable value="{!missions}" var="a" id="actionList" rowClasses="odd,even" styleClass="tableClass">
+                <apex:column width="10px">
+                    <apex:facet name="header">
+                        <apex:inputCheckbox >
+                            <apex:actionSupport event="onclick" onsubmit="checkAll(this)" rerender="Selected_PBS"/>
+                        </apex:inputCheckbox>
+                    </apex:facet>
+                    <apex:inputCheckbox value="{!a.selected}" id="checkedone"/>
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.FieloCH__Mission__c.Label}">
+                    <apex:outputText >
+                         {!a.mission.Name}
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headerValue="{!$Label.fieloee__type}">
+                    <apex:outputText >
+                         {!a.mission.RecordType.Name}
+                    </apex:outputText>
+                </apex:column>
+                <apex:column headerValue="{!$Label.fieloee__rewarddescription}">
+                    <apex:outputText >
+                         {!a.mission.FieloCH__Description__c}
+                    </apex:outputText>
+                </apex:column>
+            </apex:pageBlockTable>
+         </apex:pageBlock>
+     </apex:form>
+</apex:page>

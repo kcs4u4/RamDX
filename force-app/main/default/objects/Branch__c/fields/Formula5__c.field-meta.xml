@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Formula5__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(AND( Branch2__r.Salary__c &lt;1, Branch1__r.NewEmail__c ==&#39;bc@abc.com&#39;)," $Label.DX_API ",
+ $Label.kcs_dev__dx_api2 )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Formula5</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

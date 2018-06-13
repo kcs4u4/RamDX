@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__MenuRedirectAfterAction__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>If you selected a "Action Menu" when you click the action, the list view add the param "retOnSave". If you define a Menu, that parameter is completed with the Menu you selected, if this field is null that parameter is completed with the current List View</inlineHelpText>
+    <label>Menu Redirect After Action</label>
+    <referenceTo>FieloEE__Menu__c</referenceTo>
+    <relationshipLabel>List View Actions (Menu Redirect After Action)</relationshipLabel>
+    <relationshipName>ListViewMenuRedirectAfterAction</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

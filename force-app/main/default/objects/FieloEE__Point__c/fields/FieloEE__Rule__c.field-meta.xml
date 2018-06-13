@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Rule__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>The rule to which this point belongs.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Here you can see the rule that created the point.</inlineHelpText>
+    <label>Rule</label>
+    <referenceTo>FieloEE__Rule__c</referenceTo>
+    <relationshipLabel>Points</relationshipLabel>
+    <relationshipName>Points</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

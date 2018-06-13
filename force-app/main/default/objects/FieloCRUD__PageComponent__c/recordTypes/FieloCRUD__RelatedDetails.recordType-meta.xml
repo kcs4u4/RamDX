@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__RelatedDetails</fullName>
+    <active>true</active>
+    <description>Allows to create/edit child records of the object defined in the object setting through the editable mode of the page layout.</description>
+    <label>Related Details</label>
+    <picklistValues>
+        <picklist>FieloCRUD__Navigation__c</picklist>
+        <values>
+            <fullName>Navigate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No page</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Target</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloCRUD__Visibility__c</picklist>
+        <values>
+            <fullName>Edit</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+</RecordType>

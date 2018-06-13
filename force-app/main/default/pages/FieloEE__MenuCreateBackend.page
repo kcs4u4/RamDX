@@ -1,0 +1,182 @@
+<apex:page StandardController="FieloEE__Menu__c" extensions="FieloEE.MenuCreateBackEndExtension">
+
+    <!-- Font Awesome -->
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'FontAwesome/css/font-awesome.css')}"/>
+        <!--[if IE 7]>
+            <apex:stylesheet value="{!URLFOR($Resource.css, 'font-awesome-ie7.css')}"/>
+        <![endif]-->
+    <!-- Fin Font Awesome -->
+
+    <style>
+        .down-text  { width:130px; padding:5px; margin-top:0; }
+        .well       { background-color:#ffffff; border:1px solid #E3E3E3; border-radius:4px; box-shadow:0 1px 1px rgba(0, 0, 0, 0.05) inset; margin-bottom:20px; min-height:20px; padding:19px; }
+        .row-fluid  { overflow:auto; }
+        .span2      { float:left; width:160px; height:130px; }
+        input       { padding:4px; margin-bottom:10px; }
+    </style>
+
+    <apex:form >
+        <style>
+            a                       { text-decoration:none; }
+            .page_title             { float:left; width:300px; }
+            .page_buttons           { float:right; margin-top:30px; }
+            .program_header         { font-size:11px; color:#999999; line-height:20px; overflow:auto; }
+            .program_header .name a { font-size:40px; color:#cccccc; line-height:60px; font-weight:bold; }
+            .links                  { display:none; }
+        </style>
+
+        <div class="page_title"><apex:sectionHeader title="{!$Label.fieloee__newmenu}"/></div>
+        <div class="page_buttons"><c:BackEndSupport helpPage="TransactiontionHelpBackEnd" /></div>
+
+        <apex:pageBlock id="programPageBlock" rendered="{!programs.size > 5}">
+            <div class="program_header">
+                <div style="float:left" class="name">
+                    <apex:outputLink value="{!'/'+program.Id}">{!program.Name}</apex:outputLink>
+                </div>
+            </div>
+        </apex:pageBlock>
+
+        <apex:pageBlock >
+
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!doCancel}" value="{!$Label.fieloee__cancel}" />
+            </apex:pageBlockButtons>
+
+            <p style="margin:10px"><apex:outputText value="{!$Label.fieloee__infomenucreatebackend}"/></p>
+
+            <!-- Content -->
+            <div class="well">
+                <apex:inputText value="{!contentName}" maxlength="80"/>
+                <div class="row-fluid">
+                    <div class="span2">
+                        <apex:commandLink action="{!createContentSection}" ><apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/content.jpg')}" /></apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__content}</p>
+                    </div>
+
+                    <div class="span2">
+                        <apex:commandLink action="{!createBannerRowContentSection}" ><apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/content_banner_row.jpg')}"/></apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__contentrowbanner}</p>
+                    </div>
+
+                    <div class="span2">
+                        <apex:commandLink action="{!createBannerColContentSection}" ><apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/content_banner_col.jpg')}"/></apex:commandLink>
+                        <p class="down-text">{!$Label.ContentColumnBanner}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content feed -->
+            <div class="well">
+                <apex:inputText value="{!newsName}" maxlength="80"/>
+                <div class="row-fluid">
+                    <div class="span2">
+                        <apex:commandLink action="{!createNewsSection}" ><apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/contentfeed.jpg')}" /></apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__contentfeed}</p>
+                    </div>
+                    <div class="span2">
+                        <apex:commandLink action="{!createBannerRowNewsSection}" ><apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/contentfeed_banner_row.jpg')}"/></apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__contentfeedrowbanner}</p>
+                    </div>
+                    <div class="span2">
+                        <apex:commandLink action="{!createBannerColNewsSection}" ><apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/contentfeed_banner_col.jpg')}"/></apex:commandLink>
+                        <p class="down-text">{!$Label.ContentFeedColumnBanner}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Catalog -->
+            <div class="well">
+                <apex:inputText value="{!catalogName}" maxlength="80"/>
+                <div class="row-fluid">
+                    <div class="span2">
+                        <apex:commandLink action="{!createCatalogSection}" ><apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/catalog.jpg')}" /></apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__catalog}</p>
+                    </div>
+                    <div class="span2">
+                        <apex:commandLink action="{!createBannerCatalogSection}" ><apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/catalog_banner.jpg')}"/></apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__catalogrowbanner}</p>
+                    </div>
+                    <div class="span2">
+                        <apex:commandLink action="{!createCategoriesCatalogSection}" ><apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/catalog_categ.jpg')}"/></apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__catalogcategories}</p>
+                    </div>
+                    <div class="span2">
+                        <apex:commandLink action="{!createBannerCategoriesCatalogSection}" ><apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/catalog_categ_banner.jpg')}"/></apex:commandLink>
+                        <p class="down-text">{!$Label.CatalogCategoriesRowBanner}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blank -->
+            <div class="well">
+                <apex:inputText value="{!blankName}" maxlength="80"/>
+                <div class="row-fluid">
+                    <div class="span2">
+                        <apex:commandLink action="{!createBlankSection}" >
+                            <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/one_column.jpg')}" />
+                            <apex:param name="section" value="12"/>
+                        </apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__oneblanksection}</p>
+                    </div>
+                    <div class="span2">
+                        <apex:commandLink action="{!createBlankSection}" >
+                            <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/two_column_right.jpg')}"/>
+                            <apex:param name="section" value="3-9"/>
+                        </apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__twoblanksections}</p>
+                    </div>
+                    <div class="span2">
+                        <apex:commandLink action="{!createBlankSection}" >
+                            <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/two_column_left.jpg')}"/>
+                            <apex:param name="section" value="9-3"/>
+                        </apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__twoblanksections}</p>
+                    </div>
+                    <div class="span2">
+                        <apex:commandLink action="{!createBlankSection}" >
+                            <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/three_columns_center.jpg')}"/>
+                            <apex:param name="section" value="3-6-3"/>
+                        </apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__threeblanksections}</p>
+                    </div>
+                    <div class="span2">
+                        <apex:commandLink action="{!createBlankSection}" >
+                            <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/two_columns.jpg')}"/>
+                            <apex:param name="section" value="6-6"/>
+                        </apex:commandLink>
+                        <p class="down-text">{!$Label.fieloee__twoblanksections}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gamify -->
+            <apex:panelgroup rendered="{!hasGamify}" >
+	            <div class="well">
+	                <apex:inputText value="{!gamifyName}" maxlength="80"/>
+	                <div class="row-fluid">
+	                    <div class="span2">
+	                        <apex:commandLink action="{!createChallengeRowBanner}" >
+	                            <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/catalog_categ_banner.jpg')}"/>
+	                        </apex:commandLink>
+	                        <p class="down-text">{!$Label.fieloee__challengesrowbanner}</p>
+	                    </div>
+	                    <div class="span2">
+	                        <apex:commandLink action="{!createChallenge}" >
+	                            <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/contentfeed.jpg')}" />
+	                        </apex:commandLink>
+	                        <p class="down-text">{!$Label.fieloee__subscribeactualchallenges}</p>
+	                    </div>
+	                    <div class="span2">
+	                        <apex:commandLink action="{!createChallengeColumnBanner}" >
+	                            <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/content_banner_col.jpg')}"/>
+	                        </apex:commandLink>
+	                        <p class="down-text">{!$Label.fieloee__challengescolumnbanner}</p>
+	                    </div>
+	                </div>
+	            </div>
+            </apex:panelgroup>
+
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

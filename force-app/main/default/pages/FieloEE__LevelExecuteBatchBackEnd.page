@@ -1,0 +1,11 @@
+<apex:page standardController="FieloEE__Level__c" extensions="FieloEE.LevelExecuteBatchBackEndExtension" action="{!doBatch}" recordSetVar="levels"> 
+    <apex:form > 
+        <apex:pageBlock > 
+            <apex:pageMessages />
+            <apex:outputLink value="{!URLFOR($Page.FieloEE__BatchExecutionBackEnd)}">{!$Label.fieloee__gotoprocesses}</apex:outputLink>
+            <br/>
+            <br/>
+            <apex:commandButton value="{!$Label.fieloee__back}" action="{!URLFOR($Action.Level__c.tab,$ObjectType.Level__c)}"/>
+        </apex:pageBlock> 
+    </apex:form> 
+</apex:page>

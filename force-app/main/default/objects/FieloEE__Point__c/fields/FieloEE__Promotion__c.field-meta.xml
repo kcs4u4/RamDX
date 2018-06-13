@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Promotion__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>The promotion to which this point belongs.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Here you can see the promotion that created the point.</inlineHelpText>
+    <label>Promotion</label>
+    <referenceTo>FieloEE__Promotion__c</referenceTo>
+    <relationshipLabel>Points</relationshipLabel>
+    <relationshipName>Points</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

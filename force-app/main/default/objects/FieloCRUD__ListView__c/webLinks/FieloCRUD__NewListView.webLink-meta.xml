@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__NewListView</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>New List View</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>{!REQUIRESCRIPT("/soap/ajax/31.0/connection.js")}
+{!REQUIRESCRIPT("/soap/ajax/31.0/apex.js")}
+
+var pageLayoutFieldId = sforce.apex.execute(
+   "FieloCRUD.CRUDUtilities",
+   "getFieldId",
+   {theObject:&#39;ListView__c&#39;,theField:&#39;ObjectSettings__c&#39;}
+);
+
+var rtId = sforce.apex.execute(
+   "FieloCRUD.CRUDUtilities",
+   "getRecordTypeId",
+   {theObject:&#39;FieloCRUD__ListView__c&#39;,rtDevName:&#39;ListView&#39;}
+);
+
+var urlRet = &#39;/&#39; + &#39;{!$ObjectType.FieloCRUD__ListView__c}&#39; + &#39;/e?&#39;;
+urlRet += &#39;CF&#39; + pageLayoutFieldId + &#39;=&#39; + &#39;{!FieloCRUD__ObjectSettings__c.Name}&#39;;
+urlRet += &#39;&amp;&#39; + &#39;CF&#39; + pageLayoutFieldId + &#39;_lkid=&#39; + &#39;{!FieloCRUD__ObjectSettings__c.Id}&#39;;
+urlRet += &#39;&amp;RecordType=&#39; + rtId;
+urlRet += &#39;&amp;retURL=/&#39; + &#39;{!FieloCRUD__ObjectSettings__c.Id}&#39;;
+
+window.location.href = urlRet;</url>
+</WebLink>

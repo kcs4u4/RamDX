@@ -1,0 +1,116 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" cache="false" controller="FieloEE.SiteLoginController">
+  <script type="text/javascript">
+    (function(exports, d) {
+        function domReady(fn, context) {
+
+        function onReady(event) {
+          d.removeEventListener("DOMContentLoaded", onReady);
+          fn.call(context || exports, event);
+        }
+
+        function onReadyIe(event) {
+          if (d.readyState === "complete") {
+            d.detachEvent("onreadystatechange", onReadyIe);
+            fn.call(context || exports, event);
+          }
+        }
+
+        d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
+        d.attachEvent      && d.attachEvent("onreadystatechange", onReadyIe);
+        }
+
+        exports.domReady = domReady;
+        })(window, document);
+    </script>
+  <apex:composition template="{!$Site.template}">
+        <apex:define name="head"/>
+        <apex:define name="body">
+        <!-- <div id="login">
+            <div id="login_wrapper" class="page-curl">
+                <div id="login_component"  >
+                    <div id="logo_wrapper">
+                    </div>
+                    <div id="loginwidget">
+                        <apex:form id="loginForm" forceSSL="true">
+                        <div class="loginbox_container" onClick="document.login.un.focus();">
+                            <div id="header">Developer Edition Portal Login</div>
+                            <div id="error"><apex:pageMessages id="error" /></div>
+                            <div id="username" onclick="">
+                                <div>
+                                    <div id="user"></div>
+                                    <apex:inputText value="{!username}" styleClass="input un" id="un"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="loginbox_container" onClick="document.login.pw.focus();">
+                            <div id="password">
+                                <div>
+                                    <div id="lock"></div>
+                                    <label for="un" class="zen-assistiveText">Password</label>
+                                    <apex:inputSecret id="pw" value="{!password}" styleClass="input pw"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="loginbox_container">
+                            <apex:commandButton action="{!login}" value="Login with your Portal ID" id="submit" styleClass="button btn"/>
+                        </div>
+                        
+                        <apex:outputPanel rendered="true"> 
+                        
+                        <fieldset class="loginbox_container" id="facebook">    
+                            <legend align="center">- or -</legend>  
+                            <a href="{!authProviderURL}?site={!URLENCODE(siteURL)}&startURL={!URLENCODE(startURL)}">
+                                <div class="idp">
+                                    <img class="" src="https://authtest-developer-edition.na14.force.com/resource/1334628566000/FBLogin"></img>
+                                </div>
+                            </a>
+                         </fieldset>
+                         </apex:outputPanel>
+                        
+                        <div class="loginbox_container" id="spacer">&nbsp;</div>
+                        </apex:form>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <div class="loginContentForm well well-large">
+            <div class="loginFormTitle">
+                <legend>Login</legend>
+            </div>
+            <apex:form id="loginForm" forceSSL="true" styleClass="form-horizontal">
+                <div class="control-group">
+                    <div class="controls">
+                        <apex:inputText value="{!username}" styleClass="input-large un" id="un"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <apex:inputSecret value="{!password}" styleClass="input-large pw" id="pw" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <apex:commandButton action="{!login}" value="Login" id="submit" styleClass="button btn loginBtnM"/>
+                        <a href="{!authProviderURL}?site={!URLENCODE(siteURL)}&startURL={!URLENCODE(startURL)}" class="facebookBtnLoginM">
+                            <div class="idp">
+                                <img class="" src="https://authtest-developer-edition.na14.force.com/resource/1334628566000/FBLogin"></img>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </apex:form>
+        </div>        
+    <script>
+        domReady(function(event) {
+            $('.un').attr('placeholder','Username');
+            $('.pw').attr('placeholder','Password');
+        });
+    </script>
+    <style>
+        .controls { margin: 0px !important; }
+        .loginBtnM { float: right; }
+        .facebookBtnLoginM { float: left; }
+    </style>
+    </apex:define>
+    </apex:composition>
+</apex:page>

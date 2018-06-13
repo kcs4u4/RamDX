@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__All_Rewards</fullName>
+    <columns>NAME</columns>
+    <columns>FieloEE__Category__c</columns>
+    <columns>FieloEE__Description__c</columns>
+    <columns>FieloEE__PointsCant__c</columns>
+    <columns>FieloEE__VoucherCreationMode__c</columns>
+    <columns>FieloEE__Stock__c</columns>
+    <columns>FieloEE__ExpirationDate__c</columns>
+    <columns>FieloEE__isInstantReward__c</columns>
+    <columns>FieloEE__Program__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Rewards</label>
+    <language>en_US</language>
+</ListView>

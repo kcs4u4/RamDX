@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Content__c</fullName>
+    <deprecated>false</deprecated>
+    <description>A content consisting of rich text and images that will be showed in the members&#39; portal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter text and images.</inlineHelpText>
+    <label>Content</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

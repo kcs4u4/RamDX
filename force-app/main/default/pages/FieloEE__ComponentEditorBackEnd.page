@@ -1,0 +1,8 @@
+<apex:page id="ComponentEditor" standardController="FieloEE__Component__c" >   
+	<div style="margin:0 auto 0 auto;">
+		<c:Editor RecordId="{!FieloEE__Component__c.id}" 
+		excludeFields="{!$Setup.FieloEE__PublicSettings__c.FieloEE__ExcludeComponentFields__c}"
+		toolbar="{!$Setup.FieloEE__PublicSettings__c.FieloEE__EditorToolbar__c}{!$Setup.FieloEE__PublicSettings__c.FieloEE__EditorToolbarExtra__c}"
+		/>
+	</div>
+</apex:page>

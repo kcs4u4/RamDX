@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ActiveBanner</fullName>
+    <active>true</active>
+    <errorConditionFormula>( ISNULL( FieloEE__AttachmentId__c ) || ISBLANK( FieloEE__AttachmentId__c ) ) &amp;&amp; (FieloEE__isActive__c == true)</errorConditionFormula>
+    <errorMessage>You must load an image to active a banner</errorMessage>
+</ValidationRule>

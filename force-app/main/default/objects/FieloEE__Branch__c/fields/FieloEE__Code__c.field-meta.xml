@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Code__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The branch code. It can be filled with a branch number or just enter a name for each branch.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>Enter a code that will uniquely identify this branch.</inlineHelpText>
+    <label>Code</label>
+    <length>4</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,128 @@
+<apex:page controller="FieloEE.PreviewSegmentSelectionController" tabStyle="FieloEE__RedemptionRule__c" docType="html-5.0">
+    
+    <!-- STYLING -->
+    <style>
+        .page_index { float: center; padding-left: 35%; }
+        .page_index a { color: rgb(140, 122, 92); margin: 0 2px; display: inline-block; font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 10px; text-decoration: none; text-align: center; }
+        .page_index a:hover { text-decoration: none; }
+        .page_index a.clickable, .page_index a.clickable-disabled { background-color: rgb(236, 237, 238); color: #015BA7; border: 1px solid #c0b4b4; border-radius: 1px; padding: 3px; }
+        .page_index a.non-clickable, .page_index a.clickable-disabled { cursor: auto; }
+        .page_index a.clickable:hover, .page_index a.current { background-color: #015BA7; border-color: #015BA7; color: white; }
+        .page_index a.clickable-disabled { opacity: 0.35; color: #969696; }
+        a.button-link { border-radius: 2px;border-color: #A8A8A8 #C8C8C8 #E8E8E8 #E8E8E8; border-width: 1px; border-style: solid; text-decoration: none; padding: 1px 4px; background-color: white; font-weight: bold; }
+        a.button-link:hover, a.button-link:active { background-color: #015BA7; color: white; text-decoration: none; border-color: transparent; }
+        div.message { background-color: transparent; border-width: 0; border-radius: 0; margin-bottom: 5px; padding-left: 15px; }
+        .longTable { max-height: 400px; overflow-y: scroll; display: block;width: 99%; margin-bottom: 10px; border-bottom: 1px solid #ddd; }
+        .requiredLegend { display: none; }
+        .search-box { float: left; }
+        .pbBottomButtons { margin-top: 0 !important; }
+    </style>
+    
+    <apex:form >
+        <!-- HEADER -->
+        <apex:sectionHeader title="{!$Label.fieloee__segmentselection}" />
+        
+        <apex:pageBlock mode="edit">
+			<apex:pageMessages />        
+            <!-- BUTTONS -->
+            <apex:pageBlockButtons >
+                <apex:commandButton value="{!$Label.fieloee__save}" action="{!doSave}"/>
+                <apex:commandButton value="{!$Label.fieloee__cancel}" onclick="confirmCancel()" action="{!doCancel}"/>
+            </apex:pageBlockButtons>
+            
+            <!-- AVAILABLE SEGMENTS -->
+            <apex:pageBlockSection title="{!$Label.fieloee__availablesegments}" columns="1">
+                <apex:panelGroup >                    
+                    <!-- SEARCH BOX -->
+                    <div class="search-box">
+                        <apex:inputText id="search_input" html-placeholder="{!$Label.fieloee__search}" value="{!toSearch}" onkeypress="return search(event);"/>
+                        <apex:commandButton value="{!$Label.fieloee__go}" action="{!doSearch}"/>
+                        <apex:actionFunction name="doSearch" action="{!doSearch}"/> 
+                    </div>
+                </apex:panelGroup>
+                
+                <!-- AVAILABLE SEGMENTS TABLE -->
+                <apex:pageBlockTable value="{!segmentsNot}" styleClass="checkTable" var="s" rendered="{!segmentsNot.size > 0}">
+                    
+                    <!-- CHECK ALL -->
+                    <apex:column style="text-align: center;">
+                        <apex:facet name="header">
+                            <div style="text-align: center;"><input type="checkbox" onclick="checkAll(this, 'checkTable')"/></div>
+                        </apex:facet>
+                        <apex:inputCheckbox value="{!s.checked}"/>
+                    </apex:column>
+                    
+                    <!-- SEGMENT FIELDS -->
+                    <apex:repeat value="{!$ObjectType.FieloEE__RedemptionRule__c.FieldSets.FieloEE__SegmentManager}" var="f">
+                        <apex:column rendered="{!f == 'Name'}">
+                            <apex:facet name="header">{!$ObjectType.FieloEE__RedemptionRule__c.Fields.Name.Label}</apex:facet>
+                            <a href="/{!s.segment.Id}">{!s.segment.Name}</a>
+                        </apex:column>
+                        <apex:column value="{!s.segment[f]}" rendered="{!f != 'Name'}"/>
+                    </apex:repeat>
+                </apex:pageBlockTable>
+
+                <!-- TABLE OPTIONS -->
+                <apex:panelGroup rendered="{!segmentsNot.size > 0}">
+                    
+                    <!-- PAGINATION -->
+                    <apex:panelGroup styleClass="page_index" rendered="{!AND(segmentsNot.size > 0, generalPager.TotalPages > 1)}">
+                        <apex:commandLink value="<" action="{!doBack}" styleClass="{!IF(generalPager.PageNumber == 1, 'clickable-disabled','clickable')}" onclick="{!IF(generalPager.PageNumber == 1, 'return false;','')}"/>
+                        <apex:repeat value="{!pages}" var="index">
+                            <apex:commandLink value="{!index}" action="{!doPage}" styleClass="{!IF(ISNUMBER(index), IF(VALUE(index) == generalPager.PageNumber, 'clickable current','clickable'),'non-clickable')}" onclick="{!IF(ISNUMBER(index),'','return false;')}">
+                                <apex:param value="{!index}" name="index"/>
+                            </apex:commandLink>
+                        </apex:repeat>
+                        <apex:commandLink value=">" action="{!doNext}" styleClass="{!IF(generalPager.PageNumber == generalPager.TotalPages, 'clickable-disabled', 'clickable')}" onclick="{!IF(generalPager.PageNumber == generalPager.TotalPages, 'return false;', '')}"/>
+                    </apex:panelGroup>
+                    <apex:commandButton value="{!$Label.fieloee__addselected}" action="{!doAdd}" style="float:left;"/>
+                </apex:panelGroup>
+            </apex:pageBlockSection>
+            
+            <!-- USED SEGMENTS -->
+            <apex:pageBlockSection rendered="{!segmentsYes.size > 0}" title="{! $Label.CurrentSegments}" columns="1">
+                
+                <!-- USED SEGMENTS TABLE -->
+                <apex:outputPanel styleClass="longTable">
+                    <apex:pageBlockTable value="{!segmentsYes}" var="s">
+                        
+                        <!-- CHECK ALL -->
+                        <apex:column style="text-align: center;">
+                            <apex:facet name="header">
+                                <div style="text-align: center;"><input type="checkbox" onclick="checkAll(this, 'longTable')"/></div>
+                            </apex:facet>
+                            <apex:inputCheckbox value="{!s.checked}"/>
+                        </apex:column>
+
+                        <!-- SEGMENT FIELDS -->
+                        <apex:repeat value="{!$ObjectType.FieloEE__RedemptionRule__c.FieldSets.FieloEE__SegmentManager}" var="f">
+                            <apex:column rendered="{!f == 'Name'}">
+                                <apex:facet name="header">{!$ObjectType.FieloEE__RedemptionRule__c.Fields.Name.Label}</apex:facet>
+                                <a href="/{!s.segment.Id}">{!s.segment.Name}</a>
+                            </apex:column>
+                            <apex:column value="{!s.segment[f]}" rendered="{!f != 'Name'}"/>
+                        </apex:repeat>
+                    </apex:pageBlockTable>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+
+    <script>
+        // Check all boxes
+        function checkAll(box, styleClass) {
+		 var checkboxes = document.querySelectorAll('.' + styleClass+ ' input[type="checkbox"]');
+		    for (var i = 0; i < checkboxes.length; i++) {
+		    	checkboxes[i].checked = box.checked;
+		    }
+        }
+
+        // Search when pressing enter key
+        function search(e){
+            if(e.keyCode == 13){
+                doSearch();
+                return false;
+            }
+        }
+    </script>
+</apex:page>

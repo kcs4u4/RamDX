@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloSVY__SurveyQuestion__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Survey Question</label>
+    <referenceTo>FieloSVY__SurveyQuestion__c</referenceTo>
+    <relationshipLabel>Survey Response Questions</relationshipLabel>
+    <relationshipName>Survey_Response_Questions</relationshipName>
+    <relationshipOrder>1</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

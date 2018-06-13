@@ -1,0 +1,7 @@
+<messaging:emailTemplate subject="sghj" recipientType="Lead" >
+<messaging:plainTextEmailBody >
+Congratulations!
+This is your new Visualforce Email Template.
+<apex:variable var="billingAddress" value="{!$Label.kcs_dev__dx_api}"/>
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

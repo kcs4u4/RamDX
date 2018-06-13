@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__DeletionFrom__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Define whether the deletion of the record will be done directly on the page layout, on the delete action menu or if there is no delete action on the page layout.</inlineHelpText>
+    <label>Deletion From</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Page Layout</fullName>
+                <default>false</default>
+                <label>Page Layout</label>
+            </value>
+            <value>
+                <fullName>Action Menu</fullName>
+                <default>false</default>
+                <label>Action Menu</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

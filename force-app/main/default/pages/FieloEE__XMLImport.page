@@ -1,0 +1,41 @@
+<apex:page showHeader="true" sidebar="true" controller="FieloEE.XMLImportController" >
+	<apex:form >
+        <apex:pageBlock title="{!$Label.fieloee__importmenus}" rendered="{!(type == 'Menu')}">
+	        <apex:pageMessages />
+	        <style>
+	        	.instantRecord {
+					margin-bottom: 10px;
+				}
+				.instantRecord--label {
+					margin-right: 10px;
+				}
+				.instantRecord--check {
+					position: relative;
+					top: 3px;
+				}
+	        </style>
+        	<div class="instantRecord">
+	            <apex:outputLabel value="{!$Label.fieloee__createinexistentrecords}" styleClass="instantRecord--label"/>
+	            <apex:inputCheckbox value="{!createInexistent}" styleClass="instantRecord--check"/>
+            </div>
+            <div>
+                <apex:inputFile value="{!inputFile.body}" fileName="{!inputFile.Name}" size="10" />
+                <apex:commandButton value="{!$Label.fieloee__import}" action="{!importFile}"/>
+            </div>	        
+        </apex:pageBlock>        
+        <apex:pageBlock title="{!$Label.fieloee__importlevels}" rendered="{!(type == 'Level')}">
+	        <apex:pageMessages />	                	
+            <div>
+                <apex:inputFile value="{!inputFile.body}" fileName="{!inputFile.Name}" size="10" />
+                <apex:commandButton value="{!$Label.fieloee__import}" action="{!importFile}"/>
+            </div>	        
+        </apex:pageBlock>        
+        <apex:pageBlock title="{!$Label.fieloee__importsegments}" rendered="{!(type == 'Segment')}">
+	        <apex:pageMessages />	        
+            <div>
+                <apex:inputFile value="{!inputFile.body}" fileName="{!inputFile.Name}" size="10" />
+                <apex:commandButton value="{!$Label.fieloee__import}" action="{!importFile}"/>
+            </div>	        
+        </apex:pageBlock>        
+    </apex:form>
+</apex:page>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__StandardField</fullName>
+    <active>true</active>
+    <description>Define a field that is going to be displayed in the Related Detail input table.</description>
+    <label>Standard Field</label>
+</RecordType>

@@ -1,0 +1,6 @@
+<apex:page StandardController="FieloSVY__Survey__c" tabStyle="FieloSVY__SurveyQuestion__c" >
+    <apex:panelGroup >
+        <apex:sectionHeader title="{!$ObjectType.FieloSVY__SurveyQuestion__c.Label}" />
+        <c:OrderRecords nameField="Question__c" nameObject="SurveyQuestion__c" urlSave="{!$CurrentPage.URL}" btnSave="true" urlSaveAndClose="/{!$CurrentPage.parameters.survey}" btnSaveAndClose="true" urlCancel="/{!$CurrentPage.parameters.survey}" btnCancel="true" condition="Survey__c ='{!$CurrentPage.parameters.survey}' " />
+    </apex:panelGroup>
+</apex:page>

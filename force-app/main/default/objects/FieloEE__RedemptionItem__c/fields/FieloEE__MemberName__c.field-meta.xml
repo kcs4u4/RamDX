@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__MemberName__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Formula to get the member name.</description>
+    <externalId>false</externalId>
+    <formula>FieloEE__Redemption__r.FieloEE__Member__r.FieloEE__LastName__c +", "+ FieloEE__Redemption__r.FieloEE__Member__r.FieloEE__FirstName__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Member Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Origin__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Where the redemption was made: in the back end, in the front end or via a mobile device.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Indicate whether the redemption was made via the back end, the front end or a mobile device.</inlineHelpText>
+    <label>Origin</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>BackEnd</fullName>
+                <default>false</default>
+                <label>BackEnd</label>
+            </value>
+            <value>
+                <fullName>FrontEnd</fullName>
+                <default>false</default>
+                <label>FrontEnd</label>
+            </value>
+            <value>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+                <label>Mobile</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

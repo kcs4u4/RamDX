@@ -1,0 +1,27 @@
+<apex:page showHeader="true" sidebar="true" standardController="FieloEE__RedemptionRule__c" extensions="FieloEE.SegmentMembersViewBackEndExtension">
+	<apex:form >
+		<apex:pageBlock title="{!IF(fullList, segment.Name, '')}">
+			<apex:pageMessage summary="{!$Label.fieloee__noresultsfound}" severity="info" strength="3" rendered="{!membersToShow.size < 1}"/>
+			<apex:pageBlockTable value="{!membersToShow}" var="m" rendered="{!membersToShow.size > 0}">
+				<apex:column headerValue="{!$ObjectType.FieloEE__Member__c.fields.FieloEE__Name__c.label}">
+					<apex:outputLink value="/{!m['Id']}" target="_blank" >{!m.FieloEE__Name__c}</apex:outputLink>
+				</apex:column>
+			</apex:pageBlockTable>
+			<apex:commandLink value="{!$Label.fieloee__gotolist} ({!quantity}) »"  onclick="window.open('/apex/SegmentMembersViewBackEnd?id={!segment.Id}&fullList=true', '_blank')" rendered="{!!fullList && membersToShow.size > 0}"/>
+
+			<center>
+				<apex:panelGroup rendered="{!membersToShow.size < listSize}" id="buttons" >
+					<apex:commandLink action="{!memberPaginator.first}" rendered="{!memberPaginator.hasPrevious && fullList}" reRender="tables, buttons">{!$Label.fieloee__first}</apex:commandLink>
+	                    &nbsp;
+					<apex:commandLink action="{!memberPaginator.previous}" rendered="{!memberPaginator.hasPrevious && fullList}" reRender="tables, buttons">{!$Label.fieloee__previous}</apex:commandLink>
+	                    &nbsp;
+					<apex:outputText value=" {!ActualPage}/{!TotalPages} " rendered="{!fullList}"/>
+					<apex:commandLink action="{!memberPaginator.next}" rendered="{!memberPaginator.hasNext && fullList}" reRender="tables, buttons">{!$Label.fieloee__next}</apex:commandLink>
+	                    &nbsp;
+					<apex:commandLink action="{!memberPaginator.last}" rendered="{!memberPaginator.hasNext && fullList}" reRender="tables, buttons">{!$Label.fieloee__last}</apex:commandLink>
+				</apex:panelGroup>
+			</center>
+
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

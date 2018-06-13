@@ -1,0 +1,32 @@
+<apex:page standardController="FieloEE__Reward__c" extensions="FieloEE.RewardChooseTagBackEndExtension"  >
+<style>
+    .row{ height: 55px;}
+</style>
+
+<apex:sectionHeader title="{!$ObjectType.FieloEE__Reward__c.Label}" subtitle="{!FieloEE__Reward__c.Name}"/> 
+<apex:form >
+<apex:pageBlock title="{!$ObjectType.FieloEE__Tag__c.LabelPlural}"  >
+   <apex:pageBlockButtons >
+               <apex:commandButton value="{!$Label.fieloee__save}" action="{!save}"/>
+               <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!cancel}"/>
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection columns="2" >
+        
+            <apex:pageBlockTable value="{!tags}" var="t" rowClasses="row">
+                <apex:column >
+                    <apex:inputCheckbox value="{!t.selected}"/>
+                </apex:column>
+                <apex:column value="{!t.tag.Name}"/>
+                <apex:column value="{!t.tag.FieloEE__Image__c}"/>
+                <apex:column headerValue="{!$ObjectType.FieloEE__RewardTag__c.Fields['ExpirationDate__c'].label}" >
+                    <apex:inputField value="{!t.rewardTag.FieloEE__ExpirationDate__c}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:panelGroup >
+         
+            </apex:panelGroup>
+        </apex:pageBlockSection>
+   
+</apex:pageBlock>
+ </apex:form>
+</apex:page>

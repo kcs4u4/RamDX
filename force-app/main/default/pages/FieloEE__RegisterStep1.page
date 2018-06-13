@@ -1,0 +1,67 @@
+<apex:page id="Registration" showHeader="false" controller="FieloEE.RegisterStep1Controller" title="{!$Label.site.register}" standardStylesheets="false" >
+    <!-- TODO deprecar -->
+    <apex:composition template="{!$Site.Template}">     
+        <apex:define name="body">
+            <div class="container-fluid">
+                <apex:panelGroup rendered="{!(!registered)}">
+                    <legend>
+                        <apex:outputText value="{!$Label.site.user_registration}" />
+                    </legend>
+                    <div class="row-fluid">
+                        <div class="offset3">
+                            <apex:form id="theForm" forceSSL="true" styleClass="form-horizontal">
+                                <apex:inputhidden value="{!challenge}" id="challenge" />
+                                <apex:inputhidden value="{!response}" id="response" />                              
+                                <apex:repeat value="{!$ObjectType.FieloEE__Member__c.FieldSets.FieloEE__RegistrationStep1}" var="f">                                                                      
+                                    <div class="control-group {!$ObjectType.FieloEE__Member__c.Fields[f].Name}">
+                                        <apex:outputLabel value="{!$ObjectType.FieloEE__Member__c.Fields[f].label}" for="{!f.label}" styleClass="control-label"/>
+                                        <div class="controls">
+                                            <apex:inputField value="{!member[f]}" required="{!OR(f.required, f.dbrequired)}"/>
+                                        </div>
+                                    </div>
+                                </apex:repeat>
+                                <apex:panelGroup rendered="{!withCaptcha}">
+                                    <script src="https://www.google.com/recaptcha/api/js/recaptcha_ajax.js"/>
+                                    <script>
+                                        function showRecaptcha(element) {
+                                            if ( "{!JSINHTMLENCODE(publicKey)}" == "" ) alert("{!$Label.CaptchaAlert}");
+                                                Recaptcha.create("{!JSINHTMLENCODE(publicKey)}", element, {
+                                                theme: 'clean',
+                                                tabindex: 0,
+                                                callback: Recaptcha.focus_response_field
+                                            });
+                                        }
+                                        function captureResponse(ele) {
+                                            document.getElementById('{!$Component.challenge}').value = document.getElementById('recaptcha_challenge_field').value;                              
+                                            document.getElementById('{!$Component.response}').value = document.getElementById('recaptcha_response_field').value;
+                                        }
+                                    </script>
+                                
+                                    <div id="dynamic_recaptcha_1"></div>
+                                    <script type="text/javascript">showRecaptcha('dynamic_recaptcha_1');</script>
+                                </apex:panelGroup>   
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div class="btn-group">
+                                            <apex:commandButton styleClass="btn" onclick="var bOk= true; {!IF ( withCaptcha,'captureResponse(this);', '')} return bOk;" action="{!registerUser}" value="{!$Label.site.submit}" id="submit"/>
+                                            <apex:commandButton styleClass="btn" action="{!cancelar}" value="{!$Label.fieloee__cancel}" immediate="true"/>
+                                        </div>
+                                    </div>
+                                </div>                          
+                            </apex:form>
+                        </div>
+                    </div>
+                </apex:panelGroup>              
+                <apex:panelGroup rendered="{!registered}">            
+                    <legend>
+                        <apex:outputText value="{!$Label.site.user_registration}" />
+                    </legend>                   
+                    <div class="alert alert-success pagination-centered">
+                        <apex:outputText value="{!$Label.fieloee__sucessregistrationstep1}" rendered="{!!existingUser}" />
+                        <apex:outputText value="{!$Label.fieloee__registerexistinguser}" rendered="{!existingUser}" />
+                    </div>
+                </apex:panelGroup>
+             </div>          
+        </apex:define>
+    </apex:composition>  
+</apex:page>

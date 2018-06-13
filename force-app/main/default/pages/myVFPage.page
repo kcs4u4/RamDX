@@ -1,0 +1,24 @@
+<apex:page Controller="emailHelper" >
+   <apex:form >
+   
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>Congratulations</h1> Hello
+       <apex:pageBlock title="">
+           <apex:pageBlockTable value="{!$ObjectType.Branch__c.FieldSets.NewFieldSet}" var="f1" />
+           <apex:pageBlockTable value="{!$ObjectType.Branch1__c.FieldSets.newDepen}" var="f1" />
+           
+  This is your new Page
+  <!-- End Default Content REMOVE THIS -->
+           <apex:outputText escape="false" value=" {!$Label.kcs_dev__dx_api}" />
+  <apex:include pageName="PdfPage" />
+       <c:myComponent />
+       
+  <apex:composition template="composition"  >
+        <apex:define name="header">(page) This is the header of mypage</apex:define>
+        <apex:define name="body">(page) This is the body of mypage</apex:define>
+    </apex:Composition>  
+            </apex:pageBlock>
+  </apex:form>
+     <flow:interview name="newFlow" />
+      
+</apex:page>

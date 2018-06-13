@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Status__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF(  ! FieloCH__IsActive__c, "Inactive",
+  IF ( FieloCH__FinalDate__c &lt; TODAY() || (ISPICKVAL(FieloCH__CompetitionType__c,&#39;Performance&#39;) &amp;&amp; FieloCH__Processed__c)
+            || (ISPICKVAL(FieloCH__Mode__c,&#39;Collaborative&#39;) &amp;&amp; FieloCH__Processed__c), "Finished",
+    IF (FieloCH__InitialDate__c &lt;= TODAY() &amp;&amp; FieloCH__FinalDate__c &gt;= TODAY() , "Active", "Future" ) ) )</formula>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

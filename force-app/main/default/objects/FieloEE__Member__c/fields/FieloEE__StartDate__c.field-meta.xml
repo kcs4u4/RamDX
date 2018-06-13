@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__StartDate__c</fullName>
+    <defaultValue>Today()</defaultValue>
+    <deprecated>false</deprecated>
+    <description>The date when this member registered in the program.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the date when the member registered in the program.</inlineHelpText>
+    <label>Start Date</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

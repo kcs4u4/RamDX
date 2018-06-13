@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Complete_Site_URL</fullName>
+    <active>true</active>
+    <errorConditionFormula>FieloEE__Default__c  =  FALSE &amp;&amp; FieloEE__SiteURL__c  = NULL</errorConditionFormula>
+    <errorDisplayField>FieloEE__SiteURL__c</errorDisplayField>
+    <errorMessage>Complete Site URL. You can find it going to Setup -&gt; Develop -&gt; Sites</errorMessage>
+</ValidationRule>

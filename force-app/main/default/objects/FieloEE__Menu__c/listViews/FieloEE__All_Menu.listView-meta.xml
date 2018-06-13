@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__All_Menu</fullName>
+    <columns>NAME</columns>
+    <columns>FieloEE__Program__c</columns>
+    <columns>FieloEE__Home__c</columns>
+    <columns>FieloEE__Placement__c</columns>
+    <columns>FieloEE__visibility__c</columns>
+    <columns>FieloEE__Menu__c</columns>
+    <columns>FieloEE__Desktop__c</columns>
+    <columns>FieloEE__Tablet__c</columns>
+    <columns>FieloEE__Mobile__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Menu</label>
+    <language>en_US</language>
+</ListView>

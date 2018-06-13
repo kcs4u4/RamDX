@@ -1,0 +1,11 @@
+<apex:page StandardController="FieloEE__Component__c" Extensions="FieloEE.BannerOrderBackEndExtension">
+	<apex:sectionHeader title="{!$ObjectType.FieloEE__Component__c.Label}" subtitle="{!FieloEE__Component__c.Name}" />
+    <apex:form rendered="{!($CurrentPage.parameters.id == null || $CurrentPage.parameters.id == '')}" >
+        <apex:selectList value="{!placement}" size="1">
+            <apex:selectOptions value="{!placements}"/>
+            <apex:actionSupport event="onchange"/>
+        </apex:selectList>
+    </apex:form>
+
+    <c:OrderRecords id="aab" nameObject="Banner__c" urlSave="{!$CurrentPage.URL}" btnSave="true" urlSaveAndClose="/{!FieloEE__Component__c.id}" btnSaveAndClose="true" urlCancel="/{!FieloEE__Component__c.id}" btnCancel="true" condition="{!whereCondition}"  />
+</apex:page>

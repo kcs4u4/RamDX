@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ImageObject__c</fullName>
+    <deprecated>false</deprecated>
+    <description>API name of the object to save Images using the "Photo Upload" component (for example "Attachment" or "Document").</description>
+    <externalId>false</externalId>
+    <inlineHelpText>API name of the object to save Images using the "Photo Upload" component (for example "Attachment" or "Document").</inlineHelpText>
+    <label>Image Object</label>
+    <length>40</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

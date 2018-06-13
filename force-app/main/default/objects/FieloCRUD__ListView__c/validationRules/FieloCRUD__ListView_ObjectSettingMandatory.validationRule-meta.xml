@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__ListView_ObjectSettingMandatory</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF(
+	AND(RecordType.DeveloperName = "List",ISBLANK(FieloCRUD__ObjectSettings__c  )),
+	TRUE,
+	FALSE
+)</errorConditionFormula>
+    <errorDisplayField>FieloCRUD__ObjectSettings__c</errorDisplayField>
+    <errorMessage>You must include an object setting for Lists with "List View" record type.</errorMessage>
+</ValidationRule>

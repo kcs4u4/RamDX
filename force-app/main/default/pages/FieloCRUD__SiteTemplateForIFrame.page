@@ -1,0 +1,135 @@
+<apex:page applyHtmlTag="false" applyBodyTag="false" showHeader="false" id="SiteTemplate" standardStylesheets="false"  controller="FieloEE.SiteTemplateFieloController" extensions="FieloCRUD.SiteTemplateForIframeExtension"  cache="false" action="{!redirect}" >
+    <html>
+        <head>
+            <title>{!layout.FieloEE__Title__c}</title>
+            
+            <apex:insert name="FieloStylesheets">
+                
+                <!-- jQuery -->
+                <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+                <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+                <!-- <script src="//code.jquery.com/jquery-1.10.2.js"/> -->
+                <!-- <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"/> -->
+                
+                <!-- Bootstrap -->
+                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+                <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+                <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapResponsiveMin.css')}"/>
+                
+                <!--[if IE]> -->
+                <script>
+                  $(document).ready(function(){$('#notForIE').remove()});
+                </script>
+                <!-- <![endif]-->
+                
+                <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+                <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrapDropdownHover.js')}"/>
+                <!-- Fin Bootstrap -->
+                
+                <!-- Font Awesome -->
+                    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'FontAwesome/css/font-awesome.css')}"/>
+                <!-- Fin Font Awesome -->
+
+                <!-- CRUD CSS -->
+                <apex:stylesheet value="{!URLFOR($Resource.FieloCRUD__CRUD_CSS)}"/>
+
+                <!-- CRUD JS -->
+                <apex:includeScript value="{!URLFOR($Resource.FieloCRUD__CRUD_JS)}"/>
+
+                <!-- Other resources -->
+                <apex:repeat value="{!JSresources}" var="res">
+                    <apex:includeScript value="{!res}"/>
+                </apex:repeat>
+                <apex:repeat value="{!CSSresources}" var="res">
+                    <apex:stylesheet value="{!res}"/>
+                </apex:repeat>
+                
+            </apex:insert>
+            
+            <style>
+                .bPageHeader, .bPageFooter { display: none; }
+                body { background: none !important; }
+                .brandPrimaryBrd { background: none !important; border: none !important; }
+                .noSidebarCell > .container { width: 100% !important; }
+
+                .isRequired{
+                border-left: 2px solid #FF0000 !important;
+                border-radius: 6px;
+                }
+                .isRequired:focus{
+                border-color: #e9322d !important;
+                box-shadow:
+                inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(236, 94, 121, 0.6) !important;
+                }
+                
+                .isRequired input[type="text"]:focus{
+                border-color: #e9322d !important;
+                box-shadow:
+                inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(236, 94, 121, 0.6) !important;
+                }
+                .isRequired textarea[type="text"]:focus{
+                border-color: #e9322d !important;
+                box-shadow:
+                inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(236, 94, 121, 0.6) !important;
+                }
+            </style>
+            
+            <!-- RESIZE PARENT IFRAME SCRIPT -->
+            <script>
+           
+                var _iframeMinSize = 0;
+                $( document ).ready(function() {
+                    parent.$("iframe").each(function(iel, el) {
+                        if(el.contentWindow === window){
+                            if ($("#sizeDiv").height() + 50 < _iframeMinSize){
+                                el.height = _iframeMinSize;
+                            } else {
+                                el.height = $("#sizeDiv").height() + 50;
+                            }
+                            $(el).attr("scrolling", "no");
+                            $(el).css("overflow", "hidden");
+                        }
+                    });
+                    setInterval("handleResize();", 100);
+                });
+                
+                function handleResize(){
+                    parent.$("iframe").each(function(iel, el) {
+                        if(el.contentWindow === window){
+                            if ($("#sizeDiv").height() + 50 < _iframeMinSize){
+                                el.height = _iframeMinSize;
+                            } else {
+                                el.height = $("#sizeDiv").height() + 50;
+                            }
+                        }
+                    });
+                }
+            </script>
+            
+            <script>
+                function goToError() {
+                    if(document.getElementsByClassName("errorMsg").length > 0){
+                        document.getElementsByClassName("errorMsg")[0].parentNode.getElementsByTagName("input")[0].focus();
+                    }
+                    if($('.errorM4').length > 0){
+                        top.window.scrollTo(0,0);
+                    }
+                }
+                goToError();
+            </script>
+        </head>
+        
+        <body>
+            <div>
+                <div id="sizeDiv">
+                    <apex:pageMessages />
+                    <apex:insert name="body" />
+                </div>
+            </div>
+            
+            <site:previewAsAdmin />
+            
+        </body>
+        
+    </html>
+</apex:page>

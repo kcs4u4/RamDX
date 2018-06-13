@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ExpirationPeriod__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Number of months during which the member&#39;s points will be valid.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set the quantity of months that the member will have active points.</inlineHelpText>
+    <label>Expiration Period</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

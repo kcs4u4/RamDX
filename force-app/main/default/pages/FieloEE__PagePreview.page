@@ -1,0 +1,64 @@
+<apex:page applyHtmlTag="false" applyBodyTag="false" sidebar="false" showHeader="false" standardStylesheets="false" controller="FieloEE.PageController" cache="true">
+    <apex:composition template="FieloEE__SiteTemplateFielo">
+        <apex:define name="body">
+            <apex:panelGroup rendered="{!menu.FieloEE__Title__c != ''}">
+                <div class="row-fluid hidden-phone">
+                    <div class="span12 menuTitle">
+                        <apex:outputText value="{!menu.FieloEE__Title__c}"/>
+                    </div>
+                </div>
+            </apex:panelGroup>
+
+            <apex:panelGroup rendered="{!NOT(ISNULL(menu.FieloEE__Description__c))}">
+                <div class="row-fluid">
+                    <div class="span12 menuDescription">
+                        <span>{!menu.FieloEE__Description__c}</span>
+                    </div>
+                </div>
+            </apex:panelGroup>
+
+            <!-- Sections -->
+            <apex:repeat value="{!sections}" var="s">
+                <div class="row-fluid section {!s.FieloEE__CSSClasses__c}">
+
+                    <!-- subSections -->
+                    <apex:repeat value="{!componentsSection[s.Id]}" var="subSection" >
+                        <div class="span{!subSection.Type__c} subsection {!subSection.CSSClasses__c}">
+
+                            <!-- Components -->
+                            <apex:repeat value="{!subSection.components__r}" var="c">
+                                <div class="component" data-component-id="{!c.Id}" data-component-type="{!c.RecordType.Name}" data-component-name="{!c.RecordType.DeveloperName}" data-component-title="{!c.OptionalName__c}" >
+
+                                    <apex:panelGroup rendered="{!NOT(ISNULL(c.OptionalName__c))}">
+                                        <div class="componentTitle {!c.Filter__c}">{!c.OptionalName__c}</div>
+                                    </apex:panelGroup>
+
+                                    <c:CMS comp="{!c}" classes="{!c.Filter__c}" /><!--  -->
+
+                                    <!--
+                                        Add here custom components
+
+                                        <apex:panelGroup rendered="{!(c.RecordType.DeveloperName == 'CUSTOM_COMPONENT_NAME')}">
+                                            <div class="{!componentClasses[c.Id]}">
+                                                <c:CUSTOM_COMPONENT_NAME />
+                                            </div>
+                                        </apex:panelGroup>
+                                    -->
+
+                                </div>
+                            </apex:repeat>
+                            <!-- Components -->
+
+                        </div>
+                    </apex:repeat>
+                    <!-- subSections -->
+
+                </div>
+            </apex:repeat>
+            <!-- Sections -->
+            <!-- Live preview INIT -->
+            <c:LivePreviewForChild />
+            <!-- Live preview End -->
+        </apex:define>
+    </apex:composition>
+</apex:page>

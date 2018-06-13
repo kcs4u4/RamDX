@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__AddExistingViews</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Add Existing Views</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>window.location.href = &#39;apex/FieloCRUD__RelatedViewsSelection?Id=&#39;+&#39;{!FieloCRUD__ListView__c.Id}&#39;;</url>
+</WebLink>

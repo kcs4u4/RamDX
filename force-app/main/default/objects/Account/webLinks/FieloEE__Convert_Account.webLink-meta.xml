@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Convert_Account</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Convert Account</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT ("/soap/ajax/14.0/connection.js")}
+{!REQUIRESCRIPT("/soap/ajax/14.0/apex.js")}
+
+var idArray = new Array();
+idArray.push(&#39;{!Account.Id}&#39;);
+//var status = sforce.apex.execute(&#39;ContactConvertion&#39;, &#39;registerFromPersonAccont&#39;, {accountIds: idArray, registerType: null});
+var status = &#39;Ok:4352364356&#39;;
+if(status.indexOf("Ok:") != -1){
+    window.location = &#39;/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}ContactConvert?contactId=&#39; + status.substring(3,status.length);
+}else{
+    alert(status);
+}</url>
+</WebLink>

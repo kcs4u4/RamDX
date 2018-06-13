@@ -1,0 +1,91 @@
+<apex:page id="page" controller="FieloEE.ShoppingCartItemsController" sidebar="false" showHeader="false" standardStylesheets="false" action="{!init}" > 
+    <style>select{margin:0}</style>
+    <apex:composition template="{!$Site.Template}"> 
+        <apex:define name="body">       
+            <script> 
+            function setFocusOnLoad() { 
+                document.getElementById('page:SiteTemplate:form:confirm').focus(); 
+            } 
+            onload=setFocusOnLoad;
+            </script> 
+        <apex:form id="form"  >                                    
+            <apex:pageMessages rendered="{!showMessage}" />
+            <div class="container-fluid"> 
+                <apex:panelGroup id="panel" rendered="{!listOrderItems.size > 0}" >
+                    <legend>
+                        <apex:outputText value="{!$Label.fieloee__shoppingcartitems}" /> 
+                    </legend>
+                    
+                    <!-- Fieldset -->
+                    <apex:panelGroup rendered="{!$ObjectType.FieloEE__Redemption__c.FieldSets.FieloEE__RedemptionFrontEnd.size > 0}">
+                        <table width="100%" style="margin-bottom:30px;">
+                            <apex:repeat value="{!$ObjectType.FieloEE__Redemption__c.FieldSets.FieloEE__RedemptionFrontEnd}" var="f">
+                                <tr>
+                                    <td style="border-bottom:1px dotted #cccccc; padding:6px 0; width:160px; text-align:right; font-weight:bold;"><apex:outputText value="{!f.label}" />:</td>
+                                    <td style="border-bottom:1px dotted #cccccc; padding:6px"><apex:inputField value="{!redemption[f]}" /></td>
+                                </tr>
+                            </apex:repeat>
+                        </table>
+                    </apex:panelGroup>
+                    
+                    <!--  Listado  -->
+                    <div class="row-fluid">
+                        <apex:panelGroup >
+                            <div class="span12">
+                                <apex:dataTable value="{!listOrderItems}" var="orderItem" styleClass="table" id="theTable"> 
+                                    <apex:column headerValue="{!$Label.fieloee__items}">
+                                        <div class="media">
+                                            <div class="pull-left">
+                                                <apex:panelGroup layout="none" rendered="{!NOT(ISBLANK(orderItem.imageId))}">
+                                                    <img src="{!IF(LEFT(orderItem.imageId,3) == '00P', URLFOR($Action.Attachment.Download, orderItem.imageId), IF(LEFT(orderItem.imageId,3) == '015', IF(ISBLANK($Setup.FieloEE__PublicSettings__c.FieloEE__Instance__c), $Site.Prefix, DocURL)+'/servlet/servlet.ImageServer?id='+orderItem.imageId+'&oid='+orgId, URLFOR($Resource.FieloEE__images, orderItem.imageId)))}" width="50px"/>
+                                                </apex:panelGroup>
+                                            </div>
+                                            <div class="media-body">
+                                                <h4 class="media-heading">
+                                                    <apex:outputText value="{!orderItem.prizeName}"/>
+                                                </h4>
+                                            </div>
+                                        </div> 
+                                    </apex:column>
+                                    <apex:column headerValue="{!$Label.fieloee__quantity}" footerValue="{!$Label.fieloee__totalpoints}:">
+                                        <apex:inputText styleClass="input-mini" value="{!orderItem.newQuantityAux}" id="quantity"/>                                       
+                                    </apex:column>                     
+                                    <apex:column headerValue="{!$Label.fieloee__points}">
+                                        <span class="badge badge-important">
+                                            <apex:outputText value="{!orderItem.prizePoints}" id="msg" />
+                                        </span>  
+                                        <apex:facet name="footer"> 
+                                            <apex:panelGroup > 
+                                                <apex:panelGroup > 
+                                                    <span class="badge"> 
+                                                        <apex:outputText value="{!totalPoints}" /> 
+                                                    </span> 
+                                                </apex:panelGroup> 
+                                            </apex:panelGroup> 
+                                        </apex:facet>                                                
+                                    </apex:column>  
+                                    <apex:column headerValue="{!$Label.fieloee__delete}" >                                        
+                                        <apex:commandLink action="{!deleteValues}" status="status" immediate="true" reRender="form" oncomplete="if(window.refreshCart != undefined){ refreshCart();}" >
+                                            <apex:param name="rewardId" value="{!orderItem.rewardId}" />                                                                                     
+                                            <i style="color:#cc0000" class="icon-remove-sign icon-2x"></i>
+                                        </apex:commandLink>
+                                    </apex:column>                                    
+                                </apex:dataTable>                    
+                            </div>
+                            <div class="span12 pagination-centered">
+                                <apex:commandButton styleClass="btn" action="{!refreshValues}" reRender="form" status="status" oncomplete="if(window.refreshCart != undefined){ refreshCart();}" value="{!$Label.fieloee__save}" />
+                                <apex:commandButton id="confirm" styleClass="btn" onclick="if (confirm('{!$Label.fieloee__areyousure}')){ checkout();} return false;" value="{!$Label.fieloee__createvoucher}" />                                
+                                <apex:actionFunction id="checkout" name="checkout" action="{!doVoucher}" />
+                            </div>
+                        </apex:panelGroup>
+                    </div>
+                    <table style="margin:20px auto"><tr><td>
+                        <apex:actionStatus id="status" startStyleClass="icon-spinner icon-spin icon-2x pull-left"><i class="icon-spinner icon-spin icon-2x pull-left"></i></apex:actionStatus>
+                    </td></tr></table>
+                </apex:panelGroup>
+            </div>
+        </apex:form>
+        
+        </apex:define>   
+    </apex:composition> 
+</apex:page>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Phone__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Phone number of this member.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the member&#39;s phone number.</inlineHelpText>
+    <label>Phone</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Phone</type>
+</CustomField>

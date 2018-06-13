@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__All</fullName>
+    <columns>FieloEE__Code__c</columns>
+    <columns>NAME</columns>
+    <columns>FieloEE__Street__c</columns>
+    <columns>FieloEE__City__c</columns>
+    <columns>FieloEE__State__c</columns>
+    <columns>FieloEE__Country__c</columns>
+    <columns>FieloEE__Owner__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

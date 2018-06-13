@@ -1,0 +1,4367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Translations xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customApplications>
+        <label><!-- Cat Rescue --></label>
+        <name>Cat_Rescue</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- External Orders --></label>
+        <name>External_Orders</name>
+    </customApplications>
+    <customApplications>
+        <label><!-- Fielo --></label>
+        <name>Loyalty</name>
+    </customApplications>
+    <customLabels>
+        <label><!-- CLJUL16PAN01 - New --></label>
+        <name>CLJUL16PAN01</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CLJUL16PAN02 --></label>
+        <name>CLJUL16PAN02</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CLJUL16PAN03 --></label>
+        <name>CLJUL16PAN03</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CLJUL16PAN04 --></label>
+        <name>CLJUL16PAN04</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CLJUL16PAN05 --></label>
+        <name>CLJUL16PAN05</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CLJUL16PAN06 --></label>
+        <name>CLJUL16PAN06</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CLJUL16PAN07 --></label>
+        <name>CLJUL16PAN07</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CLJUL16PAN14 --></label>
+        <name>CLJUL16PAN14</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CLJUL16PAN15 --></label>
+        <name>CLJUL16PAN15</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CLJUL16PAN16 --></label>
+        <name>CLJUL16PAN16</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AccomplishPending --></label>
+        <name>FieloCH__AccomplishPending</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Accomplishment --></label>
+        <name>FieloCH__Accomplishment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AccomplishmentFormula --></label>
+        <name>FieloCH__AccomplishmentFormula</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Accumulated Value --></label>
+        <name>FieloCH__AccumulatedValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Active Challenge --></label>
+        <name>FieloCH__ActiveChallenge</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add List --></label>
+        <name>FieloCH__AddList</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add Members --></label>
+        <name>FieloCH__AddMembers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add Missions --></label>
+        <name>FieloCH__AddMissions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add Reward --></label>
+        <name>FieloCH__AddReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AddTeams --></label>
+        <name>FieloCH__AddTeams</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Admin Permission List --></label>
+        <name>FieloCH__AdminPermissionList</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- After --></label>
+        <name>FieloCH__After</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- April --></label>
+        <name>FieloCH__April</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- August --></label>
+        <name>FieloCH__August</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BadgeMemberPending --></label>
+        <name>FieloCH__BadgeMemberPending</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BadgeName --></label>
+        <name>FieloCH__BadgeName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchSize --></label>
+        <name>FieloCH__BatchSize</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Button Close --></label>
+        <name>FieloCH__ButtonClose</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CannotSubscribe --></label>
+        <name>FieloCH__CannotSubscribe</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CantActivatePerformanceWithoutObjective --></label>
+        <name>FieloCH__CantActivatePerformanceWithoutObjective</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ChallengeMustBeActivated --></label>
+        <name>FieloCH__ChallengeMustBeActivated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ChallengeName --></label>
+        <name>FieloCH__ChallengeName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ChallengeRewardAdjustType --></label>
+        <name>FieloCH__ChallengeRewardAdjustType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Challenge Series Title --></label>
+        <name>FieloCH__ChallengeSeriesTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ChangeAccomplishment --></label>
+        <name>FieloCH__ChangeAccomplishment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Choose Date --></label>
+        <name>FieloCH__ChooseDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Choose User --></label>
+        <name>FieloCH__ChooseUser</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Component Header Subscribe --></label>
+        <name>FieloCH__ComponentHeaderSubscribe</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Create New View --></label>
+        <name>FieloCH__CreateNewView</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Day Of Month --></label>
+        <name>FieloCH__DayOfMonth</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Day Of Week --></label>
+        <name>FieloCH__DayOfWeek</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Days --></label>
+        <name>FieloCH__Days</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- December --></label>
+        <name>FieloCH__December</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EditAccomplishment --></label>
+        <name>FieloCH__EditAccomplishment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Edit Reward --></label>
+        <name>FieloCH__EditReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Add Dynamic Mission --></label>
+        <name>FieloCH__ErrorAddDynamicMission</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Add Mission Without Objective --></label>
+        <name>FieloCH__ErrorAddMissionWithoutObjective</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Add Objective Mission --></label>
+        <name>FieloCH__ErrorAddObjectiveMission</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Add One Reward --></label>
+        <name>FieloCH__ErrorAddOneReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorBatchProcessRunning --></label>
+        <name>FieloCH__ErrorBatchProcessRunning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Choose One Weekday --></label>
+        <name>FieloCH__ErrorChooseOneWeekday</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Date invalid --></label>
+        <name>FieloCH__ErrorDateInvalid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Delete Mission --></label>
+        <name>FieloCH__ErrorDeleteMission</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Delete Reward --></label>
+        <name>FieloCH__ErrorDeleteReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Delete Team --></label>
+        <name>FieloCH__ErrorDeleteTeam</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Edit Mission Active Challenge --></label>
+        <name>FieloCH__ErrorEditMissionActiveChallenge</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Finish Date --></label>
+        <name>FieloCH__ErrorFinishDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Logical Expression not valid --></label>
+        <name>FieloCH__ErrorMissionLogicalExpressionInvalid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Name Required --></label>
+        <name>FieloCH__ErrorNameRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Number Interval Days --></label>
+        <name>FieloCH__ErrorNumberIntervalDays</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Number Repetitions --></label>
+        <name>FieloCH__ErrorNumberRepetitions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Object Required --></label>
+        <name>FieloCH__ErrorObjectRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Objective Positive --></label>
+        <name>FieloCH__ErrorObjectivePositive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Objective Required --></label>
+        <name>FieloCH__ErrorObjectiveRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Objective Type Required --></label>
+        <name>FieloCH__ErrorObjectiveTypeRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error One Day Long --></label>
+        <name>FieloCH__ErrorOneDayLong</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Operator Required --></label>
+        <name>FieloCH__ErrorOperatorRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Overlap --></label>
+        <name>FieloCH__ErrorOverlap</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Quantity Mission Without Objective --></label>
+        <name>FieloCH__ErrorQuantityMissionWithoutObjective</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Ranking Selected --></label>
+        <name>FieloCH__ErrorRankingSelected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Reward Limit --></label>
+        <name>FieloCH__ErrorRewardLimit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Segment --></label>
+        <name>FieloCH__ErrorSegment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Unsubscribe Accomplished --></label>
+        <name>FieloCH__ErrorUnsubscribeAccomplished</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EventName --></label>
+        <name>FieloCH__EventName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EventsPending --></label>
+        <name>FieloCH__EventsPending</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Every month --></label>
+        <name>FieloCH__EveryMonth</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Every week --></label>
+        <name>FieloCH__EveryWeek</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Every Weekday --></label>
+        <name>FieloCH__EveryWeekday</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Every year --></label>
+        <name>FieloCH__EveryYear</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Every day --></label>
+        <name>FieloCH__Everyday</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- February --></label>
+        <name>FieloCH__February</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fifth --></label>
+        <name>FieloCH__Fifth</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Filter --></label>
+        <name>FieloCH__Filter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Finishes On --></label>
+        <name>FieloCH__FinishesOn</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- First --></label>
+        <name>FieloCH__First</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fourth --></label>
+        <name>FieloCH__Fourth</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Havent Select Member --></label>
+        <name>FieloCH__HaventSelectMember</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- HelpChRewardContinue --></label>
+        <name>FieloCH__HelpChRewardContinue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Cannot Add Missions --></label>
+        <name>FieloCH__InfoCannotAddMissions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Change Status --></label>
+        <name>FieloCH__InfoChangeStatus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Drag Drop Table --></label>
+        <name>FieloCH__InfoDragDropTable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Edit Manage Rewards --></label>
+        <name>FieloCH__InfoEditManageRewards</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Manage Reward Table --></label>
+        <name>FieloCH__InfoManageRewardTable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Manage Reward Table Position Ranking --></label>
+        <name>FieloCH__InfoManageRewardTablePositionRanking</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Manage Reward Table Standar --></label>
+        <name>FieloCH__InfoManageRewardTableStandar</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Manage Reward Table Value Ranking --></label>
+        <name>FieloCH__InfoManageRewardTableValueRanking</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Modify Reward --></label>
+        <name>FieloCH__InfoModifyReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info No Criterias --></label>
+        <name>FieloCH__InfoNoCriterias</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info No Members --></label>
+        <name>FieloCH__InfoNoMembers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info No Members Add --></label>
+        <name>FieloCH__InfoNoMembersAdd</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info No Missions --></label>
+        <name>FieloCH__InfoNoMissions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No Teams to Add --></label>
+        <name>FieloCH__InfoNoTeamsAdd</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoProcessPendingBatch --></label>
+        <name>FieloCH__InfoProcessPendingBatch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invalid Value --></label>
+        <name>FieloCH__InvalidValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- January --></label>
+        <name>FieloCH__January</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- July --></label>
+        <name>FieloCH__July</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- June --></label>
+        <name>FieloCH__June</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Leaderboard --></label>
+        <name>FieloCH__Leaderboard</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- List Available Members --></label>
+        <name>FieloCH__ListAvailableMembers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- List Available Missions --></label>
+        <name>FieloCH__ListAvailableMissions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- List Available Teams --></label>
+        <name>FieloCH__ListAvailableTeams</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Badges --></label>
+        <name>FieloCH__ManageBadges</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Missions --></label>
+        <name>FieloCH__ManageMissions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Pending Records --></label>
+        <name>FieloCH__ManagePendingRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Rewards --></label>
+        <name>FieloCH__ManageRewards</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Teams --></label>
+        <name>FieloCH__ManageTeams</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- March --></label>
+        <name>FieloCH__March</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Match Criteria --></label>
+        <name>FieloCH__MatchCriteria</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- May --></label>
+        <name>FieloCH__May</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MemberName --></label>
+        <name>FieloCH__MemberName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MemberTeamName --></label>
+        <name>FieloCH__MemberTeamName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Months --></label>
+        <name>FieloCH__Months</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NewTeamMemberWarning --></label>
+        <name>FieloCH__NewTeamMemberWarning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoMissions --></label>
+        <name>FieloCH__NoMissions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoRecordToProcess --></label>
+        <name>FieloCH__NoRecordToProcess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoRecordsFound --></label>
+        <name>FieloCH__NoRecordsFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- November --></label>
+        <name>FieloCH__November</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Objective --></label>
+        <name>FieloCH__Objective</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- October --></label>
+        <name>FieloCH__October</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Of --></label>
+        <name>FieloCH__Of</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Opt Out --></label>
+        <name>FieloCH__OptOut</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PendingSubscriptions --></label>
+        <name>FieloCH__PendingSubscriptions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Position --></label>
+        <name>FieloCH__Position</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PositionStandardValue --></label>
+        <name>FieloCH__PositionStandardValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ProcessAllRecords --></label>
+        <name>FieloCH__ProcessAllRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ProcessRecord --></label>
+        <name>FieloCH__ProcessRecord</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quantity Completed --></label>
+        <name>FieloCH__QuantityCompleted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quit --></label>
+        <name>FieloCH__Quit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reason --></label>
+        <name>FieloCH__Reason</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Repeat --></label>
+        <name>FieloCH__Repeat</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Repeat Every --></label>
+        <name>FieloCH__RepeatEvery</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Repeated --></label>
+        <name>FieloCH__Repeated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Repetitions --></label>
+        <name>FieloCH__Repetitions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save --></label>
+        <name>FieloCH__Save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save Edit --></label>
+        <name>FieloCH__SaveEdit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Second --></label>
+        <name>FieloCH__Second</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Section --></label>
+        <name>FieloCH__Section</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Select Missions --></label>
+        <name>FieloCH__SelectMissions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SelectTeams --></label>
+        <name>FieloCH__SelectTeams</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- September --></label>
+        <name>FieloCH__September</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Splash Challenges Main --></label>
+        <name>FieloCH__SplashChallengesMain</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Splash Dashboard Info --></label>
+        <name>FieloCH__SplashDashboardInfo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Splash Dashboard Title --></label>
+        <name>FieloCH__SplashDashboardTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Splash Member Info --></label>
+        <name>FieloCH__SplashMemberInfo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Splash Member Title --></label>
+        <name>FieloCH__SplashMemberTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Splash Rewards Info --></label>
+        <name>FieloCH__SplashRewardsInfo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Splash Rewards Title --></label>
+        <name>FieloCH__SplashRewardsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Splash Time Info --></label>
+        <name>FieloCH__SplashTimeInfo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Splash Time Title --></label>
+        <name>FieloCH__SplashTimeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Start In --></label>
+        <name>FieloCH__StartIn</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status Header --></label>
+        <name>FieloCH__StatusHeader</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Subscribe Button --></label>
+        <name>FieloCH__SubscribeButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Summary --></label>
+        <name>FieloCH__Summary</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- The --></label>
+        <name>FieloCH__The</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- The day --></label>
+        <name>FieloCH__TheDay</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Third --></label>
+        <name>FieloCH__Third</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Times --></label>
+        <name>FieloCH__Times</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TotalRecords --></label>
+        <name>FieloCH__TotalRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Until --></label>
+        <name>FieloCH__Until</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Variable Day(s) --></label>
+        <name>FieloCH__VariableDays</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- View More --></label>
+        <name>FieloCH__ViewMore</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Warning Delete Rewards --></label>
+        <name>FieloCH__WarningDeleteRewards</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Weeks --></label>
+        <name>FieloCH__Weeks</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- WrongLogicalExpression --></label>
+        <name>FieloCH__WrongLogicalExpression</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Years --></label>
+        <name>FieloCH__Years</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_Back --></label>
+        <name>FieloCRUD__CRUD_Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_Cancel --></label>
+        <name>FieloCRUD__CRUD_Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_Delete --></label>
+        <name>FieloCRUD__CRUD_Delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_DeleteConfirm --></label>
+        <name>FieloCRUD__CRUD_DeleteConfirm</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_Edit --></label>
+        <name>FieloCRUD__CRUD_Edit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_FieloComponentNotFounded --></label>
+        <name>FieloCRUD__CRUD_FieloComponentNotFounded</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_FileMandatoryError --></label>
+        <name>FieloCRUD__CRUD_FileMandatoryError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_InsufficientPrivileges --></label>
+        <name>FieloCRUD__CRUD_InsufficientPrivileges</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_ObjectSettingsNotFounded --></label>
+        <name>FieloCRUD__CRUD_ObjectSettingsNotFounded</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_PageLayoutNotFounded --></label>
+        <name>FieloCRUD__CRUD_PageLayoutNotFounded</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_QuickSave --></label>
+        <name>FieloCRUD__CRUD_QuickSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_RedirectMsg --></label>
+        <name>FieloCRUD__CRUD_RedirectMsg</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_Save --></label>
+        <name>FieloCRUD__CRUD_Save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CRUD_Submit --></label>
+        <name>FieloCRUD__CRUD_Submit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Apr --></label>
+        <name>FieloCRUD__DatePicker_Apr</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_April --></label>
+        <name>FieloCRUD__DatePicker_April</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Aug --></label>
+        <name>FieloCRUD__DatePicker_Aug</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_August --></label>
+        <name>FieloCRUD__DatePicker_August</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Dec --></label>
+        <name>FieloCRUD__DatePicker_Dec</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_December --></label>
+        <name>FieloCRUD__DatePicker_December</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Feb --></label>
+        <name>FieloCRUD__DatePicker_Feb</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_February --></label>
+        <name>FieloCRUD__DatePicker_February</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Fri --></label>
+        <name>FieloCRUD__DatePicker_Fri</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Jan --></label>
+        <name>FieloCRUD__DatePicker_Jan</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_January --></label>
+        <name>FieloCRUD__DatePicker_January</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Jul --></label>
+        <name>FieloCRUD__DatePicker_Jul</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_July --></label>
+        <name>FieloCRUD__DatePicker_July</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Jun --></label>
+        <name>FieloCRUD__DatePicker_Jun</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_June --></label>
+        <name>FieloCRUD__DatePicker_June</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Maj --></label>
+        <name>FieloCRUD__DatePicker_Maj</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Mar --></label>
+        <name>FieloCRUD__DatePicker_Mar</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_March --></label>
+        <name>FieloCRUD__DatePicker_March</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_May --></label>
+        <name>FieloCRUD__DatePicker_May</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Mon --></label>
+        <name>FieloCRUD__DatePicker_Mon</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Nov --></label>
+        <name>FieloCRUD__DatePicker_Nov</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_November --></label>
+        <name>FieloCRUD__DatePicker_November</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Oct --></label>
+        <name>FieloCRUD__DatePicker_Oct</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_October --></label>
+        <name>FieloCRUD__DatePicker_October</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Sat --></label>
+        <name>FieloCRUD__DatePicker_Sat</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Sep --></label>
+        <name>FieloCRUD__DatePicker_Sep</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_September --></label>
+        <name>FieloCRUD__DatePicker_September</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Sun --></label>
+        <name>FieloCRUD__DatePicker_Sun</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Thu --></label>
+        <name>FieloCRUD__DatePicker_Thu</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Tue --></label>
+        <name>FieloCRUD__DatePicker_Tue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DatePicker_Wed --></label>
+        <name>FieloCRUD__DatePicker_Wed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FileUpload_DeleteConfirm --></label>
+        <name>FieloCRUD__FileUpload_DeleteConfirm</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- File Upload --></label>
+        <name>FieloCRUD__FileUpload_Label</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FileUpload_SelectAFile --></label>
+        <name>FieloCRUD__FileUpload_SelectAFile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FileUpload_SelectFile --></label>
+        <name>FieloCRUD__FileUpload_SelectFile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FileUpload_Upload --></label>
+        <name>FieloCRUD__FileUpload_Upload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListViewTriggers_ObjectDoesNotExist --></label>
+        <name>FieloCRUD__ListViewTriggers_ObjectDoesNotExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListViewTriggers_QueryMalformed --></label>
+        <name>FieloCRUD__ListViewTriggers_QueryMalformed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListViewTriggers_TheFollowingFieldsDoesNotExist --></label>
+        <name>FieloCRUD__ListViewTriggers_TheFollowingFieldsDoesNotExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListViewTriggers_ThisFieldDoesNotExist --></label>
+        <name>FieloCRUD__ListViewTriggers_ThisFieldDoesNotExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListViewTriggers_ThisFieldMustBeTextOrCheckbox --></label>
+        <name>FieloCRUD__ListViewTriggers_ThisFieldMustBeTextOrCheckbox</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_Actions --></label>
+        <name>FieloCRUD__ListView_Actions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_DateFilterFrom --></label>
+        <name>FieloCRUD__ListView_DateFilterFrom</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_DateFilterFromGreaterThanTo --></label>
+        <name>FieloCRUD__ListView_DateFilterFromGreaterThanTo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_DateFilterSearchButton --></label>
+        <name>FieloCRUD__ListView_DateFilterSearchButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_DateFilterTo --></label>
+        <name>FieloCRUD__ListView_DateFilterTo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_DeleteConfirm --></label>
+        <name>FieloCRUD__ListView_DeleteConfirm</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_GO --></label>
+        <name>FieloCRUD__ListView_GO</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_New --></label>
+        <name>FieloCRUD__ListView_New</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_Next --></label>
+        <name>FieloCRUD__ListView_Next</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_NoRecords --></label>
+        <name>FieloCRUD__ListView_NoRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_NumOfRecords --></label>
+        <name>FieloCRUD__ListView_NumOfRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_Of --></label>
+        <name>FieloCRUD__ListView_Of</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_Page --></label>
+        <name>FieloCRUD__ListView_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_Previous --></label>
+        <name>FieloCRUD__ListView_Previous</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ListView_View --></label>
+        <name>FieloCRUD__ListView_View</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- LookupToPicklist_Error --></label>
+        <name>FieloCRUD__LookupToPicklist_Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- LookupToPicklist_MustEnterAValue --></label>
+        <name>FieloCRUD__LookupToPicklist_MustEnterAValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- LookupToPicklist_NoneValue --></label>
+        <name>FieloCRUD__LookupToPicklist_NoneValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ObjectSettingsTriggers_ObjectDoesNotExist --></label>
+        <name>FieloCRUD__ObjectSettingsTriggers_ObjectDoesNotExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ObjectSettingsTriggers_ThisFieldDoesNotExistInThisObject --></label>
+        <name>FieloCRUD__ObjectSettingsTriggers_ThisFieldDoesNotExistInThisObject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ObjectSettingsTriggers_ThisFieldMustBeMemberLookup --></label>
+        <name>FieloCRUD__ObjectSettingsTriggers_ThisFieldMustBeMemberLookup</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ObjectSettingsTriggers_ThisFieldMustBeTextOrCheckbox --></label>
+        <name>FieloCRUD__ObjectSettingsTriggers_ThisFieldMustBeTextOrCheckbox</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OrderRecordsController_RecordWasDeleted --></label>
+        <name>FieloCRUD__OrderRecordsController_RecordWasDeleted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PageComponentTriggers_ThisFieldDoesNotExistInThisObject --></label>
+        <name>FieloCRUD__PageComponentTriggers_ThisFieldDoesNotExistInThisObject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PageLayoutCloneButton_CopyOf --></label>
+        <name>FieloCRUD__PageLayoutCloneButton_CopyOf</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Pager_Go --></label>
+        <name>FieloCRUD__Pager_Go</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Pager_Next --></label>
+        <name>FieloCRUD__Pager_Next</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Pager_Of --></label>
+        <name>FieloCRUD__Pager_Of</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Pager_Page --></label>
+        <name>FieloCRUD__Pager_Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Pager_Previous --></label>
+        <name>FieloCRUD__Pager_Previous</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RelatedViewsSelectionController_SavedSuccessfully --></label>
+        <name>FieloCRUD__RelatedViewsSelectionController_SavedSuccessfully</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RelatedViewsSelection_ListStandardName --></label>
+        <name>FieloCRUD__RelatedViewsSelection_ListStandardName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RelatedViewsSelection_ListViewName --></label>
+        <name>FieloCRUD__RelatedViewsSelection_ListViewName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RelatedViewsSelection_NoResults --></label>
+        <name>FieloCRUD__RelatedViewsSelection_NoResults</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search --></label>
+        <name>FieloCRUD__Search</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Addcriteria --></label>
+        <name>FieloDRE__Fielo_Addcriteria</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Action --></label>
+        <name>FieloEE__Action</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Action Type --></label>
+        <name>FieloEE__ActionType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Actions --></label>
+        <name>FieloEE__Actions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Action from Rules --></label>
+        <name>FieloEE__ActionsFromTheRule</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Active --></label>
+        <name>FieloEE__Active</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add --></label>
+        <name>FieloEE__Add</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add Component --></label>
+        <name>FieloEE__AddComponent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AddCriteria --></label>
+        <name>FieloEE__AddCriteria</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add Reward --></label>
+        <name>FieloEE__AddReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AddSelected --></label>
+        <name>FieloEE__AddSelected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Add Selected Rules --></label>
+        <name>FieloEE__AddSelectedRules</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Add to Cart --></label>
+        <name>FieloEE__AddToCart</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AddedToMemory --></label>
+        <name>FieloEE__AddedToMemory</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Address Information --></label>
+        <name>FieloEE__AddressInformation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Advanced --></label>
+        <name>FieloEE__Advanced</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Advanced Settings --></label>
+        <name>FieloEE__AdvancedSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Agreement --></label>
+        <name>FieloEE__Agreement</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PDF version of the Agreement --></label>
+        <name>FieloEE__AgreementPDF</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Agreement Used --></label>
+        <name>FieloEE__AgreementUsed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Agreement Warning Use --></label>
+        <name>FieloEE__AgreementWarningUse</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- All --></label>
+        <name>FieloEE__All</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Alphabetical Order --></label>
+        <name>FieloEE__AlphabeticalOrder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Already Customer Portal --></label>
+        <name>FieloEE__AlreadyCustomerPortal</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- And --></label>
+        <name>FieloEE__And</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Annually --></label>
+        <name>FieloEE__Annually</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Apply CSS --></label>
+        <name>FieloEE__ApplyCSS</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Approved --></label>
+        <name>FieloEE__Approved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Are you sure --></label>
+        <name>FieloEE__Areyousure</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assigned Points --></label>
+        <name>FieloEE__AssignedPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Assigned Reward --></label>
+        <name>FieloEE__AssignedReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Associated --></label>
+        <name>FieloEE__Associated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Audit Logs --></label>
+        <name>FieloEE__AuditLogs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Available Rewards --></label>
+        <name>FieloEE__AvailableRewards</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AvailableSegments --></label>
+        <name>FieloEE__AvailableSegments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Availables --></label>
+        <name>FieloEE__Availables</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back --></label>
+        <name>FieloEE__Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Background --></label>
+        <name>FieloEE__Background</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_BackgroundNoRepeat --></label>
+        <name>FieloEE__BackgroundNoRepeat</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_BackgroundRepeat --></label>
+        <name>FieloEE__BackgroundRepeat</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_BackgroundRepeatX --></label>
+        <name>FieloEE__BackgroundRepeatX</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_BackgroundRepeatY --></label>
+        <name>FieloEE__BackgroundRepeatY</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Badge --></label>
+        <name>FieloEE__Badge</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Banner --></label>
+        <name>FieloEE__Banner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Batch Management --></label>
+        <name>FieloEE__BatchManagement</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchScheduleLevelAssignmentHelp --></label>
+        <name>FieloEE__BatchScheduleLevelAssignmentHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchScheduleLevelAssignmentName --></label>
+        <name>FieloEE__BatchScheduleLevelAssignmentName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchSchedulePartialPointsExpirationHelp --></label>
+        <name>FieloEE__BatchSchedulePartialPointsExpirationHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchSchedulePartialPointsExpirationName --></label>
+        <name>FieloEE__BatchSchedulePartialPointsExpirationName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchSchedulePointsExpirationHelp --></label>
+        <name>FieloEE__BatchSchedulePointsExpirationHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchSchedulePointsExpirationName --></label>
+        <name>FieloEE__BatchSchedulePointsExpirationName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchScheduleRedemptionDeleteHelp --></label>
+        <name>FieloEE__BatchScheduleRedemptionDeleteHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchScheduleRedemptionDeleteName --></label>
+        <name>FieloEE__BatchScheduleRedemptionDeleteName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchScheduleRedemptionItemExpirationHelp --></label>
+        <name>FieloEE__BatchScheduleRedemptionItemExpirationHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchScheduleRedemptionItemExpirationName --></label>
+        <name>FieloEE__BatchScheduleRedemptionItemExpirationName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchScheduleTransactionOfflineHelp --></label>
+        <name>FieloEE__BatchScheduleTransactionOfflineHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchScheduleTransactionOfflineName --></label>
+        <name>FieloEE__BatchScheduleTransactionOfflineName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchScheduleUserInactivationHelp --></label>
+        <name>FieloEE__BatchScheduleUserInactivationHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- BatchScheduleUserInactivationName --></label>
+        <name>FieloEE__BatchScheduleUserInactivationName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Batches Processed --></label>
+        <name>FieloEE__BatchesProcessed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Biannually --></label>
+        <name>FieloEE__Biannually</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Bimonthly --></label>
+        <name>FieloEE__Bimonthly</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Blank --></label>
+        <name>FieloEE__Blank</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Body --></label>
+        <name>FieloEE__Body</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_Branchs --></label>
+        <name>FieloEE__Branchs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_CPF --></label>
+        <name>FieloEE__CPF</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Cancel --></label>
+        <name>FieloEE__Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CaptchaAlert --></label>
+        <name>FieloEE__CaptchaAlert</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Catalog --></label>
+        <name>FieloEE__Catalog</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Catalog Categories --></label>
+        <name>FieloEE__CatalogCategories</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Catalog Categories Row Banner --></label>
+        <name>FieloEE__CatalogCategoriesRowBanner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Catalog Row Banner --></label>
+        <name>FieloEE__CatalogRowBanner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Categories --></label>
+        <name>FieloEE__Categories</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Categories Background --></label>
+        <name>FieloEE__CategoriesBackground</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Category Selected --></label>
+        <name>FieloEE__CategorySelected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Challenges --></label>
+        <name>FieloEE__Challenges</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Challenges with Column Banner --></label>
+        <name>FieloEE__ChallengesColumnBanner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Challenges with Row Banner --></label>
+        <name>FieloEE__ChallengesRowBanner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Change --></label>
+        <name>FieloEE__Change</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Change Background Image --></label>
+        <name>FieloEE__ChangeBackgroundImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Change Image --></label>
+        <name>FieloEE__ChangeImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Change Layout --></label>
+        <name>FieloEE__ChangeLayout</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Change Logo --></label>
+        <name>FieloEE__ChangeLogo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ChangePassword --></label>
+        <name>FieloEE__ChangePassword</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Change Program --></label>
+        <name>FieloEE__ChangeProgram</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Change Status --></label>
+        <name>FieloEE__ChangeStatus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Choose Date --></label>
+        <name>FieloEE__ChooseDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Choose User --></label>
+        <name>FieloEE__ChooseUser</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Close --></label>
+        <name>FieloEE__Close</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CodeErrorDuplicated --></label>
+        <name>FieloEE__CodeErrorDuplicated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CodeErrorUsed --></label>
+        <name>FieloEE__CodeErrorUsed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Code Used --></label>
+        <name>FieloEE__CodeUsed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Codes --></label>
+        <name>FieloEE__Codes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Color --></label>
+        <name>FieloEE__Color</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Comment --></label>
+        <name>FieloEE__Comment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Completed Date --></label>
+        <name>FieloEE__CompletedDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Component Bar --></label>
+        <name>FieloEE__ComponentBar</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Component Bar Select Item --></label>
+        <name>FieloEE__ComponentBarSelectItem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MenuViewBackEnd --></label>
+        <name>FieloEE__Components</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Congratulations --></label>
+        <name>FieloEE__Congratulations</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Container --></label>
+        <name>FieloEE__Container</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Content --></label>
+        <name>FieloEE__Content</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Content Column Banner --></label>
+        <name>FieloEE__ContentColumnBanner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Content Feed --></label>
+        <name>FieloEE__ContentFeed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Content Feed Column Banner --></label>
+        <name>FieloEE__ContentFeedColumnBanner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Content Feed Row Banner --></label>
+        <name>FieloEE__ContentFeedRowBanner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Content Row Banner --></label>
+        <name>FieloEE__ContentRowBanner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Continue --></label>
+        <name>FieloEE__Continue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Controlled --></label>
+        <name>FieloEE__Controlled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Convert Contact Error Email --></label>
+        <name>FieloEE__ConvertContactErrorEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ContactInvite.page --></label>
+        <name>FieloEE__ConvertContactInfo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Convert Contacts --></label>
+        <name>FieloEE__ConvertContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Convert Contacts Errors --></label>
+        <name>FieloEE__ConvertContactsErrors</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Convertion Correct --></label>
+        <name>FieloEE__ConvertionCorrect</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Convertion Type --></label>
+        <name>FieloEE__ConvertionType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Convertion Value --></label>
+        <name>FieloEE__ConvertionValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Create --></label>
+        <name>FieloEE__Create</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Create Inexistent Records --></label>
+        <name>FieloEE__CreateInexistentRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Checkout --></label>
+        <name>FieloEE__CreateVoucher</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Created Date --></label>
+        <name>FieloEE__CreatedDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_Criteria --></label>
+        <name>FieloEE__Criteria</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Criterias --></label>
+        <name>FieloEE__Criterias</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Criterias From Rule --></label>
+        <name>FieloEE__CriteriasFromTheRule</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CurrentSegments --></label>
+        <name>FieloEE__CurrentSegments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Currently Have --></label>
+        <name>FieloEE__CurrentlyHave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Customize Vouchers --></label>
+        <name>FieloEE__CustomizeVouchers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Date --></label>
+        <name>FieloEE__Date</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Default Promotion --></label>
+        <name>FieloEE__DefaultPromotion</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Default Rule --></label>
+        <name>FieloEE__DefaultRule</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Del --></label>
+        <name>FieloEE__Del</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete --></label>
+        <name>FieloEE__Delete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Delete all records --></label>
+        <name>FieloEE__DeleteAllRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Delete Background Image --></label>
+        <name>FieloEE__DeleteBackgroundImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_DeleteImage --></label>
+        <name>FieloEE__DeleteImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Delete Logo --></label>
+        <name>FieloEE__DeleteLogo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_DeleteSection --></label>
+        <name>FieloEE__DeleteSection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- DeletingBanner --></label>
+        <name>FieloEE__DeletingBanner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo Delivery Options --></label>
+        <name>FieloEE__DeliveryOptions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Desktop --></label>
+        <name>FieloEE__Desktop</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Details --></label>
+        <name>FieloEE__Details</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Displaying --></label>
+        <name>FieloEE__Displaying</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Dynamic Reward Field Help --></label>
+        <name>FieloEE__DynamicRewardFieldHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Edit --></label>
+        <name>FieloEE__Edit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Email Campaign Cancel --></label>
+        <name>FieloEE__EmailCampaignCancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo Email Campaign Details --></label>
+        <name>FieloEE__EmailCampaignDetails</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Email Campaign Message Cancel Back End --></label>
+        <name>FieloEE__EmailCampaignMessageCancelBackEnd</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- EmptyCart --></label>
+        <name>FieloEE__EmptyCart</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Empty Code --></label>
+        <name>FieloEE__EmptyCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Enabled --></label>
+        <name>FieloEE__Enabled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error --></label>
+        <name>FieloEE__Error</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Account Button --></label>
+        <name>FieloEE__ErrorAccountButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Account Button Org Without Person Account --></label>
+        <name>FieloEE__ErrorAccountButtonOrgWithoutPersonAccount</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Adjust Member Points --></label>
+        <name>FieloEE__ErrorAdjustMemberPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorAgreementAccept --></label>
+        <name>FieloEE__ErrorAgreementAccept</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Available Voucher Codes --></label>
+        <name>FieloEE__ErrorAvailableVoucherCodes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Error Banner Attach Required --></label>
+        <name>FieloEE__ErrorBannerAttachRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Branch Code Unique --></label>
+        <name>FieloEE__ErrorBranchCodeUnique</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Branch Delete --></label>
+        <name>FieloEE__ErrorBranchDelete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Captcha --></label>
+        <name>FieloEE__ErrorCaptcha</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Could not create the order --></label>
+        <name>FieloEE__ErrorCreateOrder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Date invalid --></label>
+        <name>FieloEE__ErrorDateInvalid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Delete Default Program --></label>
+        <name>FieloEE__ErrorDeleteDefaultProgram</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorDeleteItemsQuantity --></label>
+        <name>FieloEE__ErrorDeleteItemsQuantity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Could not delete the existing order. --></label>
+        <name>FieloEE__ErrorDeleteOrder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Deleting Content Component --></label>
+        <name>FieloEE__ErrorDeletingContentComponent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Description --></label>
+        <name>FieloEE__ErrorDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Edit Agreement --></label>
+        <name>FieloEE__ErrorEditAgreement</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error EmailCampaign Edit --></label>
+        <name>FieloEE__ErrorEmailCampaignEdit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Field Required --></label>
+        <name>FieloEE__ErrorFieldRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorFileIsEmpty --></label>
+        <name>FieloEE__ErrorFileIsEmpty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_ErrorFileLong --></label>
+        <name>FieloEE__ErrorFileLong</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error File Size --></label>
+        <name>FieloEE__ErrorFileSize</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Error Folder Fielo Not Exist --></label>
+        <name>FieloEE__ErrorFolderFieloNotExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Folder Was Not Found --></label>
+        <name>FieloEE__ErrorFolderWasNotFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Format Upload --></label>
+        <name>FieloEE__ErrorFormatUpload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- geolocation not supported error --></label>
+        <name>FieloEE__ErrorGeolocationNotSupported</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Error Get Points Incorrect Code --></label>
+        <name>FieloEE__ErrorGetPointsIncorrectCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Error Get Points Incorrect Code Title --></label>
+        <name>FieloEE__ErrorGetPointsIncorrectCodeTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Get Points Login Message --></label>
+        <name>FieloEE__ErrorGetPointsLoginMessge</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ID Invalid --></label>
+        <name>FieloEE__ErrorIdInvalid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Image without Dimensions --></label>
+        <name>FieloEE__ErrorImageCeroDimensions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Error Image Required --></label>
+        <name>FieloEE__ErrorImageRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Error Image Too Big --></label>
+        <name>FieloEE__ErrorImageTooBig</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Image Type --></label>
+        <name>FieloEE__ErrorImageType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error in the Approval Process --></label>
+        <name>FieloEE__ErrorInTheApprovalProcess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Insufficient Points --></label>
+        <name>FieloEE__ErrorInsufficientPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Insufficient Inventory --></label>
+        <name>FieloEE__ErrorInsufficientStock</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorInvalidContact --></label>
+        <name>FieloEE__ErrorInvalidContact</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_ItemsLimit --></label>
+        <name>FieloEE__ErrorItemsLimit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Level Delete --></label>
+        <name>FieloEE__ErrorLevelDelete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorLoginMemberBlocked --></label>
+        <name>FieloEE__ErrorLoginMemberBlocked</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorLoginProgramValidation --></label>
+        <name>FieloEE__ErrorLoginProgramValidation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Negative Error --></label>
+        <name>FieloEE__ErrorManageStock</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Member Already Exists --></label>
+        <name>FieloEE__ErrorMemberAlreadyExists</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SameReferal --></label>
+        <name>FieloEE__ErrorMemberDetail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Must change E-mail --></label>
+        <name>FieloEE__ErrorMemberEmailAlreadyUsed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Member Forgot Password Inexist --></label>
+        <name>FieloEE__ErrorMemberForgotPasswordInexist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Participant does not exist --></label>
+        <name>FieloEE__ErrorMemberNotExistRedemptionPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Menu Name is required --></label>
+        <name>FieloEE__ErrorMemberPortalMenuManagerNameRequiered</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Duplicated Identification Code --></label>
+        <name>FieloEE__ErrorMemberRegistrationDuplicatedIdentificationCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Member without User --></label>
+        <name>FieloEE__ErrorMemberwiithoutUser</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorMenuChildValidation --></label>
+        <name>FieloEE__ErrorMenuChildValidation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorMenuParentValidation --></label>
+        <name>FieloEE__ErrorMenuParentValidation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_ErrorModifyNumberDigits --></label>
+        <name>FieloEE__ErrorModifyNumberDigits</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_No Item in Order --></label>
+        <name>FieloEE__ErrorNoItemOrder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No Item in Shopping Cart --></label>
+        <name>FieloEE__ErrorNoItemShoppingCart</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_ErrorNoSegmentLayout --></label>
+        <name>FieloEE__ErrorNoSegmentLayout</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Could not Save --></label>
+        <name>FieloEE__ErrorNotSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Error Number of Voucher Digits --></label>
+        <name>FieloEE__ErrorNumberOfVoucherDigits</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ErrorOcurred --></label>
+        <name>FieloEE__ErrorOcurred</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Positive Point Balance --></label>
+        <name>FieloEE__ErrorPointDelete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Point Edit Delete --></label>
+        <name>FieloEE__ErrorPointEditDelete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Points Not Enough --></label>
+        <name>FieloEE__ErrorPointsNotEnoughtShoppingCart</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SiteURL in settings must not be empty --></label>
+        <name>FieloEE__ErrorProgramSiteURLEmpty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CanNotDeletePromotion --></label>
+        <name>FieloEE__ErrorPromotionDeleteDefault</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Recomend Required Value --></label>
+        <name>FieloEE__ErrorRecomendRequiredValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Redemption Closed --></label>
+        <name>FieloEE__ErrorRedemptionClosed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Quantity Not A Number --></label>
+        <name>FieloEE__ErrorRedemptionCreateBackEndQuantity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Redemption Delete --></label>
+        <name>FieloEE__ErrorRedemptionDelete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Redemption Rule Error --></label>
+        <name>FieloEE__ErrorRedemptionEngine</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Redemption Items Deliver --></label>
+        <name>FieloEE__ErrorRedemptionItemsDeliver</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Redemption Items Required --></label>
+        <name>FieloEE__ErrorRedemptionItemsRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo Save Order Error --></label>
+        <name>FieloEE__ErrorRedemptionPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Redemption Reward Required --></label>
+        <name>FieloEE__ErrorRedemptionRewardRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Registration User Exists --></label>
+        <name>FieloEE__ErrorRegistrationUserExists</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Value required --></label>
+        <name>FieloEE__ErrorRequiredValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_ErrorRewardCantChangeStock --></label>
+        <name>FieloEE__ErrorRewardCantChangeStock</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_ErrorRewardGenerateItemsDeleteStock --></label>
+        <name>FieloEE__ErrorRewardGenerateItemsDeleteStock</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Complete Quantity --></label>
+        <name>FieloEE__ErrorRewardsCompleteQuantity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- CreateItems --></label>
+        <name>FieloEE__ErrorRewardsCreateItems</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Cant delete Reward --></label>
+        <name>FieloEE__ErrorRewardsDelete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Default Rule Delete --></label>
+        <name>FieloEE__ErrorRuleDeleteDefault</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Rule Edit --></label>
+        <name>FieloEE__ErrorRuleEdit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Rule Must Have an Action --></label>
+        <name>FieloEE__ErrorRuleMustHaveAction</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Rule Must Have a Criteria --></label>
+        <name>FieloEE__ErrorRuleMustHaveCriteria</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Rule Must Have a Criteria --></label>
+        <name>FieloEE__ErrorSegmentMustHaveCriteria</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No Item to Change --></label>
+        <name>FieloEE__ErrorShoppingCart</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Shoppingcart Quantity Input --></label>
+        <name>FieloEE__ErrorShoppingcartQuantityInput</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Error Tag Order Unique --></label>
+        <name>FieloEE__ErrorTagOrderUnique</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error: the member does not exist --></label>
+        <name>FieloEE__ErrorTheMemberDoesNotExist</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Error Transaction Branch Code --></label>
+        <name>FieloEE__ErrorTransactionBranchCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error Transaction Not Edit Delete --></label>
+        <name>FieloEE__ErrorTransactionNotEditDelete</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Time Out Transactions Error --></label>
+        <name>FieloEE__ErrorTransactionsTimeOutSettingsPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Try Again --></label>
+        <name>FieloEE__ErrorUploadFileTryAgain</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_ErrorValueNegative --></label>
+        <name>FieloEE__ErrorValueNegative</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Expiration Date --></label>
+        <name>FieloEE__ExpirationDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Export Levels --></label>
+        <name>FieloEE__ExportLevels</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Export Menus --></label>
+        <name>FieloEE__ExportMenus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Export Segments --></label>
+        <name>FieloEE__ExportSegments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Facebook Login --></label>
+        <name>FieloEE__FacebookLogin</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Facebook Login Button --></label>
+        <name>FieloEE__FacebookLoginButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Failures --></label>
+        <name>FieloEE__Failures</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Feedback --></label>
+        <name>FieloEE__Feedback</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Field --></label>
+        <name>FieloEE__Field</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Change Status --></label>
+        <name>FieloEE__Fielo_ChangeStatus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_MyProfile --></label>
+        <name>FieloEE__Fielo_MyProfile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- File --></label>
+        <name>FieloEE__File</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_File Name --></label>
+        <name>FieloEE__FileName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Filter --></label>
+        <name>FieloEE__Filter</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_Finish --></label>
+        <name>FieloEE__Finish</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- First --></label>
+        <name>FieloEE__First</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Font --></label>
+        <name>FieloEE__Font</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Font Menu --></label>
+        <name>FieloEE__FontMenu</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Font Preview --></label>
+        <name>FieloEE__FontPreview</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Foot --></label>
+        <name>FieloEE__Foot</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Footer --></label>
+        <name>FieloEE__Footer</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SiteLogin.component --></label>
+        <name>FieloEE__ForgotPassword</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Formula --></label>
+        <name>FieloEE__Formula</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_From --></label>
+        <name>FieloEE__From</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Frontend --></label>
+        <name>FieloEE__Frontend</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- FrontendSettings --></label>
+        <name>FieloEE__FrontendSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- GenerateItems --></label>
+        <name>FieloEE__GenerateItems</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_GenerateOrder --></label>
+        <name>FieloEE__GenerateOrder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Go --></label>
+        <name>FieloEE__Go</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Go back to Member --></label>
+        <name>FieloEE__GoBackToMember</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Go To Home --></label>
+        <name>FieloEE__GoToHome</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Go to Jobs --></label>
+        <name>FieloEE__GoToProcesses</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_GoToProfile --></label>
+        <name>FieloEE__GoToProfile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Go to Reports --></label>
+        <name>FieloEE__GoToReports</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Go to Banners --></label>
+        <name>FieloEE__GotoBanners</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Go to list --></label>
+        <name>FieloEE__GotoList</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Go to Menus --></label>
+        <name>FieloEE__GotoMenus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Go to Content Feed --></label>
+        <name>FieloEE__GotoNews</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Grant Admin Permissions --></label>
+        <name>FieloEE__GrantAdminPermissions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Great --></label>
+        <name>FieloEE__Great</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Grid --></label>
+        <name>FieloEE__Grid</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Has records related --></label>
+        <name>FieloEE__HasRecordsRelated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Head --></label>
+        <name>FieloEE__Head</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Header --></label>
+        <name>FieloEE__Header</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- History --></label>
+        <name>FieloEE__History</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- AgreementAccept --></label>
+        <name>FieloEE__IAgree</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_RequiredIdentificationCode --></label>
+        <name>FieloEE__IdentificationCodeRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Import --></label>
+        <name>FieloEE__Import</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Import Levels --></label>
+        <name>FieloEE__ImportLevels</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Import Menus --></label>
+        <name>FieloEE__ImportMenus</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Import Segments --></label>
+        <name>FieloEE__ImportSegments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Inactive --></label>
+        <name>FieloEE__Inactive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Inactive Members --></label>
+        <name>FieloEE__InactiveMembers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_IncorrectNumber --></label>
+        <name>FieloEE__IncorrectNumber</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_TextAgreement --></label>
+        <name>FieloEE__InfoAgreementsHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoBannerChangePhoto --></label>
+        <name>FieloEE__InfoBannerChangePhoto</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_BannerMobileText --></label>
+        <name>FieloEE__InfoBannerMobile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_BannerSideText --></label>
+        <name>FieloEE__InfoBannerSide</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_BannerTopText --></label>
+        <name>FieloEE__InfoBannerTop</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TextBanner --></label>
+        <name>FieloEE__InfoBannersHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_TextBranchs --></label>
+        <name>FieloEE__InfoBranchesHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_CaptchaText --></label>
+        <name>FieloEE__InfoCaptchaExplication</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoCategoryChangePhoto --></label>
+        <name>FieloEE__InfoCategoryChangePhoto</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Info Change Photo --></label>
+        <name>FieloEE__InfoChangePhoto</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo Step 2 Description --></label>
+        <name>FieloEE__InfoEmailCampaignDescriptionStep2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo Step 3 Description --></label>
+        <name>FieloEE__InfoEmailCampaignDescriptionStep3</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_Step5_TitleDescription --></label>
+        <name>FieloEE__InfoEmailCampaignDescriptionStep5</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Email Campaign Template --></label>
+        <name>FieloEE__InfoEmailCampaignTemplate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Empty Table --></label>
+        <name>FieloEE__InfoEmptyTable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_SettingsFacebook1 --></label>
+        <name>FieloEE__InfoFacebookMemberPortalPageText1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_SettingsFacebook2 --></label>
+        <name>FieloEE__InfoFacebookMemberPortalPageText2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Facebook legend --></label>
+        <name>FieloEE__InfoFacebookTextOnWall</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- File Tree --></label>
+        <name>FieloEE__InfoFileTree</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TextRewardGenerateItems --></label>
+        <name>FieloEE__InfoGenerateRewardItemsHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Get Points message --></label>
+        <name>FieloEE__InfoGetPointsMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Info Landing Page Hide Splash --></label>
+        <name>FieloEE__InfoLandingPageHideSplash</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Info Landing Page Show Splash --></label>
+        <name>FieloEE__InfoLandingPageShowSplash</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoLayoutSearchReward --></label>
+        <name>FieloEE__InfoLayoutSearchReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoLayoutTitle --></label>
+        <name>FieloEE__InfoLayoutTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoLevelChangePhoto --></label>
+        <name>FieloEE__InfoLevelChangePhoto</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_TextLevels --></label>
+        <name>FieloEE__InfoLevelsHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Load Code Option --></label>
+        <name>FieloEE__InfoLoadCodeOption</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_LoadItemsText --></label>
+        <name>FieloEE__InfoLoadItemsByFile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TextSiteLogo --></label>
+        <name>FieloEE__InfoLogoHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Info Member Portal Banner Manager Place --></label>
+        <name>FieloEE__InfoMemberPortalBannerManagerPlace</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TextCustomizeParticipantSite --></label>
+        <name>FieloEE__InfoMemberPortalHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Info Member Portal Menu Manager Place --></label>
+        <name>FieloEE__InfoMemberPortalMenuManagerPlace</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_RedeemMemberText --></label>
+        <name>FieloEE__InfoMemberRedeemPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Menu Change Background --></label>
+        <name>FieloEE__InfoMenuChangeBackground</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoMenuChangePhoto --></label>
+        <name>FieloEE__InfoMenuChangePhoto</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoMenuCreateBackend --></label>
+        <name>FieloEE__InfoMenuCreateBackend</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TextMenu --></label>
+        <name>FieloEE__InfoMenuHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_MenuTopText --></label>
+        <name>FieloEE__InfoMenuTop</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_TextMetrics --></label>
+        <name>FieloEE__InfoMetricsHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Info Mobile Upload File --></label>
+        <name>FieloEE__InfoMobileUploadFile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Must Entered Code --></label>
+        <name>FieloEE__InfoMustEnteredCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_TextPromotions --></label>
+        <name>FieloEE__InfoPromotionsHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Recommend Copy To Clipboard --></label>
+        <name>FieloEE__InfoRecommendCopyToClipboard</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Insert mails --></label>
+        <name>FieloEE__InfoRecommendToAFriendInsertMails</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Insert mails help --></label>
+        <name>FieloEE__InfoRecommendToAFriendInsertMailsHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Incorrect Code --></label>
+        <name>FieloEE__InfoRedeemPointsIncorrectCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Info Redeem Points success --></label>
+        <name>FieloEE__InfoRedeemPointsSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_InfoRedemptionApproval --></label>
+        <name>FieloEE__InfoRedemptionApproval</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoRedemptionCreateBackEnd --></label>
+        <name>FieloEE__InfoRedemptionCreateBackEnd</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Expired Order --></label>
+        <name>FieloEE__InfoRedemptionPointsExpiredOrder</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_TextRedemptionRules --></label>
+        <name>FieloEE__InfoRedemptionRulesHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_TextRedemption --></label>
+        <name>FieloEE__InfoRedemptionsHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ResetPassOK --></label>
+        <name>FieloEE__InfoResetPassword</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info RewarItem Load Inserted --></label>
+        <name>FieloEE__InfoRewarItemLoadInserted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info RewarItem Load Inserted Failed --></label>
+        <name>FieloEE__InfoRewarItemLoadInsertedFailed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Info Reward Change Photo --></label>
+        <name>FieloEE__InfoRewardChangePhoto</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_GenerateItemsItangible --></label>
+        <name>FieloEE__InfoRewardGenerateItemsWhenStockUnlimited</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TextRewardDetails --></label>
+        <name>FieloEE__InfoRewardHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TextRewardPhotoUpload --></label>
+        <name>FieloEE__InfoRewardPhotoUploadHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_TextRules --></label>
+        <name>FieloEE__InfoRulesHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_InfoSiteWizardBackend --></label>
+        <name>FieloEE__InfoSiteWizardBackend</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_TableDragAndDrop --></label>
+        <name>FieloEE__InfoTableDragAndDrop</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoTagChangePhoto --></label>
+        <name>FieloEE__InfoTagChangePhoto</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TextRewardTags --></label>
+        <name>FieloEE__InfoTagsHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_TextTransaction --></label>
+        <name>FieloEE__InfoTransactionHelpPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_RedeemVoucherText --></label>
+        <name>FieloEE__InfoVoucherRedeemPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Information --></label>
+        <name>FieloEE__Information</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InstantReward --></label>
+        <name>FieloEE__InstantReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Instant Reward Fix Value And Dynamic Help --></label>
+        <name>FieloEE__InstantRewardFixValueAndDynamicHelp</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invalid Code --></label>
+        <name>FieloEE__InvalidCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Invitation Correct --></label>
+        <name>FieloEE__InvitationCorrect</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invitation Succesfull --></label>
+        <name>FieloEE__InvitationSuccesfull</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invite --></label>
+        <name>FieloEE__Invite</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Invite Contact Errors --></label>
+        <name>FieloEE__InviteContactErrors</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invite Contacts --></label>
+        <name>FieloEE__InviteContacts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Items --></label>
+        <name>FieloEE__Items</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Items Background --></label>
+        <name>FieloEE__ItemsBackground</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_ItemsRequired --></label>
+        <name>FieloEE__ItemsRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Items Selected --></label>
+        <name>FieloEE__ItemsSelected</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Language --></label>
+        <name>FieloEE__Language</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Last --></label>
+        <name>FieloEE__Last</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Last Transaction Date --></label>
+        <name>FieloEE__LastTransactionDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Customize --></label>
+        <name>FieloEE__LayoutConfiguration</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Let Members Recommend Fielo Loyalty In Facebook --></label>
+        <name>FieloEE__LetMembersRecommendFieloLoyaltyInFacebook</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error without criterias not unique. --></label>
+        <name>FieloEE__LevelErrorLevelWithoutCriteriasUnique</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Error message levelwithoutcriterias not last. --></label>
+        <name>FieloEE__LevelErrorOrderWithoutCriterias</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Level Import Error Type --></label>
+        <name>FieloEE__LevelImportErrorType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- LevelProcessFinished --></label>
+        <name>FieloEE__LevelProcessFinished</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_Levels --></label>
+        <name>FieloEE__Levels</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_LikeOff --></label>
+        <name>FieloEE__Like</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Link Color --></label>
+        <name>FieloEE__LinkColor</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_LinkExample --></label>
+        <name>FieloEE__LinkColorTest</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_List --></label>
+        <name>FieloEE__List</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- List Available Rules --></label>
+        <name>FieloEE__ListOfAvailableRules</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Load --></label>
+        <name>FieloEE__Load</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Load Code Backend Title --></label>
+        <name>FieloEE__LoadCodeBackendTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Load Codes Text --></label>
+        <name>FieloEE__LoadCodeText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Logging Out --></label>
+        <name>FieloEE__LoggingOut</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Login As Error --></label>
+        <name>FieloEE__LoginAsError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- LogoImage --></label>
+        <name>FieloEE__Logo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Main --></label>
+        <name>FieloEE__Main</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Manage --></label>
+        <name>FieloEE__Manage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Manage Segment --></label>
+        <name>FieloEE__ManageProfiling</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_Manager --></label>
+        <name>FieloEE__Manager</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Mark as used --></label>
+        <name>FieloEE__MarkAsUsed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Mass Email Campaign --></label>
+        <name>FieloEE__MassEmailCampaign</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MaxNumberOfSegments --></label>
+        <name>FieloEE__MaxNumberOfSegments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_Member --></label>
+        <name>FieloEE__Member</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Member already exists --></label>
+        <name>FieloEE__MemberAlreadyExists</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MemberApprovalSubmit --></label>
+        <name>FieloEE__MemberApprovalSubmit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_MemberCode --></label>
+        <name>FieloEE__MemberCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Participant Transaction --></label>
+        <name>FieloEE__MemberTransaction</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Members Settings --></label>
+        <name>FieloEE__MembersSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu --></label>
+        <name>FieloEE__Menu</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Menu Edit --></label>
+        <name>FieloEE__MenuEdit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu Import Error Type --></label>
+        <name>FieloEE__MenuImportErrorType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu Import Inactive Banner --></label>
+        <name>FieloEE__MenuImportInactiveBanner</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu Import Success --></label>
+        <name>FieloEE__MenuImportSuccess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu selection --></label>
+        <name>FieloEE__MenuSelection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Menu View backend --></label>
+        <name>FieloEE__MenuView</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Message sent --></label>
+        <name>FieloEE__MessageSent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_Metrics --></label>
+        <name>FieloEE__Metrics</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Mobile --></label>
+        <name>FieloEE__Mobile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Modify Logo --></label>
+        <name>FieloEE__ModifyLogo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Modify Quantity --></label>
+        <name>FieloEE__ModifyQuantity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Month Expiration --></label>
+        <name>FieloEE__MonthExpiration</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Monthly --></label>
+        <name>FieloEE__Monthly</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_More --></label>
+        <name>FieloEE__More</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Most Popular --></label>
+        <name>FieloEE__MostPopular</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Most Recent --></label>
+        <name>FieloEE__MostRecent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Mouse over Color --></label>
+        <name>FieloEE__MouseoverLinkColor</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Must complete one of the actions. --></label>
+        <name>FieloEE__MustCompleteOneOfTheActions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Must Select a File --></label>
+        <name>FieloEE__MustSelectFile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- My Rewards --></label>
+        <name>FieloEE__MyPrizes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MyShoppingCart --></label>
+        <name>FieloEE__MyShoppingCart</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Name --></label>
+        <name>FieloEE__Name</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Navigation --></label>
+        <name>FieloEE__Navigation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Net Points --></label>
+        <name>FieloEE__NetPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New --></label>
+        <name>FieloEE__New</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New Load --></label>
+        <name>FieloEE__NewLoad</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New menu --></label>
+        <name>FieloEE__NewMenu</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- new page message --></label>
+        <name>FieloEE__NewPage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NewRedemption --></label>
+        <name>FieloEE__NewRedemption</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- New Section --></label>
+        <name>FieloEE__NewSection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Next --></label>
+        <name>FieloEE__Next</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoRecords --></label>
+        <name>FieloEE__NoRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoResults --></label>
+        <name>FieloEE__NoResults</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- No results found --></label>
+        <name>FieloEE__NoResultsFound</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NoResultsLegend --></label>
+        <name>FieloEE__NoResultsLegend</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- None --></label>
+        <name>FieloEE__None</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Not Approved --></label>
+        <name>FieloEE__NotApproved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Not Enabled --></label>
+        <name>FieloEE__NotEnabled</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Not Enough Memory --></label>
+        <name>FieloEE__NotEnoughMemory</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Not Processed --></label>
+        <name>FieloEE__NotProcessed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Not Registered --></label>
+        <name>FieloEE__NotRegistered</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Not Valid Mail --></label>
+        <name>FieloEE__NotValidMail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- NothingToAdd --></label>
+        <name>FieloEE__NothingToAdd</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Now --></label>
+        <name>FieloEE__Now</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OK --></label>
+        <name>FieloEE__OK</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Of --></label>
+        <name>FieloEE__Of</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- One Blank Section --></label>
+        <name>FieloEE__OneBlankSection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OperationSuccessful --></label>
+        <name>FieloEE__OperationSuccessful</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Operator --></label>
+        <name>FieloEE__Operator</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Order --></label>
+        <name>FieloEE__Order</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- OrderBy --></label>
+        <name>FieloEE__OrderBy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Order Details --></label>
+        <name>FieloEE__OrderDetails</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Order Records No Records --></label>
+        <name>FieloEE__OrderRecordsNoRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Page --></label>
+        <name>FieloEE__Page</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Password --></label>
+        <name>FieloEE__Password</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RequiredPassword --></label>
+        <name>FieloEE__PasswordIsRequiered</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Past Vouchers --></label>
+        <name>FieloEE__PastVouchers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Period --></label>
+        <name>FieloEE__Period</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Photo Profile --></label>
+        <name>FieloEE__PhotoProfile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Photo Upload --></label>
+        <name>FieloEE__PhotoUpload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_Place --></label>
+        <name>FieloEE__Place</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Please complete the necessary info --></label>
+        <name>FieloEE__PleaseCompleteTheNecessaryInfo</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Please Fill Address Information --></label>
+        <name>FieloEE__PleaseFillAddressInformation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Alert Image Upload --></label>
+        <name>FieloEE__PleaseSelectAnImageToUpload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Please select at least one Contact --></label>
+        <name>FieloEE__PleaseSelectAtLeastOneContact</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Point --></label>
+        <name>FieloEE__Point</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Points --></label>
+        <name>FieloEE__Points</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PointsEngine --></label>
+        <name>FieloEE__PointsEngine</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Points Formula --></label>
+        <name>FieloEE__PointsFormula</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_PointsRange --></label>
+        <name>FieloEE__PointsRange</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Preload --></label>
+        <name>FieloEE__Preload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Preview --></label>
+        <name>FieloEE__Preview</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Previous --></label>
+        <name>FieloEE__Previous</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Process Offline --></label>
+        <name>FieloEE__ProcessOffline</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Processed --></label>
+        <name>FieloEE__Processed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Products Availables --></label>
+        <name>FieloEE__ProductsAvailables</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Profile --></label>
+        <name>FieloEE__Profile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Profile Completeness --></label>
+        <name>FieloEE__ProfileCompleteness</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Program --></label>
+        <name>FieloEE__Program</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Program Advance Expiration Mode --></label>
+        <name>FieloEE__ProgramAdvanceExpirationMode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Program Advance Language --></label>
+        <name>FieloEE__ProgramAdvanceLanguage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Program Advance Template --></label>
+        <name>FieloEE__ProgramAdvanceTemplate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Program Default Error --></label>
+        <name>FieloEE__ProgramDefaultError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Program Delete Validation --></label>
+        <name>FieloEE__ProgramDeleteValidation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Program Profile Error --></label>
+        <name>FieloEE__ProgramProfileError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Program Set Default --></label>
+        <name>FieloEE__ProgramSetDefault</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Progress --></label>
+        <name>FieloEE__Progress</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Promotion Timeline --></label>
+        <name>FieloEE__PromotionTimeline</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_Promotions --></label>
+        <name>FieloEE__Promotions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo Properties Settings --></label>
+        <name>FieloEE__PropertiesSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- PublicComment --></label>
+        <name>FieloEE__PublicComment</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Publish on Facebook: --></label>
+        <name>FieloEE__PublishOnFacebook</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quantity --></label>
+        <name>FieloEE__Quantity</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quantity Exceeded --></label>
+        <name>FieloEE__QuantityExcedeed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Quantity not enough --></label>
+        <name>FieloEE__QuantityNotEnough</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quantity Positive --></label>
+        <name>FieloEE__QuantityShouldBePositive</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Quarterly --></label>
+        <name>FieloEE__Quarterly</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MenuViewBackEnd --></label>
+        <name>FieloEE__QuickFindSearch</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Quick Save --></label>
+        <name>FieloEE__QuickSave</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Re Send Email --></label>
+        <name>FieloEE__ReSendEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Recent --></label>
+        <name>FieloEE__Recent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recent Banners --></label>
+        <name>FieloEE__RecentBanners</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recent Contents --></label>
+        <name>FieloEE__RecentContents</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recently Created --></label>
+        <name>FieloEE__RecentlyCreated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recently Modified --></label>
+        <name>FieloEE__RecentlyModified</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Recipient --></label>
+        <name>FieloEE__Recipient</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Recommend To A Friend --></label>
+        <name>FieloEE__RecommendToAFriend</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Record Name --></label>
+        <name>FieloEE__RecordName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Record Was Deleted --></label>
+        <name>FieloEE__RecordWasDeleted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Redeem --></label>
+        <name>FieloEE__Redeem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Redeem Points --></label>
+        <name>FieloEE__RedeemPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_RedeemRewardVoucher --></label>
+        <name>FieloEE__RedeemRewardVoucher</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Redemption --></label>
+        <name>FieloEE__Redemption</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RedemptionDetails --></label>
+        <name>FieloEE__RedemptionDetails</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RedemptionItem Message Revert Ok --></label>
+        <name>FieloEE__RedemptionItemMessageRevertOk</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RedemptionItemProgramValidation --></label>
+        <name>FieloEE__RedemptionItemProgramValidation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Redemption Item Revert Error --></label>
+        <name>FieloEE__RedemptionItemRevertError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Redemption Item Select One --></label>
+        <name>FieloEE__RedemptionItemSelectOne</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_RedemptionRules --></label>
+        <name>FieloEE__RedemptionRules</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_RegisterExistingUser --></label>
+        <name>FieloEE__RegisterExistingUser</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Registered --></label>
+        <name>FieloEE__Registered</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Registration Waiting for Approval --></label>
+        <name>FieloEE__RegistrationWaitingForApproval</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reload --></label>
+        <name>FieloEE__Reload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Report Abuse --></label>
+        <name>FieloEE__ReportAbuse</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Report an Issue --></label>
+        <name>FieloEE__ReportAnIssue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RequiredEmail --></label>
+        <name>FieloEE__RequiredEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Result --></label>
+        <name>FieloEE__Result</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Return to Catalog --></label>
+        <name>FieloEE__ReturnToCatalog</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ReturnedRows --></label>
+        <name>FieloEE__ReturnedRows</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Revoke --></label>
+        <name>FieloEE__Revoke</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reward --></label>
+        <name>FieloEE__Reward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_RewardCatalog --></label>
+        <name>FieloEE__RewardCatalog</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Reward Description --></label>
+        <name>FieloEE__RewardDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RewardItemLoad_ErrorDuplicateValue --></label>
+        <name>FieloEE__RewardErrorDuplicateValue</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RewardItemLoad_ErrorFileColumns --></label>
+        <name>FieloEE__RewardErrorFileColumns</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Reward Error File Empty --></label>
+        <name>FieloEE__RewardErrorFileEmpty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RewardLoad_ErrorFileNull --></label>
+        <name>FieloEE__RewardErrorFileNull</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RewardItemLoad_ErrorFormatFile --></label>
+        <name>FieloEE__RewardErrorFormatFile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RewardItemLoad_ErrorRewardIntangible --></label>
+        <name>FieloEE__RewardErrorIntangible</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RewardItemLoad_ErrorRewardNull --></label>
+        <name>FieloEE__RewardErrorNull</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RewardItemLoad_ErrorSizeFile --></label>
+        <name>FieloEE__RewardErrorSizeFile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_RewardItemLoad_ErrorFormat --></label>
+        <name>FieloEE__RewardErrorWrongFormat</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Reward Name --></label>
+        <name>FieloEE__RewardName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RewardRequired --></label>
+        <name>FieloEE__RewardRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RewardStock --></label>
+        <name>FieloEE__RewardStock</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_RewardVoucherNumber --></label>
+        <name>FieloEE__RewardVoucherNumber</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Rewards --></label>
+        <name>FieloEE__Rewards</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RewardsRedemptionsSettings --></label>
+        <name>FieloEE__RewardsRedemptionsSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Rule --></label>
+        <name>FieloEE__Rule</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Rule Custom Formula --></label>
+        <name>FieloEE__RuleCustomFormula</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Rule Description --></label>
+        <name>FieloEE__RuleDescription</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Rule Name --></label>
+        <name>FieloEE__RuleName</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- RuleRewardProgramValidation --></label>
+        <name>FieloEE__RuleRewardProgramValidation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Rules --></label>
+        <name>FieloEE__Rules</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SampleText --></label>
+        <name>FieloEE__SampleText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save --></label>
+        <name>FieloEE__Save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save And Close --></label>
+        <name>FieloEE__SaveAndClose</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save and New --></label>
+        <name>FieloEE__SaveAndNew</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save As Template --></label>
+        <name>FieloEE__SaveAsTemplate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save and Reload --></label>
+        <name>FieloEE__SaveReload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Schedule --></label>
+        <name>FieloEE__Schedule</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search --></label>
+        <name>FieloEE__Search</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SearchBy --></label>
+        <name>FieloEE__SearchBy</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_SearchProducts --></label>
+        <name>FieloEE__SearchProducts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Search Reward --></label>
+        <name>FieloEE__SearchReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SearchWarning --></label>
+        <name>FieloEE__SearchWarning</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Searching --></label>
+        <name>FieloEE__Searching</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Segment does not apply --></label>
+        <name>FieloEE__SegmentDoesNotApply</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Segment Import Error Type --></label>
+        <name>FieloEE__SegmentImportErrorType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SegmentSelection --></label>
+        <name>FieloEE__SegmentSelection</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Segment with Program Layout Error --></label>
+        <name>FieloEE__SegmentWithProgramLayoutError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Select File --></label>
+        <name>FieloEE__SelectAFile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Select Existing Rules --></label>
+        <name>FieloEE__SelectExistingRules</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Select Members --></label>
+        <name>FieloEE__SelectMembers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SelectTemplate --></label>
+        <name>FieloEE__SelectTemplate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Select Voucher Code or Member --></label>
+        <name>FieloEE__SelectVoucherCodeOrMember</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Selected Email --></label>
+        <name>FieloEE__SelectedEmail</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo Send --></label>
+        <name>FieloEE__Send</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Send Code --></label>
+        <name>FieloEE__SendCode</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Service Unavailable --></label>
+        <name>FieloEE__ServiceUnavailable</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SettingsTabCaptcha --></label>
+        <name>FieloEE__SettingsTabCaptcha</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SettingsTabLoyalty --></label>
+        <name>FieloEE__SettingsTabLoyalty</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SettingsTabSocial --></label>
+        <name>FieloEE__SettingsTabSocial</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Share an Idea --></label>
+        <name>FieloEE__ShareAnIdea</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- ShoppingCart --></label>
+        <name>FieloEE__ShoppingCart</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Shopping Cart Items --></label>
+        <name>FieloEE__ShoppingCartItems</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Shopping Existing Reward --></label>
+        <name>FieloEE__ShoppingExistingReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Site Wizard --></label>
+        <name>FieloEE__SiteWizard</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sorry --></label>
+        <name>FieloEE__Sorry</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashFrontendFrontendText --></label>
+        <name>FieloEE__SplashFrontendFrontendText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashFrontendFrontendTitle --></label>
+        <name>FieloEE__SplashFrontendFrontendTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashFrontendHomepageText --></label>
+        <name>FieloEE__SplashFrontendHomepageText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashFrontendHomepageTitle --></label>
+        <name>FieloEE__SplashFrontendHomepageTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashFrontendLayoutText --></label>
+        <name>FieloEE__SplashFrontendLayoutText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashFrontendLayoutTitle --></label>
+        <name>FieloEE__SplashFrontendLayoutTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_SplashFrontendMain --></label>
+        <name>FieloEE__SplashFrontendMain</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashFrontendMenuText --></label>
+        <name>FieloEE__SplashFrontendMenuText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashFrontendMenuTitle --></label>
+        <name>FieloEE__SplashFrontendMenuTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_SplashFrontendSiteText --></label>
+        <name>FieloEE__SplashFrontendSiteText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_SplashFrontendSiteTitle --></label>
+        <name>FieloEE__SplashFrontendSiteTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashMembersCampaignsText --></label>
+        <name>FieloEE__SplashMembersCampaignsText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashMembersCampaignsTitle --></label>
+        <name>FieloEE__SplashMembersCampaignsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashMembersLevelsText --></label>
+        <name>FieloEE__SplashMembersLevelsText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashMembersLevelsTitle --></label>
+        <name>FieloEE__SplashMembersLevelsTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashMembersMain --></label>
+        <name>FieloEE__SplashMembersMain</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashMembersMembersText --></label>
+        <name>FieloEE__SplashMembersMembersText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashMembersMembersTitle --></label>
+        <name>FieloEE__SplashMembersMembersTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashMembersRegistrationText --></label>
+        <name>FieloEE__SplashMembersRegistrationText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashMembersRegistrationTitle --></label>
+        <name>FieloEE__SplashMembersRegistrationTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashPointsEngineMain --></label>
+        <name>FieloEE__SplashPointsEngineMain</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashPointsEngineNote --></label>
+        <name>FieloEE__SplashPointsEngineNote</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashPointsEngineText --></label>
+        <name>FieloEE__SplashPointsEngineText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRedemptionsBackendText --></label>
+        <name>FieloEE__SplashRedemptionsBackendText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRedemptionsBackendTitle --></label>
+        <name>FieloEE__SplashRedemptionsBackendTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRedemptionsFrontendText --></label>
+        <name>FieloEE__SplashRedemptionsFrontendText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRedemptionsFrontendTitle --></label>
+        <name>FieloEE__SplashRedemptionsFrontendTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRedemptionsMain --></label>
+        <name>FieloEE__SplashRedemptionsMain</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRewardsCategories --></label>
+        <name>FieloEE__SplashRewardsCategories</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRewardsMain --></label>
+        <name>FieloEE__SplashRewardsMain</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRewardsNote --></label>
+        <name>FieloEE__SplashRewardsNote</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRewardsRedemption --></label>
+        <name>FieloEE__SplashRewardsRedemption</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRewardsRewards --></label>
+        <name>FieloEE__SplashRewardsRewards</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRewardsTags --></label>
+        <name>FieloEE__SplashRewardsTags</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashRewardsText --></label>
+        <name>FieloEE__SplashRewardsText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashTransactionsBackendText --></label>
+        <name>FieloEE__SplashTransactionsBackendText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashTransactionsBackendTitle --></label>
+        <name>FieloEE__SplashTransactionsBackendTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashTransactionsFrontendText --></label>
+        <name>FieloEE__SplashTransactionsFrontendText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashTransactionsFrontendTitle --></label>
+        <name>FieloEE__SplashTransactionsFrontendTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashTransactionsMain --></label>
+        <name>FieloEE__SplashTransactionsMain</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashTransactionsPosText --></label>
+        <name>FieloEE__SplashTransactionsPosText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashTransactionsPosTitle --></label>
+        <name>FieloEE__SplashTransactionsPosTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashTransactionsRegistrationText --></label>
+        <name>FieloEE__SplashTransactionsRegistrationText</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SplashTransactionsRegistrationTitle --></label>
+        <name>FieloEE__SplashTransactionsRegistrationTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Standard --></label>
+        <name>FieloEE__Standard</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status --></label>
+        <name>FieloEE__Status</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Step --></label>
+        <name>FieloEE__Step</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo Step 1 --></label>
+        <name>FieloEE__Step1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo Step 2 --></label>
+        <name>FieloEE__Step2</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo Step 3 --></label>
+        <name>FieloEE__Step3</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo Step 4 --></label>
+        <name>FieloEE__Step4</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Step 5 --></label>
+        <name>FieloEE__Step5</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_Stock --></label>
+        <name>FieloEE__Stock</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Subject --></label>
+        <name>FieloEE__Subject</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Submit --></label>
+        <name>FieloEE__Submit</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Subscribe and Actual Challenges --></label>
+        <name>FieloEE__SubscribeActualChallenges</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_Step5_Description --></label>
+        <name>FieloEE__SuccessEmailCampaignDescriptionStep5</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Success GetPoints Message Reward Site --></label>
+        <name>FieloEE__SuccessGetPointsMessageRewardSite</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Success GetPoints Message Site --></label>
+        <name>FieloEE__SuccessGetPointsMessageSite</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invitation Success --></label>
+        <name>FieloEE__SuccessRecommendToAFriendInsertMails</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Success Reward Add To Chart --></label>
+        <name>FieloEE__SuccessRewardAddToChart</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SiteApprovalUser --></label>
+        <name>FieloEE__SucessAwardingApprovalRegistration</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Sucess Registration One Step --></label>
+        <name>FieloEE__SucessRegistrationOneStep</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SiteRegistrationStart --></label>
+        <name>FieloEE__SucessRegistrationStep1</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Tablet --></label>
+        <name>FieloEE__Tablet</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Tags --></label>
+        <name>FieloEE__Tags</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- MenuViewBackEnd --></label>
+        <name>FieloEE__Templates</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- The Contact --></label>
+        <name>FieloEE__TheContact</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_The Contact already has a Member --></label>
+        <name>FieloEE__TheContactAlreadyHasAMember</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- The point action is mandatory. --></label>
+        <name>FieloEE__ThePointActionIsMandatory</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- The transaction will be processed offline --></label>
+        <name>FieloEE__TheTransactionWillBeProcessedOffline</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Three Blank Sections --></label>
+        <name>FieloEE__ThreeBlankSections</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Title Bars --></label>
+        <name>FieloEE__TitleBars</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Categories --></label>
+        <name>FieloEE__TitleCategories</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TitleComments --></label>
+        <name>FieloEE__TitleComments</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Shipping --></label>
+        <name>FieloEE__TitleEmailCampaignStep4</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title Front End Settings Back End --></label>
+        <name>FieloEE__TitleFrontEndSettingsBackEnd</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title Home --></label>
+        <name>FieloEE__TitleHome</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title Landing Page Reports --></label>
+        <name>FieloEE__TitleLandingPageReports</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title Landing Page Tools --></label>
+        <name>FieloEE__TitleLandingPageTools</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title Member Performance Chart --></label>
+        <name>FieloEE__TitleMemberPerformanceChart</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Title Member Portal Banner Manager --></label>
+        <name>FieloEE__TitleMemberPortalBannerManager</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Title Member Portal Menu Manager --></label>
+        <name>FieloEE__TitleMemberPortalMenuManager</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SiteTemplateSettings --></label>
+        <name>FieloEE__TitleMemberPortalSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TitleRecentMembers --></label>
+        <name>FieloEE__TitleRecentMembers</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TitleRecentPromotions --></label>
+        <name>FieloEE__TitleRecentPromotions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TitleRecentRedemptions --></label>
+        <name>FieloEE__TitleRecentRedemptions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TitleRecentRewards --></label>
+        <name>FieloEE__TitleRecentRewards</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TitleRecentTransactions --></label>
+        <name>FieloEE__TitleRecentTransactions</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title Recomend Publish Box --></label>
+        <name>FieloEE__TitleRecomendPublishBox</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Invite your Friend to Fielo --></label>
+        <name>FieloEE__TitleRecommendToAFriend</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title Timeline --></label>
+        <name>FieloEE__TitleTimeLine</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_To --></label>
+        <name>FieloEE__To</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TooManyRecords --></label>
+        <name>FieloEE__TooManyRecords</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Tools --></label>
+        <name>FieloEE__Tools</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Top Products --></label>
+        <name>FieloEE__TopProducts</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Total --></label>
+        <name>FieloEE__Total</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Total Batches --></label>
+        <name>FieloEE__TotalBatches</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Total points --></label>
+        <name>FieloEE__TotalPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Total Redeem Points --></label>
+        <name>FieloEE__TotalRedeemPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction --></label>
+        <name>FieloEE__Transaction</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction Adjust --></label>
+        <name>FieloEE__TransactionAdjust</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction Error Revert Points Used --></label>
+        <name>FieloEE__TransactionErrorRevertPointsUsed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction Member Data --></label>
+        <name>FieloEE__TransactionMemberData</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Transaction Points --></label>
+        <name>FieloEE__TransactionPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction Revert Error --></label>
+        <name>FieloEE__TransactionRevertError</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- TransactionRevertErrorInsufficientPoints --></label>
+        <name>FieloEE__TransactionRevertErrorInsufficientPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction Revert Error No Approved --></label>
+        <name>FieloEE__TransactionRevertErrorNoApproved</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction Revert Error No Processed --></label>
+        <name>FieloEE__TransactionRevertErrorNoProcessed</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction Revert Error Transaction Reverted --></label>
+        <name>FieloEE__TransactionRevertErrorTransactionReverted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction Revert Error Transaction Type Adjust --></label>
+        <name>FieloEE__TransactionRevertErrorTransactionTypeAdjust</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction Revert Sucess --></label>
+        <name>FieloEE__TransactionRevertSucess</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transaction without Member --></label>
+        <name>FieloEE__TransactionWithoutMember</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transactions Settings --></label>
+        <name>FieloEE__TransactionsSettings</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Transparent --></label>
+        <name>FieloEE__Transparent</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Two Blank Sections --></label>
+        <name>FieloEE__TwoBlankSections</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Type --></label>
+        <name>FieloEE__Type</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Unapproved Transaction --></label>
+        <name>FieloEE__UnapprovedTransaction</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Unit Points --></label>
+        <name>FieloEE__UnitPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_LikeOn --></label>
+        <name>FieloEE__Unlike</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Unlimited --></label>
+        <name>FieloEE__Unlimited</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_WishOn --></label>
+        <name>FieloEE__Unwish</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Upload --></label>
+        <name>FieloEE__Upload</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Upload File --></label>
+        <name>FieloEE__UploadFile</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- UploadImage --></label>
+        <name>FieloEE__UploadImage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Upload Photo --></label>
+        <name>FieloEE__UploadPhoto</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Upload Successfull --></label>
+        <name>FieloEE__UploadSuccessfull</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Use --></label>
+        <name>FieloEE__Use</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- User Name --></label>
+        <name>FieloEE__User</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Required Username --></label>
+        <name>FieloEE__UsernameIsRequired</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Value --></label>
+        <name>FieloEE__Value</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- View --></label>
+        <name>FieloEE__View</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- View All --></label>
+        <name>FieloEE__ViewAll</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_View As --></label>
+        <name>FieloEE__ViewAs</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- View in --></label>
+        <name>FieloEE__ViewIn</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_View Voucher --></label>
+        <name>FieloEE__ViewVoucher</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Voucher --></label>
+        <name>FieloEE__Voucher</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- VoucherInformation --></label>
+        <name>FieloEE__VoucherInformation</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Voucher Number --></label>
+        <name>FieloEE__VoucherNumber</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Vouchers to Redeem --></label>
+        <name>FieloEE__VouchersToRedeem</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Waiting for Approval --></label>
+        <name>FieloEE__WaitingForApproval</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Week --></label>
+        <name>FieloEE__Week</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Weekly --></label>
+        <name>FieloEE__Weekly</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Welcome --></label>
+        <name>FieloEE__Welcome</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_Fielo_WishOff --></label>
+        <name>FieloEE__Wish</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Fielo_WishList --></label>
+        <name>FieloEE__WishList</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- You already have selected this reward --></label>
+        <name>FieloEE__YouAlreadyHaveSelectedThisReward</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_YouGotExtraPoints --></label>
+        <name>FieloEE__YouGotExtraPoints</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- zz_deprecated_AccumulatedPoints --></label>
+        <name>FieloEE__YouHaveAccumulated</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- asc --></label>
+        <name>FieloEE__asc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- desc --></label>
+        <name>FieloEE__desc</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- go to Default Promotion --></label>
+        <name>FieloEE__goToDefaultPromotion</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- settingsExpirationPointsPartial --></label>
+        <name>FieloEE__settingsExpirationPointsPartial</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- settingsExpirationPointsPartialCreatedDate --></label>
+        <name>FieloEE__settingsExpirationPointsPartialCreatedDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- settingsExpirationPointsPartialExpirationDate --></label>
+        <name>FieloEE__settingsExpirationPointsPartialExpirationDate</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- settingsExpirationPointsTotal --></label>
+        <name>FieloEE__settingsExpirationPointsTotal</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Back --></label>
+        <name>FieloSVY__Back</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Cancel --></label>
+        <name>FieloSVY__Cancel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- InfoSurveyChangePhoto --></label>
+        <name>FieloSVY__InfoSurveyChangePhoto</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save --></label>
+        <name>FieloSVY__Save</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Save and Close --></label>
+        <name>FieloSVY__SaveAndClose</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Must complete required fields --></label>
+        <name>FieloSVY__SurveyCompleteRequiredFields</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- SurveyCompleted --></label>
+        <name>FieloSVY__SurveyCompleted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status Answered --></label>
+        <name>FieloSVY__SurveyControllerAnswered</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Type Checkboxes --></label>
+        <name>FieloSVY__SurveyControllerCheckboxes</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status New --></label>
+        <name>FieloSVY__SurveyControllerNew</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Status Submitted --></label>
+        <name>FieloSVY__SurveyControllerSubmitted</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Free Text Field Type --></label>
+        <name>FieloSVY__SurveyFreeTextFieldType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Survey Header Label --></label>
+        <name>FieloSVY__SurveyHeaderLabel</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Resume Survey Command Link --></label>
+        <name>FieloSVY__SurveyListResumeSurvey</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Title Survey --></label>
+        <name>FieloSVY__SurveyListTitle</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Numeric Field Type --></label>
+        <name>FieloSVY__SurveyNumericFieldType</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Survey Required Fields --></label>
+        <name>FieloSVY__SurveyRequiredFields</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Submission was successful --></label>
+        <name>FieloSVY__SurveySubmissionMessage</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- Submit Button --></label>
+        <name>FieloSVY__SurveySubmitButton</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- aaaabcd --></label>
+        <name>aaaabcd</name>
+    </customLabels>
+    <customLabels>
+        <label><!-- analytics_track_id --></label>
+        <name>analytics_track_id</name>
+    </customLabels>
+    <customPageWebLinks>
+        <label><!-- Challenge Splash --></label>
+        <name>ChallengeSplash</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
+        <label><!-- Frontend Splash --></label>
+        <name>FrontendSplash</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
+        <label><!-- Member Splash --></label>
+        <name>MemberSplash</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
+        <label><!-- Promotions Splash --></label>
+        <name>PromotionsSplash</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
+        <label><!-- Redemption Splash --></label>
+        <name>RedemptionSplash</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
+        <label><!-- Reward Splash --></label>
+        <name>RewardSplash</name>
+    </customPageWebLinks>
+    <customPageWebLinks>
+        <label><!-- Transaction Splash --></label>
+        <name>TransactionSplash</name>
+    </customPageWebLinks>
+    <customTabs>
+        <label><!-- Front End --></label>
+        <name>FrontEnd</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Gamify --></label>
+        <name>Gamify</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Fielo Reports --></label>
+        <name>LoyaltyReport</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Member Portal --></label>
+        <name>MemberPortal</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Mobile --></label>
+        <name>Mobile</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Quickstart --></label>
+        <name>Quickstart</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Redeem Points --></label>
+        <name>RedeemPoints</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- Settings --></label>
+        <name>Settings</name>
+    </customTabs>
+    <customTabs>
+        <label><!-- TestApp --></label>
+        <name>TestApp</name>
+    </customTabs>
+    <flowDefinitions>
+        <flows>
+            <fullName>New_Test-1</fullName>
+        </flows>
+        <fullName>New_Test</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>Survey-1</fullName>
+        </flows>
+        <fullName>Survey</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>A-4</fullName>
+        </flows>
+        <flows>
+            <fullName>A-3</fullName>
+        </flows>
+        <fullName>A</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>custom_settings-1</fullName>
+        </flows>
+        <flows>
+            <fullName>custom_settings-2</fullName>
+        </flows>
+        <fullName>custom_settings</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>NewBuild-2</fullName>
+        </flows>
+        <fullName>NewBuild</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>C-1</fullName>
+        </flows>
+        <fullName>C</fullName>
+    </flowDefinitions>
+    <flowDefinitions>
+        <flows>
+            <fullName>TestingAccountMai-1</fullName>
+        </flows>
+        <fullName>TestingAccountMai</fullName>
+    </flowDefinitions>
+    <quickActions>
+        <label><!-- New Prospect --></label>
+        <name>New_Prospect</name>
+    </quickActions>
+    <reportTypes>
+        <description><!-- Field Trip with AutoRabitTest with ARVault --></description>
+        <label><!-- Field Trip with AutoRabitTest with ARVault --></label>
+        <name>Field_Trip_with_AutoRabitTest_with_ARVault</name>
+        <sections>
+            <label><!-- ARVault --></label>
+            <name>ARVault</name>
+        </sections>
+        <sections>
+            <label><!-- AutoRabitTest --></label>
+            <name>AutoRabitTest</name>
+        </sections>
+        <sections>
+            <label><!-- Field Trip --></label>
+            <name>Field Trip</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Points By Branches --></description>
+        <label><!-- Points By Branches --></label>
+        <name>PointsByBranches</name>
+        <sections>
+            <label><!-- Branches --></label>
+            <name>Branches</name>
+        </sections>
+        <sections>
+            <label><!-- Points --></label>
+            <name>Points</name>
+        </sections>
+        <sections>
+            <label><!-- Transactions --></label>
+            <name>Transactions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Points By Promotions --></description>
+        <label><!-- Points By Promotions --></label>
+        <name>PointsByPromotions</name>
+        <sections>
+            <label><!-- Points --></label>
+            <name>Points</name>
+        </sections>
+        <sections>
+            <label><!-- Promotions --></label>
+            <name>Promotions</name>
+        </sections>
+    </reportTypes>
+    <reportTypes>
+        <description><!-- Redemptions --></description>
+        <label><!-- Redemptions --></label>
+        <name>Redemptions</name>
+        <sections>
+            <label><!-- Redemptionts --></label>
+            <name>Redemptionts</name>
+        </sections>
+    </reportTypes>
+</Translations>

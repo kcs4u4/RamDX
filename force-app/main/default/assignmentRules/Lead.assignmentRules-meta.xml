@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>Second rule</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>Test1</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>$Permission.New_Permission &lt;&gt; Null</formula>
+            <template>unfiled$public/asdasd</template>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>

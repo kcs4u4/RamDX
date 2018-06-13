@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_VAlidta</fullName>
+    <active>false</active>
+    <errorConditionFormula>Branch1__r.Branch2__c  &lt;&gt; Null</errorConditionFormula>
+    <errorMessage>NEW ERROR</errorMessage>
+</ValidationRule>

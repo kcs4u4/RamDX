@@ -1,0 +1,28 @@
+<apex:page showHeader="true" sidebar="true" standardController="FieloEE__Member__c" extensions="FieloEE.MemberSegmentsViewBackEndExtension">
+    <apex:form >
+        <apex:pageBlock title="{!IF(fullList, FieloEE__Member__c.FieloEE__Name__c, '')}">
+            <apex:pageMessage summary="{!$Label.fieloee__noresultsfound}" severity="info" strength="3" rendered="{!segmentsToShow.size < 1}"/>
+
+            <apex:pageBlockTable id="tables" value="{!segmentsToShow}" var="s" rendered="{!segmentsToShow.size > 0}">
+                <apex:column headerValue="{!$ObjectType.FieloEE__RedemptionRule__c.fields.Name.label}">
+                    <apex:outputLink value="/{!s['Id']}" target="_blank" >{!s.name}</apex:outputLink>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:commandLink value="{!$Label.fieloee__gotolist} ({!quantity}) »"  onclick="window.open('/apex/MemberSegmentsViewBackEnd?id={!FieloEE__Member__c.Id}&fullList=true', '_blank')" rendered="{!!fullList && segmentsToShow.size > 0}"/>
+
+            <center>
+                <apex:panelGroup rendered="{!segmentsToShow.size < listSize}" id="buttons" >
+                    <apex:commandLink action="{!segmentPaginator.first}" rendered="{!segmentPaginator.hasPrevious && fullList}" reRender="tables, buttons">{!$Label.fieloee__first}</apex:commandLink>
+                    &nbsp;
+                    <apex:commandLink action="{!segmentPaginator.previous}" rendered="{!segmentPaginator.hasPrevious && fullList}" reRender="tables, buttons">{!$Label.fieloee__previous}</apex:commandLink>
+                    &nbsp;
+                    <apex:outputText value=" {!ActualPage}/{!TotalPages} " rendered="{!fullList}"/>
+                    <apex:commandLink action="{!segmentPaginator.next}" rendered="{!segmentPaginator.hasNext && fullList}" reRender="tables, buttons">{!$Label.fieloee__next}</apex:commandLink>
+                    &nbsp;
+                    <apex:commandLink action="{!segmentPaginator.last}" rendered="{!segmentPaginator.hasNext && fullList}" reRender="tables, buttons">{!$Label.fieloee__last}</apex:commandLink>
+                </apex:panelGroup>
+            </center>
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Branch2_Sharing_Rule1</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Branch2 Sharing Rule1</label>
+        <sharedTo>
+            <group>Test1</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>notEqual</operation>
+            <value>NULL</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>cscs</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>cscs</label>
+        <sharedTo>
+            <roleAndSubordinatesInternal>DirectorChannelSales</roleAndSubordinatesInternal>
+        </sharedTo>
+        <criteriaItems>
+            <field>Branch_Code2__c</field>
+            <operation>notEqual</operation>
+            <value>Null</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>scccd</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>scc</label>
+        <sharedTo>
+            <roleAndSubordinates>CEO3</roleAndSubordinates>
+        </sharedTo>
+        <criteriaItems>
+            <field>Name</field>
+            <operation>notEqual</operation>
+            <value>Null</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>Branch2_Sharing_Rule</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Branch2 Sharing Rule</label>
+        <sharedTo>
+            <group>Test1</group>
+        </sharedTo>
+        <sharedFrom>
+            <queue>Test1</queue>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

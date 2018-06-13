@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ScheduleDateRequiered</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( ISPICKVAL(FieloEE__DeliveryOptions__c , &#39;Schedule&#39;) ,
+IF(  ISNULL( FieloEE__DateSchedule__c ) , true, false)
+, false)</errorConditionFormula>
+    <errorDisplayField>FieloEE__DateSchedule__c</errorDisplayField>
+    <errorMessage>Scheduled Date is required</errorMessage>
+</ValidationRule>

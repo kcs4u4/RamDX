@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<apex:page controller="FieloEE.XMLExportController" contentType="text/xml#{!fileName}Export.xml" showheader="false" sidebar="false" expires="1" >
+{!xmlBody}    
+</apex:page>

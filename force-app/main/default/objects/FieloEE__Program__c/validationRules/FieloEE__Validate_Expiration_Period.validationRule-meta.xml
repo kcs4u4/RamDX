@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Validate_Expiration_Period</fullName>
+    <active>true</active>
+    <errorConditionFormula>FieloEE__ExpirationPeriod__c &lt; 0</errorConditionFormula>
+    <errorDisplayField>FieloEE__ExpirationPeriod__c</errorDisplayField>
+    <errorMessage>Value cannot be negative</errorMessage>
+</ValidationRule>

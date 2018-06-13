@@ -1,0 +1,629 @@
+<apex:page id="page" standardController="FieloCH__Mission__c" extensions="FieloCH.MissionEditBackEndExtension">
+   <apex:includeScript value="{!URLFOR($Resource.FieloEE__js,'/jquery.js')}"/>
+   <!--<apex:includeScript value="{!URLFOR($Resource.FieloEE__js,'/criteriasFunctions.js')}"/>-->
+
+   <!-- Font Awesome -->
+        <apex:stylesheet value="{!URLFOR($Resource.FieloCH__challenge_images, 'FontAwesome/css/font-awesome.css')}"/>
+        <!--[if IE 7]>
+            <apex:stylesheet value="{!URLFOR($Resource.challenge_images, 'FontAwesome/css/font-awesome-ie7.css')}"/>
+        <![endif]-->
+    <!-- Fin Font Awesome -->
+    <style type="text/css">
+        span.dateInput span.dateFormat { display:none; }
+        .firstRadio { border-bottom: 2px solid #8E9DBE !important; }
+        .limitCels { vertical-align: middle !important; }
+    </style>
+    <script>
+        var mapFieldTypes = new Array();
+        var mapFieldTypesRelated = new Array();
+        var aOptions = new Array();
+        var operators = new Array();
+        var operObjective = new Array();
+
+        <apex:repeat value="{!mapFieldTypes}" var="f" >
+            mapFieldTypes['{!f}'] = '{!mapFieldTypes[f]}';
+        </apex:repeat>
+
+        <apex:repeat value="{!mapFieldTypesRelated}" var="f" >
+            mapFieldTypesRelated['{!f}'] = '{!mapFieldTypesRelated[f]}';
+        </apex:repeat>
+
+        <apex:repeat value="{!mapOptions}" var="ft" >
+            var i = 0;
+            aOptions['{!ft}'] = new Array();
+            <apex:repeat value="{!mapOptions[ft]}" var="o" >
+                aOptions['{!ft}'][i] = new Option('{!JSENCODE(o.Label)}', '{!JSENCODE(o.Value)}', false, false);
+                i++;
+            </apex:repeat>
+        </apex:repeat>
+
+        pos = 0;
+        <apex:repeat value="{!operators}" var="opr" >
+            operators[pos]= new Option('{!opr.Label}','{!opr.Value}',false,false);
+            pos++;
+        </apex:repeat>
+
+        ind = 0;
+        <apex:repeat value="{!objOperators}" var="opr" >
+            operObjective[ind]= new Option('{!opr.Label}','{!opr.Value}',false,false);
+            ind++;
+        </apex:repeat>
+
+        //ONLOAD
+        window.onload = function (){
+            $('.name').focus();
+
+            displayFieldName('{!JSENCODE(mission.FieloCH__ObjectiveType__c)}');
+
+            //Set the type saved
+            $('input[name=types]').each( function(){
+                if('{!JSENCODE(mission.FieloCH__ObjectiveType__c)}' == this.value){
+                    $(this).attr('checked', 'checked');
+                }
+            });
+
+            showValue();
+        }
+
+        function fillObjectiveOperator(selectOperators){
+            var oInputOper = document.getElementById(selectOperators);
+            var selectedValue = document.getElementById(selectOperators).value;
+
+            deleteOperator(oInputOper);
+            oInputOper.options.add(new Option('--None--', '', false, false));
+
+            if(operObjective.length > 1){
+                if(selectedValue != null){
+                    for(i = 1; i < operObjective.length ; i++){
+                        if( selectedValue.indexOf(operObjective[i].value) >= 0){
+                            oInputOper.options.add(new Option(operObjective[i].text, operObjective[i].value, true, true));
+                        }else{
+                            oInputOper.options.add(new Option(operObjective[i].text, operObjective[i].value, false, false));
+                        }
+                    }
+                }
+            }
+        }
+
+        function displayFieldName(objectiveType){
+            if(objectiveType != null && objectiveType != ''){
+                $( '.objectiveOperator' ).removeAttr( 'disabled' );
+                $( '.dynamic' ).removeAttr( 'disabled' );
+                $( '.member' ).removeAttr( 'disabled' );
+                $( '.value' ).removeAttr( 'disabled' );
+
+                if(objectiveType == 'Counter'){
+                    $( '.fieldName' ).attr('disabled', 'disabled');
+                }else{
+                    $( '.fieldName' ).removeAttr( 'disabled' );
+                }
+            }else{
+                $( '.objectiveOperator' ).attr('disabled', 'disabled');
+                $( '.dynamic' ).attr('disabled', 'disabled');
+                $( '.member' ).attr('disabled', 'disabled');
+                $( '.value' ).attr('disabled', 'disabled');
+                $( '.fieldName' ).attr('disabled', 'disabled');
+            }
+        }
+
+        function loadSecondary(fieldName, idSecondary, idHiddenSecondary, idText, idDate,idNumber,idBoolean,idList,idOperator, mapFieldTypes, aOptions, operators ){
+            var oSecondary = document.getElementById(idSecondary);
+            var initValue = initialValue;
+            var opSelected = optionList;
+
+            if(mapFieldTypes[fieldName.value] == 'REFERENCE'){
+               oSecondary.style.display = 'inline';
+               oSecondary.options.length = 0;
+
+               var apiName = '{!FieloCH__Mission__c.FieloCH__Object__c}' + '.' + fieldName.value;
+               {!$RemoteAction.MissionEditBackEndExtension.getSecondaryFields}(apiName, function (result, event) {
+                   var resultSplited = result.split(',');
+
+                   var hiddenSecondaryValue = null;
+                   var hiddenSecondary = document.getElementById(idHiddenSecondary);
+                   if(hiddenSecondary != null)
+                       hiddenSecondaryValue = hiddenSecondary.value;
+
+                   for(var i = 0 ; i < resultSplited.length; i++){
+                       var item = resultSplited[i].split('|');
+                       oSecondary[i] = new Option(item[1], item[0], false, (item[0] == hiddenSecondaryValue));
+                       if(item[2] != null){
+                           mapFieldTypes[item[0]] = item[2];
+                           if(mapFieldTypes[item[0]] == 'List'){
+                               {!$RemoteAction.MissionEditBackEndExtension.getPicklistValues}(item[0],function(result1,event){
+                                   var resultSplited = result1.split(',');
+                                   for(var i = 0; i < resultSplited.length ; i++){
+                                       var item = resultSplited[i].split('|');
+                                       if(aOptions[item[0]] == null)
+                                           aOptions[item[0]] = new Array();
+                                       aOptions[item[0]][i] = new Option(item[2], item[1], false, false);
+                                   }
+                                   if(hiddenSecondary != null){
+                                       initialValue = initValue;
+                                       optionList = opSelected;
+                                       analizeRow(idHiddenSecondary, idText, idDate,idNumber,idBoolean,idList,idOperator, mapFieldTypes, aOptions, operators);
+                                   }
+
+                               }, {escape:true});
+                           }
+                       }
+                   }
+
+                   if(hiddenSecondary != null){
+                       initialValue = initValue;
+                       optionList = opSelected;
+                       analizeRow(idHiddenSecondary, idText, idDate,idNumber,idBoolean,idList,idOperator, mapFieldTypes, aOptions, operators);
+                   }
+               }, {escape:true});
+            } else {
+               oSecondary.style.display = 'none';
+            }
+        }
+
+        function fillValuePicklist(valueId, idText, idList, selectedValues){
+            var lista = document.getElementById(idList);
+            var oInputText = document.getElementById(idText);
+            var oInputValue = document.getElementById(valueId);
+            var sValues = document.getElementById(selectedValues);
+
+            try{
+                sValue = oInputValue.options[oInputValue.selectedIndex].value;
+            }catch (e){
+                sValue = oInputValue.value;
+            }
+            removeOptions(lista);
+
+            if( aOptions[sValue] != undefined ){
+                for (var i = 0; i < aOptions[sValue].length; i++) {
+                    lista.add( new Option( aOptions[sValue][i].value , aOptions[sValue][i].value, false, sValues.value.indexOf(aOptions[sValue][i].value) >= 0) );
+                }
+            }
+        }
+
+        function analizeRow(value, idText, idDate,idNumber,idBoolean,idList,idOperator, mapFieldTypes, aOptions, operators){
+            var oInputText = document.getElementById(idText);
+            var oInputDate = document.getElementById(idDate);
+            var oInputNumber = document.getElementById(idNumber);
+            var oInputBoolean = document.getElementById(idBoolean);
+            var oInputList = document.getElementById(idList);
+            var oInputValue = document.getElementById(value);
+
+            try{
+                sValue = oInputValue.options[oInputValue.selectedIndex].value;
+            }catch (e){
+                sValue = oInputValue.value;
+            }
+
+            oInputDate.style.display = mapFieldTypes[sValue] == 'DATE' ? 'inline': 'none';
+            oInputNumber.style.display = mapFieldTypes[sValue] == 'Number' ? 'inline': 'none';
+            oInputText.style.display = mapFieldTypes[sValue] == 'Text' || mapFieldTypes[sValue] == 'REFERENCE' || mapFieldTypes[sValue] == null ? 'inline': 'none';
+            oInputBoolean.style.display = mapFieldTypes[sValue] == 'Boolean' ? 'inline': 'none';
+            oInputList.style.display = mapFieldTypes[sValue] == 'List' ? 'inline': 'none';
+
+            if(mapFieldTypes[sValue] == null){
+                document.getElementById(idText).disabled = true;
+                document.getElementById(idText).value = null;
+            }else{
+                document.getElementById(idText).disabled = false;
+            }
+
+            var sValueSplitted = sValue.split('.');
+            if(mapFieldTypes[sValue] == 'List'){
+                if( sValueSplitted.length > 1 ){
+                    sValue = sValueSplitted[1];
+                }
+
+                var plValues = aOptions[sValue];
+                deleteOperator(oInputList);
+
+                var options = optionList.split(',');
+                for(var i = 0; i < plValues.length ; i++){
+                    oInputList.options.add(new Option(plValues[i].text, plValues[i].value, false, contains(options, plValues[i].value)) );
+                }
+                oInputList.size = (plValues.length);
+            }
+            if( sValueSplitted.length > 1 ){
+                var campo = sValueSplitted[0]+'.'+sValueSplitted[1];
+                fillOperators(idOperator, campo, mapFieldTypes, operators);
+            } else {
+                fillOperators(idOperator, sValue, mapFieldTypes, operators);
+            }
+        }
+
+        function fillValue(selectInput, idSecondary ){
+            var oSecondary = document.getElementById(idSecondary);
+            if(selectInput.size > 0){
+                oSecondary.value = null;
+                var aux;
+                for(i = selectInput.selectedIndex ; i < selectInput.length ; i++){
+                    if(selectInput[i].selected){
+                        if(oSecondary.value == ''){
+                            oSecondary.value = selectInput[i].value;
+                        }else{
+                            oSecondary.value = oSecondary.value + ', ' + selectInput[i].value;
+                        }
+                    }
+                }
+            }else{
+                oSecondary.value = selectInput[selectInput.selectedIndex].value;
+            }
+        }
+
+        function showFields(input , idGrp, idGrpField){
+            if(input.checked){
+                document.getElementById(idGrp).style.display = 'none';
+                document.getElementById(idGrpField).style.display = 'block';
+            }else{
+                document.getElementById(idGrp).style.display = 'block';
+                document.getElementById(idGrpField).style.display = 'none';
+            }
+        }
+
+        function removeOptions(obj) {
+            if (obj == null) return;
+            if (obj.options == null) return;
+            obj.options.length = 0;
+        }
+
+        function deleteOperator(oInputOperator){
+            j = oInputOperator.options.length;
+            for(i=0;i<j;i++)
+                oInputOperator.options[0]= null;
+        }
+
+        function InputOper(initialValue, operators,oInputOperator){
+            if(initialValue != operators[i].value)
+                oInputOperator.options.add(new Option(operators[i].text,operators[i].value,false,false));
+            else
+                oInputOperator.options.add(new Option(operators[i].text,operators[i].value,true,true));
+        }
+
+        function clearSecondary(idHiddenSecondary){
+           document.getElementById(idHiddenSecondary).value='';
+        }
+
+        function setValue(select, input, check){
+            if(select.value == null){
+                document.getElementById(input).value = document.getElementById(select).value;
+            }else{
+                document.getElementById(input).value = select.value;
+            }
+
+            if(!check.checked){
+                document.getElementById(input).value = '';
+            }
+        }
+
+        function contains(arr, findValue) {
+            var i = arr.length;
+            var arrayValue;
+            while (i--) {
+                arrayValue = arr[i];
+                if(arrayValue[0] == ' '){
+                    arrayValue = arrayValue.substr(1 , arrayValue.length);
+                }
+                if (arrayValue === findValue) return true;
+            }
+            return false;
+        }
+
+        function fillOperators(idOperator,sValue, mapFieldTypes, operators){
+            var oInputOperator = document.getElementById(idOperator);
+            deleteOperator(oInputOperator);
+
+            if(mapFieldTypes[sValue]=='Boolean' || mapFieldTypes[sValue]=='List'){
+                for(i=0;i<operators.length;i++)
+                    if(operators[i].value=='not equals' || operators[i].value=='equals')
+                        InputOper(initialValue, operators, oInputOperator);
+            }else{
+                if(mapFieldTypes[sValue]=='Text' || mapFieldTypes[sValue] == 'REFERENCE'){
+                    for(i=0;i<operators.length;i++)
+                        if(operators[i].value=='contains' || operators[i].value=='not contains' || operators[i].value=='equals' || operators[i].value=='not equals')
+                            InputOper(initialValue, operators, oInputOperator);
+                }else{
+                    if(mapFieldTypes[sValue]=='Number' || mapFieldTypes[sValue]=='DATE'){
+                        for(i=0;i<operators.length;i++){
+                            if(operators[i].value=='not equals' && mapFieldTypes[sValue]=='Number')
+                                InputOper(initialValue, operators, oInputOperator);
+
+                            if(operators[i].value=='less than' || operators[i].value=='less or equal' || operators[i].value=='greater than' || operators[i].value=='greater or equal' || operators[i].value=='equals' )
+                                InputOper(initialValue, operators, oInputOperator);
+                        }
+                    }else{
+                        oInputOperator.options.add(new Option(operators[0].text,operators[0].value,false,false));
+                    }
+                }
+            }
+        }
+    </script>
+    <apex:sectionHeader title="{!$ObjectType.FieloCH__Mission__c.Label} {!FieloCH__Mission__c.Name}"/>
+
+    <apex:form id="form">
+        <!-- Challenge by Objective with Mission WithoutObjective OR Mission used in any active Challenges -->
+        <apex:pageBlock rendered="{!IF( OR( AND(challenge.FieloCH__CompetitionType__c == 'Objective', missionType == 'WithoutObjective'), activeChallenges.size > 0) , true, false)}">
+            <apex:pageMessages />
+            <apex:pageBlockTable value="{!activeChallenges}" var="c" rendered="{!activeChallenges.size > 0}">
+                <apex:column headerValue="{!$Label.fieloch__reason}">
+                    <apex:outputText value="{!$Label.fieloch__activechallenge}" />
+                </apex:column>
+                <apex:column headerValue="{!$Label.fieloch__section}">
+                    <apex:outputLink value="/{!c.Challenge__r.Id}">
+                        {!c.Challenge__r.Name}
+                    </apex:outputLink>
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandButton value="{!$Label.fieloee__back}" action="{!doReturn}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+
+        <!-- Challenge by Objective with Mission WithoutObjective OR Mission used in any active Challenges -->
+        <apex:pageBlock id="pageBlock" rendered="{!IF( OR( AND(challenge.FieloCH__CompetitionType__c == 'Objective', missionType == 'WithoutObjective'), activeChallenges.size > 0), false , true)}">
+            <apex:pageMessages />
+            <apex:pageBlockButtons >
+                <apex:commandButton value="{!$Label.fieloee__save}" action="{!doSave}" />
+                <apex:commandButton value="{!$Label.fieloee__saveandnew}" action="{!doSaveAndNew}"/>
+                <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!doCancel}">
+                </apex:commandButton>
+            </apex:pageBlockButtons>
+
+            <!-- Mission Details -->
+            <apex:pageBlockSection title="{!$Label.fieloee__information}" columns="1" collapsible="false">
+                <apex:inputField value="{!FieloCH__Mission__c.Name}" styleClass="name"/>
+                <apex:inputField value="{!FieloCH__Mission__c.FieloCH__Description__c}"/>
+                <apex:inputField value="{!FieloCH__Mission__c.FieloCH__Object__c}" Id="selectedObject">
+                    <apex:actionSupport event="onchange" action="{!changeObjectType}" onsubmit="$('.icon-spinner').css({'display' : 'inline-block'});"/>
+                    <apex:actionStatus id="status" startStyleClass="icon-spinner icon-spin icon-2x"/>
+                </apex:inputField>
+            </apex:pageBlockSection>
+
+            <!-- Criteria Table -->
+            <apex:variable id="contador" var="contador" value="1" />
+            <apex:pageBlockSection title="{!$Label.fieloee__criterias}" columns="1" collapsible="false">
+                <apex:pageBlockTable value="{!criterias}" var="criteriaWrapper" styleclass="criteriaTable">
+                    <apex:column value="{! contador }." />
+                    <apex:column headerValue="{!$Label.fieloee__field}" >
+                        <apex:selectList styleClass="criteriaFields" id="criteriaFields" size="1" onchange="clearSecondary('{!$Component.secondaryHidden}');loadSecondary(this, 'auxSelect_{!contador}',null, '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators}', mapFieldTypes, aOptions, operators); analizeRow('{!$Component.criteriaFields}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators}', mapFieldTypes, aOptions, operators, '{!$Component.optionFields}'); setMatchCriterias();" value="{!criteriaWrapper.criteria.FieloCH__FieldName__c}">
+                            <apex:selectOptions value="{!criteriaFields}" />
+                        </apex:selectList>
+                        <apex:inputHidden value="{!criteriaWrapper.secondary}" id="secondaryHidden"/>
+                        <select id="auxSelect_{!contador}" class="hidden" onchange="fillValue(this,'{!$Component.secondaryHidden}');analizeRow('{!$Component.secondaryHidden}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators}', mapFieldTypes, aOptions, operators, '{!$Component.optionFields}');" ></select>
+                        <script>
+                            if('{!JSENCODE(Mission__c.Object__c)}' == ''){
+                                $( '.criteriaFields' ).attr('disabled', 'disabled');
+                            }
+
+                            initialValue = '{!JSENCODE(criteriaWrapper.criteria.Operator__c)}';
+                            optionList = '{!JSENCODE(criteriaWrapper.listValue)}';
+                            loadSecondary(document.getElementById('{!$Component.criteriaFields}'), 'auxSelect_{!contador}','{!$Component.secondaryHidden}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators}', mapFieldTypes, aOptions, operators);
+                        </script>
+
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.FieloCH__Mission__c.Fields.FieloCH__Operator__c.Label}" >
+                        <apex:inputField value="{!criteriaWrapper.criteria.FieloCH__Operator__c}" Id="operators" styleClass="operators"/>
+                        <script>
+                            if('{!JSENCODE(FieloCH__Mission__c.FieloCH__Object__c)}' == ''){
+                                $( '.operators' ).attr('disabled', 'disabled');
+                            }
+                            var initialValue = document.getElementById('{!$Component.operators}').value;
+                        </script>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.fieloee__value}">
+                        <apex:inputField id="texto" required="false" value="{!criteriaWrapper.criteria.FieloCH__Values__c}" />
+                        <apex:inputField id="fecha" required="false" value="{!criteriaWrapper.criteria.FieloCH__DateValue__c}"/>
+                        <apex:inputField id="numero" required="false" value="{!criteriaWrapper.criteria.FieloCH__NumberValue__c}"/>
+                        <apex:inputField id="boolean" required="false" value="{!criteriaWrapper.criteria.FieloCH__BooleanValue__c}"/>
+
+                        <apex:inputHidden value="{!criteriaWrapper.listValue}" id="listaHidden"/>
+                        <select size="3" id="lista_{!contador}" onchange="fillValue(this,'{!$Component.listaHidden}'); return false;" multiple="multiple">
+                            <apex:repeat value="{!optionsValues}" var="o">
+                                <option value="{!o.value}">{!o.label}</option>
+                            </apex:repeat>
+                        </select>
+                        <script>
+                           if('{!JSENCODE(criteriaWrapper.secondary)}'==''){
+                               optionList = document.getElementById('{!$Component.listaHidden}').value;
+                               analizeRow('{!$Component.criteriaFields}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators}', mapFieldTypes, aOptions, operators, '{!$Component.optionFields}');
+                               fillValuePicklist('{!$Component.criteriaFields}','{!$Component.texto}','{!$Component.listaHidden}');
+                           }
+                        </script>
+                    </apex:column>
+                    <apex:column >
+                        <apex:panelGroup rendered="{!Criterias.size > 1}">
+                            <apex:variable var="contador" value="{! Text(Value(contador) + 1)}" />
+                            <!--{!$Label.FieloEE__And}-->
+                        </apex:panelGroup>
+                    </apex:column>
+                </apex:pageBlockTable>
+                <apex:commandLink value="{!$Label.fieloee__add}" action="{!addCriteria}" />
+
+                <!-- Match Criterias Section -->
+                <span>{!$Label.fieloch__matchcriteria}</span>
+                <apex:panelGrid columns="2" id="logicalExpression" >
+                    <apex:selectRadio value="{!matchCriteriaType}" styleClass="logicalType" layout="PageDirection" onchange="setLogicalInput(this.value);" >
+                        <apex:selectOptions value="{!logicType}"/>
+                    </apex:selectRadio>
+                    <apex:inputTextarea styleclass="expresion" value="{!FieloCH__Mission__c.FieloCH__LogicalExpression__c}" />
+                </apex:panelGrid>
+            </apex:pageBlockSection>
+            <script>
+                setLogicalInput('{!matchCriteriaType}');
+                function setLogicalInput(valor){
+                    var qCriterias = 0;
+                    $(".criteriaFields ").each(function () {
+                        if($(this).val() != ''){
+                            qCriterias++;
+                        }
+                    });
+                    if(valor == 'CUSTOM'){
+                        var logicFormula = setLogicalExpression(qCriterias, 'All');
+                        if('{!FieloCH__Mission__c.FieloCH__LogicalExpression__c}' == ''){
+                            logicFormula = setLogicalExpression(qCriterias, 'All');
+                        }else{
+                            logicFormula = '{!FieloCH__Mission__c.FieloCH__LogicalExpression__c}';
+                        }
+                        logicFormula = logicFormula.trim();
+                        $('.expresion').val( logicFormula );
+                        $('.expresion').show();
+                    }else{
+                        if( qCriterias > 0 && valor == ''){
+                            $('[type=radio]').each(function(){
+                                $(this).removeAttr('disabled','disabled');
+                                if( $(this).val() == 'ALL' ){
+                                    $(this).prop('checked', true);
+                                }
+                            });
+                        }
+                        $('.expresion').hide();
+                    }
+                }
+
+                setMatchCriterias();
+                function setMatchCriterias(){
+                    //Get qCriterias
+                    var qCriterias = 0;
+                    $(".criteriaFields ").each(function () {
+                        if($(this).val() != ''){
+                            qCriterias++;
+                        }
+                    });
+
+                    //Case of Edit
+                    if(qCriterias > 0){
+                        $('.logicalType').removeAttr('disabled','disabled');
+                        $('[type=radio]').each(function(){
+                            $(this).removeAttr('disabled','disabled');
+                            if( $(this).val() == '{!matchCriteriaType}' ){
+                                $(this).prop('checked', true);
+                            }
+                        });
+                        setLogicalInput('{!matchCriteriaType}');
+                    //Case of New
+                    }else{
+                        $('.logicalType').attr('disabled','disabled');
+                        $('[type=radio]').each(function(){
+                            $(this).attr('disabled','disabled');
+                            $(this).prop('checked', false);
+                        });
+                        setLogicalInput('');
+                    }
+                }
+
+                function setLogicalExpression(qMissions, tipo){
+                    var concatenator;
+                    if(tipo.toUpperCase() == 'ALL'){
+                        concatenator = ' AND ';
+                    }
+                    if(tipo.toUpperCase() == 'ANY'){
+                        concatenator = ' OR ';
+                    }
+
+                    var formula = '';
+                    var aux = '';
+
+                    aux = concatenator + qMissions;
+                    if(qMissions > 2){
+                        formula = '(' + setLogicalExpression(qMissions - 1, tipo) + ')' + aux;
+                    }else if(qMissions == 2){
+                        formula = setLogicalExpression(qMissions - 1, tipo) + aux;
+                        if( formula.indexOf(concatenator) == 0 ){
+                            formula = formula.replace(concatenator, '');
+                        }
+                    }else if(qMissions == 1){
+                        formula = aux;
+                        formula = formula.replace(concatenator, '');
+                    }
+                    return formula;
+                }
+            </script>
+
+            <!-- Objetive Details -->
+            <apex:pageBlockSection Id="Objective" title="{!$Label.fieloch__objective}" columns="1" collapsible="false">
+                <apex:panelGroup >
+                    <table style="width: 100% !important; background-color: #F8F8D8 !important;" cellspacing="0">
+                        <apex:variable value="0" var="i"/>
+                        <apex:inputHidden value="{!FieloCH__Mission__c.FieloCH__ObjectiveType__c}" Id="objectiveType" />
+                        <apex:inputHidden value="{!FieloCH__Mission__c.FieloCH__FieldName__c}" Id="fieldSelected"/>
+                        <apex:repeat value="{!objectiveType}" var="radioItem" Id="types">
+                            <apex:panelGroup rendered="{!radioItem.Value == 'Counter'}">
+                                <tr>
+                                    <td colspan="2" class="firstRadio">
+                                        <input id="type{!i}" type="radio" onchange="displayFieldName(this.value);document.getElementById('{!$Component.objectiveType}').value = this.value;" value="{!radioItem.Value}" name="types" />
+                                        <label for="type{!i}" class="labelCol">{!radioItem.Label}</label>
+                                    </td>
+                                    <apex:panelGroup rendered="{!missionType == 'WithObjective'}">
+                                        <td rowspan="4" valign="center" style="padding: 0 20px; vertical-align: middle !important; width: 50%;">
+                                            <table style="margin: 0 auto;">
+                                                <tr>
+                                                    <td>
+                                                        <label class="labelCol" for="objectiveOperator">{!$ObjectType.Mission__c.Fields['Operator__c'].Label}</label>
+                                                    </td>
+                                                    <td>
+                                                        <apex:inputField Id="objectiveOperator" value="{!FieloCH__Mission__c.FieloCH__Operator__c}" styleClass="objectiveOperator"/>
+                                                        <script>
+                                                            fillObjectiveOperator('{!$Component.objectiveOperator}');
+                                                        </script>
+                                                    </td>
+                                                </tr>
+                                                  <tr>
+                                                    <td style="{!If(challenge.FieloCH__Mode__c != 'Teams', 'display:table-cell', 'display:none')}">
+                                                      <label class="labelCol" for="objectiveField">{!$ObjectType.FieloCH__Mission__c.Fields['ObjectiveField__c'].Label}</label>
+                                                    </td>
+                                                    <td style="{!If(challenge.FieloCH__Mode__c != 'Teams', 'display:table-cell', 'display:none')}">
+                                                        <apex:inputField Id="dynamic" value="{!FieloCH__Mission__c.FieloCH__DynamicObjective__c}" onclick="showValue(this);" styleClass="dynamic" label=""/>
+                                                        <script>
+                                                            function showValue(){
+                                                                if($('.dynamic').prop('checked') == true){
+                                                                  $('.value').hide();
+                                                                  $('.member').show();
+                                                                }else{
+                                                                  $('.value').show();
+                                                                  $('.member').hide();
+                                                                }
+                                                            }
+                                                        </script>
+                                                    </td>
+                                                  </tr>
+                                                <tr>
+                                                    <td>
+                                                        <label class="labelCol" for="value">{!$ObjectType.FieloCH__Mission__c.Fields['ObjectiveValue__c'].Label}</label>
+                                                    </td>
+                                                    <td>
+                                                        <apex:inputField Id="value" value="{!FieloCH__Mission__c.FieloCH__ObjectiveValue__c}" styleClass="value"/>
+                                                        <apex:selectList value="{!FieloCH__Mission__c.FieloCH__ObjectiveField__c}" size="1" styleClass="member" rendered="{!challenge.FieloCH__Mode__c != 'Teams'}">
+                                                            <apex:selectOptions value="{!memberFields}"/>
+                                                        </apex:selectList>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </apex:panelGroup>
+                                </tr>
+                            </apex:panelGroup>
+                            <apex:panelGroup rendered="{!radioItem.Value != 'Counter'}">
+                                <tr>
+                                    <td>
+                                        <input id="type{!i}" type="radio" onchange="displayFieldName(this.value); document.getElementById('{!$Component.objectiveType}').value = this.value;" value="{!radioItem.Value}" name="types" />
+                                        <label for="type{!i}" class="labelCol">{!radioItem.Label}</label>
+                                    </td>
+                                    <apex:panelGroup rendered="{!VALUE(i) == 1}">
+                                        <td rowspan="3" valign="center" class="limitCels">
+                                            <label class="labelCol" for="fieldName">{!$ObjectType.Mission__c.Fields['FieldName__c'].Label}</label>
+                                            <apex:selectList Id="fieldName" size="1" value="{!FieloCH__Mission__c.FieloCH__FieldName__c}" styleClass="fieldName" onchange="document.getElementById('{!$Component.fieldSelected}').value = this.value;" onclick="document.getElementById('{!$Component.fieldSelected}').value = this.value;">
+                                                <apex:selectOptions value="{!numberValues}"/>
+                                            </apex:selectList>
+                                            <script>
+                                                document.getElementById('{!$Component.fieldSelected}').value = document.getElementById('{!$Component.fieldName}')[document.getElementById('{!$Component.fieldName}').selectedIndex].value;
+                                            </script>
+                                        </td>
+                                    </apex:panelGroup>
+                                </tr>
+                            </apex:panelGroup>
+                        <apex:variable value="{!VALUE(i)+1}" var="i"/>
+                        </apex:repeat>
+                    </table>
+                </apex:panelGroup>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

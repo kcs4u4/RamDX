@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ExportMenu</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Export Menu</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>window.location = &#39;/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}XMLExport?type=Menu&amp;id={!FieloEE__Menu__c.Id}&#39;;</url>
+</WebLink>

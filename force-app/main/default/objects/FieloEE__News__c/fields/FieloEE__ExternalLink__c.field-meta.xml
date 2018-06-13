@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ExternalLink__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The URL to which this content feed will redirect when clicked.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set the URL to which this content feed will redirect.</inlineHelpText>
+    <label>External Link</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Placement__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The placement of this menu. It can be Top, Main or Footer.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Pick the placement for this menu.</inlineHelpText>
+    <label>Placement</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Main</fullName>
+                <default>false</default>
+                <label>Main</label>
+            </value>
+            <value>
+                <fullName>Top</fullName>
+                <default>false</default>
+                <label>Top</label>
+            </value>
+            <value>
+                <fullName>Footer</fullName>
+                <default>false</default>
+                <label>Footer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

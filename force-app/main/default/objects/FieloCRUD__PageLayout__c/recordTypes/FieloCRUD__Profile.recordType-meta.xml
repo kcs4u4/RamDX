@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__Profile</fullName>
+    <active>true</active>
+    <description>Profile page layout allows to create friendlier member&#39;s profile.</description>
+    <label>Profile</label>
+    <picklistValues>
+        <picklist>FieloCRUD__ButtonsAlignment__c</picklist>
+        <values>
+            <fullName>Center</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Left</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Right</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloCRUD__ButtonsPlacement__c</picklist>
+        <values>
+            <fullName>Both</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bottom</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Top</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloCRUD__DeletionFrom__c</picklist>
+        <values>
+            <fullName>Action Menu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Page Layout</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

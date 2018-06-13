@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Escalabilidad</fullName>
+    <columns>NAME</columns>
+    <columns>FieloCH__IsActive__c</columns>
+    <columns>FieloCH__Mode__c</columns>
+    <columns>FieloCH__Objects__c</columns>
+    <columns>FieloCH__Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>Escalabilidad</value>
+    </filters>
+    <label>Escalabilidad</label>
+    <language>en_US</language>
+</ListView>

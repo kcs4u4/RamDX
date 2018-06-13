@@ -1,0 +1,113 @@
+<apex:page Id="page" standardController="FieloCH__Challenge__c" extensions="FieloCH.ChallengeViewBackEndExtension" sidebar="false" showHeader="false" >
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+
+    <apex:pageBlock rendered="{!wrappers.size < 1 }">
+    	<apex:pageMessages />
+        <apex:pageMessage summary="{!$Label.fieloch__infonomembers}" severity="info" strength="2"/>
+    </apex:pageBlock>
+
+	<apex:form >
+		      <apex:commandLink styleclass="btn" target="_parent" value="{!IF (AND(challenge.FieloCH__Mode__c != 'Teams',challenge.FieloCH__Mode__c != 'Groups') , $Label.fieloch__addmembers, $Label.fieloch__addteams)}" action="{!URLFOR($Page.MemberAddExistingBackEnd, null, [Id=Challenge__c.Id])}" rendered="{!IF( AND(FieloCH__Challenge__c.FieloCH__Subscription__c != 'Global', wrappers.size > 0,challenge.FieloCH__Mode__c != 'Teams',challenge.FieloCH__Mode__c != 'Groups'), true, false)}"/>
+
+
+	    <apex:pageBlock rendered="{!wrappers.size > 0 }">
+	        <apex:pageMessages />
+
+	        <apex:pageBlockSection columns="2" rendered="{!FieloCH__Challenge__c.FieloCH__Mode__c == 'Collaborative'}">
+	        	<apex:outputLabel value="Collaborative Progress" />
+	        	<apex:panelGroup >
+			        <div class="row-fluid">
+			            <div class="progress progress-striped totalProgress {!IF(collaborativeProgress <= 30, 'progress-danger', IF(AND(collaborativeProgress > 30, collaborativeProgress <= 70), 'progress-warning', 'progress-success'))}">
+			                <apex:panelgroup rendered="{!collaborativeProgress < 30}">
+			                    <div class="bar" style="width: {!collaborativeProgress}%;"></div>
+			                        <p class="text-center">
+			                            <apex:outputText value="{!collaborativeProgress} %" />
+			                        </p>
+			                </apex:panelgroup>
+			                <apex:panelgroup rendered="{!collaborativeProgress >= 30}">
+			                    <div class="bar" style="width: {!collaborativeProgress}%;">
+			                        <p class="text-center">
+			                            <apex:outputText value="{!collaborativeProgress} %" />
+			                        </p>
+			                    </div>
+			                </apex:panelgroup>
+			            </div>
+			        </div>
+	        	</apex:panelGroup>
+	        </apex:pageBlockSection>
+
+	        <apex:pageBlockSection columns="1" Id="actionList">
+	            <apex:pageBlockTable value="{!wrappers}" var="f">
+	            	<apex:column >
+	                    <apex:commandLink value="{!$Label.fieloee__delete}" action="{!doDelete}" onclick="if('{!f.progress}' >= 100){alert('{!$Label.fieloch__errorunsubscribeaccomplished}');return false;}else if('{!FieloCH__Challenge__c.FieloCH__IsActive__c}' == 'true' && {!FieloCH__Challenge__c.FieloCH__Mode__c == 'Teams'}){alert('{!$Label.fieloch__errordeleteteam}');return false;}else{return confirm('{!$Label.fieloee__areyousure}. This will delete all the history records.');}" >
+	                    	<apex:param name="recordId" value="{!f.id}"/>
+	                    </apex:commandLink>
+	                </apex:column>
+	                <apex:column rendered="{!challenge.FieloCH__CompetitionType__c != 'Objective'}">
+	                    <apex:outputText value="{!f.position}"/>
+	                </apex:column>
+	                <apex:column headerValue="{!IF(challenge.FieloCH__Mode__c != 'Teams', $ObjectType.FieloEE__Member__c.Label, $ObjectType.FieloCH__Team__c.Label)}">
+                        <apex:commandLink target="_parent" value="{!f.name}" action="{!URLFOR('/' + IF(challenge.Mode__c != 'Teams', f.challengeMember.Member__c, f.challengeMember.Team__c) )}"/>
+	                </apex:column>
+	                <apex:column headerValue="{!$Label.fieloee__progress}" rendered="{!showProgressBar}" >
+	                    <div class="row-fluid">
+	                        <div class="progress progress-striped totalProgress {!IF(f.progress <= 30, 'progress-danger', IF(AND(f.progress > 30, f.progress <= 70), 'progress-warning', 'progress-success'))}">
+	                            <apex:panelgroup rendered="{!f.progress < 30}">
+	                                <div class="bar" style="width: {!f.progress}%;"></div>
+	                                    <p class="text-center">
+	                                        <apex:outputText value="{!f.progress} %" />
+	                                    </p>
+	                            </apex:panelgroup>
+	                            <apex:panelgroup rendered="{!f.progress >= 30}">
+	                                <div class="bar" style="width: {!f.progress}%;">
+	                                    <p class="text-center">
+	                                        <apex:outputText value="{!f.progress} %" />
+	                                    </p>
+	                                </div>
+	                            </apex:panelgroup>
+	                        </div>
+	                    </div>
+	                </apex:column>
+	                <apex:column rendered="{!challenge.FieloCH__CompetitionType__c == 'Performance'}" headerValue="{!$Label.fieloch__accumulatedvalue}">
+	                    <p class="text-center performanceStatus">
+	                        <span class="badge" >
+	                        	<apex:outputText value="{!f.value} "/>
+	                        </span>
+	                    </p>
+	                </apex:column>
+	                <apex:column headerValue="{!$Label.fieloch__quantitycompleted}" rendered="{!challenge.FieloCH__AcomplishAction__c == 'Repeat'}">
+	                    <apex:outputText value="{!f.repeat}"/>
+	                </apex:column>
+	            </apex:pageBlockTable>
+	        </apex:pageBlockSection>
+
+	        <center>
+                <apex:panelGroup rendered="{!wrappers.size < listSize}" id="buttons" >
+                    <apex:commandLink action="{!first}" rendered="{!recordPaginator.hasPrevious}" reRender="actionList, buttons">
+                        {!$Label.fieloee__first}
+                    </apex:commandLink>
+                    &nbsp;
+                    <apex:commandLink action="{!previous}" rendered="{!recordPaginator.hasPrevious}" reRender="actionList, buttons">
+                        {!$Label.fieloee__previous}
+                    </apex:commandLink>
+                    &nbsp;
+                    <!--<apex:outputText value=" {!ActualPage}/{!TotalPages} " rendered="{!fullList}"/>-->
+                    <apex:commandLink action="{!next}" rendered="{!recordPaginator.hasNext}" reRender="actionList, buttons">
+                        {!$Label.fieloee__next}
+                        </apex:commandLink>
+                    &nbsp;
+                    <apex:commandLink action="{!last}" rendered="{!recordPaginator.hasNext}" reRender="actionList, buttons">
+                        {!$Label.fieloee__last}
+                    </apex:commandLink>
+                </apex:panelGroup>
+            </center>
+	    </apex:pageBlock>
+
+       	<apex:commandLink styleclass="btn" target="_parent" value="{!IF (AND(challenge.FieloCH__Mode__c != 'Teams',challenge.FieloCH__Mode__c != 'Groups') , $Label.fieloch__addmembers, $Label.fieloch__addteams)}" action="{!URLFOR($Page.MemberAddExistingBackEnd, null, [Id=Challenge__c.Id])}" rendered="{!IF( AND(FieloCH__Challenge__c.FieloCH__Subscription__c != 'Global',challenge.FieloCH__Mode__c != 'Teams',challenge.FieloCH__Mode__c != 'Groups'), true, false)}"/>
+	</apex:form>
+
+    <style>
+        .totalProgress { margin: 0px; }
+    </style>
+</apex:page>

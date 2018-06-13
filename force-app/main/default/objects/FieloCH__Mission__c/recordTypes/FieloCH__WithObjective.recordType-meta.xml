@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__WithObjective</fullName>
+    <active>true</active>
+    <description>Mission that must accomplished an objective. For example create 10 transactions during the period of the challenge. The status will "Not accomplish"  until the objective condition is true</description>
+    <label>With Objective</label>
+    <picklistValues>
+        <picklist>FieloCH__Object__c</picklist>
+        <values>
+            <fullName>FieloEE%5F%5FBadgeMember%5F%5Fc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FieloEE%5F%5FEvent%5F%5Fc</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FieloEE%5F%5FTransaction%5F%5Fc</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloCH__ObjectiveType__c</picklist>
+        <values>
+            <fullName>Average</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Counter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Last</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Max Value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Summary</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloCH__Operator__c</picklist>
+        <values>
+            <fullName>equals</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>greater or equal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>greater than</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>less or equal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>less than</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

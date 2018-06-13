@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__RequestAutorization__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Checking this option will make members registration subject to an approval process.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Define whether new member registration is subject to an approval process. By checking this option, the user establishes a workflow to approve new members.</inlineHelpText>
+    <label>Request User Authorization</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

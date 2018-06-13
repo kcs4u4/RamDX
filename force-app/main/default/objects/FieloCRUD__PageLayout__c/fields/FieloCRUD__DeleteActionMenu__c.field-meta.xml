@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__DeleteActionMenu__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Override the delete action by adding a menu that handles record deletion through page layout.</inlineHelpText>
+    <label>Delete Action Menu</label>
+    <referenceTo>FieloEE__Menu__c</referenceTo>
+    <relationshipLabel>Delete Actions from Page Layouts</relationshipLabel>
+    <relationshipName>PageLayoutDeleteAction</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

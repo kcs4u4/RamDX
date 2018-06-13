@@ -1,0 +1,24 @@
+<apex:page controller="FieloEE.SegmentSelectionController" tabstyle="FieloEE__RedemptionRule__c" >
+
+  <apex:sectionHeader title="{!objectLabel}" subtitle="{!recordName}"/>
+  <apex:form >
+  
+  <apex:pageBlock title="{!$ObjectType.FieloEE__RedemptionRule__c.LabelPlural}" >
+      <apex:pageBlockButtons >    
+        <apex:commandButton action="{!saveAndExit}" value="{!$Label.fieloee__save}"/>
+        <!--<apex:commandButton action="{!save}" value="Quick Save"/>-->
+        <apex:commandButton action="{!cancel}" value="{!$Label.fieloee__cancel}"/>
+    </apex:pageBlockButtons>
+    <apex:pageBlockSection id="SegmentList" columns="2" collapsible="false">
+        <apex:pageBlockTable id="pageBlockTable" value="{!segWrappers}" var="segWrapper" >                             
+            <apex:column > 
+                <apex:inputCheckBox id="checkbox" value="{!segWrapper.checkbox}"/>
+            </apex:column>   
+            <apex:column headerValue="{!$Label.fieloee__name}"> 
+                <apex:outputField id="Segment" value="{!segWrapper.segment.name}"/>
+            </apex:column>                                                                                                
+        </apex:pageBlockTable>
+    </apex:pageBlockSection>
+       </apex:pageBlock>
+    </apex:form>
+</apex:page>

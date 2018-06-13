@@ -1,0 +1,7 @@
+<apex:page id="Registration" controller="FieloEE.RecomendController" showHeader="false" standardStylesheets="false" >
+    <apex:composition template="{!$Site.Template}">
+        <apex:define name="body">
+             <c:Recomend Facebook="{!program.FieloEE__Facebook__c}" Twitter="{!program.FieloEE__Twitter__c}" Linkedin="{!program.FieloEE__Linkedin__c}" Clipboard="True" RegisterPage="{!program.FieloEE__PackagePrefix__c}RegisterStep1" />
+        </apex:define> 
+     </apex:composition> 
+</apex:page>

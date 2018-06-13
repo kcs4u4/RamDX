@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__PageLayout_ProfileOnlyForMember</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+	RecordType.DeveloperName = &#39;Profile&#39;,
+	FieloCRUD__ObjectSettings__r.FieloCRUD__ObjectAPIName__c &lt;&gt; &#39;FieloEE__Member__c&#39;
+)</errorConditionFormula>
+    <errorMessage>Profile record type is only available for object settings related to "FieloEE__Member__c" object.</errorMessage>
+</ValidationRule>

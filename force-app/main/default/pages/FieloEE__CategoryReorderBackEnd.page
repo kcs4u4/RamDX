@@ -1,0 +1,4 @@
+<apex:page tabStyle="FieloEE__Category__c" standardController="FieloEE__Category__c" > 
+     <apex:sectionHeader title="{!$ObjectType.FieloEE__Category__c.Label}"/>
+     <c:OrderRecords nameObject="Category__c" urlSave="{!$CurrentPage.URL}" btnSave="true" urlSaveAndClose="/{!$ObjectType.FieloEE__Category__c.KeyPrefix}" btnSaveAndClose="true" urlCancel="/{!$ObjectType.FieloEE__Category__c.KeyPrefix}" btnCancel="true" condition="{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Category__c = '{!$CurrentPage.parameters.id}'" />
+</apex:page>

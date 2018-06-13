@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Birthdate</fullName>
+    <columns>NAME</columns>
+    <columns>FieloEE__Name__c</columns>
+    <columns>FieloEE__Level__c</columns>
+    <columns>FieloEE__MemberCode__c</columns>
+    <columns>FieloEE__Age__c</columns>
+    <columns>FieloEE__Points__c</columns>
+    <columns>FieloEE__LoyaltyAge__c</columns>
+    <columns>FieloEE__StartDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FieloEE__Birthdate__c</field>
+        <operation>equals</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Birthdate</label>
+    <language>en_US</language>
+</ListView>

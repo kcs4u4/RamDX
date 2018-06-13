@@ -1,0 +1,98 @@
+<apex:page tabStyle="FieloEE__Transaction__c" standardController="FieloEE__Transaction__c" extensions="FieloEE.TransactionLandingPageBackEndController" recordSetVar="part" action="{!init}">
+<apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+<!--  START STYLES -->
+    <style>
+        .bold { font-weight: bold; }
+        .col_50 { width:50%; }
+        .col_50 .pbHeader { border: none !important; }
+        .col_50 .pbHeader table{ border: none !important; }
+        .col_50 .pbSubsection { background-color: #FFFFFF !important; border: 1px solid #E8E8E8; margin: 5px 0 0; padding: 5px; }
+        .col_50 .pbSubsection td{ border: none !important; }
+        .reportsAndTools { width: 100%; }
+        
+        .splash_title       { font-size:26px; color:#777777; font-weight:bold; }
+        .splash_main        { font-size:18px; color:#777777; }
+        .splash_subtitle    { font-size:16px; color:#111111; text-align:center; }
+        .splash_text        { font-size:12px; color:#777777; margin:2px 10px; }
+        .splash_numbers     { font-family:helvetica; font-size:28px; color:#2D64CB; font-weight:bold; }
+    </style>
+<!--  END STYLES -->
+<!--  INICIO LANDING PAGE -->
+    <apex:panelGroup > 
+        <apex:form >
+
+            <style>
+                a                       { text-decoration:none; }
+                .page_header            {clear:both;}
+                .page_title             { float:left; width:350px;margin-bottom: 10px;}
+                .bPageTitle             { margin-bottom: 5px;}
+                .program_header         { font-size:11px; color:#999999; line-height:20px;}
+                .program_header .name a { font-size:40px; color:#cccccc; line-height:60px; font-weight:bold; }
+                .links                  { display:none; }
+                .pbBody                 { overflow:auto; }
+            </style>
+
+            <div class="page_header">
+                <div class="page_title">
+                    <apex:sectionHeader title="{!$ObjectType.FieloEE__Transaction__c.label}" subtitle="{!$Label.fieloee__titlehome}"/>
+                    <apex:outputLabel value="View:"/>&nbsp; 
+                    <apex:selectList value="{!filterId}" size="1"> 
+                        <apex:selectOptions value="{!listviewoptions}"/> 
+                    </apex:selectList> 
+                    <apex:commandButton value="GO!" action="/{!ObjectPrefix}?fcf={!LEFT(filterId, 15)}"/> &nbsp;
+                    <apex:commandLink value="Edit" action="/ui/list/FilterEditPage?id={!LEFT(filterId, 15)}&retURL=/{!ObjectPrefix}?fcf={!LEFT(filterId, 15)}&cancelURL=/apex/PromotionLandingPageBackEnd"/>  
+<!--                &nbsp;|&nbsp;  -->
+<!--                <apex:commandLink value="Create New View" action="/ui/list/FilterEditPage?ftype={!}&retURL=/apex/PromotionLandingPageBackEnd&cancelURL=/apex/PromotionLandingPageBackEnd"/>   -->
+                </div>
+                <div class="page_buttons"><c:BackEndSupport helpPage="{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}TransactionHelpBackEnd" /></div>
+            </div>
+            
+            <div class="program_header">
+                <apex:pageBlock id="programPageBlock" rendered="{!programs.size > 1}">
+                    <div style="float:left" class="name">
+                        <apex:outputLink value="{!'/'+programId}">{!program.Name}</apex:outputLink>
+                    </div>
+                    <div style="float:right">
+                        <div class="picklist">
+                            <div>{!$Label.fieloee__changeprogram}</div>
+                            <apex:selectList value="{!programId}" multiselect="false" size="1" onchange="refreshInfo();" >
+                                <apex:selectOptions value="{!programs}"/>
+                            </apex:selectList>
+                        </div>
+                    </div>
+                </apex:pageBlock>
+            </div>
+            <apex:actionFunction action="{!changeProgram}" name="refreshInfo" rerender="programPageBlock, recentRecords"/>
+        </apex:form>            
+    </apex:panelGroup> 
+    
+    <c:RecentRecords id="recentRecords" object="{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Transaction__c" title="{!$Label.fieloee__titlerecenttransactions}" limit="10" condition="Member__r.Program__c = '{!programId}'" />
+    
+    <!--  START REPORTS AND TOOLS  -->
+    <apex:panelGrid styleClass="reportsAndTools" columns="2" columnClasses="col_50">
+        <apex:pageBlock title="{!$Label.fieloee__titlelandingpagereports}" >
+            <apex:pageBlockSection collapsible="FALSE">
+                <apex:repeat value="{!Reports}" var="report">
+                    <apex:outputLink value="/{!report.Id}">{!report.Name}</apex:outputLink><br/>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection collapsible="FALSE">
+                <apex:outputLink styleClass="bold" value="/{!ReportPrefix}" >{!$Label.fieloee__gotoreports} »</apex:outputLink>
+            </apex:pageBlockSection>
+        </apex:pageblock>
+        
+        <apex:pageBlock title="{!$Label.fieloee__titlelandingpagetools}" >
+            <apex:pageBlockSection collapsible="FALSE">
+                <apex:outputLink value="/{!ObjectPrefix}" >{!$Label.fieloee__processoffline}</apex:outputLink><br/>
+                <apex:outputLink value="{!URLFOR($Page.FieloEE__TransactionAdjustBackEnd)}" >{!$Label.fieloee__transactionadjust}</apex:outputLink><br/>
+                <apex:outputLink value="/{!$ObjectType.FieloEE__Branch__c.KeyPrefix}" >{!$ObjectType.FieloEE__Branch__c.LabelPlural}</apex:outputLink><br/>                 
+                <apex:outputLink value="/{!$ObjectType.FieloEE__Code__c.KeyPrefix}" >{!$Label.fieloee__codes}</apex:outputLink><br/>                    
+            </apex:pageBlockSection>
+        </apex:pageblock>
+    </apex:panelGrid>
+    <!--  END REPORTS AND TOOLS  --> 
+    
+<!--  FIN LANDING PAGE -->
+
+
+</apex:page>

@@ -1,0 +1,61 @@
+<apex:page standardController="FieloEE__Rule__c" extensions="FieloEE.RuleCriteriasViewBackEndExtension">
+    <apex:form >
+        <apex:pageBlock title="{!$ObjectType.FieloEE__RuleCriteria__c.LabelPlural}">
+        <apex:pageMessages />
+            <apex:pageBlockSection columns="1" collapsible="false" >
+                <apex:pageBlockTable id="tables" value="{!CriteriaToShow}" var="criteriaWrapper">
+                    <apex:column value="{!criteriaWrapper.index}."/>
+                    <apex:column headerValue="{!$Label.fieloee__field}" value="{!criteriaWrapper.fieldLabel}" />
+                    <apex:column headerValue="{!$Label.fieloee__operator}">
+                        <apex:pageBlockSectionItem id="operators">
+                            <apex:outputField value="{!criteriaWrapper.criteria.FieloEE__Operator__c}"/>
+                        </apex:pageBlockSectionItem>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.fieloee__value}">
+                        <apex:panelGroup rendered="{!!criteriaWrapper.criteria.FieloEE__Field__c}">
+                            <apex:outputField id="texto" value="{!criteriaWrapper.criteria.FieloEE__Values__c}" rendered="{!OR(criteriaWrapper.criteria.FieloEE__FieldType__c=='Text',criteriaWrapper.criteria.FieloEE__FieldType__c=='List',criteriaWrapper.criteria.FieloEE__FieldType__c=='REFERENCE')}"/>
+                            <apex:outputField id="fecha" value="{!criteriaWrapper.criteria.FieloEE__DateValue__c}" rendered="{!criteriaWrapper.criteria.FieloEE__FieldType__c=='Date'}"/>
+                            <apex:outputField id="numero" value="{!criteriaWrapper.criteria.FieloEE__NumberValue__c}" rendered="{!criteriaWrapper.criteria.FieloEE__FieldType__c=='Number'}"/>
+                            <apex:outputField id="boolean" value="{!criteriaWrapper.criteria.FieloEE__BooleanValue__c}" rendered="{!criteriaWrapper.criteria.FieloEE__FieldType__c=='Boolean'}"/>
+                        </apex:panelGroup>
+                        <apex:panelGroup rendered="{!criteriaWrapper.criteria.FieloEE__Field__c}">
+                        	<apex:outputText value="{!$ObjectType.FieloEE__Transaction__c.Label} {!criteriaWrapper.criteria.FieloEE__Values__c}" />
+                        </apex:panelGroup>
+                    </apex:column>
+                    <apex:column >
+                        <apex:panelGroup rendered="{! criteriaWrapper.index < quantity}">
+                            {!$Label.fieloee__and}
+                        </apex:panelGroup>
+                    </apex:column>
+                </apex:pageBlockTable>
+                 <apex:commandLink value="{!$Label.fieloee__gotolist} ({!quantity}) »" onclick="window.open('/apex/RuleCriteriasViewBackEnd?id={!FieloEE__Rule__c.Id}&fullList=true', '_blank')" rendered="{!!fullList && CriteriaToShow.size > 0}"/>
+            </apex:pageBlockSection>
+
+            <center>
+                <apex:panelGroup rendered="{!CriteriaToShow.size < listSize}" id="buttons" >
+                    <apex:commandLink action="{!criteriaPaginator.first}" rendered="{!criteriaPaginator.hasPrevious && fullList}" reRender="tables, buttons">
+                        {!$Label.fieloee__first}
+
+                    </apex:commandLink>
+                    &nbsp;
+                    <apex:commandLink action="{!criteriaPaginator.previous}" rendered="{!criteriaPaginator.hasPrevious && fullList}" reRender="tables, buttons">
+                        {!$Label.fieloee__previous}
+
+                    </apex:commandLink>
+                    &nbsp;
+                    <apex:outputText value=" {!ActualPage}/{!TotalPages} " rendered="{!fullList}"/>
+                    <apex:commandLink action="{!criteriaPaginator.next}" rendered="{!criteriaPaginator.hasNext && fullList}" reRender="tables, buttons">
+                        {!$Label.fieloee__next}
+
+                        </apex:commandLink>
+                    &nbsp;
+                    <apex:commandLink action="{!criteriaPaginator.last}" rendered="{!criteriaPaginator.hasNext && fullList}" reRender="tables, buttons">
+                        {!$Label.fieloee__last}
+
+                    </apex:commandLink>
+                </apex:panelGroup>
+            </center>
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

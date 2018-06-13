@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ProgramQuery</fullName>
+    <description>Program API to optimize query</description>
+    <label>Program Query</label>
+</FieldSet>

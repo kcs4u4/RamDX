@@ -1,0 +1,33 @@
+<apex:page standardController="FieloCH__Challenge__c" extensions="FieloCH.ChallengeRewardPhotoEditBackEndExtension" >
+ <!-- Font Awesome -->
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'FontAwesome/css/font-awesome.css')}"/>
+        <!--[if IE 7]>
+            <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'font-awesome-ie7.css')}"/>
+        <![endif]-->
+    <!-- Fin Font Awesome -->
+        <apex:sectionHeader title="{!$Label.fieloee__manage + ' ' + $Label.fieloee__photoupload}"/>
+        <apex:pageMessage summary="{!IF(rewards.size == 0 , $Label.fieloee__infoemptytable , $Label.fieloch__infomodifyreward)}" severity="info" strength="2" rendered="{!FieloCH__Challenge__c.FieloCH__IsActive__c || rewards.size == 0}"/>
+       
+         <apex:pageBlock rendered="{!rewards.size > 0 && !FieloCH__Challenge__c.FieloCH__IsActive__c}" >
+            <apex:pageblockSection collapsible="false" columns="1">
+                <apex:pageblockTable value="{!rewards}" var="rew">
+                    <apex:column value="{!rew.FieloCH__Position__c}" rendered="{!FieloCH__Challenge__c.FieloCH__CompetitionType__c != 'Objective'}"/>
+                    <apex:column value="{!rew.FieloCH__Title__c}"/>
+                    <apex:column value="{!rew.FieloCH__Description__c}"/>
+                    <apex:column styleClass="photoUpload">
+                        <FieloEE:PhotoUpload myObject="{!rew}" saveInRecordField="true" attachField="{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}AttachmentId__c"/>
+                    </apex:column>
+                </apex:pageblockTable>
+            </apex:pageblockSection>
+        </apex:pageBlock>
+    <apex:form >
+        <apex:commandButton styleClass="btn saveCommandLink" value="{!$Label.fieloee__back}" action="{!cancel}" />
+    </apex:form>
+    <style>
+        .photoUpload > span > form > div { height: 55px !important; }
+        .photoUpload > span > form table tr td { border: none !important; margin-bottom: 0px !important; padding-bottom: 0px !important;}
+        .photoUpload > span > form > div > table > tbody > tr > td > div { width: auto !important; height: 80px !important; }
+        .photoUpload > span > form > div > table > tbody > tr > td > div img { width: 80px !important; height: 80px !important; }
+        .photoUpload .message.infoM4 { display: none !important; }
+    </style>
+</apex:page>

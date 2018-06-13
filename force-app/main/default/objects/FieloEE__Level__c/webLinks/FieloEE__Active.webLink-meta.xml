@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Active</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Active</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/22.0/connection.js")}
+
+var url = parent.location.href;
+var levelUpdate = [];
+
+var idLevel = "{!FieloEE__Level__c.Id}";
+var resultLevel = sforce.connection.query("SELECT Id, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}IsActive__c, RecordTypeID FROM {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Level__c WHERE Id = \&#39;{!FieloEE__Level__c.Id}\&#39; ");
+
+var level = resultLevel.getArray("records")[0];
+level.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}IsActive__c = true;
+levelUpdate.push(level);
+
+result = sforce.connection.update(levelUpdate);
+parent.location.href = idLevel;</url>
+</WebLink>

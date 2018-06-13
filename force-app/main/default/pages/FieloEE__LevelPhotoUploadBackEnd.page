@@ -1,0 +1,5 @@
+<apex:page id="page" standardController="FieloEE__Level__c" > 
+	<apex:pageBlock title="{!$objectType.FieloEE__Level__c.Label} {!$Label.fieloee__photoupload}" id="pgBlock">
+        <c:PhotoUpload myObject="{!FieloEE__Level__c}" saveInRecordField="true" attachField="AttachmentId__c" info="{!$Label.fieloee__infolevelchangephoto}" />
+    </apex:pageBlock>  
+</apex:page>

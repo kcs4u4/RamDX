@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ActiveInactive</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Active/Inactive</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/26.0/connection.js")}
+
+var bannerUpdate = [];
+
+var resultBanner = sforce.connection.query("SELECT Id, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}isActive__c FROM {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Banner__c WHERE Id = \&#39;{!FieloEE__Banner__c.Id}\&#39; ");
+
+var banner = resultBanner.getArray("records")[0];
+if(banner.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}isActive__c == &#39;true&#39;){
+    banner.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}isActive__c = &#39;false&#39;;
+}else{
+    banner.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}isActive__c = &#39;true&#39;;
+}
+bannerUpdate.push(banner);
+
+result = sforce.connection.update(bannerUpdate);
+
+if(result.toString().indexOf("errors:") != -1){
+    alert(result[0].errors.message);
+}
+parent.location.href = &#39;{!FieloEE__Banner__c.Id}&#39;;</url>
+</WebLink>

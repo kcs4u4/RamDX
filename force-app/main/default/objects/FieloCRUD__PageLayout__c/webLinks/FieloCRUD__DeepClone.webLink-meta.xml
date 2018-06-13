@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__DeepClone</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Deep Clone</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&#39;/soap/ajax/30.0/connection.js&#39;)}
+{!REQUIRESCRIPT(&#39;/soap/ajax/30.0/apex.js&#39;)}
+
+var output = sforce.apex.execute("FieloCRUD.PageLayoutCloneButton", "doClone", {pageLayoutId:"{!FieloCRUD__PageLayout__c.Id}"});
+
+if(String(output).indexOf(&#39;ID&#39;) == 0){
+   window.location = "/" + String(output).slice(3);
+}else{
+   alert( output );
+}</url>
+</WebLink>

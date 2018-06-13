@@ -1,0 +1,6 @@
+<messaging:emailTemplate subject="hello mail" recipientType="Lead" relatedToType="Account">
+<messaging:plainTextEmailBody >
+Congratulations!
+This is your new Visualforce Email Template.
+</messaging:plainTextEmailBody>
+</messaging:emailTemplate>

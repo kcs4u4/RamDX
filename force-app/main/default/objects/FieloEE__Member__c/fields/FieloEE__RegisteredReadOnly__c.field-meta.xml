@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__RegisteredReadOnly__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF( FieloEE__Registered__c , IMAGE(&#39;/resource/&#39;+$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c+&#39;images/checked.png&#39;, $Label.fieloee__registered) , IMAGE(&#39;/resource/&#39;+$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c+&#39;images/unchecked.png&#39;, $Label.fieloee__notregistered) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Members are “Registered” if they have created an user in the members&#39; portal.</inlineHelpText>
+    <label>Registered (Read Only)</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

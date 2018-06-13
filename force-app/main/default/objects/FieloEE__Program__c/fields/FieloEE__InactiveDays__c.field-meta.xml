@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__InactiveDays__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The number of days whitout generating transactions that will make a member to become inactive.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set the number of days a member may be without generating transactions before being inactivated.</inlineHelpText>
+    <label>Member Inactivity (in days)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Subscription__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>- Open: By subscription, any member can subscribe.
+- Closed: Without subscription, Administrator subscribes the members</inlineHelpText>
+    <label>Subscription Mode</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>FieloCH__Mode__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Open</fullName>
+                <default>true</default>
+                <label>Open</label>
+            </value>
+            <value>
+                <fullName>Closed</fullName>
+                <default>false</default>
+                <label>Closed</label>
+            </value>
+            <value>
+                <fullName>Global</fullName>
+                <default>false</default>
+                <label>Global</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Competition</controllingFieldValue>
+            <valueName>Open</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Competition</controllingFieldValue>
+            <controllingFieldValue>Collaborative</controllingFieldValue>
+            <controllingFieldValue>Teams</controllingFieldValue>
+            <controllingFieldValue>Groups</controllingFieldValue>
+            <valueName>Closed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Competition</controllingFieldValue>
+            <controllingFieldValue>Collaborative</controllingFieldValue>
+            <valueName>Global</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

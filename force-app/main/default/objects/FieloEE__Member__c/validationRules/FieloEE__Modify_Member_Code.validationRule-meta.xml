@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Modify_Member_Code</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISCHANGED(FieloEE__MemberCode__c)</errorConditionFormula>
+    <errorDisplayField>FieloEE__MemberCode__c</errorDisplayField>
+    <errorMessage>The member code cannot be modified</errorMessage>
+</ValidationRule>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__SenderDisplayName__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The sender name for all emails sent from the application.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the sender name that will be shown in all the emails sent from the application.</inlineHelpText>
+    <label>Sender Display Name</label>
+    <length>80</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

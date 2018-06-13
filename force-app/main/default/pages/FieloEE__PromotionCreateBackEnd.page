@@ -1,0 +1,122 @@
+<apex:page standardController="FieloEE__Promotion__c" extensions="FieloEE.PromotionCreateBackEndExtension" > 
+    <apex:sectionHeader title="{!$ObjectType.FieloEE__Promotion__c.Label}" subtitle="{!FieloEE__Promotion__c.Name}"/> 
+    <apex:form > 
+        <apex:pageMessages /> 
+        <apex:pageBlock >          
+            
+            <!-- select program -->
+            <apex:pageBlockSection title="{!$ObjectType.FieloEE__Promotion__c.Fields['Program__c'].Label}" collapsible="false" columns="2" rendered="{!ISNULL(FieloEE__Promotion__c.FieloEE__Program__c)}" >
+                <apex:selectList value="{!programId}" multiselect="false" size="1" >
+                    <apex:selectOptions value="{!programs}"/>
+                </apex:selectList>
+                <apex:commandButton value="{!$Label.fieloee__continue}" action="{!doContinue}"/>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockButtons location="bottom" rendered="{!!ISNULL(FieloEE__Promotion__c.FieloEE__Program__c)}" > 
+                <apex:commandButton value="{!$Label.fieloee__save}" action="{!doSave}"/> 
+                <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!cancel}"/> 
+            </apex:pageBlockButtons> 
+
+            <apex:panelGroup rendered="{!!ISNULL(FieloEE__Promotion__c.FieloEE__Program__c)}" >
+                <!-- standard promotion -->
+                <apex:pageBlockSection title="{!$Label.fieloee__information}" collapsible="false" columns="2" id="standardPromotion" rendered="{!!defaultPromotion}" > 
+                    <apex:inputField required="true" value="{!FieloEE__Promotion__c.Name}" /> 
+                    <apex:outputField value="{!FieloEE__Promotion__c.FieloEE__Program__c}" /> 
+                    <apex:inputField required="{!!defaultPromotion}" value="{!FieloEE__Promotion__c.FieloEE__InitialDate__c}"/> 
+                    <apex:inputField required="{!!defaultPromotion}" value="{!FieloEE__Promotion__c.FieloEE__FinalDate__c}"/>                  
+                </apex:pageBlockSection> 
+                
+                <apex:panelGroup rendered="{!defaultPromotion}" >
+                    <!-- default promotion -->
+                    <apex:pageBlockSection title="{!$Label.fieloee__information}" collapsible="false" columns="2" id="defaultPromotion" > 
+                        <apex:pageblockSectionItem > 
+                            <apex:outputLabel value="{!$ObjectType.FieloEE__Promotion__c.Fields['Name'].Label}"/> 
+                            <apex:outputText value="{!$Label.fieloee__defaultpromotion}" />                     
+                        </apex:pageblockSectionItem>
+                        <apex:pageblockSectionItem > 
+                            <apex:outputLabel value="{!$ObjectType.FieloEE__Promotion__c.Fields['Program__c'].Label}"/> 
+                            <apex:outputField value="{!FieloEE__Promotion__c.FieloEE__Program__c}" />                     
+                        </apex:pageblockSectionItem> 
+                    </apex:pageBlockSection>             
+         
+                    <apex:pageBlockSection columns="1" title="{!$Label.fieloee__defaultrule}" collapsible="false" >                         
+                        <apex:inputfield required="true" value="{!defaultRule.FieloEE__Type__c}" />          
+                        <apex:pageBlockSectionItem id="sectionType" >
+                            <apex:outputLabel value="{!$Label.fieloee__type}" />                        
+                            <apex:panelGroup >                        
+                                <apex:inputHidden id="convertionPoints" value="{!defaultRule.FieloEE__ConvertionTypeTransaction__c}"/>                        
+                                <apex:repeat value="{!tranActionTypes}" var="rec">
+                                    <div class="radiobutton">
+                                        <input type="radio" name="radio" id="{!rec.value}" onclick="setRadio(this.id); analizePointFields();" >{!rec.label}</input>
+                                    </div>
+                                    <script>
+                                        var convertionType = document.getElementById('{!$Component.convertionPoints}');
+                                        var inputRadio = document.getElementById('{!rec.value}');
+                                        if((inputRadio.id == 'null' && convertionType.value == '') || (convertionType.value == inputRadio.id)){
+                                            inputRadio.checked = true;
+                                        }
+                                    </script>
+                                </apex:repeat>                                                    
+                                <script>                                
+                                    function setRadio(value){                                    
+                                        var inputField = document.getElementById('{!$Component.convertionPoints}');
+                                        inputField.value = value;
+                                    }
+                                </script>
+                            </apex:panelGroup>
+                        </apex:pageBlockSectionItem>      
+                        <apex:pageBlockSectionItem id="pageBlockSectionitem" >                    
+                            <apex:outputLabel value="{!$Label.fieloee__assignedpoints} = " />
+                            <apex:panelGroup >
+                                <apex:selectList id="actionFieldsPoints" size="1" value="{!defaultRule.FieloEE__FieldNameTransaction__c}"> 
+                                    <apex:selectOptions value="{!numericFields}" />
+                                </apex:selectList>
+                                <span id="symbolPoints" style="font-weight:bold;padding:0 5px;"></span>
+                                <apex:inputField id="convertionValue" value="{!defaultRule.FieloEE__ConvertionValue__c}" style="width:60px" required="false"/> 
+                            </apex:panelGroup>                    
+                        </apex:pageBlockSectionItem>
+                        <script>
+                            function analizePointFields(){
+                                var convertionType = document.getElementById('{!$Component.sectionType.convertionPoints}');
+                                var convertionValue = document.getElementById('{!$Component.pageBlockSectionitem.convertionValue}');                    
+                                var availableFields = document.getElementById('{!$Component.pageBlockSectionitem.actionFieldsPoints}');
+                                var symbol = document.getElementById('symbolPoints');                    
+                                
+                                switch(convertionType.value){
+                                    case 'Fix Value':                                
+                                        convertionValue.style.display = 'inline';
+                                        availableFields.style.display = 'none';                                
+                                        symbol.innerHTML = '';
+                                        break;
+                                    case 'Factor':                                
+                                        convertionValue.style.display = 'inline';
+                                        availableFields.style.display = 'inline';                                
+                                        symbol.innerHTML = '/';
+                                        break;
+                                    case 'Multiplier':                                
+                                        convertionValue.style.display = 'inline';
+                                        availableFields.style.display = 'inline';                                
+                                        symbol.innerHTML = '*';
+                                        break;
+                                    case 'Custom':                                
+                                        convertionValue.style.display = 'none';
+                                        availableFields.style.display = 'inline';                                
+                                        symbol.innerHTML = '';
+                                        break;
+                                    default:                                
+                                        convertionValue.style.display = 'none';
+                                        availableFields.style.display = 'none';                                
+                                        symbol.innerHTML = '0';
+                                        break;
+                                }
+                            }
+                        </script>
+                    </apex:pageBlockSection> 
+                </apex:panelGroup>
+            </apex:panelGroup>
+        </apex:pageBlock>          
+    </apex:form>
+    <script>        
+        analizePointFields();                      
+    </script>     
+</apex:page>

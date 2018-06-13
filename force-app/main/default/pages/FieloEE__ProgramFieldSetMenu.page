@@ -1,0 +1,61 @@
+<apex:page showHeader="true" sidebar="true" standardController="FieloEE__Program__c" extensions="FieloEE.ProgramFieldSetMenuExtension">
+
+    <script type="text/javascript">
+        (function(exports, d) {
+            function domReady(fn, context) {
+
+            function onReady(event) {
+              d.removeEventListener("DOMContentLoaded", onReady);
+              fn.call(context || exports, event);
+            }
+
+            function onReadyIe(event) {
+              if (d.readyState === "complete") {
+                d.detachEvent("onreadystatechange", onReadyIe);
+                fn.call(context || exports, event);
+              }
+            }
+
+            d.addEventListener && d.addEventListener("DOMContentLoaded", onReady) ||
+            d.attachEvent      && d.attachEvent("onreadystatechange", onReadyIe);
+            }
+
+            exports.domReady = domReady;
+            })(window, document);
+    </script>
+
+	<div id="FieldSetMenu">  
+
+    
+        <apex:form >
+    <!--         Botonera de avance de wizard                        -->
+            <apex:pageblock >        
+                <apex:panelgrid id="selectFields" columns="3" style="margin:0 auto; text-align:center;" columnClasses="middle">                
+                    <apex:selectList value="{!associatedFields}" multiselect="true" size="10" style="width: 300px; border:1px solid #999999; color:#555555;">
+                        <apex:selectOptions value="{!availableFields}" />
+                    </apex:selectList>
+                </apex:panelgrid>
+                <apex:pageBlockButtons >
+                    <apex:commandButton value="{!$Label.fieloee__save}" action="{!doSave}" />
+                    <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!doCancel}" />
+                </apex:pageBlockButtons>
+             </apex:pageblock>
+        </apex:form>
+    </div>
+    
+    <apex:includescript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__multiselect, 'jquerymultiselect2side/js/jquery.multiselect2side.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__multiselect, 'jquerymultiselect2side/css/jquery.multiselect2side.css')}"/>
+
+    <script>            
+      domReady(function(event) {
+            $('#first').multiselect2side({
+                optGroupSearch: "Group: ",
+                search: "&lt;img src='img/search.gif' /&gt;"
+            });
+
+            $("#FieldSetMenu select").multiselect2side();
+      });
+    </script>
+
+</apex:page>

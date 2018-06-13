@@ -1,0 +1,6 @@
+<apex:page >
+  <!-- Begin Default Content REMOVE THIS -->
+  <h1>{!$Label.fieloee__congratulations}</h1>
+  {!$Label.fieloee__newpage}
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

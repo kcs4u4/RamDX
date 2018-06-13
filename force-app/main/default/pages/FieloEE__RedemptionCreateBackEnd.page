@@ -1,0 +1,237 @@
+<apex:page id="page" standardController="FieloEE__Redemption__c" extensions="FieloEE.RedemptionCreateBackEndExtension" tabStyle="FieloEE__Redemption__c">
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+    <!-- Bootstrap -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapResponsiveMin.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrapDropdownHover.js')}"/>
+    <!-- Fin Bootstrap -->
+
+    <!-- Font Awesome -->
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'FontAwesome/css/font-awesome.css')}"/>
+        <!--[if IE 7]>
+            <apex:stylesheet value="{!URLFOR($Resource.css, 'font-awesome-ie7.css')}"/>
+        <![endif]-->
+    <!-- Fin Font Awesome -->
+
+    <style>
+        .title-search       { font-size:22px; color:#aaaaaa !important; }
+        .thumbnail          { background:#ffffff; }
+        .thumbnail .image   { text-align:center; }
+        .thumbnail .image img  { max-width:100%;}
+        .pagination ul      { display:inline; }
+        .titles             { margin-top:20px; font-weight:bold; }
+        .pbTitle    { display: none; }
+        .pbButtonb  {text-align: center;}
+        .col50      { width:49%; }
+        .label      { font-weight:bold; color:#666666; }
+        .middle     { vertical-align:middle !important; }
+
+
+    </style>
+        <style id="css-custom">
+        /* Bootsrap fixes for Fielo Backend */
+        body {
+            font-size: 75%;
+            line-height: initial;
+        }
+        img {
+            vertical-align: initial;
+            max-width: initial;
+        }
+        form {
+            margin: initial;
+        }
+        h2 {
+            font-size: initial;
+        }
+        h1,
+        h2,
+        h3 {
+            line-height: initial;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: initial;
+            font-size: 100%;
+        }
+        a {
+            color: #333435;
+            text-decoration: underline;
+        }
+        .btn {
+            line-height: initial;
+        }
+        label,
+        input,
+        button,
+        select,
+        textarea {
+            line-height: initial;
+        }
+        input[type="file"],
+        input[type="image"],
+        input[type="submit"],
+        input[type="reset"],
+        input[type="button"],
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: initial;
+        }
+        input, textarea,
+        .uneditable-input {
+            width: initial;
+        }
+        .mruIcon.userDefinedImage {width: 16px;height: 16px;}
+
+    </style>
+
+    <apex:sectionHeader title="{!$Label.fieloee__newredemption}" />
+    <apex:form id="pageForm" styleClass="form-horizontal">
+        <apex:pageMessages id="messages" />
+
+        <!-- Choose Member Section -->
+        <apex:pageBlock id="memberInfo" title="Member Info" rendered="{!!fromMember}">
+            <apex:pageMessage summary="{!$Label.fieloee__inforedemptioncreatebackend}" strength="2" severity="INFO" />
+
+            <div class="well">
+                <table width="100%">
+                    <tr>
+                        <td class="title-search"></td>
+                        <td style="text-align:right; padding:5px 10px 0 0">{!$Label.Member}</td>
+                        <td><apex:inputField value="{!redemption.FieloEE__Member__c}" styleClass="input-medium" required="false"/></td>
+
+                        <td style="text-align:right;"><apex:commandButton action="{!doGo}" value="{!$Label.fieloee__go}!" /></td>
+                    </tr>
+                </table>
+            </div>
+        </apex:pageBlock>
+
+        <!-- Selected Member Section -->
+        <apex:pageBlock id="redemptionInfo" rendered="{!fromMember}">
+            <apex:pageBlockSection columns="1">
+                <apex:iframe id="iframe" height="150px" src="/apex/MemberInformationBackEnd?id={!member.Id}" scrolling="false" />
+            </apex:pageBlockSection>
+
+            <apex:panelGroup rendered="{!step == 1}">
+                <div class="well">
+                    <table width="100%">
+                        <tr>
+                            <td class="title-search">{!$Label.fieloee__searchby}</td>
+                            <td style="text-align:right; padding:5px 10px 0 0">{!$ObjectType.FieloEE__Reward__c.Fields['Name'].Label}</td>
+                            <td><apex:inputText value="{!rewardName}" styleClass="input-medium" /></td>
+                            <td style="text-align:right;"><apex:commandButton action="{!searchRewards}" value="{!$Label.fieloee__search}" /></td>
+                        </tr>
+                    </table>
+                </div>
+            </apex:panelGroup>
+
+            <apex:pageBlockSection columns="1" collapsible="false" rendered="{!step == 1}">
+                <apex:panelGroup ><div class="titles"><apex:outputText value="{!$Label.fieloee__rewardcatalog}"/></div></apex:panelGroup>
+                <apex:pageBlockTable value="{!rewardsWrapper}" var="r" rendered="{!rewardsWrapper.size > 0}">
+                    <apex:column >
+                        <apex:inputCheckbox value="{!r.selected}" onchange="setQuantity(this);"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.fieloee__quantity}">
+                        <apex:inputText value="{!r.quantity}" onchange="setChecked(this);"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.FieloEE__Reward__c.Fields['Image__c'].Label}" >
+                        <img src="{!IF(LEFT(r.reward.AttachmentId__c,3) == '00P', URLFOR($Action.Attachment.Download, r.reward.AttachmentId__c), IF(LEFT(r.reward.AttachmentId__c,3) == '015', IF(ISBLANK($Setup.PublicSettings__c.Instance__c), $Site.Prefix, DocURL)+'/servlet/servlet.ImageServer?id='+r.reward.AttachmentId__c+'&oid='+orgId, URLFOR($Resource.Images, r.reward.AttachmentId__c)))}" style="{!IF( NOT(ISBLANK(r.reward.AttachmentId__c)), 'display:block; height: 50px;', 'display:none')}"/>
+                        <i class="icon-gift icon-3x" style="{!IF(ISBLANK(r.reward.AttachmentId__c), 'display:block; height: 50px;', 'display:none')}"></i>
+                    </apex:column>
+                    <apex:column value="{!r.reward.Name}"/>
+                    <apex:column value="{!r.reward.FieloEE__Description__c}"/>
+                    <apex:column value="{!r.reward.FieloEE__PointsCant__c}"/>
+                    <apex:column headervalue="{!$ObjectType.FieloEE__Reward__c.Fields['Stock__c'].Label}">
+                        <apex:outputText value="{!IF(r.reward.FieloEE__VoucherCreationMode__c == 'Unlimited','-',TEXT(FLOOR(r.reward.FieloEE__Stock__c)))}" />
+                    </apex:column>
+                </apex:pageBlockTable>
+                <apex:pageMessage id="warning" summary="{!$Label.fieloee__noresultsfound}" severity="warning" strength="3" rendered="{!rewardsWrapper.size = 0}"/>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection id="redemptionTableSection" collapsible="false" columns="1" rendered="{!step == 2}">
+                <apex:variable var="contador" value="1" />
+                <apex:pageBlockTable id="redemptionTable" value="{!redemptionItemsWrapper}" var="riw" >
+                    <apex:column value="{! contador }." width="20px" />
+                    <apex:column headerValue="{!$Label.fieloee__name}" value="{!riw.reward.Name}" />
+                    <apex:column id="unitPoints" width="80px" headerValue="{!$Label.fieloee__unitpoints}"  >
+                        <apex:outputText value="{!riw.reward.FieloEE__PointsCant__c}"/>
+                    </apex:column>
+                    <apex:column width="50px" headerValue="{!$Label.fieloee__quantity}" >
+                        <apex:outputText value="{!riw.ri.FieloEE__Quantity__c}" />
+                    </apex:column>
+                    <apex:column id="points" width="120px" headerValue="{!$ObjectType.FieloEE__RedemptionItem__c.Fields['itemPoints__c'].Label}" >
+                        <apex:variable var="contador" value="{! Text(Value(contador) + 1)}" />
+                        <apex:outputText value="{!riw.points}"/>
+                        <apex:facet name="footer"><div id="totalRedemptionPoints">{!totalPoints}</div></apex:facet>
+                    </apex:column>
+                    <apex:column width="40px" headerValue="{!$Label.fieloee__delete}">
+                        <apex:commandLink action="{!deleteValues}" >
+                            <apex:image value="{!URLFOR($Resource.FieloEE__images, 'cart_red.png')}" style="vertical-align:-6; border:none" />
+                            <apex:param name="rewardPos" value="{!contador}" />
+                        </apex:commandLink>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!doAdd}" value="{!$Label.fieloee__add}" rendered="{!step == 1 && rewardsWrapper.size > 0}"/>
+                <apex:commandButton action="{!doNext}" value="{!$Label.fieloee__next}" rendered="{!step == 1 && redemptionItemsWrapper.size > 0}"/>
+                <apex:commandButton action="{!doAddMore}" value="{!$Label.fieloee__add} {!$Label.fieloee__more}" rendered="{!step == 2}"/>
+                <apex:commandButton action="{!doGenerateOrder}" value="{!$Label.fieloee__generateorder}" rendered="{!step == 2}"/>
+                <apex:commandButton action="{!cancel}" value="{!$Label.fieloee__cancel}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+    <script >
+        function setQuantity(valor){
+            if( $(valor).is(':checked') ){
+                $(valor).closest('td').next().find('input').val(1);
+            }else{
+                $(valor).closest('td').next().find('input').val('');
+            }
+        }
+
+        function setChecked(input){
+            if( $.trim( input.value ) != '' && !$.isNumeric( input.value ) ){
+                alert('{!$Label.ErrorRedemptionCreateBackEndQuantity}');
+                $(input).val('');
+                $(input).closest('td').prev('td').children().prop( 'checked', false );
+            }else{
+                if( $(input).val() > 0 ){
+                    //Check if it is Integer
+                    if( $(input).val() % 1 === 0 ){
+                        if( $(input).closest('td').prev('td').children().is(':checked') == false){
+                            $(input).closest('td').prev('td').children().prop( 'checked', true );
+                        }
+                    } else{
+                        alert('{!$Label.ErrorShoppingcartQuantityInput}');
+                        $(input).val('');
+                    }
+                }else if( $(input).val() == '' ){
+                    $(input).closest('td').prev('td').children().prop( 'checked', false );
+                }else if( $(input).val() <= 0 ){
+                    $(input).val('');
+                    $(input).closest('td').prev('td').children().prop( 'checked', false );
+                }
+            }
+        }
+
+
+        var iframe = document.getElementById('iframe');
+        var newheight;
+        var newwidth;
+
+        if(document.getElementById){
+            newheight = document.getElementById('iframe').contentWindow.document.body.scrollHeight;
+            newwidth = document.getElementById('iframe').contentWindow.document.body.scrollWidth;
+        }
+
+        document.getElementById('iframe').height= (newheight) + "px";
+        document.getElementById('iframe').width= (newwidth) + "px";
+    </script>
+</apex:page>

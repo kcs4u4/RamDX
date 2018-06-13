@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Edit_Default_Rule</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Edit Default Rule</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/22.0/connection.js")}
+
+var defaultRules = sforce.connection.query("SELECT Id FROM {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Rule__c WHERE {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__c = \&#39;{!FieloEE__Promotion__c.FieloEE__ProgramId__c}\&#39; AND RecordType.DeveloperName = \&#39;Default_Rule\&#39; ");
+var defaultRule = defaultRules.getArray("records")[0];
+
+window.open(&#39;/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}RuleDefaultEditBackEnd?id=&#39; + defaultRule.Id);</url>
+</WebLink>

@@ -1,0 +1,51 @@
+<apex:page sidebar="false" showHeader="false" standardStylesheets="false" controller="FieloEE.PageController" >
+    <!--<apex:composition template="{!$Site.template}" >-->
+    <apex:composition template="FieloEE__SiteTemplateFielo" >
+        <apex:define name="body">
+            <apex:panelGroup rendered="{!menu.FieloEE__Title__c != ''}">
+                <div class="row-fluid hidden-phone">
+                    <div class="span12 menuTitle">
+                        <span>{!menu.FieloEE__Title__c}</span>
+                    </div>
+                </div>
+            </apex:panelGroup>
+            <apex:panelGroup rendered="{!NOT(ISNULL(menu.FieloEE__Description__c))}">
+                <div class="row-fluid">
+                    <div class="span12 menuDescription">
+                        <span>{!menu.FieloEE__Description__c}</span>
+                    </div>
+                </div>
+            </apex:panelGroup>
+            <!-- Sections -->
+            <apex:repeat value="{!sections}" var="s">
+                <div class="row-fluid section">
+                    <!-- subSections -->
+                    <apex:repeat value="{!componentsSection[s.Id]}" var="subSection" >
+                        <div class="span{!subSection.FieloEE__Type__c} subsection">
+                            <!-- Components -->
+                            <apex:repeat value="{!subSection.FieloEE__components__r}" var="c">
+                                <div class="component">
+                                    <apex:panelGroup rendered="{!NOT(ISNULL(c.FieloEE__OptionalName__c))}">
+                                        <div class="componentTitle">{!c.FieloEE__OptionalName__c}</div>
+                                    </apex:panelGroup>
+                                    <!-- Component Styles -->
+                                        <apex:panelGroup rendered="{!NOT(ISNULL(c.FieloEE__CCS__c))}">
+                                            <style>
+                                                {!c.FieloEE__CCS__c}
+                                            </style>
+                                        </apex:panelGroup>
+                                    <!-- END Component Styles -->     
+                                    <c:Challenges comp="{!c}" classes="{!componentClasses[c.Id]}" />
+                                </div>
+                            </apex:repeat>
+                            <!-- Components -->
+                        </div>
+                    </apex:repeat>
+                    <!-- subSections -->
+                </div>
+            </apex:repeat>
+            <!-- Sections -->
+            <c:CSSChallenges />
+        </apex:define>
+    </apex:composition>
+</apex:page>

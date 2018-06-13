@@ -1,0 +1,4 @@
+<apex:page >
+     <apex:sectionHeader title="{!$CurrentPage.parameters.title}" />
+     <c:OrderRecords nameObject="{!$CurrentPage.parameters.nameObject}" urlSave="{!$CurrentPage.parameters.urlSave}" btnSave="{!$CurrentPage.parameters.btnSave}" urlSaveAndClose="{!$CurrentPage.parameters.urlSaveAndClose}" btnSaveAndClose="true" urlCancel="{!$CurrentPage.parameters.urlCancel}" btnCancel="true" condition="{!$CurrentPage.parameters.condition}" />
+</apex:page>

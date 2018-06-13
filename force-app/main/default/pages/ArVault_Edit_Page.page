@@ -1,0 +1,17 @@
+<apex:page standardController="ARVault__c" extensions="ArVaultEditSave" >
+   <apex:form >
+    {!$Label.kcs_dev__dx_api}
+    <apex:pageBlock title="ARVault">
+    <apex:pageBlockButtons >
+   <apex:commandButton value="Save" action="{!save}"/>
+   </apex:pageBlockButtons>
+    <apex:pageBlockSection title="ArVault EditPage">
+      
+        <apex:inputField value="{!ARVault__c.Customer_Name__c }"> </apex:inputField>
+ <apex:inputField value="{!ARVault__c.Customer_Phone__c}"> </apex:inputField>
+ <apex:inputField value="{!ARVault__c.Email__c}" ></apex:inputField>
+    
+</apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

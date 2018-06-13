@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssignmentRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <assignmentRule>
+        <fullName>NewTest</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <assignedTo>AccountQueue</assignedTo>
+            <assignedToType>Queue</assignedToType>
+            <formula>Account.Update_Field__c&lt;&gt; Null</formula>
+            <team>NewTeam</team>
+        </ruleEntry>
+    </assignmentRule>
+</AssignmentRules>

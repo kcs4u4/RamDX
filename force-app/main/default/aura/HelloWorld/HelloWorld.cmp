@@ -1,0 +1,6 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,lightning:actionOverride">
+	<p> Hello Lightning!!</p>
+     <c:helloMessage />
+    <c:helloMessageInteractive />
+
+</aura:component>

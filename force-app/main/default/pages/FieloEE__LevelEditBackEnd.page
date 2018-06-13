@@ -1,0 +1,96 @@
+<apex:page id="page" standardController="FieloEE__Level__c" extensions="FieloEE.LevelEditBackEndExtension" > 
+ <head> 
+     <style type="text/css">
+         span.dateInput span.dateFormat { display:none; }
+     </style> 
+    
+     <apex:includeScript value="{!URLFOR($Resource.FieloEE__js,'/criteriasFunctions.js')}"/>
+    
+     <script>
+        var mapFieldTypes = new Array();
+        var aOptions = new Array();
+        var operators = new Array();
+        <apex:repeat value="{!mapFieldTypes}" var="ft" >
+            mapFieldTypes['{!ft}'] = '{!mapFieldTypes[ft]}';
+        </apex:repeat>
+        
+        <apex:repeat value="{!mapOptions}" var="ft" >                          
+            var i = 0;                          
+            aOptions['{!ft}']=new Array();
+            <apex:repeat value="{!mapOptions[ft]}" var="o" >
+            aOptions['{!ft}'][i] = new Option('{!JSENCODE(o.Label)}', '{!JSENCODE(o.Value)}', false, false);
+            i++;
+            </apex:repeat>
+        </apex:repeat>
+       
+        pos = 0;
+        <apex:repeat value="{!Operators}" var="opr" >
+            operators[pos]= new Option('{!opr.Label}','{!opr.Value}',false,false);
+            pos++;
+        </apex:repeat>                 
+     </script> 
+ </head> 
+     <apex:sectionHeader title="{!$Label.fieloee__step} 1 {!$Label.fieloee__of} 2" subtitle="{!$ObjectType.FieloEE__Level__c.Label}: {!FieloEE__Level__c.Name}"/> 
+     <apex:form id="form"> 
+         <apex:pageMessages id="msgId"/> 
+         <apex:pageBlock id="pageBlock"> 
+             <apex:pageBlockButtons > 
+                 <apex:commandButton value="{!$Label.fieloee__save}" action="{!doSave}" /> 
+            
+                 <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!cancel}"/> 
+             </apex:pageBlockButtons> 
+             <apex:pageBlockSection id="information" title="{!$Label.fieloee__information}" columns="2" collapsible="false"> 
+                 <apex:inputField id="levelName" required="true" value="{!FieloEE__Level__c.Name}" />  
+                 <apex:inputField id="levelActive" value="{!FieloEE__Level__c.FieloEE__IsActive__c}" /> 
+                 <apex:inputField id="levelDescription" value="{!FieloEE__Level__c.FieloEE__Description__c}" /> 
+                 <apex:inputField id="levelProgram" value="{!FieloEE__Level__c.FieloEE__Program__c}" rendered="{!NOT(singleProgram)}" />
+                 <apex:repeat value="{!$ObjectType.FieloEE__Level__c.FieldSets.FieloEE__Edit}" var="f" >
+                    <apex:inputField value="{!FieloEE__Level__c[f]}" />
+                </apex:repeat> 
+             </apex:pageBlockSection>  
+            
+             <!--Formulario para Criterias-->
+             <apex:variable id="contador" var="contador" value="1" />
+             <apex:pageBlockSection id="criteriaList" title="{!$Label.fieloee__criterias}" columns="1" collapsible="false">
+                <apex:pageBlockTable id="pageBlockTable" value="{!criteriasWrapper}" var="criteriaWrapper" >
+                     <apex:column value="{! contador }." />
+                     <apex:column headerValue="{!$Label.fieloee__field}"> 
+                         <apex:selectList id="availableFieldsId" onchange="analizeRow('{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.availableFieldsId}', '{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.texto}', '{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.fecha}','{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.numero}', '{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.boolean}','{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.lista}','{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.operators.Operator}', mapFieldTypes, aOptions, operators);" value="{!criteriaWrapper.criteria.FieloEE__FieldName__c}" size="1" >  
+                             <apex:selectOptions value="{!FieldNames}" /> 
+                         </apex:selectList> 
+                     </apex:column>
+                     <apex:column headerValue="{!$Label.fieloee__operator}"> 
+                         <apex:pageBlockSectionItem id="operators"> 
+                             <apex:inputField value="{!criteriaWrapper.criteria.FieloEE__Operator__c}" id="operator"/> 
+                             <script>var initialValue = document.getElementById('{!$Component.operator}').value;</script>   
+                         </apex:pageBlockSectionItem> 
+                     </apex:column>  
+                     <apex:column headerValue="{!$Label.fieloee__value}"> 
+                         <apex:panelGroup id="grp" > 
+                             <apex:inputField id="texto" required="false" value="{!criteriaWrapper.criteria.FieloEE__Values__c}" />                                   
+                             <apex:inputField id="fecha" required="false" value="{!criteriaWrapper.criteria.FieloEE__DateValue__c}"/> 
+                             <apex:inputField id="numero" required="false" value="{!criteriaWrapper.criteria.FieloEE__NumberValue__c}"/> 
+                             <apex:inputField id="boolean" required="false" value="{!criteriaWrapper.criteria.FieloEE__BooleanValue__c}"/> 
+                             
+                             <apex:inputHidden value="{!criteriaWrapper.listValue}" id="listaHidden"/>
+                             <apex:selectList id="lista" required="false"  value="{!criteriaWrapper.listValue}" size="1" multiselect="true" > 
+                                 <apex:selectOptions value="{!optionsValues}"/> 
+                             </apex:selectList> 
+                             <script> 
+                                 var optionList = document.getElementById('{!$Component.listaHidden}').value;
+                                 analizeRow('{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.availableFieldsId}', '{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.texto}','{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.fecha}','{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.numero}','{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.boolean}','{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.lista}','{!$Component.page.form.pageBlock.criteriaList.pageBlockTable.operators.Operator}', mapFieldTypes, aOptions, operators);
+                             </script> 
+                         </apex:panelGroup> 
+                     </apex:column>                            
+                     <apex:column >                          
+                         <apex:panelGroup >                                      
+                             {!$Label.fieloee__and} 
+                             <apex:variable var="contador" value="{! Text(Value(contador) + 1)}" /> 
+                         </apex:panelGroup> 
+                     </apex:column>                                                                                                
+                 </apex:pageBlockTable>                                           
+             </apex:pageBlockSection>   
+             <apex:commandLink action="{!doAddCriteria}" rerender="criteriaList, contador" >{!$Label.fieloee__add}</apex:commandLink>                                    
+         </apex:pageBlock> 
+     </apex:form> 
+</apex:page>

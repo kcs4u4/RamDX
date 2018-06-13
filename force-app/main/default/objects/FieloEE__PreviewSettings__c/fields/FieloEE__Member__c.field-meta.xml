@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Member__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Member</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>FieloEE__Member__c.FieloEE__Program__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.FieloEE__Program__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>FieloEE__Member__c</referenceTo>
+    <relationshipLabel>Preview Settings</relationshipLabel>
+    <relationshipName>Preview_Settings</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

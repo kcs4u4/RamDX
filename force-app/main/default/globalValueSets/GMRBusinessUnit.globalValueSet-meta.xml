@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>ECOBUILDINGS</fullName>
+        <default>false</default>
+        <label>ECOBUILDINGS</label>
+    </customValue>
+    <customValue>
+        <fullName>ENERGY</fullName>
+        <default>false</default>
+        <label>ENERGY</label>
+    </customValue>
+    <customValue>
+        <fullName>GLOBAL SOLUTIONS</fullName>
+        <default>false</default>
+        <label>GLOBAL SOLUTIONS</label>
+    </customValue>
+    <customValue>
+        <fullName>INDUSTRIAL AUTOMATION</fullName>
+        <default>false</default>
+        <label>INDUSTRIAL AUTOMATION</label>
+    </customValue>
+    <customValue>
+        <fullName>INFOR TECHNO. BUSINESS</fullName>
+        <default>false</default>
+        <label>INFOR TECHNO. BUSINESS</label>
+    </customValue>
+    <customValue>
+        <fullName>PARTNER PROJECT</fullName>
+        <default>false</default>
+        <label>PARTNER PROJECT</label>
+    </customValue>
+    <customValue>
+        <fullName>RETAIL</fullName>
+        <default>false</default>
+        <label>RETAIL</label>
+    </customValue>
+    <customValue>
+        <fullName>SOLAR BUSINESS UNIT</fullName>
+        <default>false</default>
+        <label>SOLAR BUSINESS UNIT</label>
+    </customValue>
+    <masterLabel>Business Unit</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

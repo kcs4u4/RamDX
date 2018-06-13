@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__ActionMenu__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Menu that handles the Action through the list view or related list. Commonly is a menu that contains a CRUD component but it can also be a custom page.</inlineHelpText>
+    <label>Action Menu</label>
+    <referenceTo>FieloEE__Menu__c</referenceTo>
+    <relationshipLabel>List View Actions</relationshipLabel>
+    <relationshipName>ListViewActions</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

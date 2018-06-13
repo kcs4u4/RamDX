@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__NumberOfVoucherDigits__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The number of digits in automatic vouchers.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set the number of digits for the automatic vouchers.</inlineHelpText>
+    <label>Number of Voucher Digits</label>
+    <precision>2</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

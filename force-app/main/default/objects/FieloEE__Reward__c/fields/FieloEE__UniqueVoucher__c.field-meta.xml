@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__UniqueVoucher__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Checking this option will create a voucher with two or more items of this reward.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this option if you want to create a voucher in a redemption that have two or more items of this reward. This voucher will show the quantity field.</inlineHelpText>
+    <label>Unique Voucher</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

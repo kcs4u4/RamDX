@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Instructions__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Instructions to redeem this reward that will appear in the voucher. These instructions overrule the instructions in Settings.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Define the instructions that will be printed in the voucher for redeeming this reward. These instructions overrule the instructions in Settings.</inlineHelpText>
+    <label>Specific Instructions</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+</CustomField>

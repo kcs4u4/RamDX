@@ -1,0 +1,100 @@
+<apex:page controller="FieloCRUD.FileUploadController" standardStylesheets="false" sidebar="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+    
+    <apex:composition template="FieloCRUD__SiteTemplateForIFrame">
+
+        <apex:define name="body">
+            
+            <apex:stylesheet value="{!URLFOR($Resource.FieloCRUD__UploadAttachJS, '/fileStyle/css/jquery-filestyle.min.css')}"/>
+            <apex:includeScript value="{!URLFOR($Resource.FieloCRUD__UploadAttachJS, '/fileStyle/js/jquery-filestyle.min.js')}"/>
+            
+            <apex:form styleClass="form-horizontal row-fluid">
+                
+                <!-- DISPLAY RELATED LIST NAME -->
+                <apex:panelGroup layout="none" rendered="{!$CurrentPage.parameters.sectionName != null}">
+                    <legend><apex:outputText value="{!$CurrentPage.parameters.sectionName}"/></legend>
+                </apex:panelGroup>
+                
+                <apex:panelGroup layout="none" rendered="{!NOT(isReadOnly) && (totalDocs < limitDocs)}">
+                    <apex:panelGroup layout="block" rendered="{!isEmptyUpload}" styleClass="errorMessage">
+                        <apex:outputText value="{!$Label.fielocrud__fileupload_selectafile}"/>
+                    </apex:panelGroup>
+                    <apex:panelGroup layout="none" rendered="{!autoUpload}">
+                        <apex:actionFunction action="{!doUploadFile}" name="upload" /> 
+                    </apex:panelGroup>
+                    <apex:panelGroup layout="block" styleClass="control-group">
+                        <apex:outputLabel value="{!$Label.fielocrud__fileupload_label}" styleClass="control-label" />
+                        <div class="controls">
+                            <apex:inputFile value="{!documentBody}" filename="{!fileName}" styleClass="jfilestyle" onchange="upload()"/>
+                            <apex:commandButton styleClass="btn uploadBtn" value="{!$Label.fielocrud__fileupload_upload}" action="{!doUploadFile}"  rendered="{!NOT(autoUpload)}" onclick="$('.btn.uploadBtn').hide();$('.btn.uploadBtn.disabled').show();"/>
+                            <a href="#" onclick="return false" class="btn uploadBtn disabled" style="display:none;"><apex:outputtext value="{!$Label.fielocrud__fileupload_upload}"/></a>
+                        </div>
+                    </apex:panelGroup>
+                </apex:PanelGroup>
+                
+                <!-- LABEL SIN REGISTROS -->
+                <apex:panelGroup layout="none" rendered="{!isReadOnly && (attachments == null || attachments.size == 0)}">
+                    <div class="alert alert-info internalError">
+                        <i class="icon-warning-sign" ></i>
+                        <apex:outputText value="{!$Label.fielocrud__listview_norecords}"/>
+                    </div>
+                </apex:panelGroup>
+                
+                <apex:panelGroup layout="none" rendered="{!(documents != null && documents.size > 0) || (attachments != null && attachments.size > 0)}">
+                    <div class="alert alert-block internalError" >
+                        
+                        <!-- Documents -->
+                        <apex:repeat value="{!documents}" var="att">
+                            <div class="attachView" >
+                                <apex:variable value="{!IF(ISBLANK($Setup.FieloEE__PublicSettings__c.FieloEE__Instance__c), $Site.Prefix, DocURL) + '/servlet/servlet.ImageServer?id='+att.Id+'&oid='+$Organization.Id}" var="urlDoc"/>
+                                <a href="{!urlDoc}" target="_blank">
+                                    <apex:panelGroup rendered="{!CONTAINS(att.Name,'.gif') || CONTAINS(att.Name,'.jpeg') || CONTAINS(att.Name,'.jpg') || CONTAINS(att.Name,'.png')}" layout="block" styleClass="documentImg">
+                                        <img src="{!urlDoc}" alt="{!RIGHT(att.Name, 3)}"/>
+                                    </apex:panelGroup>
+                                    <apex:panelGroup rendered="{!NOT(CONTAINS(att.Name,'.gif') || CONTAINS(att.Name,'.jpeg') || CONTAINS(att.Name,'.jpg') || CONTAINS(att.Name,'.png'))}" layout="block" styleClass="noDocumentImg">
+                                        <apex:outputText value="{!RIGHT(att.Name, 3)}"/>
+                                    </apex:panelGroup>
+                                    <apex:outputText value="{!att.Name}"/>
+                                </a>
+                                <apex:commandLink rendered="{!showDelete}" onclick="return confirm('{!$Label.fielocrud__fileupload_deleteconfirm}');" action="{!doDeleteDoc}" styleClass="remove">
+                                    <apex:param name="recordId" value="{!att.Id}"/>
+                                    <i class="icon-remove"></i>
+                                </apex:commandLink><br/>
+                            </div>
+                        </apex:repeat>
+                        
+                        <!-- Attachments -->
+                        <apex:repeat value="{!attachments}" var="att">
+                            <div class="attachView" >
+                                <a href="{!URLFOR($Action.Attachment.Download, att.Id)}" target="_blank">
+                                    <apex:panelGroup rendered="{!CONTAINS(att.Name,'.gif') || CONTAINS(att.Name,'.jpeg') || CONTAINS(att.Name,'.jpg') || CONTAINS(att.Name,'.png')}" layout="block" styleClass="documentImg">
+                                        <img src="{!URLFOR($Action.Attachment.Download, att.Id)}" alt="{!RIGHT(att.Name, 3)}" />
+                                    </apex:panelGroup>
+                                    <apex:panelGroup rendered="{!NOT(CONTAINS(att.Name,'.gif') || CONTAINS(att.Name,'.jpeg') || CONTAINS(att.Name,'.jpg') || CONTAINS(att.Name,'.png'))}" layout="block" styleClass="noDocumentImg">
+                                        <apex:outputText value="{!RIGHT(att.Name, 3)}"/>
+                                    </apex:panelGroup>
+                                    <apex:outputText value="{!att.Name}"/>
+                                </a>
+                                <apex:commandLink rendered="{!showDelete}" onclick="return confirm('{!$Label.fielocrud__fileupload_deleteconfirm}');" action="{!doDeleteAtt}" styleClass="remove">
+                                    <apex:param name="recordId" value="{!att.Id}"/>
+                                    <i class="icon-remove"></i>
+                                </apex:commandLink><br/>
+                            </div>
+                        </apex:repeat>
+                    </div>
+                </apex:panelGroup>
+            </apex:form>
+            
+            <script>
+                $(document).ready(function(){
+                    $(".jfilestyle").jfilestyle({
+                        'iconName' : 'icon-folder-open',
+                        'buttonText' : '{!$Label.fielocrud__fileupload_selectfile}',
+                        'theme' : 'green'
+                    });
+                });
+            </script>
+            
+        </apex:define>
+        
+    </apex:composition>
+</apex:page>

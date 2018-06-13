@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NewValid</fullName>
+    <active>false</active>
+    <errorConditionFormula>$Label.kcs_dev__dx_api !=Null</errorConditionFormula>
+    <errorDisplayField>New_Dte__c</errorDisplayField>
+    <errorMessage>New Error</errorMessage>
+</ValidationRule>

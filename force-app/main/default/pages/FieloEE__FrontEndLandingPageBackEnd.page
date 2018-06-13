@@ -1,0 +1,283 @@
+<apex:page controller="FieloEE.FrontEndLandingPageBackEndController" tabStyle="FrontEnd__tab" action="{!init}">
+  <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+  <!-- Font Awesome -->
+  <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'FontAwesome/css/font-awesome.css')}"/>
+  <!--[if IE 7]>
+  <apex:stylesheet value="{!URLFOR($Resource.css, 'font-awesome-ie7.css')}"/>
+  <![endif]-->
+  <!-- Fin Font Awesome -->
+  <style>
+    .bPageBlock .pbTitle { width:90%; }
+    .bold   { font-weight: bold; }
+    .col_33 { width:33%; }
+    .col_33 .pbHeader { border: none !important; }
+    .col_33 .pbHeader table{ border: none !important; }
+    .pbSubsection { background-color: #FFFFFF !important; border: 1px solid #E8E8E8; margin: 5px 0 0; padding: 5px; }
+    .pbSubsection td{ border: none !important; }
+    .pageblocks { width: 100%; }
+    .splash_title       { font-size:26px; color:#777777; font-weight:bold; }
+    .splash_main        { font-size:18px; color:#777777; }
+    .splash_subtitle    { font-size:16px; color:#111111; text-align:center; }
+    .splash_text        { font-size:12px; color:#777777; margin:2px 10px; }
+    .splash_numbers     { font-family:helvetica; font-size:28px; color:#2D64CB; font-weight:bold; }
+    .pbSubheader            { color:red; }
+    .ul_menu                { margin:0; padding:0; }
+    .ul_menu li             { margin:0; padding:2px 0; border-bottom:1px dashed #cccccc; list-style:none; }
+    .ul_menu li ul          { margin:0; padding:0; }
+    .ul_menu li ul li       { padding-left:20px; border-top:1px dashed #eeeeee; border-bottom:none; }
+    .ul_menu .col_menu      { vertical-align:middle !important; }
+    .ul_menu .col_comp      { vertical-align:middle !important; padding:0 3px; }
+    .ul_menu .col_comp a    { color:#cccccc; }
+    .ul_menu .col_comp img  { width:16px; margin:0; }
+    .icon_comp              { float:left; margin:0 2px; }
+    .icon_comp a            { color:#666666 !important; }
+    .icon_comp a:hover      { color:#00A0BA !important; }
+    i    { border:1px solid transparent }
+    h3  { line-height:20px; }
+    .news_li        { position:relative; overflow:auto; padding:0 4px !important; }
+    .news_category  { width:60px; color:#666666 !important; font-size:9px; text-transform:uppercase; text-align:right; }
+    /* News isActive */
+    .news_false     { color:#aaaaaa !important; }
+    .ul_menu .menu-item {
+    padding-left: 8px;
+    margin-bottom: 1px;
+    margin-top: 1px;
+    }
+    .menu-item {
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-left-color: #FFF;
+    }
+    .menu-item--isPrivate{
+    border-left-color: #F90808;
+    }
+    .menu-item--isPublic {
+    border-left-color: #05AD0E;
+    }
+    .menu-item--isBoth {
+    border-left-color: #F9C808;
+    }
+  </style>
+  <apex:form >
+    <style>
+      a                       { text-decoration:none; }
+      .page_header            {clear:both;}
+      .page_title             { float:left; width:300px;margin-bottom: 10px;}
+      .bPageTitle             { margin-bottom: 5px;}
+      .program_header         { font-size:11px; color:#999999; line-height:20px;}
+      .program_header .name a { font-size:40px; color:#cccccc; line-height:60px; font-weight:bold; }
+      .links                  { display:none; }
+      .pbBody                 { overflow:auto; position: relative;}
+      .searchFilters          {width: 100%}
+      .searchBtn              {position: absolute;right: 0; top: 0}
+      .inline                 {display: inline-block; margin: 5px 5px 5px 0 ;}
+      .searchLabel            {color: #444; padding: 10px 0; background: white; border: 1px solid #E8E8E8;text-align: center; font-weight: bold; margin-bottom: 10px}
+      .searchFiltersElement   {float: left; display: block; min-height: 35px; margin-right: 40px; min-width: 260px;}
+    </style>
+    <div class="page_header">
+      <div class="page_title">
+        <apex:sectionHeader title="{!$Label.fieloee__titlefrontendsettingsbackend}" subtitle="{!$Label.fieloee__titlehome}"/>
+      </div>
+      <div class="page_buttons">
+        <c:BackEndSupport helpPage="{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}FrontEndHelpBackEnd" />
+      </div>
+    </div>
+    <div class="program_header">
+      <apex:pageBlock id="programPageBlock" rendered="{!programs.size > 1}">
+        <div style="float:left" class="name">
+          <apex:outputLink value="{!'/'+programId}">{!program.Name}</apex:outputLink>
+        </div>
+        <div style="float:right">
+          <div class="picklist">
+            <div>{!$Label.fieloee__changeprogram}</div>
+            <apex:selectList value="{!programId}" multiselect="false" size="1" onchange="refreshInfo();" >
+              <apex:selectOptions value="{!programs}"/>
+            </apex:selectList>
+          </div>
+        </div>
+      </apex:pageBlock>
+    </div>
+    <apex:actionFunction action="{!changeProgram}" name="refreshInfo" />
+    <!-- rerender="programPageBlock, layoutConfiguration, navigation" -->
+    <table width="100%">
+      <tr>
+        <td style="width:100%">
+          <apex:pageBlock id="searchPageBlock" title="Navigations Search">
+            <div class="name">
+              <!--<apex:outputLink value="{!'/'+programId}">{!program.Name}</apex:outputLink>-->
+              <div class="searchFilters">
+                <apex:repeat value="{!$ObjectType.FieloEE__Menu__c.FieldSets.FieloEE__Filter}" var="f">
+                  <div class="searchFiltersElement">
+                    <apex:outputLabel styleClass="inline" value="{!$ObjectType.FieloEE__Menu__c.fields[f].Label}" />
+                    <apex:inputField styleClass="inline" value="{!filters[f]}" />
+                  </div>
+                </apex:repeat>
+              </div>
+              <apex:commandButton styleClass="searchBtn" value="Search" action="{!getComponents}" />
+            </div>
+          </apex:pageBlock>
+        </td>
+      </tr>
+    </table>
+    <table width="100%">
+      <tr>
+        <td style="width:20%">
+          <apex:pageblock id="layoutConfiguration" title="{!$Label.fieloee__layoutconfiguration}">
+            <apex:pageBlockSection collapsible="FALSE" columns="1">
+              <apex:panelGroup >
+                <ul class="ul_menu">
+                  <apex:repeat value="{!progLayouts}" var="layout" >
+                    <li>
+                      <table width="100%">
+                        <tr>
+                          <td>
+                            <apex:outputLink value="/{!layout.Id}/e?retURL={!$CurrentPage.Url}">{!layout.Target__c} <i class="icon-double-angle-right"></i></apex:outputLink>
+                          </td>
+                          <td style="padding:5px 5px 0 0; text-align:right">
+                            <apex:commandLink action="{!deleteLayout}" rendered="{!NOT(layout.FieloEE__Default__c)}">
+                              <i class="icon-trash"></i>
+                              <apex:param value="{!layout.Id}" name="layoutId" />
+                            </apex:commandLink>
+                          </td>
+                        </tr>
+                      </table>
+                    </li>
+                  </apex:repeat>
+                </ul>
+              </apex:panelGroup>
+              <apex:outputLink value="{!URLFOR($Page.FieloEE__MemberPortalLayoutBackEnd,null,[saveURL=$CurrentPage.url,retURL=$CurrentPage.url,programId=programId])}">{!$Label.New} <i class="icon-double-angle-right"></i></apex:outputLink>
+            </apex:pageBlockSection>
+          </apex:pageBlock>
+          <apex:pageblock title="{!$Label.fieloee__tools}">
+            <apex:pageBlockSection collapsible="FALSE" columns="1">
+              <apex:outputLink value="/{!CategoryPrefix}" >{!$Label.Manage} {!$Label.Categories} <i class="icon-double-angle-right"></i></apex:outputLink>
+              <apex:outputLink value="/{!TagPrefix}" >{!$Label.Manage} {!$Label.Tags} <i class="icon-double-angle-right"></i></apex:outputLink>
+              <apex:outputLink value="/{!$ObjectType.FieloEE__RedemptionRule__c.KeyPrefix}">{!$Label.ManageProfiling} <i class="icon-double-angle-right"></i></apex:outputLink>
+              <!-- <apex:outputLink value="/{!}">{!$Label.ManageComponentTemplates} <i class="icon-double-angle-right"></i></apex:outputLink> -->
+            </apex:pageBlockSection>
+          </apex:pageBlock>
+        </td>
+        <td style="width:40%">
+          <apex:pageblock id="navigation" title="{!$Label.fieloee__navigation}">
+            <apex:panelGroup rendered="{!(!showResults || (showResults && listSize == 0))}" layout="none" >
+              <div class="searchLabel">{!$Label.fieloee__norecords}</div>
+            </apex:panelGroup>
+            <apex:panelGroup rendered="{!showResults && listSize == 200}" layout="none" >
+              <div class="searchLabel">{!$Label.fieloee__toomanyrecords}</div>
+            </apex:panelGroup>
+            <!-- Placement -->
+            <apex:repeat value="{!placements}" var="placement" rendered="{!showResults}" >
+              <apex:pageBlockSection collapsible="true" columns="1" title="{!placement}">
+                <apex:panelGroup >
+                  <div style="position:relative">
+                    <!-- Order -->
+                    <div style="position:absolute; top:0; right:0;">
+                      <apex:outputLink value="{!URLFOR($Page.FieloEE__MenuOrderBackEnd)}?retURL={!$CurrentPage.Url}&placement={!placement}&programId={!programId}" title="order"><i class="icon-reorder"></i></apex:outputLink>
+                    </div>
+                    <ul class="ul_menu">
+                      <apex:repeat value="{!mapMenus[placement]}" var="menu" >
+                        <li class="menu-item menu-item--is{!menu.visibility__c}" title="Visibility: {!menu.visibility__c}">
+                          <apex:panelGrid columns="2" columnClasses="col_menu,col_comp">
+                            <apex:outputLink value="/{!menu.Id}?retURL={!$CurrentPage.Url}&saveURL={!$CurrentPage.Url}">
+                              <apex:outputText value="{!menu.Name}" escape="false"/>
+                            </apex:outputLink>
+                            <apex:repeat value="{!mapComponents[menu.id]}" var="c">
+                              <apex:outputLink style="color:#666666" value="/{!c.Id}" title="{!c.Name} [{!c.RecordType.Name}]">
+                                <c:ICOcomponents component="{!LOWER(c.RecordType.Name)}" />
+                              </apex:outputLink>
+                            </apex:repeat>
+                          </apex:panelGrid>
+                          <!-- Submenu -->
+                          <ul>
+                            <apex:repeat value="{!menu.menu__r}" var="subMenu">
+                              <apex:panelGroup >
+                                <li>
+                                  <apex:panelGrid columns="2" columnClasses="col_menu,col_comp">
+                                    <apex:outputLink value="/{!subMenu.Id}?retURL={!$CurrentPage.Url}&saveURL={!$CurrentPage.Url}">
+                                      <apex:outputText value="{!subMenu.Name}" escape="false"/>
+                                    </apex:outputLink>
+                                    <apex:repeat value="{!mapComponents[subMenu.Id]}" var="c">
+                                      <apex:outputLink style="color:#666666" value="/{!c.Id}" title="{!c.Name} [{!c.RecordType.Name}]">
+                                        <c:ICOcomponents component="{!LOWER(c.RecordType.Name)}" />
+                                      </apex:outputLink>
+                                    </apex:repeat>
+                                  </apex:panelGrid>
+                                </li>
+                              </apex:panelGroup>
+                            </apex:repeat>
+                          </ul>
+                        </li>
+                      </apex:repeat>
+                    </ul>
+                  </div>
+                </apex:panelGroup>
+                <apex:commandLink action="{!URLFOR($Action.Menu__c.New,null,[place=placement, progId = programId])}" >{!$Label.New} {!$Label.Menu} {!placement} <i class="icon-double-angle-right"></i></apex:commandLink>
+                <apex:commandLink action="{!URLFOR($Page.MenuOrderBackEnd,null,[retURL=$CurrentPage.Url, placement=placement,programId=programId])}" >{!$Label.Order} {!$Label.Menu} {!placement} <i class="icon-double-angle-right"></i></apex:commandLink>
+                <apex:outputLink value="{!URLFOR($Page.FieloEE__XMLExport,null,[retURL = $Page.FieloEE__FrontEndLandingPageBackEnd, placement = placement, type = 'Menu'])}">{!$Label.ExportMenus} {!placement} <i class="icon-double-angle-right"></i></apex:outputLink>
+              </apex:pageBlockSection>
+            </apex:repeat>
+            <apex:pageBlockSection collapsible="FALSE" columns="1">
+              <apex:outputLink value="/{!$ObjectType.FieloEE__Menu__c.keyPrefix}">{!$Label.GotoMenus} <i class="icon-double-angle-right"></i></apex:outputLink>
+              <apex:outputLink value="{!URLFOR($Page.FieloEE__MenuWizardBackEnd,null,[id=currentLayout, progId=programId, retURL = $Page.FieloEE__FrontEndLandingPageBackEnd])}">Site Wizard <i class="icon-double-angle-right"></i></apex:outputLink>
+              <apex:outputLink value="{!URLFOR($Page.FieloEE__XMLExport,null,[retURL = $Page.FieloEE__FrontEndLandingPageBackEnd, type = 'Menu'])}">{!$Label.ExportMenus} <i class="icon-double-angle-right"></i></apex:outputLink>
+              <apex:outputLink value="{!URLFOR($Page.FieloEE__XMLImport,null,[retURL = $Page.FieloEE__FrontEndLandingPageBackEnd, type = 'Menu'])}">{!$Label.ImportMenus} <i class="icon-double-angle-right"></i></apex:outputLink>
+            </apex:pageBlockSection>
+          </apex:pageBlock>
+        </td>
+        <td>
+          <apex:pageblock title="{!$Label.fieloee__recentcontents}">
+            <apex:pageBlockSection collapsible="FALSE" columns="1">
+              <apex:panelGroup >
+                <ul class="ul_menu">
+                  <apex:repeat value="{!news}" var="n">
+                    <li class="news_li">
+                      <table width="100%">
+                        <tr>
+                          <td>
+                            <apex:outputLink value="/{!n.id}" styleClass="news_{!n.FieloEE__IsActive__c}">
+                              <apex:outputText value="{!n.FieloEE__Title__c}" />
+                            </apex:outputLink>
+                          </td>
+                          <td class="news_category">[{!n.FieloEE__Type__c}]</td>
+                        </tr>
+                      </table>
+                    </li>
+                  </apex:repeat>
+                </ul>
+              </apex:panelGroup>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection collapsible="FALSE" columns="1">
+              <apex:commandLink action="{!URLFOR($Action.News__c.New)}" >{!$Label.New} <i class="icon-double-angle-right"></i></apex:commandLink>
+              <apex:outputLink value="/{!$ObjectType.FieloEE__News__c.KeyPrefix}">{!$Label.GotoNews} <i class="icon-double-angle-right"></i></apex:outputLink>
+            </apex:pageBlockSection>
+          </apex:pageblock>
+          <apex:pageblock title="{!$Label.fieloee__recentbanners}">
+            <apex:pageBlockSection collapsible="FALSE" columns="1">
+              <apex:panelGroup >
+                <ul class="ul_menu">
+                  <apex:repeat value="{!banners}" var="b">
+                    <li class="news_li">
+                      <table width="100%">
+                        <tr>
+                          <td>
+                            <apex:outputLink value="/{!b.id}" styleClass="news_{!b.FieloEE__isActive__c}">
+                              <apex:outputText value="{!b.Name}" />
+                            </apex:outputLink>
+                          </td>
+                          <td class="news_category">[{!b.FieloEE__Placement__c}]</td>
+                        </tr>
+                      </table>
+                    </li>
+                  </apex:repeat>
+                </ul>
+              </apex:panelGroup>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection collapsible="FALSE" columns="1">
+              <apex:outputLink value="/{!$ObjectType.FieloEE__Banner__c.KeyPrefix}">{!$Label.GotoBanners} <i class="icon-double-angle-right"></i></apex:outputLink>
+            </apex:pageBlockSection>
+          </apex:pageBlock>
+        </td>
+      </tr>
+    </table>
+  </apex:form>
+</apex:page>

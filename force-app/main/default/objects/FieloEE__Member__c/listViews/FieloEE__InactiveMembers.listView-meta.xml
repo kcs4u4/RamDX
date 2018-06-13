@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__InactiveMembers</fullName>
+    <columns>NAME</columns>
+    <columns>FieloEE__UserReadOnly__c</columns>
+    <columns>FieloEE__LastTransactionDateReadOnly__c</columns>
+    <columns>FieloEE__Name__c</columns>
+    <columns>FieloEE__LevelReadOnly__c</columns>
+    <columns>FieloEE__IdentificationType__c</columns>
+    <columns>FieloEE__IdentificationCode__c</columns>
+    <columns>FieloEE__MemberCode__c</columns>
+    <columns>FieloEE__Points__c</columns>
+    <columns>FieloEE__LastTransactionDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FieloEE__IsActive__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </filters>
+    <label>Inactive Members</label>
+    <language>en_US</language>
+</ListView>

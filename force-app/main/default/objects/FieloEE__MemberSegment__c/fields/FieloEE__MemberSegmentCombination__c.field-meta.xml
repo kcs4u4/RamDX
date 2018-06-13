@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__MemberSegmentCombination__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <deprecated>false</deprecated>
+    <description>This field is for internal use. It will contain the ID of the Member and the Id of the Segment concatenated. This field is unique, so you can not relate the same Member manually twice with a Segment.</description>
+    <externalId>false</externalId>
+    <label>Member segment combination</label>
+    <length>40</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__ObjectSetting_DuplicateName</fullName>
+    <active>true</active>
+    <errorConditionFormula>/*
+AND(
+NOT(ISBLANK(VLOOKUP($ObjectType.FieloCRUD__ObjectSettings__c.Fields.Id, $ObjectType.FieloCRUD__ObjectSettings__c.Fields.FieloCRUD__ObjectAPIName__c, FieloCRUD__ObjectAPIName__c))),
+Id != VLOOKUP($ObjectType.FieloCRUD__ObjectSettings__c.Fields.Id, $ObjectType.FieloCRUD__ObjectSettings__c.Fields.FieloCRUD__ObjectAPIName__c, FieloCRUD__ObjectAPIName__c)
+)
+*/
+FALSE</errorConditionFormula>
+    <errorDisplayField>FieloCRUD__ObjectAPIName__c</errorDisplayField>
+    <errorMessage>There is already an object setting with that name!</errorMessage>
+</ValidationRule>

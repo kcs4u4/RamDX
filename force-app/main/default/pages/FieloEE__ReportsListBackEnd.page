@@ -1,0 +1,3 @@
+<apex:page controller="FieloEE.ReportsListBackEndController" action="{!getFieloReport}" >
+    <apex:pageMessages />
+</apex:page>

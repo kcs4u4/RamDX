@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ReferalTransactionStep1__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Checking this option will give points to members who refer new members.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this box if you want to reward additional points when the referred member completes the registration (points are given to the member who referred the new one).</inlineHelpText>
+    <label>Referral Incentive Step 1</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

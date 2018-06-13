@@ -1,0 +1,3 @@
+<apex:page showHeader="false" sidebar="false" controller="FieloEE.ComponentDeleteBackEndController" action="{!deleteComponents}">
+	<apex:messages />
+</apex:page>

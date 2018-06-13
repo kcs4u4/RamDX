@@ -1,0 +1,5 @@
+<apex:page sidebar="false" showHeader="false" standardController="FieloEE__Banner__c">
+    <div style="margin:0 auto 0 auto;">
+        <c:PhotoUpload myObject="{!FieloEE__Banner__c}" saveInRecordField="true" attachField="AttachmentId__c" info="{!$Label.fieloee__infobannerchangephoto}" />
+    </div>
+</apex:page>

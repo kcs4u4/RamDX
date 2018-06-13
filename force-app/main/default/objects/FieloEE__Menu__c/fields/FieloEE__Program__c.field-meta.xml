@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Program__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>The program to which this menu belongs.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select the program to which this menu belongs.</inlineHelpText>
+    <label>Program</label>
+    <referenceTo>FieloEE__Program__c</referenceTo>
+    <relationshipLabel>Menu</relationshipLabel>
+    <relationshipName>Menu</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

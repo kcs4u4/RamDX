@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__SetHome</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Set Home</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/22.0/connection.js")}
+
+var menuUpdate = [];
+var homeResult = sforce.connection.query("SELECT Id, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Home__c  from {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Menu__c WHERE Id = &#39;{!FieloEE__Menu__c.Id}&#39; ");
+var homeMenu = homeResult.getArray("records");
+homeMenu[0][&#39;{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Home__c&#39;] = &#39;true&#39;;
+menuUpdate.push(homeMenu[0]);
+
+var result = sforce.connection.update(menuUpdate);
+
+window.location.reload();</url>
+</WebLink>

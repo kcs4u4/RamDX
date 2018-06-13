@@ -1,0 +1,98 @@
+<apex:page tabStyle="FieloCH__Challenge__c" standardController="FieloCH__Challenge__c" extensions="FieloCH.ChallengeLandingPageBackEndExtension" recordSetVar="part" action="{!init}">
+
+<!--  START STYLES -->
+    <style>
+        .bold { font-weight: bold; }
+        .col_50 { width:50%; }
+        .col_50 .pbHeader { border: none !important; }
+        .col_50 .pbHeader table{ border: none !important; }
+        .col_50 .pbSubsection { background-color: #FFFFFF !important; border: 1px solid #E8E8E8; margin: 5px 0 0; padding: 5px; }
+        .col_50 .pbSubsection td{ border: none !important; }
+        .reportsAndTools { width: 100%; }
+
+        .splash_title       { font-size:26px; color:#777777; font-weight:bold; }
+        .splash_main        { font-size:18px; color:#777777; }
+        .splash_subtitle    { font-size:16px; color:#111111; text-align:center; }
+        .splash_text        { font-size:12px; color:#777777; }
+        .splash_numbers     { font-family:helvetica; font-size:28px; color:#2D64CB; font-weight:bold; }
+    </style>
+<!--  END STYLES -->
+
+<!--  START LANDING PAGE -->
+    <apex:form >
+	    <style>
+	        a                       { text-decoration:none; }
+	        .page_title             { float:left; width:300px; }
+	        .page_buttons           { float:right; margin-top:30px; }
+	        .program_header         { font-size:11px; color:#999999; line-height:20px; overflow:auto; }
+	        .program_header .name a { font-size:40px; color:#cccccc; line-height:60px; font-weight:bold; }
+	        .links                  { display:none; }
+	        .pbBody                 { overflow:auto; }
+	    </style>
+
+        <div style="overflow:auto">
+            <div class="page_title">
+                <apex:sectionHeader title="{!$ObjectType.FieloCH__Challenge__c.label}" subtitle="{!$Label.fieloee__titlehome}"/>
+            </div>
+<!--             <div class="page_buttons"><FieloEE:BackEndSupport helpPage="ChallengeHelpBackEnd" /></div> -->
+        </div>
+
+        <div class="program_header">
+            <apex:pageBlock id="programPageBlock" rendered="{!programs.size > 1}">
+                <div style="float:left" class="name">
+                    <apex:outputLink value="{!'/'+programId}">{!program.Name}</apex:outputLink>
+                </div>
+                <div style="float:right">
+                    <div class="picklist">
+<!--                         <div>{!$Label.ChangeProgram}</div> -->
+                        <apex:selectList value="{!programId}" multiselect="false" size="1" onchange="refreshInfo();" >
+                            <apex:selectOptions value="{!programs}"/>
+                        </apex:selectList>
+                    </div>
+                </div>
+            </apex:pageBlock>
+        </div>
+        <apex:actionFunction action="{!changeProgram}" name="refreshInfo" rerender="programPageBlock, recentRecords, tools"/>
+
+        <apex:outputLabel value="{!$Label.fieloee__view}:"/>&nbsp;
+            <apex:selectList value="{!filterId}" size="1">
+                <apex:selectOptions value="{!listviewoptions}"/>
+            </apex:selectList>
+            <apex:commandButton value="{!$Label.fieloee__go}!" action="/{!ObjectPrefix}?fcf={!LEFT(filterId, 15)}"/> &nbsp;
+            <apex:commandLink value="{!$Label.fieloee__edit}" action="/ui/list/FilterEditPage?id={!LEFT(filterId, 15)}&retURL=/{!ObjectPrefix}?fcf={!LEFT(filterId, 15)}&cancelURL=/apex/ChallengeLandingPageBackEnd"/>
+<!--                &nbsp;|&nbsp;  -->
+<!--             <apex:commandLink value="{!$Label.CreateNewView}" action="/ui/list/FilterEditPage?ftype={!}&retURL=/apex/ChallengeLandingPageBackEnd&cancelURL=/apex/ChallengeLandingPageBackEnd"/>   -->
+        </apex:form>
+
+    <!--  START COMPONENT RECENT RECORDS  -->
+    <!--<FieloEE:RecentRecords object="FieloCH__Challenge__c" title="Recent Challenges" limit="10" condition="Program__c = '{!programId}'"/>-->
+    <FieloEE:RecentRecords object="{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Challenge__c" title="Recent Challenges" limit="10" condition="{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Program__c = '{!programId}'"/>
+    <!--  END COMPONENT RECENT RECORDS  -->
+
+    <!--  START REPORTS AND TOOLS  -->
+    <apex:panelGrid styleClass="reportsAndTools" columns="2" columnClasses="col_50">
+        <apex:pageBlock title="{!$Label.fieloee__titlelandingpagereports}"  >
+            <apex:pageBlockSection collapsible="FALSE">
+                <apex:repeat value="{!Reports}" var="report">
+                    <apex:outputLink value="/{!report.Id}">{!report.Name}</apex:outputLink><br/>
+                </apex:repeat>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection collapsible="FALSE">
+                <apex:outputLink styleClass="bold" value="/{!ReportPrefix}" >{!$Label.fieloee__gotoreports} »</apex:outputLink>
+            </apex:pageBlockSection>
+        </apex:pageblock>
+
+        <apex:pageBlock title="{!$Label.fieloee__titlelandingpagetools}" >
+            <apex:pageBlockSection collapsible="FALSE" columns="1">
+                <apex:outputLink value="/{!$ObjectType.FieloCH__Mission__c.KeyPrefix}">{!$Label.ManageMissions} <i class="icon-double-angle-right"></i></apex:outputLink>
+                <apex:outputLink value="/{!$ObjectType.FieloCH__Team__c.KeyPrefix}">{!$Label.ManageTeams} <i class="icon-double-angle-right"></i></apex:outputLink>
+                <apex:outputLink value="/{!$ObjectType.FieloEE__RedemptionRule__c.KeyPrefix}">{!$Label.FieloEE__ManageProfiling} <i class="icon-double-angle-right"></i></apex:outputLink>
+                <apex:outputLink value="/{!$ObjectType.FieloEE__Badge__c.KeyPrefix}">{!$Label.ManageBadges} <i class="icon-double-angle-right"></i></apex:outputLink>
+                <apex:outputLink value="{!URLFOR($Page.FieloCH__ManagePendingRecordsBackEnd, null, [retUrl=$CurrentPage.URL])}">{!$Label.ManagePendingRecords} <i class="icon-double-angle-right"></i></apex:outputLink>
+            </apex:pageBlockSection>
+        </apex:pageblock>
+    </apex:panelGrid>
+    <!--  END REPORTS AND TOOLS  -->
+
+<!--  END LANDING PAGE -->
+</apex:page>

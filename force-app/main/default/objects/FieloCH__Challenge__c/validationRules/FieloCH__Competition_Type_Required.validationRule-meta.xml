@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Competition_Type_Required</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( FieloCH__CompetitionType__c , "")</errorConditionFormula>
+    <errorDisplayField>FieloCH__CompetitionType__c</errorDisplayField>
+    <errorMessage>Competition Type is Required when Mode is selected</errorMessage>
+</ValidationRule>

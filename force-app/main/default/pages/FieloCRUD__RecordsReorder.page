@@ -1,0 +1,24 @@
+<apex:page >
+    <!--
+    Parameters:
+    -objectApiName (mandatory)
+    -urlSave
+    -whereCond
+    -fieldsToShow
+    -->
+    <apex:panelGroup rendered="{!$CurrentPage.parameters.objectApiName != null}">
+        <apex:sectionHeader title="{!$ObjectType[$CurrentPage.parameters.objectApiName].LabelPlural}"/>
+        <c:OrderRecords Id="comp"
+            p_nameObject="{!$CurrentPage.parameters.objectApiName}"
+            p_urlSave="{!IF($CurrentPage.parameters.urlSave != NULL, $CurrentPage.parameters.urlSave, $CurrentPage.URL)}"
+            p_btnSave="true"
+            p_urlSaveAndClose="{!IF($CurrentPage.parameters.urlSave != NULL, $CurrentPage.parameters.urlSave, $CurrentPage.URL)}"
+            p_btnSaveAndClose="true"
+            p_urlCancel="{!IF($CurrentPage.parameters.urlSave != NULL, $CurrentPage.parameters.urlSave, $CurrentPage.URL)}"
+            p_btnCancel="true"
+            p_condition="{!$CurrentPage.parameters.whereCond}"
+            p_FieldsToShow="{!$CurrentPage.parameters.fieldsToShow}"
+        />
+    </apex:panelGroup>
+    
+</apex:page>

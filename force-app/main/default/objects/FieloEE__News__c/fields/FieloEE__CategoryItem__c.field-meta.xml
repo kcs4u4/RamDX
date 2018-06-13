@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__CategoryItem__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Category Item</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>FieloEE__Category__c.RecordType.DeveloperName</field>
+            <operation>equals</operation>
+            <value>CategoryItem</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>FieloEE__Category__c</referenceTo>
+    <relationshipLabel>Content feeds</relationshipLabel>
+    <relationshipName>Content_feeds</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

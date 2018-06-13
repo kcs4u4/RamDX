@@ -1,0 +1,43 @@
+<apex:page standardController="FieloEE__PromotionRule__c" extensions="FieloEE.RuleAddExistingBackEndExtension" recordSetVar="t">
+    <script>
+        function checkAll(cb){
+            var inputElem = document.getElementsByTagName("input");
+            for(var i=0; i<inputElem.length; i++){
+                if(inputElem[i].id.indexOf("checkedone")!=-1)
+                    inputElem[i].checked = cb.checked;
+            }
+        }
+    </script>
+
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'thickbox/thick.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__js, 'thickbox/thick.css')}"/>
+    <apex:includescript value="{!URLFOR($Resource.FieloEE__js, 'jquery-ui.js')}"/>
+
+    <apex:form >
+        <apex:pageBlock Title="{!$Label.fieloee__selectexistingrules}" rendered="{!ISBLANK(idRule)}">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!doCancel}"/>
+                <apex:commandButton value="{!$Label.fieloee__addselectedrules}" action="{!doSaveSelectedRules}" rendered="{!rules.size > 0}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection Title="{!$Label.fieloee__listofavailablerules}" collapsible="false">
+                <apex:pagemessages />
+            </apex:pageBlockSection>
+            <apex:pageBlockTable value="{!rules}" var="a" id="actionList" rowClasses="odd,even" styleClass="tableClass" rendered="{!rules.size > 0}">
+                <apex:column width="10px">
+                    <apex:facet name="header">
+                        <apex:inputCheckbox >
+                            <apex:actionSupport event="onclick" onsubmit="checkAll(this)" rerender="Selected_PBS"/>
+                        </apex:inputCheckbox>
+                    </apex:facet>
+                    <apex:inputCheckbox value="{!a.selected}" id="checkedone"/>
+                </apex:column>
+                <apex:column headerValue="{!$Label.fieloee__rulename}">
+                        {!a.rule.Name}
+                </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageMessage summary="{!$Label.fieloee__infoemptytable}" severity="INFO" strength="2" rendered="{!(rules.size <= 0)}"/>
+        </apex:pageBlock>
+    </apex:form>
+
+</apex:page>

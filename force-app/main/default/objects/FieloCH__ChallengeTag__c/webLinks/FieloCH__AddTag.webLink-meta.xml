@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__AddTag</fullName>
+    <availability>online</availability>
+    <description>Show the page to add a tag to the challenge</description>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Add Tag</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}ChallengeChooseTagBackEnd?Id={!FieloCH__Challenge__c.Id}</url>
+</WebLink>

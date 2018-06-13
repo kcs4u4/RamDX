@@ -1,0 +1,94 @@
+<apex:page standardController="FieloEE__Redemption__c" extensions="FieloEE.RedemptionViewExtension" showHeader="false" sidebar="false" standardStylesheets="false" >
+    <apex:composition template="{!$Site.Template}">
+        <apex:define name="body">
+            <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.css, 'RedemptionView.min.css')}"></link>
+             
+            <!-- Success message -->
+            <apex:panelGroup rendered="{!($CurrentPage.parameters.success != null)}" >
+                <div class="alert alert-success" >
+                    <apex:outputText value="{!$Label.fieloee__voucherinformation}" />
+                </div>
+            </apex:panelGroup>
+            
+            <!-- Title -->
+            <div class="componentTitle">
+                <apex:outputText value="{!$Label.fieloee__redemption} #" /><apex:outputField value="{!FieloEE__Redemption__c.Name}" />
+            </div>
+        
+            <!-- Order Pending -->
+            <apex:panelGroup rendered="{!FieloEE__Redemption__c.FieloEE__Status__c == 'Pending'}">
+                <div class="alert alert-info">
+                    <apex:outputText value="{!$Label.fieloee__inforedemptionapproval}" />
+                </div>
+            </apex:panelGroup>
+            
+            <!-- Order Close -->
+            <apex:panelGroup rendered="{!FieloEE__Redemption__c.FieloEE__Status__c == 'Close'}">
+            
+                <!-- Order FieldSet -->
+                <apex:panelGroup rendered="{!$ObjectType.Redemption__c.FieldSets.ViewDetailFrontend.size != 0 }">
+                    
+                    <form class="form-horizontal">
+                        <apex:variable value="1" var="qcol"/>
+                        <apex:variable value="1" var="cont"/>
+                        <apex:variable value='<div class="row-fluid">' var="init"/>
+                        <apex:variable value='</div>' var="end"/>
+                        
+                        <div class="row-fluid">
+                            <apex:repeat value="{!$ObjectType.FieloEE__Redemption__c.FieldSets.FieloEE__ViewDetailFrontend}" var="f">
+                                <apex:outputText value="{!init}" escape="false" rendered="{!VALUE(cont) == 1}"/>
+                                
+                                <div class="span{!FLOOR(12/VALUE(qcol))}">
+                                    <div class="control-group" style="margin:0; border-bottom:1px dotted #dedede;">
+                                        <apex:outputLabel value="{!$ObjectType.FieloEE__Redemption__c.Fields[f].Label}:" styleClass="control-label" style="font-weight:bold" />
+                                        <div class="control-label" style="text-align:left; padding-left:5px;"><apex:outputField value="{!FieloEE__Redemption__c[f]}" /></div>
+                                    </div>
+                                </div>
+                                
+                                <apex:outputText value="{!end}" escape="false" rendered="{!(VALUE(cont) == VALUE(qcol))}"/>
+                                 <apex:variable value="0" var="cont" rendered="{!VALUE(cont) == VALUE(qcol)}"/>
+                                 <apex:variable value="{!VALUE(cont) + 1}" var="cont"/>
+                            </apex:repeat>
+                            <apex:outputText value="{!end}" escape="false" rendered="{!(MOD($ObjectType.FieloEE__Redemption__c.FieldSets.FieloEE__ViewDetailFrontend.size,VALUE(qcol)) != 0 )}"/>
+                        </div>
+                    </form>
+                    
+                </apex:panelGroup>
+                <!-- Order FieldSet -->
+                
+                <apex:form >
+                    
+                    <!--List -->
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>{!$objectType.Reward__c.fields.Name.Label}</th>
+                                <th style="text-align:right" width="100px">{!$objectType.RedemptionItem__c.fields.Quantity__c.Label}</th>
+                                <th style="text-align:right" width="100px">{!$objectType.RedemptionItem__c.fields.ItemPoints__c.Label}</th>
+                                <th style="text-align:center" width="100px">{!$Label.Voucher}</th>
+                            </tr>
+                        </thead>
+                        <apex:repeat value="{!FieloEE__Redemption__c.Redemption_Items__r}" var="item">
+                            <tr>
+                                <td width="50px">
+                                    <apex:panelGroup layout="none" rendered="{!NOT(ISBLANK(item.Reward__r.FieloEE__AttachmentId__c))}">
+                                        <img class="reward-image" src="{!IF(LEFT(item.Reward__r.FieloEE__AttachmentId__c,3) == '00P', URLFOR($Action.Attachment.Download, item.Reward__r.FieloEE__AttachmentId__c), IF(LEFT(item.Reward__r.FieloEE__AttachmentId__c,3) == '015', IF(ISBLANK($Setup.FieloEE__PublicSettings__c.FieloEE__Instance__c), $Site.Prefix, DocURL)+'/servlet/servlet.ImageServer?id='+item.Reward__r.FieloEE__AttachmentId__c+'&oid='+orgId, URLFOR($Resource.FieloEE__images, item.Reward__r.FieloEE__AttachmentId__c)))}" width="50px"/>
+                                    </apex:panelGroup>
+                                </td>
+                                <td style="font-weight:bold;">{!item.Reward__r.Name}</td>
+                                <td style="text-align:right">{!item.FieloEE__Quantity__c}</td>
+                                <td style="text-align:right">{!item.FieloEE__ItemPoints__c}</td>
+                                <td style="text-align:center"><apex:outputLink target="_blank" value="{!URLFOR($Page.FieloEE__RedemptionItemVoucher,null,[voucherId=item.id])}" ><i class="icon-file"></i></apex:outputLink></td>
+                            </tr>
+                        </apex:repeat>
+                    </table>
+                    
+                    <div style="text-align:right">
+                        <apex:outputLink target="_blank" value="{!URLFOR($Page.FieloEE__RedemptionItemVoucher,null,[ordenId=FieloEE__Redemption__c.id])}" >{!$Label.ViewAll} <i class="icon-file"></i></apex:outputLink>
+                    </div>
+                </apex:form>
+            </apex:panelGroup>
+        </apex:define>
+    </apex:composition>
+</apex:page>

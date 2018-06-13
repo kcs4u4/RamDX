@@ -1,0 +1,34 @@
+<apex:page standardController="FieloEE__Rule__c" extensions="FieloDRE.RuleCriteriasViewBackEndExt">
+    <apex:pageBlock title="{!$ObjectType.FieloEE__RuleCriteria__c.LabelPlural}">
+    <apex:pageMessages />
+        <apex:variable var="contador" value="1" />
+        <apex:pageBlockSection columns="1" collapsible="false" >
+            <apex:pageBlockTable value="{!criteriasWrapper}" var="criteriaWrapper">
+                <apex:column value="{! contador }."/>
+                <apex:column headerValue="{!$Label.fieloee__field}" value="{!criteriaWrapper.fieldLabel}" />
+                <apex:column headerValue="{!$Label.fieloee__operator}">
+                    <apex:pageBlockSectionItem id="operators">
+                        <apex:outputField value="{!criteriaWrapper.criteria.FieloEE__Operator__c}"/>
+                    </apex:pageBlockSectionItem>
+                </apex:column>
+                <apex:column headerValue="{!$Label.fieloee__value}">
+                    <apex:panelGroup rendered="{!!criteriaWrapper.criteria.FieloEE__Field__c}">
+                        <apex:outputField id="texto" value="{!criteriaWrapper.criteria.FieloEE__Values__c}" rendered="{!OR(criteriaWrapper.criteria.FieloEE__FieldType__c=='Text',criteriaWrapper.criteria.FieloEE__FieldType__c=='List',criteriaWrapper.criteria.FieloEE__FieldType__c=='REFERENCE')}"/>
+                        <apex:outputField id="fecha" value="{!criteriaWrapper.criteria.FieloEE__DateValue__c}" rendered="{!criteriaWrapper.criteria.FieloEE__FieldType__c=='Date'}"/>
+                        <apex:outputField id="numero" value="{!criteriaWrapper.criteria.FieloEE__NumberValue__c}" rendered="{!criteriaWrapper.criteria.FieloEE__FieldType__c=='Number'}"/>
+                        <apex:outputField id="boolean" value="{!criteriaWrapper.criteria.FieloEE__BooleanValue__c}" rendered="{!criteriaWrapper.criteria.FieloEE__FieldType__c=='Boolean'}"/>
+                    </apex:panelGroup>
+                    <apex:panelGroup rendered="{!criteriaWrapper.criteria.FieloEE__Field__c}">
+                        <apex:outputText value="{!CSFObjtp.Name} {!criteriaWrapper.criteria.FieloEE__Values__c}" />
+                    </apex:panelGroup>
+                </apex:column>
+                <apex:column >
+                    <apex:panelGroup rendered="{!criteriasWrapper.size <> value(contador)}">
+                        <apex:variable var="contador" value="{! Text(Value(contador) + 1)}" />
+                        {!$Label.fieloee__and}
+                    </apex:panelGroup>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlockSection>
+    </apex:pageBlock>   
+</apex:page>

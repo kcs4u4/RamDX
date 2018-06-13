@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Active</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Active</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/22.0/connection.js")}
+
+var url = parent.location.href;
+var agreementUpdate = [];
+
+var idAgreement= "{!FieloEE__Agreement__c.Id}";
+var resultAgreement = sforce.connection.query("SELECT Id, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Status__c FROM {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Agreement__c WHERE Id = \&#39;{!FieloEE__Agreement__c.Id}\&#39; ");
+
+var agreement = resultAgreement.getArray("records")[0];
+agreement.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Status__c = &#39;Current&#39;;
+agreementUpdate.push(agreement);
+result = sforce.connection.update(agreementUpdate);
+
+parent.location.href = idAgreement;</url>
+</WebLink>

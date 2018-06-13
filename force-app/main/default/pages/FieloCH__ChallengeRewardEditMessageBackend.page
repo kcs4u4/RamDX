@@ -1,0 +1,11 @@
+<apex:page standardController="FieloCH__ChallengeReward__c" >
+	<apex:sectionHeader title="{!$Label.fieloch__editreward}"/>
+    <apex:form >
+        <apex:pageBlock >
+       	 	<apex:pageMessage summary="{!$Label.fieloch__infoeditmanagerewards}" severity="info" strength="2"/>
+       		<apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="{!$Label.fieloee__back}" action="{!cancel}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

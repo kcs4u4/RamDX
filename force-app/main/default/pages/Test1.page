@@ -1,0 +1,8 @@
+<apex:page controller="MangedTestClass">
+    <apex:form >
+  <apex:selectList size="1">
+    <apex:selectOptions value="{!myOptions}"></apex:selectOptions>
+      <apex:selectOption itemLabel=".Net" itemValue=".Ne" />
+    </apex:selectList>
+        </apex:form>
+</apex:page>

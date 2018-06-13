@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__MembersWithoutUser</fullName>
+    <columns>NAME</columns>
+    <columns>OBJECT_ID</columns>
+    <columns>FieloEE__Age__c</columns>
+    <columns>FieloEE__MobilePhone__c</columns>
+    <columns>FieloEE__City__c</columns>
+    <columns>FieloEE__Country__c</columns>
+    <columns>FieloEE__DaysLastTransaction__c</columns>
+    <columns>FieloEE__Email__c</columns>
+    <columns>FieloEE__Enabled__c</columns>
+    <columns>FieloEE__FirstName__c</columns>
+    <columns>FieloEE__Gender__c</columns>
+    <columns>FieloEE__LastName__c</columns>
+    <columns>FieloEE__Name__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FieloEE__User__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Members Without User</label>
+    <language>en_US</language>
+</ListView>

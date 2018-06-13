@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__All_Content_feeds</fullName>
+    <columns>NAME</columns>
+    <columns>FieloEE__Title__c</columns>
+    <columns>FieloEE__Component__c</columns>
+    <columns>FieloEE__CategoryItem__c</columns>
+    <columns>FieloEE__Type__c</columns>
+    <columns>FieloEE__PublishDate__c</columns>
+    <columns>FieloEE__IsActive__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Content feeds</label>
+    <language>en_US</language>
+</ListView>

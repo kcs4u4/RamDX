@@ -1,0 +1,7 @@
+<apex:page id="BannerEditor" standardController="FieloEE__Banner__c" >   
+	<div style="margin:0 auto 0 auto;">
+		<c:Editor RecordId="{!FieloEE__Banner__c.Id}" 
+		excludeFields="{!$Setup.FieloEE__PublicSettings__c.FieloEE__ExcludeBannerFields__c}" 
+		toolbar="{!$Setup.FieloEE__PublicSettings__c.FieloEE__EditorToolbar__c}{!$Setup.FieloEE__PublicSettings__c.FieloEE__EditorToolbarExtra__c}" />
+	</div>
+</apex:page>

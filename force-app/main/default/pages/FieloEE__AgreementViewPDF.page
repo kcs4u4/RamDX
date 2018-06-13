@@ -1,0 +1,3 @@
+<apex:page standardController="FieloEE__Agreement__c" showHeader="false" sidebar="false" renderAs="pdf">
+	<apex:outputField value="{!FieloEE__Agreement__c.FieloEE__Agreement__c}"/>
+</apex:page>

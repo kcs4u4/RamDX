@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__RecentRewardsDays__c</fullName>
+    <defaultValue>0</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Days during which a reward will show in the Most Recent list in the members&#39; portal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set the number of days a product will appear in the Most Recent list in the members&#39; portal.</inlineHelpText>
+    <label>Most Recent reward status (in days)</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

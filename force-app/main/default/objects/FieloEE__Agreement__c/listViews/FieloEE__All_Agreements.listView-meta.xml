@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__All_Agreements</fullName>
+    <columns>NAME</columns>
+    <columns>FieloEE__Program__c</columns>
+    <columns>FieloEE__Agreement__c</columns>
+    <columns>FieloEE__Status__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>UPDATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Agreements</label>
+    <language>en_US</language>
+</ListView>

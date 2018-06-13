@@ -1,0 +1,471 @@
+<apex:page id="page" standardController="FieloCH__Challenge__c" extensions="FieloCH.ChallengeRewardEditBackEndExtension" standardStylesheets="false" sidebar="false">
+    <apex:includescript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+    <apex:includescript value="{!URLFOR($Resource.FieloEE__js, 'jquery-ui.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+
+     <!-- Font Awesome -->
+        <apex:stylesheet value="{!URLFOR($Resource.FieloCH__challenge_images, 'FontAwesome/css/font-awesome.css')}"/>
+        <!--[if IE 7]>
+            <apex:stylesheet value="{!URLFOR($Resource.challenge_images, 'FontAwesome/css/font-awesome-ie7.css')}"/>
+        <![endif]-->
+    <!-- Fin Font Awesome -->
+    <script>
+        window.onload = function(){
+            //showDescription('{!description}');
+        };
+
+        $(document).ready(function() { fieldsSortable(); });
+
+        function fieldsSortable() {
+            $(".sortable").sortable({ axis: "y", cursor: "move", opacity: 0.5, items: 'tr:not(.header)' });
+
+            $(".sortable").bind( "sortupdate", function(event, ui) {
+
+                var counter = 1;
+                $('.sortable input').each(function(i, o){ console.log(o.value); o.value = i+1; });
+                $('.sortable span').each(function(i, o){ o.innerHTML = i+1; });
+            } );
+        }
+
+        function adjustRanges(value, position, column){
+            var position = document.getElementById(position).value;
+            position++;
+            //column from read only: position ranking
+            if(column == 'from'){
+                value++;
+            }else if(column == 'to'){
+                //column to read only: position ranking
+                value--;
+            }
+            $('#' + column + 'Pos_'+position).children().each( function( ){
+                var id = $(this).attr('id');
+                if(id != null && id.indexOf(column) > 0 ){
+                    $(this).attr('value', value);
+                }
+            });
+        }
+
+        function showDescription(value){
+            /*if(value.checked == false){
+                $('.description').removeAttr( 'disabled' );
+            }else{
+                $('.description').attr('disabled', 'disabled');
+            }*/
+        }
+    </script>
+    <apex:form id="form" >
+        <apex:sectionHeader title="{!$Label.fieloch__managerewards}" subtitle="{!FieloCH__Challenge__c.Name}" />
+        <apex:pageblock >
+            <apex:pageMessages />
+            <!-- Challenge not Active -->
+            <apex:pageMessage summary="{!$Label.fieloch__infomodifyreward}" severity="info" strength="2" rendered="{!FieloCH__Challenge__c.FieloCH__IsActive__c}"/>
+
+            <!-- Challenge Active -->
+            <apex:pageBlockSection showHeader="false" columns="1" rendered="{!!FieloCH__Challenge__c.FieloCH__IsActive__c}">
+                <apex:panelGroup >
+                    <div class="tableTypesMenus">
+                        <div style="text-align: left;">
+                            <div class="btn-group" style="margin: 10px 0px;">
+                                <apex:variable value="if(!confirm('{!$Label.fieloch__warningdeleterewards}')) return false;" var="alertBox" rendered="{!rewards.size > 0}"/>
+                                <apex:variable value="" var="alertBox" rendered="{!rewards.size <= 0}"/>
+
+                                <apex:repeat value="{!tableTypes}" var="tableType" >
+                                    <apex:commandLink styleClass="btn {!IF(tableType == challenge.FieloCH__TableType__c, 'active', '')}" action="{!changeTableType}" value="{!tableType}" onclick="{!alertBox}" >
+                                        <apex:param name="tabType" value="{!tableType}"/>
+                                    </apex:commandLink>
+                                </apex:repeat>
+                            </div>
+                             <div>
+                                <apex:outputText rendered="{!challenge.FieloCH__TableType__c == 'Standard' && challenge.FieloCH__AcomplishAction__c != 'Continue'}" > {!$Label.fieloch__infomanagerewardtablestandar}</apex:outputText>
+                                <apex:outputText rendered="{!challenge.FieloCH__TableType__c == 'Position Ranking'}" >{!$Label.fieloch__infomanagerewardtablepositionranking}</apex:outputText>
+                                <apex:outputText rendered="{!challenge.FieloCH__TableType__c == 'Value Ranking'}" >{!$Label.fieloch__infomanagerewardtablevalueranking}</apex:outputText>
+                                <apex:outputtext rendered="{!challenge.FieloCH__TableType__c == 'Standard' && challenge.FieloCH__AcomplishAction__c == 'Continue'}" >{!$Label.fieloch__helpchrewardcontinue} </apex:outputtext>
+                            </div>
+                        </div>
+                    </div>
+                </apex:panelGroup>
+            </apex:pageBlockSection>
+
+            <!-- Competition type objective and have no missions -->
+            <!--{!missionsChallenge.size == 0 && !Challenge__c.IsActive__c && (challenge.CompetitionType__c == 'Objective' || challenge.TableType__c == 'Standard')}-->
+            <apex:pageMessage summary="{!$Label.fieloch__nomissions}"  severity="info" strength="3" rendered="{!!hasMissions && !FieloCH__Challenge__c.FieloCH__IsActive__c && (challenge.FieloCH__CompetitionType__c == 'Objective' || challenge.FieloCH__TableType__c == 'Standard')}"   />
+
+            <apex:pageBlockSection collapsible="false" showHeader="false" columns="1" rendered="{!!FieloCH__Challenge__c.FieloCH__IsActive__c}" id="headerSecction">
+                <apex:panelGroup >
+                    <apex:panelGroup >
+                        <div id="editReward" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel"> {!UPPER( $Label.EditReward )}</h3>
+                            </div>
+                            <div class="modal-body">
+                                <apex:pageBlockSection columns="2" title="{!$Label.fieloee__information}" collapsible="false">
+                                    <!-- Name -->
+                                    <apex:inputField value="{!editReward.FieloCH__Title__c}"/>
+                                    <apex:outputText value=""/>
+
+                                    <!-- Auto Description -->
+                                    <!--<apex:inputCheckBox value="{!description}" label="Auto Description" onchange="showDescription(this);"/>
+                                    <apex:outputText value=""/>-->
+
+                                    <!-- Description -->
+                                    <apex:inputField value="{!editReward.FieloCH__Description__c}" styleClass="description"/>
+                                    <apex:outputText value=""/>
+                                </apex:pageBlockSection>
+                                <apex:pageBlockSection columns="2" title="{!$Label.fieloee__actions}" collapsible="false">
+                                    <apex:repeat value="{!$ObjectType.FieloCH__ChallengeReward__c.FieldSets.FieloCH__ChallengeRewardEdit}" var="field" >
+                                        <apex:inputField value="{!editReward[field]}" />
+                                        <apex:outputText value=""/>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">{!$Label.fieloch__buttonclose}</button>
+                                <apex:panelGroup >
+                                    <apex:commandLink styleClass="btn saveCommandLink" value="{!$Label.fieloch__save}" action="{!saveEdit}" />
+                                </apex:panelGroup>
+                            </div>
+                        </div>
+                        <div id="addReward" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">{!$Label.AddReward}</h3>
+                            </div>
+                            <div class="modal-body">
+                                <apex:pageBlockSection columns="2" title="{!$Label.fieloee__information}" collapsible="false">
+                                    <!-- Name -->
+                                    <apex:inputField value="{!newReward.FieloCH__Title__c}"/>
+                                    <apex:outputText value=""/>
+
+                                    <!-- Auto Description
+                                    <apex:inputCheckBox value="{!description}" label="Auto Description" onchange="showDescription(this);"/>
+                                    <apex:outputText value=""/>-->
+
+                                    <!-- Description -->
+                                    <apex:inputField value="{!newReward.FieloCH__Description__c}" styleClass="description"/>
+                                    <apex:outputText value=""/>
+                                </apex:pageBlockSection>
+                                <apex:pageBlockSection columns="2" title="{!$Label.fieloee__actions}" collapsible="false">
+                                    <apex:repeat value="{!$ObjectType.FieloCH__ChallengeReward__c.FieldSets.FieloCH__ChallengeRewardEdit}" var="field" >
+                                        <apex:inputField value="{!newReward[field]}" required="{!field.Required}" />
+                                        <apex:outputText value=""/>
+                                    </apex:repeat>
+                                </apex:pageBlockSection>
+                                <div class="modal-footer">
+                                    <button class="btn" data-dismiss="modal" aria-hidden="true">{!$Label.fieloch__buttonclose}</button>
+                                    <apex:panelGroup >
+                                        <apex:commandLink styleClass="btn saveCommandLink" value="{!$Label.fieloch__save}" action="{!addNew}"/>
+                                    </apex:panelGroup>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- edit accomplishment  -->
+                        <div id="editAccomplishment" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <apex:commandLink styleClass="close" value="x" html-aria-hidden="true" action="{!closeEditAccomplishment}" />
+                                <!--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>-->
+                                <h3 id="myModalLabel"><apex:outputtext value="{!$Label.fieloch__editaccomplishment} {!$ObjectType.FieloEE__Reward__c.Label}: {!editReward.FieloCH__Title__c}" /> </h3>
+                            </div>
+
+                            <div class="modal-body">
+                                <apex:panelGroup rendered="{!editAccomplishmentError != null && editAccomplishmentError != ''}" >
+                                    <apex:pageMessage summary="{!editAccomplishmentError}" severity="error" strength="3" />
+                                </apex:panelGroup>
+
+                                <apex:pageMessage rendered="{!missionsChallenge.size == 0}" summary="{!$Label.fieloch__nomissions}" severity="info" strength="3" />
+
+                                <apex:pageBlockSection columns="2" collapsible="false" title="{!$Label.fieloch__accomplishmentformula}" rendered="{!missionsChallenge.size > 0}" >
+                                    <apex:panelGrid columns="2" >
+                                        <apex:selectRadio value="{!logicalExpSelected}" styleClass="logicalType" layout="PageDirection" onchange="setCustomFormula(this.value)" >
+                                           <apex:selectOption itemvalue="ALL" itemlabel="All" />
+                                           <apex:selectOption itemvalue="ANY" itemlabel="Any" />
+                                           <apex:selectOption itemvalue="CUSTOM" itemlabel="Custom" />
+                                        </apex:selectRadio>
+                                        <apex:panelgroup >
+                                            <div id="customFormula" style="{!IF(editReward.LogicalExpression__c == 'ALL' || editReward.LogicalExpression__c == 'ANY','display:none;','')}" >
+                                                <apex:inputTextArea styleClass="logicalExpression" value="{!editReward.FieloCH__LogicalExpression__c}" />
+                                            </div>
+                                        </apex:panelgroup>
+                                   </apex:panelGrid>
+                                </apex:pageBlockSection>
+
+                                <!-- CURRENT MISSIONS -->
+                                <div id="accomplishmentMissions" style="{!IF(editReward.LogicalExpression__c != 'ALL' && editReward.LogicalExpression__c != 'ANY','' ,'display:none')}" >
+                                    <apex:pageBlockSection columns="1" title="{!$ObjectType.FieloCH__Mission__c.labelplural}" collapsible="false">
+                                        <apex:panelGroup rendered="{!missionsChallenge.size > 0}" >
+                                            <table style="margin: 0px; width: 100%;" >
+                                                <tr>
+                                                    <th>
+                                                        <apex:outputText value="{!$ObjectType.FieloCH__ChallengeMission__c.fields.FieloCH__Order__c.label}"/>
+                                                     </th>
+                                                    <th>
+                                                        <apex:outputText value="{!$ObjectType.FieloCH__Mission__c.fields.Name.label}" />
+                                                    </th>
+                                                    <th>
+                                                        <apex:outputText value="{!$ObjectType.FieloCH__Mission__c.fields.FieloCH__Description__c.label}" />
+                                                    </th>
+                                                </tr>
+                                                <!-- MISSIONS -->
+                                                <apex:repeat value="{!missionsChallenge}" var="mission"  >
+                                                    <tr>
+                                                        <td>
+                                                            <apex:outputfield value="{!mission.FieloCH__Order__c}" />
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputfield value="{!mission.Mission__r.Name}" />
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputfield value="{!mission.Mission__r.FieloCH__Description__c}" />
+                                                        </td>
+                                                    </tr>
+                                                </apex:repeat>
+                                            </table>
+                                        </apex:panelGroup>
+                                    </apex:pageBlockSection>
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <!--<button class="btn" data-dismiss="modal" aria-hidden="true" >{!$Label.fieloch__buttonclose}</button>-->
+                                <apex:commandLink styleClass="btn" value="{!$Label.fieloch__buttonclose}" action="{!closeEditAccomplishment}" />
+
+                                <apex:panelGroup >
+                                    <apex:commandLink rendered="{!missionsChallenge.size > 0}" styleClass="btn saveCommandLink" value="{!$Label.fieloch__save}" action="{!saveEditAccomplishment}" />
+                                </apex:panelGroup>
+                            </div>
+                        </div>
+
+                    </apex:panelGroup>
+                </apex:panelGroup>
+
+               <!-- Rewards List -->
+                <apex:pageBlockSection id="FormList" title="{!$ObjectType.FieloCH__ChallengeReward__c.labelplural}"  collapsible="false" columns="1" rendered="{!rewards.size > 0}" > <!-- rendered="{!IF(NOT(OR((rewards.size == 0),(hasMissions && challenge.CompetitionType__c == 'Objective'))), true, false)}"-->
+
+                        <apex:outputPanel >
+                            <table style="width: 100%;">
+                                <tr>
+                                    <td style="width: 100%;">
+                                            <!-- REWARDS -->
+                                                <table class="formfieldrow table sortable" style="margin:0; width:100%; cursor:pointer;">
+                                                    <tr class="header">
+                                                        <th>
+                                                            <apex:outputText value="{!IF(challenge.FieloCH__TableType__c == 'Position Ranking',$Label.fieloch__position,$Label.fieloch__positionstandardvalue)}"/>
+                                                        </th>
+                                                        <th>
+                                                            <apex:outputText value="{!$Label.fieloee__name}"/>
+                                                        </th>
+                                                        <!--<th style="width: auto !important;">
+                                                            <apex:outputText value="{!$Label.FieloEE__Reward}"/>
+                                                        </th>-->
+                                                        <apex:repeat value="{!$ObjectType.FieloCH__ChallengeReward__c.FieldSets.FieloCH__ChallengeRewardEdit}" var="field" >
+                                                            <th style="width: auto !important;">
+                                                                <apex:outputText value="{!field.Label}" />
+                                                            </th>
+                                                        </apex:repeat>
+                                                    <apex:panelgroup rendered="{!challenge.FieloCH__TableType__c == 'Standard' && challenge.FieloCH__CompetitionType__c == 'Objective'}" >
+                                                        <th style="width: auto !important;">
+                                                            <apex:outputText value="{!$Label.fieloch__accomplishment}" />
+                                                        </th>
+                                                    </apex:panelgroup>
+                                                        <th style="text-align: center;" >
+                                                            <apex:outputText value="{!$Label.fieloee__actions}"/>
+                                                        </th>
+                                                    </tr>
+                                            <apex:repeat value="{!rewards}" var="l"  >
+                                                    <tr>
+                                                        <td style="width:80px;">
+                                                            <apex:outputText value="{0,number, 0}" id="orderoutput0"><apex:param value="{!l['Position__c']}"/></apex:outputText>
+                                                            <apex:inputhidden value="{!l['Position__c']}" id="order0"/>
+                                                        </td>
+                                                        <td>
+                                                            <apex:outputText value="{!l.FieloCH__Title__c}" />
+                                                        </td>
+                                                        <!--<td>
+                                                            <apex:outputText value="{!l.Description__c}" />
+                                                        </td>-->
+                                                        <apex:repeat value="{!$ObjectType.FieloCH__ChallengeReward__c.FieldSets.FieloCH__ChallengeRewardEdit}" var="field" >
+                                                            <td>
+                                                                <apex:outputField value="{!l[field]}" />
+                                                            </td>
+                                                        </apex:repeat>
+
+                                                        <!-- EDIT ACCOMPLISHMENT -->
+                                                        <apex:panelGroup rendered="{!challenge.FieloCH__TableType__c == 'Standard' && challenge.FieloCH__CompetitionType__c == 'Objective'}" >
+                                                            <td>
+                                                                    <apex:outputText value="{!l.FieloCH__LogicalExpression__c}" />&nbsp;&nbsp;&nbsp;
+                                                            </td>
+                                                        </apex:panelGroup>
+                                                        <td style="text-align:center;">
+                                                            <apex:panelGroup rendered="{!challenge.FieloCH__TableType__c == 'Standard' && challenge.FieloCH__CompetitionType__c == 'Objective'}" >
+                                                                <apex:commandLink action="{!editAccomplishment}" styleclass="spacer">
+                                                                    <i class="icon-trophy" title="Edit accomplishment" />
+                                                                    <apex:param name="index" value="{! l.Position__c }"/>
+                                                                </apex:commandLink>
+                                                            </apex:panelGroup>
+
+                                                        <!-- EDIT REWARD -->
+
+                                                            <apex:commandLink styleClass="editBtn spacer" action="{!editReward}" >
+                                                                <i class="icon-cogs icon-large"></i>
+                                                                <apex:param name="index" value="{! l.Position__c }"/>
+                                                            </apex:commandLink>
+
+
+                                                        <!-- DELETE -->
+
+                                                            <apex:commandLink styleClass="deleteBtn spacer" onclick="if(!confirm('{!$Label.fieloee__areyousure}')) return false;" action="{!deleteRewards}" >
+                                                                <i class="icon-trash icon-large"></i>
+                                                                <apex:param name="index" value="{! l.Position__c }"/>
+                                                            </apex:commandLink>
+                                                        </td>
+                                                    </tr>
+                                            </apex:repeat>
+                                                </table>
+                                    </td>
+                                    <apex:outputPanel rendered="{!challenge.TableType__c != 'Standard' }">
+                                        <td style="width: auto;margin:0;" class="formfieldrow table">
+                                            <table style="width: 100%;">
+                                                <tr>
+                                                    <th>
+                                                        <apex:outputText value="{!IF( challenge.FieloCH__TableType__c = 'Position Ranking',$Label.fieloch__position+' '+$Label.fieloee__from, $Label.fieloee__value+' '+$Label.fieloee__from )}"/>
+                                                    </th>
+                                                    <th>
+                                                        <apex:outputText value="{!IF( challenge.FieloCH__TableType__c = 'Position Ranking',$Label.fieloch__position+' '+$Label.fieloee__to, $Label.fieloee__value+' '+$Label.fieloee__to )}"/>
+                                                    </th>
+                                                </tr>
+                                            <!-- </table> -->
+                                            <!-- RANGES -->
+                                            <apex:repeat value="{!ranges}" var="l" rendered="{!challenge.TableType__c != 'Standard' }">
+                                                <!-- <table class="inputRanges formfieldrow table" style="margin:0; cursor:pointer; width: auto; "> -->
+                                                    <tr>
+                                                        <td Id="fromPos_{!l.FieloCH__Position__c}" >
+                                                            <apex:inputHidden id="position" value="{!l.FieloCH__Position__c}"/>
+                                                            <!-- FROM -->
+                                                            <apex:inputField id="from" value="{!l.FieloCH__From__c}" onchange="if('{!JSENCODE(challenge.FieloCH__TableType__c)}' == 'Value Ranking'){autoCompleteDisabledInputs(this.value, '{!$Component.position}', 'to', '{!$Component.toHidden}');}" styleClass="input-small" />
+                                                            <apex:inputHidden rendered="{!challenge.FieloCH__TableType__c == 'Position Ranking'}" id="fromHidden" value="{!l.FieloCH__From__c}" />
+                                                        </td>
+                                                        <td Id="toPos_{!l.FieloCH__Position__c}" >
+                                                            <!-- TO -->
+                                                            <apex:inputField Id="to" value="{!l.FieloCH__To__c}" onchange="if('{!JSENCODE(challenge.FieloCH__TableType__c)}' == 'Position Ranking'){autoCompleteDisabledInputs(this.value, '{!$Component.position}', 'from', '{!$Component.fromHidden}')};" styleClass="input-small automatic" />
+                                                            <apex:inputHidden rendered="{!challenge.FieloCH__TableType__c == 'Value Ranking'}" id="toHidden" value="{!l.FieloCH__To__c}" />
+                                                            <script>
+                                                                if('{!l.FieloCH__Position__c}' != '1' && '{!JSENCODE(challenge.FieloCH__TableType__c)}' == 'Value Ranking'){
+                                                                    document.getElementById('{!$Component.to}').disabled = true;
+                                                                }else if('{!JSENCODE(challenge.FieloCH__TableType__c)}' == 'Position Ranking'){
+                                                                    document.getElementById('{!$Component.from}').disabled = true;
+                                                                }
+                                                            </script>
+                                                        </td>
+                                                    </tr>
+                                            </apex:repeat>
+                                            </table>
+                                        </td>
+                                    </apex:outputPanel>
+                                </tr>
+                            </table>
+                            <table style="width:100%; border-top:1px dotted #dddddd;" cellpadding="0" cellspacing="0">
+                                <tr><td><apex:outputText styleClass="note_text" value="{!$Label.fieloch__infodragdroptable}" escape="false"/></td>
+                            </tr></table>
+                        </apex:outputPanel>
+
+
+                </apex:pageBlockSection>
+                <apex:panelGroup rendered="{!IF(NOT((!hasMissions  && (challenge.FieloCH__CompetitionType__c == 'Objective' || challenge.FieloCH__TableType__c == 'Standard')  )), true, false)}">
+                    <a href="#addReward" role="button" class="saveCommandLink btn" data-toggle="modal">{!$Label.AddReward}</a>
+                </apex:panelGroup>
+            </apex:pageBlockSection>
+            <!-- Challenge Active -->
+
+            <apex:pageBlockButtons location="bottom" rendered="{!IF(NOT((!hasMissions  && (challenge.FieloCH__CompetitionType__c == 'Objective' || challenge.FieloCH__TableType__c == 'Standard')  )), true, false)}" >
+                <apex:commandButton styleClass="btn saveCommandLink" value="{!$Label.fieloee__save}" action="{!doSave}" rendered="{!!FieloCH__Challenge__c.FieloCH__IsActive__c}"/>
+                <apex:commandButton styleClass="btn saveCommandLink" value="{!$Label.fieloee__cancel}" action="{!cancel}" rendered="{!!FieloCH__Challenge__c.FieloCH__IsActive__c}"/>
+                <apex:commandButton styleClass="btn saveCommandLink" value="{!$Label.fieloee__back}" action="{!cancel}" rendered="{!FieloCH__Challenge__c.FieloCH__IsActive__c}"/>
+                <apex:commandButton styleClass="btn saveCommandLink" value="{!$Label.fieloee__delete}" action="{!deleteList}" rendered="{!!FieloCH__Challenge__c.FieloCH__IsActive__c}" onclick="confirm('{!$Label.fieloee__areyousure}')"/>
+            </apex:pageBlockButtons>
+
+            <!-- renders the "back" button if the previous panel is not showed-->
+            <apex:pageBlockButtons location="bottom" >
+                <apex:commandButton styleClass="btn saveCommandLink" value="{!$Label.fieloee__back}" action="{!cancel}" rendered="{!NOT(IF(NOT((!hasMissions  && (challenge.FieloCH__CompetitionType__c == 'Objective' || challenge.FieloCH__TableType__c == 'Standard')  )), true, false))}"/>
+            </apex:pageBlockButtons>
+
+        </apex:pageblock>
+
+    </apex:form>
+    <style type="text/css">
+        .dateFormat{
+           visibility:hidden;
+        }
+        #editAccomplishment.modal {
+            width: 70%;
+            margin-left: -35%;
+        }
+
+        .modal-body { padding-top: 0px;  }
+        input, select   { margin:0 !important; padding:2px !important; font-size:12px !important; }
+        label   { font-size:12px; }
+        .note_text  { font-size:10px; color:#666666; }
+        .pbSubheader h3 { line-height: 1.1em !important; }
+        .inputRanges td { padding: 5px 8px !important; }
+        .popover-title { display: block !important; }
+        .saveCommandLink { padding: 5px !important; }
+        .spacer {
+            padding:0 7px;
+        }
+        .header th{cursor: default;}
+    </style>
+    <script>
+
+        function autoCompleteDisabledInputs(value, position, column, hiddenVar){
+            adjustRanges(value, position, column);
+        }
+
+        function setCustomFormula(param){
+            var expressionInput = document.getElementsByClassName('logicalExpression')[0];
+            if(param != 'CUSTOM'){
+                document.getElementById('customFormula').style.display = 'none';
+                if(param == 'ANY'){
+                    expressionInput.value = 'ANY';
+                }
+                if(param == 'ALL'){
+                    expressionInput.value = 'ALL';
+                }
+                document.getElementById('accomplishmentMissions').style.display = 'none';
+            }else{
+                expressionInput.value = '{!formulaAll}';
+                document.getElementById('customFormula').style.display = '';
+                document.getElementById('accomplishmentMissions').style.display = '';
+            }
+        }
+
+        $(document).ready(function(){
+            $('.formfieldrow a').each(function(){
+                $(this).hover(function() {
+                    $(this).css({
+                        'color' : '#CCCCCC',
+                        'text-decoration' : 'none'
+                    });
+                }, function(){
+                    $(this).css({
+                        'color' : '#000000',
+                        'text-decoration' : 'none'
+                    });
+                });
+            });
+            $('.tableTypesMenus .btn-group .btn').css({'padding': '4px 8px'});
+            $('.tableTypesMenus .btn-group .btn').first().css({'border-radius': '4px 0px 0px 4px'});
+            $('.tableTypesMenus .btn-group .btn').last().css({'border-radius': '0px 4px 4px 0px'});
+            $('.popoverBtn').popover();
+
+            if ( '{!showEditReward}' == 'true' && ("{!editAccomplishment}" != 'true')) {
+               $('#editReward').modal('show');
+            };
+
+            if(("{!editAccomplishment}" == 'true')){
+                $('#editAccomplishment').modal('show');
+            }else{
+                $('#editAccomplishment').modal('hide');
+            }
+        });
+    </script>
+</apex:page>

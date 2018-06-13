@@ -1,0 +1,7 @@
+<apex:page showheader="false" applyBodyTag="false" applyHtmlTag="false">
+<html>
+    <head>
+        <script>window.location.href = '{!$Site.Prefix}/secur/logout.jsp';</script>
+    </head>
+</html>
+</apex:page>

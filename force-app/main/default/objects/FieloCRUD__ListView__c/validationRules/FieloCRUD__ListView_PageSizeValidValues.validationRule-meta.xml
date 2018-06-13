@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__ListView_PageSizeValidValues</fullName>
+    <active>true</active>
+    <errorConditionFormula>FieloCRUD__PageSize__c &lt; 1  || FieloCRUD__PageSize__c &gt; 100</errorConditionFormula>
+    <errorDisplayField>FieloCRUD__PageSize__c</errorDisplayField>
+    <errorMessage>Page Size must be between 1 and 100.</errorMessage>
+</ValidationRule>

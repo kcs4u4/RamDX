@@ -1,0 +1,9 @@
+<apex:page controller="ListSudent">
+    <apex:pageBlock title="Student Details">
+    <apex:pageBlockTable value="{!result}" var="a">
+        <apex:column value="{!a.name}" />
+        <apex:column value="{!a.age}"/>
+              
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

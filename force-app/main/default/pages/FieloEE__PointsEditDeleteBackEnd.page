@@ -1,0 +1,5 @@
+<apex:page standardController="FieloEE__Point__c" >
+	<apex:pageBlock >
+		<apex:outputText value="{!$Label.fieloee__errorpointeditdelete}" />
+	</apex:pageBlock>
+</apex:page>

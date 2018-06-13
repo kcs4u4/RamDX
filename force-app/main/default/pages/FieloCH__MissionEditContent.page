@@ -1,0 +1,33 @@
+<apex:page standardController="FieloCH__Mission__c">
+	<apex:includeScript value="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__TinyMCE,'/tinymce/js/tinymce/tinymce.min.js')}" />
+    <apex:pagemessages />
+    <apex:form >
+    	<apex:pageBlock mode="edit">
+    		<apex:pageBlockButtons >
+        		<apex:commandButton action="{!save}" value="{!$Label.fieloee__save}" />
+        		<apex:commandButton action="{!cancel}" value="{!$Label.fieloee__cancel}" />
+    		</apex:pageBlockButtons>
+        	<apex:outputText value="{!FieloCH__Mission__c.FieloCH__Description__c}" style="display:none;" />
+    		<apex:pageBlockSection columns="1" title="{!$ObjectType.FieloCH__Mission__c.Fields.FieloCH__Description__c.Label}" >
+    			<apex:inputTextarea styleClass="HTMLEditorDescription__c" value="	{!FieloCH__Mission__c.FieloCH__Description__c}" />
+    			<script>
+    			    var toolVar = 'undo redo |  bold italic | alignleft aligncenter 	alignright 		alignjustify | forecolor backcolor';
+					toolVar += ' | styleselect | bullist numlist outdent indent | link image 	| 	ltr 	rtl';
+    			
+    			    tinymce.PluginManager.load('moxiemanager', '{!$Resource.FieloEE__TinyMCEMox}'	);
+    			    tinymce.init({
+    			        selector: 'textarea.HTMLEditorDescription__c',
+    			        toolbar : toolVar,
+    			        translate_mode : true,
+    			        language : 'en',
+    			        width : 0,
+    			        max_height: 250,
+    			        min_height: 100,
+    			        height : 150
+    			    });
+    			</script>
+    		</apex:pageBlockSection>
+    	</apex:pageBlock>
+    </apex:form>
+</apex:page>

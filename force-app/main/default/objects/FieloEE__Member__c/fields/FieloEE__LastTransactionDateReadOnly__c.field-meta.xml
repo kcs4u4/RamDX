@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__LastTransactionDateReadOnly__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Formula field to get the last transaction date.</description>
+    <externalId>false</externalId>
+    <formula>FieloEE__LastTransactionDate__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Last Transaction Date (Read Only)</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

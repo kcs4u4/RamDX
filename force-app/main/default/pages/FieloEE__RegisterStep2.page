@@ -1,0 +1,114 @@
+<apex:page showHeader="false" controller="FieloEE.RegisterStep2Controller" title="{!$Label.site.register}" standardStylesheets="false" > 
+    <apex:composition template="{!$Site.Template}">      
+        <apex:define name="body">          
+            <div class="registerStep2 container-fluid">
+                <legend class="registerStep2-title">
+                    <apex:outputText value="{!$Label.site.user_registration}" />
+                </legend>
+                <apex:panelGroup rendered="{!(!(checkMail || userApprovalRegistration || userAlreadyExists || invalidContact || confirmOneStepRegistration || sucessRegistrationTwoSteps)) }"> 
+                    <div class="row-fluid">
+                        <div class="offset3">
+                            <apex:form id="theForm" forceSSL="true" styleClass="registerStep2-form form-horizontal"> 
+                                <!-- 1 COLUMN -->
+                                <apex:variable var="cols" value="1" /> 
+                                <!-- 2 COLUMN -->
+                                <apex:panelGroup rendered="{!$ObjectType.FieloEE__Member__c.FieldSets.FieloEE__RegistrationStep2.size > 6}"> 
+                                    <apex:variable var="cols" value="2" /> 
+                                </apex:panelGroup> 
+                            
+                                <!-- 1 COLUMN -->
+                                <div class="registerStep2-item registerStep2-item--is{!$ObjectType.FieloEE__Member__c.Fields['FirstName__c'].Name} control-group">
+                                    <apex:outputLabel value="{!$ObjectType.FieloEE__Member__c.Fields['FirstName__c'].label}" styleClass="registerStep2-name control-label"/>
+                                    <div class="controls">
+                                        <apex:inputField styleClass="registerStep2-value" value="{!member.FieloEE__FirstName__c}"/>
+                                    </div>
+                                </div>
+                                <div class="registerStep2-item registerStep2-item--is{!$ObjectType.FieloEE__Member__c.Fields['LastName__c'].Name} control-group">
+                                    <apex:outputLabel value="{!$ObjectType.FieloEE__Member__c.Fields['LastName__c'].label}" styleClass="registerStep2-name control-label"/>
+                                    <div class="controls">
+                                        <apex:inputField styleClass="registerStep2-value" value="{!member.FieloEE__LastName__c}"/>
+                                    </div>
+                                </div>
+                                <div class="registerStep2-item registerStep2-item--is{!$ObjectType.FieloEE__Member__c.Fields['Email__c'].Name} control-group">
+                                    <apex:outputLabel value="{!$ObjectType.FieloEE__Member__c.Fields['Email__c'].label}" styleClass="registerStep2-name control-label"/>
+                                    <div class="controls">
+                                        <apex:inputField styleClass="registerStep2-value" value="{!member.FieloEE__Email__c}"/>
+                                    </div>
+                                </div>
+                                <apex:panelGroup rendered="{!(!program.FieloEE__RequestAutorization__c && !existingEmailUser)}">
+                                    <div class="registerStep2-item registerStep2-item--isPassword control-group">
+                                        <apex:outputLabel value="{!$Label.site.password}" styleClass="registerStep2-name control-label"/>
+                                        <div class="controls">
+                                            <apex:inputSecret styleClass="registerStep2-value" value="{!password}"/>
+                                        </div>
+                                    </div>
+                                    <div class="registerStep2-item registerStep2-item--isConfirmPassword control-group">
+                                        <apex:outputLabel value="{!$Label.site.confirm_password}" styleClass="registerStep2-name control-label"/>
+                                        <div class="controls">
+                                            <apex:inputSecret styleClass="registerStep2-value" value="{!confirmPassword}"/>
+                                        </div>
+                                    </div>
+                                </apex:panelGroup>                                                        
+                                <apex:repeat value="{!$ObjectType.FieloEE__Member__c.FieldSets.FieloEE__RegistrationStep2}" var="f">
+                                    <div class="registerStep2-item registerStep2-item--is{!$ObjectType.FieloEE__Member__c.Fields[f].Name} control-group">
+                                        <apex:outputLabel value="{!$ObjectType.FieloEE__Member__c.Fields[f].label}" styleClass="registerStep2-name control-label"/>
+                                        <div class="controls">
+                                            <apex:inputField styleClass="registerStep2-value" value="{!member[f]}" required="{!OR(f.required, f.dbrequired)}"/>
+                                        </div>
+                                    </div> 
+                                </apex:repeat> 
+                                <div class="registerStep2-controls control-group">
+                                    <div class="controls">
+                                        <div class="btn-group">
+                                            <apex:commandButton styleClass="registerStep2-controls--isSubmit btn" action="{!registerUser2}" value="{!$Label.site.submit}" id="submit"/> 
+                                            <apex:commandButton styleClass="registerStep2-controls--isCancel btn" action="{!cancelar}" value="{!$Label.fieloee__cancel}" immediate="true" />
+                                        </div>
+                                    </div>
+                                </div> 
+                                <apex:outputText value="{!document2String}"/> 
+                            </apex:form> 
+                        </div>
+                    </div>
+                </apex:panelGroup>                
+                <apex:panelGroup rendered="{!(checkMail && !userApprovalRegistration) }">
+                    <div class="alert alert-success pagination-centered">
+                        <apex:outputText value="{!$Label.fieloee__sucessregistrationonestep}"/>
+                    </div>
+                </apex:panelGroup>
+                
+                <apex:panelGroup rendered="{!(!checkMail && userApprovalRegistration) }">
+                    <div class="alert alert-success pagination-centered">
+                        <apex:outputText value="{!$Label.fieloee__sucessawardingapprovalregistration}"/>
+                    </div>
+                </apex:panelGroup>
+                
+                <apex:panelGroup rendered="{!userAlreadyExists}">
+                    <div class="alert alert-error pagination-centered">
+                        <apex:outputText value="{!$Label.fieloee__errorregistrationuserexists}"/>
+                    </div>
+                </apex:panelGroup>
+                
+                <apex:panelGroup rendered="{!invalidContact}">
+                    <div class="alert alert-error pagination-centered">
+                        <apex:outputText value="{!$Label.fieloee__errorinvalidcontact}"/>
+                    </div>
+                </apex:panelGroup>
+                <apex:panelGroup rendered="{!SucessRegistrationTwoSteps}">
+                    <div class="alert alert-error pagination-centered">
+                        <apex:outputText value="{!$Label.fieloee__successgetpointsmessagesite}"/><!--SucessRegistrationTwoSteps-->
+                    </div>
+                </apex:panelGroup>                
+                <apex:panelGroup rendered="{!confirmOneStepRegistration}">
+                    <div class="hero-unit pagination-centered">
+                        <apex:form >
+                            <h4>
+                                <apex:outputText value="<small>{!$Label.fieloee__welcome}</small> {!member.FieloEE__FirstName__c} {!member.FieloEE__LastName__c}" escape="false"/>
+                            </h4>
+                            <apex:commandLink styleClass="btn btn-link" value="{!$Label.fieloee__continue}" action="{!confirmOneStepRegistration}"/>
+                        </apex:form>
+                    </div>
+                </apex:panelGroup>
+             </div>
+         </apex:define> 
+     </apex:composition> 
+</apex:page>

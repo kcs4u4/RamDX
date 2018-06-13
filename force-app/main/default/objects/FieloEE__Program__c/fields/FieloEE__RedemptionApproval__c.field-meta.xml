@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__RedemptionApproval__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Checking this option will establish an approval process for reward redemptions.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this option if you wish to establish an approval process for the redemptions.</inlineHelpText>
+    <label>Request Redemption Authorization</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

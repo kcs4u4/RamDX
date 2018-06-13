@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Link__c</fullName>
+    <deprecated>false</deprecated>
+    <description>External or internal link to which the banner will redirect.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the URL you want this image to redirect to. The link must be of the form "http://www.domain.com".</inlineHelpText>
+    <label>Link</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

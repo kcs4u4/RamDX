@@ -1,0 +1,34 @@
+<apex:page showHeader="true" sidebar="true" controller="FieloCH.AdminPermissionBackendController" >
+    <apex:sectionHeader title="{!$Label.fieloee__grantadminpermissions}"/>
+    <apex:form >
+        <apex:pageBlock >
+            <style type="text/css">
+                .hideElements select {display:none;}
+            </style>
+            <apex:pageMessages id="messages" />
+            <apex:pageBlockSection columns="3" >
+                <apex:inputField value="{!member.FieloEE__User__c}" styleClass="hideElements"/>
+                <!--<apex:inputField value="{!contact.ownerId}" styleClass="hideElements"/>-->
+                <apex:inputField value="{!adminPermission.FieloCH__To__c}" />
+            </apex:pageBlockSection>
+
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!doSave}" value="{!$Label.fieloee__save}" reRender="adminList, messages"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <apex:pageBlock title="{!$Label.fieloch__adminpermissionlist}" id="adminList">
+            <apex:pageBlockTable value="{!adminPermissionList}" var="a" >
+                <apex:column >
+                    {!users[a.SetupOwnerId].Name}
+                </apex:column>
+                <apex:column value="{!a.FieloCH__To__c}" />
+                <apex:column >
+                    <apex:commandLink action="{!doDelete}">
+                        {!$Label.fieloee__delete}
+                        <apex:param value="{!a.SetupOwnerId}" name="recordId"/>
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

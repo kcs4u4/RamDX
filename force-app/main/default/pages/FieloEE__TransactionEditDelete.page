@@ -1,0 +1,5 @@
+<apex:page standardController="FieloEE__Transaction__c" >
+	<apex:pageBlock >
+		<apex:outputText value="{!$Label.fieloee__errortransactionnoteditdelete}" />
+	</apex:pageBlock>
+</apex:page>

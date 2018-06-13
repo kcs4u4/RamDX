@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__TotalRedeemPoints__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Number of points redeedmed by this member.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the total of points redeemed by this member.</inlineHelpText>
+    <label>Total Points Redeemed</label>
+    <precision>13</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

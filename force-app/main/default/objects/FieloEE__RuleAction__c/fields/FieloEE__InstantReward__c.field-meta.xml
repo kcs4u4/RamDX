@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__InstantReward__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>Deprecated Field</description>
+    <externalId>false</externalId>
+    <label>zz_deprecated_Instant Reward</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>FieloEE__Reward__c.FieloEE__isInstantReward__c</field>
+            <operation>equals</operation>
+            <value>True</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>FieloEE__Reward__c</referenceTo>
+    <relationshipLabel>Rule Actions</relationshipLabel>
+    <relationshipName>RuleActions</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

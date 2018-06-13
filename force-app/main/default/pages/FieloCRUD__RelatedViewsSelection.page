@@ -1,0 +1,47 @@
+<apex:page controller="FieloCRUD.RelatedViewsSelectionController" tabstyle="FieloCRUD__ListView__c" >
+    
+    <script>
+         function checkAll(cb){
+             var inputElem = document.getElementsByTagName("input");
+             for(var i=0; i<inputElem.length; i++){
+                 inputElem[i].checked = cb.checked;
+             }
+         }
+     </script>
+    
+    <apex:sectionHeader title="{!$ObjectType.FieloCRUD__ListView__c.Label}" subtitle="{!currentListView.Name}"/>
+  
+    <apex:form id="mainForm">
+        <apex:pageMessages />
+        
+        <apex:pageBlock title="{!currentListView.ObjectSettings__r.Name} {!$ObjectType.FieloCRUD__ListView__c.LabelPlural}" >
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!saveAndExit}" value="{!$Label.fielocrud__crud_save}" rendered="{!ListViewWrappers.size > 0}"/>
+                <apex:commandButton action="{!save}" value="{!$Label.fielocrud__crud_quicksave}" reRender="mainForm" rendered="{!ListViewWrappers.size > 0}"/>
+                <apex:commandButton action="{!cancel}" value="{!$Label.fielocrud__crud_cancel}"/>
+            </apex:pageBlockButtons>
+            
+            <apex:pageBlockSection columns="3" collapsible="false" rendered="{!ListViewWrappers.size > 0}">
+                <apex:pageBlockTable id="pageBlockTable" value="{!ListViewWrappers}" var="wrap">
+                    <apex:column >
+                        <apex:facet name="header">
+                            <apex:inputCheckbox value="{!checkAll}" onClick="checkAll(this)"/>
+                        </apex:facet>
+                        <apex:inputCheckBox id="checkbox" value="{!wrap.checkbox}"/>
+                    </apex:column>   
+                    <apex:column headerValue="{!$Label.fielocrud__relatedviewsselection_liststandardname}"> 
+                        <apex:outputField id="ListStandardName" value="{!wrap.listView.name}"/>
+                    </apex:column>
+                    <apex:column headerValue="{!$Label.fielocrud__relatedviewsselection_listviewname}"> 
+                        <apex:outputField id="ListViewName" value="{!wrap.listView.FieloCRUD__ViewName__c}"/>
+                    </apex:column>                                                                                                
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            
+            <apex:pageMessage summary="{!$Label.fielocrud__relatedviewsselection_noresults}" severity="INFO" rendered="{!ListViewWrappers.size == 0}"/>
+            
+        </apex:pageBlock>
+        
+    </apex:form>
+    
+</apex:page>

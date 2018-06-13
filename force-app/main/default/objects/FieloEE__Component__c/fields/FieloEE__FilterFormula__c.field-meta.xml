@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__FilterFormula__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <formula>IF (      ( NOT( ISBLANK( FieloEE__Tag__c ) ) &amp;&amp;   ISPICKVAL(FieloEE__Filter2__c, &#39;&#39;)  ) ,             FieloEE__Tag__c,               IF( ( ISBLANK( FieloEE__Tag__c ) &amp;&amp;    NOT( ISPICKVAL(FieloEE__Filter2__c, &#39;&#39;)    )  ) ,                              TEXT(  FieloEE__Filter2__c ),                                     IF(                                         ( NOT( ISBLANK( FieloEE__Tag__c ) ) &amp;&amp;  NOT( ISPICKVAL(FieloEE__Filter2__c, &#39;&#39;)  )   )  ,                                          FieloEE__Tag__c,&#39;&#39;)       ) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Filter Formula</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

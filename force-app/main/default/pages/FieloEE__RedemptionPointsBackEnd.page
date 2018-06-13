@@ -1,0 +1,273 @@
+<apex:page sidebar="true" standardController="FieloEE__Redemption__c" extensions="FieloEE.RedemptionPointsBackEndExtension">
+
+    <apex:variable value="1" var="cont"/>
+    <apex:variable value='<div class="row-fluid"><ul class="thumbnails">' var="init"/>
+    <apex:variable value="6" var="qcol"/>
+    <apex:variable value="1" var="i"/>
+    <apex:variable value="4" var="col"/>
+    <apex:variable value="5" var="fil"/>
+    <apex:variable value='</ul></div>' var="end"/>
+
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+    <!-- Bootstrap -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapResponsiveMin.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrapDropdownHover.js')}"/>
+    <!-- Fin Bootstrap -->
+
+    <!-- Font Awesome -->
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'FontAwesome/css/font-awesome.css')}"/>
+        <!--[if IE 7]>
+            <apex:stylesheet value="{!URLFOR($Resource.css, 'font-awesome-ie7.css')}"/>
+        <![endif]-->
+    <!-- Fin Font Awesome -->
+
+    <style>
+        .title-search       { font-size:22px; color:#aaaaaa !important; }
+        .thumbnail          { background:#ffffff; }
+        .thumbnail .image   { text-align:center; }
+        .thumbnail .image img  { max-width:100%;}
+        .pagination ul      { display:inline; }
+        .titles             { margin-top:20px; font-weight:bold; }
+        .pbTitle    { width:80% !important; }
+        .col50      { width:49%; }
+        .label      { font-weight:bold; color:#666666; }
+        .middle     { vertical-align:middle !important; }
+        .button_2   { height:26px; margin:0; padding:0 10px; text-align:center; border:none; font-size:18px; line-height:25px; text-transform:uppercase; box-shadow:1px 1px 5px #666666; border-radius:15px; background:#006B54; color:#FFFFFF; }
+    </style>
+        <style id="css-custom">
+        /* Bootsrap fixes for Fielo Backend */
+        body {
+            font-size: 75%;
+            line-height: initial;
+        }
+        img {
+            vertical-align: initial;
+            max-width: initial;
+        }
+        form {
+            margin: initial;
+        }
+        h2 {
+            font-size: initial;
+        }
+        h1,
+        h2,
+        h3 {
+            line-height: initial;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: initial;
+            font-size: 100%;
+        }
+        a {
+            color: #333435;
+            text-decoration: underline;
+        }
+        .btn {
+            line-height: initial;
+        }
+        label,
+        input,
+        button,
+        select,
+        textarea {
+            line-height: initial;
+        }
+        input[type="file"],
+        input[type="image"],
+        input[type="submit"],
+        input[type="reset"],
+        input[type="button"],
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: initial;
+        }
+        input, textarea,
+        .uneditable-input {
+            width: initial;
+        }
+        .mruIcon.userDefinedImage {width: 16px;height: 16px;}
+    </style>
+
+    <apex:sectionHeader title="{!$Label.fieloee__redeemrewardvoucher}"/>
+    <apex:form id="form" styleClass="form-horizontal">
+        <apex:pageBlock id="pageBlock">
+            <apex:pageMessages />
+
+            <apex:pageBlockSection columns="1">
+                <apex:iframe id="iframe" height="150px" src="/apex/MemberInformationBackEnd?id=" scrolling="false" rendered="{!redProxy.FieloEE__Member__c != null}"/>
+            </apex:pageBlockSection>
+
+            <div class="well">
+                <table width="100%">
+                    <tr>
+                        <td class="title-search">{!$Label.fieloee__searchby}</td>
+                        <td style="text-align:right; padding:5px 10px 0 0">{!$Label.fieloee__member}</td>
+                        <td><apex:inputField value="{!redProxy.FieloEE__Member__c}" styleClass="input-medium" required="false"/></td>
+                        <td style="text-align:right; padding:5px 10px 0 0">{!$Label.fieloee__vouchernumber}</td>
+                        <td><apex:inputField value="{!redItemProxy.FieloEE__Code__c}" styleClass="input-medium"/></td>
+                        <td style="text-align:right;"><apex:commandButton action="{!doSearch}" value="{!$Label.fieloee__search}" /></td>
+                    </tr>
+                </table>
+            </div>
+
+            <apex:pageBlockSection columns="1" collapsible="false" rendered="{!redItemsList.size>0}">
+                <apex:panelGroup ><div class="titles"><apex:outputText value="{!$Label.fieloee__voucherstoredeem}" /></div></apex:panelGroup>
+                <apex:pageBlockTable value="{!redItemsList}" var="item" >
+                    <apex:column value="{!item.FieloEE__UniqueCode__c}"/>
+
+                    <apex:column headerValue="{!$Label.fieloee__createddate}">
+                        <apex:outputText value="{0,date,dd/MM/yyyy}">
+                            <apex:param value="{!item.CreatedDate}" />
+                        </apex:outputText>
+                    </apex:column>
+
+
+                    <apex:column value="{!item.FieloEE__Reward__c}"/>
+                    <apex:column value="{!item.Reward__r.FieloEE__PointsCant__c}"/>
+                    <apex:column value="{!item.FieloEE__Status__c}"/>
+                    <apex:column >
+                        <apex:facet name="header">{!$Label.fieloee__markasused}</apex:facet>
+                        <apex:commandLink styleClass="btn" value="{!$Label.fieloee__markasused}" action="{!useVoucher}" rendered="{!item.FieloEE__Status__c = 'Ready'}">
+                            <apex:param name="redItemId" value="{!item.Id}"/>
+                        </apex:commandLink>
+                    </apex:column>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection columns="1" collapsible="false" rendered="{!redItemsUsedList.size>0}">
+                <apex:panelGroup ><div class="titles"><apex:outputText value="{!$Label.fieloee__pastvouchers}" /></div></apex:panelGroup>
+                <apex:pageBlockTable value="{!redItemsUsedList}" var="item" >
+                    <apex:column value="{!item.FieloEE__UniqueCode__c}"/>
+                    <apex:column headerValue="{!$Label.fieloee__date}">
+                        <apex:outputText value="{0,date,dd/MM/yyyy}" rendered="{!item.FieloEE__Status__c = 'Delivered'}">
+                            <apex:param value="{!item.FieloEE__DeliveredDate__c}" />
+                        </apex:outputText>
+                        <apex:outputText value="{0,date,dd/MM/yyyy}" rendered="{!item.FieloEE__Status__c = 'Expired'}">
+                            <apex:param value="{!item.FieloEE__ExpirationDate__c}" />
+                        </apex:outputText>
+                    </apex:column>
+                    <apex:column value="{!item.FieloEE__Reward__c}" />
+                    <apex:column value="{!item.Reward__r.FieloEE__PointsCant__c}"/>
+                    <apex:column value="{!item.FieloEE__Status__c}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+
+            <apex:pageBlockSection columns="1" collapsible="false" rendered="{!(rewardsList.size > 0)}">
+                <apex:panelGroup ><div class="titles"><apex:outputText value="{!$Label.fieloee__availablerewards}" /></div></apex:panelGroup>
+                <apex:panelGroup id="items" >
+                    <apex:repeat value="{!rewardsList}" var="p">
+                        <apex:outputText value="{!init}" escape="false" rendered="{!VALUE(cont) == 1}"/>
+                        <li class="span{!FLOOR(12/VALUE(qcol))}" style="position:relative">
+                            <div class="thumbnail">
+                                <div class="image">
+                                    <apex:panelGroup layout="none" style="border:none;" rendered="{!NOT(ISBLANK(p.FieloEE__AttachmentId__c))}">
+                                        <img src="{!IF(LEFT(p.AttachmentId__c,3) == '00P', URLFOR($Action.Attachment.Download, p.AttachmentId__c), IF(LEFT(p.AttachmentId__c,3) == '015', IF(ISBLANK($Setup.PublicSettings__c.Instance__c), $Site.Prefix, DocURL)+'/servlet/servlet.ImageServer?id='+p.AttachmentId__c+'&oid='+orgId, URLFOR($Resource.Images, p.AttachmentId__c)))}" />
+                                    </apex:panelGroup>
+                                    <i class="icon-gift icon-5x" style="{!IF(ISBLANK(p.AttachmentId__c), 'display:block', 'display:none')}"></i>
+                                </div>
+                                <div class="caption">
+                                    <!-- Name -->
+                                    <div class="div_name" style="height:40px">
+                                                    <!-- Button to trigger modal -->
+                                        <apex:panelGroup >
+                                            <apex:outputText value="{!LEFT(p.Name, 18)}..." rendered="{!LEN(p.Name) > 18}" />
+                                            <apex:outputText value="{!p.Name}" rendered="{!LEN(p.Name) <= 18}" />
+                                        </apex:panelGroup>
+                                    </div>
+
+                                    <!-- Description -->
+                                    <div class="div_description" style="display:none;">
+                                        <apex:outputText value="{!LEFT(p.FieloEE__Description__c, 45)}..." rendered="{!LEN(p.FieloEE__Description__c) > 45}" />
+                                        <apex:outputText value="{!p.FieloEE__Description__c}" rendered="{!LEN(p.FieloEE__Description__c) <= 45}" />
+                                    </div>
+
+                                    <!-- Points -->
+                                    <div style="text-align:center">
+                                        <span class="badge">
+                                            <apex:outputField value="{!p.FieloEE__PointsCant__c}" />
+                                        </span>
+                                    </div>
+                                    <!-- Redeem -->
+                                    <div style="text-align:center; margin-top:10px;">
+                                        <apex:commandLink styleClass="btn" action="{!doRedeem}" value="{!$Label.fieloee__redeem}">
+                                            <apex:param name="rewId" value="{!p.Id}"/>
+                                        </apex:commandLink>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <apex:panelGroup rendered="{!VALUE(col)==VALUE(qcol)}">
+                            <apex:variable value="0" var="col"/>
+                            <apex:variable value="{!VALUE(fil)+1}" var="fil"/>
+                        </apex:panelGroup>
+                        <apex:variable value="{!VALUE(col)+1}" var="col"/>
+                        <apex:variable value="{!VALUE(i)+1}" var="i"/>
+
+                        <apex:outputText value="{!end}" escape="false" rendered="{!(VALUE(cont) == VALUE(qcol))}"/>
+                        <apex:variable value="0" var="cont" rendered="{!VALUE(cont) == VALUE(qcol)}"/>
+                        <apex:variable value="{!VALUE(cont) + 1}" var="cont"/>
+
+                    </apex:repeat>
+                    <apex:outputText value="{!end}" escape="false" rendered="{!(MOD(rewardsList.size,VALUE(qcol)) != 0 )}"/>
+
+                    <!-- Foot bar -->
+                    <div class="navbar">
+                        <div class="navbar-inner component-bar">
+                            <div class="pagination pagination-mini pagination-centered" style="margin: 10px !important;">
+                                <apex:panelGroup rendered="{!(rewardsList.size > 0)}">
+                                    <ul>
+                                        <li class="disabled">
+                                            <a href="#" style="background-color: #FFFFFF !important;">
+                                                <apex:outputText value="{!$Label.fieloee__page}:" />
+                                            </a>
+                                        </li>
+                                        <apex:repeat value="{!pageNumbers}" var="pn">
+                                            <li class="{!IF(pn == rewardsPaginator.pageNumber, 'active', '')}">
+                                                <apex:commandLink action="{!setPageNumber}" immediate="true">
+                                                    <apex:outputText value="{!pn} "/>
+                                                    <apex:param name="pageNumber" value="{!pn}"/>
+                                                </apex:commandLink>
+                                            </li>
+                                        </apex:repeat>
+                                    </ul>
+                                </apex:panelGroup>
+
+                                <!-- Title -->
+                                <apex:panelGroup rendered="{!(rewardsList.size > 0)}">
+                                    <small class="pull-right1">{!$Label.fieloee__displaying } {!rewardsPaginator.ItemsDisplaying} {!$Label.fieloee__of} {!rewardsPaginator.ResultSize} {!$Label.fieloee__items}</small>
+                                </apex:panelGroup>
+                                <div class="pull-right" style="margin-top:-5px;"><apex:commandButton action="{!goToNewRedemption}" value="{!$Label.fieloee__newredemption}" rendered="{!redProxy.FieloEE__Member__c!=null}"/></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Foot bar -->
+                </apex:panelGroup>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+
+    <script>
+        var iframe = document.getElementById('iframe');
+        if(iframe!=null) iframe.src = iframe.src + '{!redProxy.FieloEE__Member__c}';
+
+        var newheight;
+        var newwidth;
+
+        if(document.getElementById){
+            newheight=document.getElementById('iframe').contentWindow.document.body.scrollHeight;
+            newwidth=document.getElementById('iframe').contentWindow.document.body.scrollWidth;
+        }
+
+        document.getElementById('iframe').height= (newheight) + "px";
+        document.getElementById('iframe').width= (newwidth) + "px";
+    </script>
+</apex:page>

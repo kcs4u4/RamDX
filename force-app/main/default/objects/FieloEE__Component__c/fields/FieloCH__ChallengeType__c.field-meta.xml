@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__ChallengeType__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Active List: Displays the challenges that the member is participating.
+History: Displays the challenges finished by the member with the results.
+Subscribe List: Displays the challenges that the member has available to subscribe.</inlineHelpText>
+    <label>Challenge Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Active list</fullName>
+                <default>false</default>
+                <label>Active list</label>
+            </value>
+            <value>
+                <fullName>History</fullName>
+                <default>false</default>
+                <label>History</label>
+            </value>
+            <value>
+                <fullName>Subscribe list</fullName>
+                <default>false</default>
+                <label>Subscribe list</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

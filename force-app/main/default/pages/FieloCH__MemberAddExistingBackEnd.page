@@ -1,0 +1,328 @@
+<apex:page standardController="FieloCH__ChallengeMember__c" extensions="FieloCH.MemberAddExistingBackEndExtension,FieloCH.MissionEditBackEndExtension" recordSetVar="t">
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+    <!--<apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'thickbox/thick.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__js, 'thickbox/thick.css')}"/>     -->
+    <apex:includescript value="{!URLFOR($Resource.FieloEE__js, 'JQueryOrder/jquery-ui-personalized-1.5.3.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js,'/criteriasFunctions.js')}"/>
+    <style type="text/css">
+        span.dateInput span.dateFormat { display:none; }
+        .firstRadio { border-bottom: 2px solid #8E9DBE !important; }
+        .limitCels { vertical-align: middle !important; }
+    </style>
+
+
+    <script>
+        window.onload = function(){
+            if (location.href.match(/inline=1/)) window.top.location=location.href.replace(/inline=1/, '');
+        }
+
+        function checkAll(cb){
+            var inputElem = document.getElementsByTagName("input");
+            for(var i = 0; i < inputElem.length; i++){
+                if(inputElem[i].id.indexOf("checkedone") != -1)
+                    inputElem[i].checked = cb.checked;
+            }
+        }
+    </script>
+
+    <!-- Criteria Table Scripts -->
+    <script>
+        $(document).ready(function(){
+            var fieldToHide = $('.fieldToHide');
+            $(".showCriteriaTable").click(function(){
+                fieldToHide.each(function(){
+                    $(this).toggleClass("hidden");
+                });
+                return false;
+            });
+        });
+
+
+
+
+    </script>
+    <script>
+        var mapFieldTypes = new Array();
+        var aOptions = new Array();
+        var operators = new Array();
+        var operObjective = new Array();
+
+        <apex:repeat value="{!mapFieldTypes}" var="f" >
+            mapFieldTypes['{!f}'] = '{!mapFieldTypes[f]}';
+        </apex:repeat>
+
+        <apex:repeat value="{!mapOptions}" var="ft" >
+            var i = 0;
+            aOptions['{!ft}'] = new Array();
+            <apex:repeat value="{!mapOptions[ft]}" var="o" >
+                aOptions['{!ft}'][i] = new Option('{!JSENCODE(o.Label)}', '{!JSENCODE(o.Value)}', false, false);
+                i++;
+            </apex:repeat>
+        </apex:repeat>
+
+        pos = 0;
+        <apex:repeat value="{!operators}" var="opr" >
+            operators[pos]= new Option('{!opr.Label}','{!opr.Value}',false,false);
+            pos++;
+        </apex:repeat>
+
+        ind = 0;
+        <apex:repeat value="{!objOperators}" var="opr" >
+            operObjective[ind]= new Option('{!opr.Label}','{!opr.Value}',false,false);
+            ind++;
+        </apex:repeat>
+
+        function fillObjectiveOperator(selectOperators){
+            var oInputOper = document.getElementById(selectOperators);
+            var selectedValue = document.getElementById(selectOperators).value;
+
+            deleteOperator(oInputOper);
+            oInputOper.options.add(new Option('--None--', '', false, false));
+
+            if(operObjective.length > 1){
+                if(selectedValue != null){
+                    for(i = 1; i < operObjective.length ; i++){
+                        if( selectedValue.indexOf(operObjective[i].value) >= 0){
+                            oInputOper.options.add(new Option(operObjective[i].text, operObjective[i].value, true, true));
+                        }else{
+                            oInputOper.options.add(new Option(operObjective[i].text, operObjective[i].value, false, false));
+                        }
+                    }
+                }
+            }
+        }
+
+        function displayFieldName(objectiveType){
+            if(objectiveType != null && objectiveType != ''){
+                $( '.objectiveOperator' ).removeAttr( 'disabled' );
+                $( '.dynamic' ).removeAttr( 'disabled' );
+                $( '.member' ).removeAttr( 'disabled' );
+                $( '.value' ).removeAttr( 'disabled' );
+
+                if(objectiveType == 'Counter'){
+                    $( '.fieldName' ).attr('disabled', 'disabled');
+                }else{
+                    $( '.fieldName' ).removeAttr( 'disabled' );
+                }
+            }else{
+                $( '.objectiveOperator' ).attr('disabled', 'disabled');
+                $( '.dynamic' ).attr('disabled', 'disabled');
+                $( '.member' ).attr('disabled', 'disabled');
+                $( '.value' ).attr('disabled', 'disabled');
+                $( '.fieldName' ).attr('disabled', 'disabled');
+            }
+        }
+
+        function loadSecondary(fieldName, idSecondary, idHiddenSecondary, idText, idDate,idNumber,idBoolean,idList,idOperator, mapFieldTypes, aOptions, operators ){
+            var oSecondary = document.getElementById(idSecondary);
+            var initValue = initialValue;
+            var opSelected = optionList;
+
+            if(mapFieldTypes[fieldName.value] == 'REFERENCE'){
+               //oSecondary.style.display = 'inline';
+               oSecondary.options.length = 0;
+
+               {!$RemoteAction.MissionEditBackEndExtension.getSecondaryFields}(fieldName.value, function (result, event) {
+                   var resultSplited = result.split(',');
+
+                   var hiddenSecondaryValue = null;
+                   var hiddenSecondary = document.getElementById(idHiddenSecondary);
+                   if(hiddenSecondary != null)
+                       hiddenSecondaryValue = hiddenSecondary.value;
+
+                   for(var i = 0 ; i < resultSplited.length; i++){
+                       var item = resultSplited[i].split('|');
+                       oSecondary[i] = new Option(item[1], item[0], false, (item[0] == hiddenSecondaryValue));
+                       if(item[2] != null){
+                           mapFieldTypes[item[0]] = item[2];
+                           if(mapFieldTypes[item[0]] == 'List'){
+                               {!$RemoteAction.MissionEditBackEndExtension.getPicklistValues}(item[0],function(result1,event){
+                                   var resultSplited = result1.split(',');
+                                   for(var i = 0; i < resultSplited.length ; i++){
+                                       var item = resultSplited[i].split('|');
+                                       if(aOptions[item[0]] == null)
+                                           aOptions[item[0]] = new Array();
+                                       aOptions[item[0]][i] = new Option(item[2], item[1], false, false);
+                                   }
+                                   if(hiddenSecondary != null){
+                                       initialValue = initValue;
+                                       optionList = opSelected;
+                                       analizeRow(idHiddenSecondary, idText, idDate,idNumber,idBoolean,idList,idOperator, mapFieldTypes, aOptions, operators);
+                                   }
+
+                               }, {escape:true});
+                           }
+                       }
+                   }
+
+                   if(hiddenSecondary != null){
+                       initialValue = initValue;
+                       optionList = opSelected;
+                       analizeRow(idHiddenSecondary, idText, idDate,idNumber,idBoolean,idList,idOperator, mapFieldTypes, aOptions, operators);
+                   }
+               }, {escape:true});
+            } else {
+               oSecondary.style.display = 'none';
+            }
+        }
+
+        function fillValuePicklist(valueId, idText ,idList){
+            var lista = document.getElementById(idList);
+            var oInputText = document.getElementById(idText);
+            var oInputValue = document.getElementById(valueId);
+
+            try{
+                sValue = oInputValue.options[oInputValue.selectedIndex].value;
+            }catch (e){
+                sValue = oInputValue.value;
+            }
+            removeOptions(lista);
+
+            if(lista != null){
+                <apex:repeat value="{!mapFieldTypes}" var="ft" >
+                    if(mapFieldTypes['{!ft}'] == mapFieldTypes[sValue]){
+                        lista.add(new Option('{!ft}' , '{!mapFieldTypes[ft]}' , false , oInputValue.value == '{!mapFieldTypes[ft]}'));
+                    }
+                </apex:repeat>
+            }
+        }
+    </script>
+    <!-- Criteria Table Scripts -->
+
+    <apex:form rendered="{!($CurrentPage.Parameters.Inline == null)}">
+        <apex:sectionHeader title="{!IF ( AND(challenge.FieloCH__Mode__c != 'Teams', challenge.FieloCH__Mode__c != 'Groups'), $ObjectType.FieloEE__Member__c.Label, $ObjectType.FieloCH__Team__c.Label)}"/>
+        <apex:pageBlock rendered="{!AND(recordList.size < 1, NOT(isSearch))}" >
+            <apex:pageMessage summary="{!IF (AND(challenge.FieloCH__Mode__c != 'Teams', challenge.FieloCH__Mode__c != 'Groups'), $Label.fieloch__infonomembersadd, $Label.fieloch__infonoteamsadd)}" severity="info" strength="2"/>
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="{!$Label.fieloee__back}" action="{!cancel}" />
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+
+        <apex:pageBlock Title="{!IF (AND(challenge.FieloCH__Mode__c != 'Teams', challenge.FieloCH__Mode__c != 'Groups'), $Label.fieloee__selectmembers, $Label.fieloch__selectteams)}" rendered="{!OR(recordList.size > 0, isSearch) }">
+            <apex:pageMessage summary="{!$Label.fieloch__newteammemberwarning}" severity="warning" strength="2" rendered="{!activeTeam}"/>
+
+            <apex:pageBlockButtons >
+                <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!doCancel}"/>
+                <apex:commandButton value="{!IF (AND(challenge.FieloCH__Mode__c != 'Teams', challenge.FieloCH__Mode__c != 'Groups'), $Label.fieloch__addmembers, $Label.fieloch__addteams)}" action="{!doSaveSelectedMembers}" rendered="{!recordList.size > 0}"/>
+            </apex:pageBlockButtons>
+
+            <!-- Criteria Table -->
+            <apex:variable id="contador" var="contador" value="1" />
+            <apex:pageBlockSection id="searchCriteriaFields" title="{!$Label.fieloee__criterias}" columns="1" collapsible="false" rendered="{!AND(challenge.FieloCH__Mode__c != 'Teams', challenge.FieloCH__Mode__c != 'Groups')}">
+                <apex:panelGroup styleClass="fieldToHide" rendered="{!NOT(advancedSearch)}">
+                    <b>{!$Label.fieloee__name}  </b><apex:inputText id="searchText" value="{!searchText}"/>
+                </apex:panelGroup>
+                <apex:panelGroup styleClass="fieldToHide" rendered="{!advancedSearch}">
+                    <apex:pageBlockTable value="{!searchCriterias}" var="criteriaWrapper" id="searchTable" >
+                        <apex:column value="{!criteriaWrapper.criteria.FieloCH__Order__c}." />
+                        <apex:column headerValue="{!$Label.fieloee__field}" >
+                            <apex:selectList styleClass="criteriaFields" id="criteriaFields" size="1" onchange="clearSecondary('{!$Component.secondaryHidden}');loadSecondary(this, 'auxSelect_{!contador}',null, '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators}', mapFieldTypes, aOptions, operators); analizeRow('{!$Component.criteriaFields}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators}', mapFieldTypes, aOptions, operators, '{!$Component.optionFields}'); " value="{!criteriaWrapper.criteria.FieloCH__FieldName__c}">
+                                <apex:selectOptions value="{!criteriaFields}" />
+                            </apex:selectList>
+                            <apex:inputHidden value="{!criteriaWrapper.secondary}" id="secondaryHidden"/>
+                            <select id="auxSelect_{!contador}" class="hidden" onchange="fillValue(this,'{!$Component.secondaryHidden}');analizeRow('{!$Component.secondaryHidden}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators}', mapFieldTypes, aOptions, operators, '{!$Component.optionFields}');" ></select>
+                            <script>
+                                if('{!JSENCODE('FieloEE__Member__c')}' == ''){
+                                    $( '.criteriaFields' ).attr('disabled', 'disabled');
+                                }
+
+                                initialValue = '{!JSENCODE(criteriaWrapper.criteria.Operator__c)}';
+                                optionList = '{!JSENCODE(criteriaWrapper.listValue)}';
+                                loadSecondary(document.getElementById('{!$Component.criteriaFields}'), 'auxSelect_{!contador}','{!$Component.secondaryHidden}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators}', mapFieldTypes, aOptions, operators);
+                            </script>
+
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.FieloCH__Mission__c.Fields.FieloCH__Operator__c.Label}" >
+                                <apex:inputField value="{!criteriaWrapper.criteria.FieloCH__Operator__c}" Id="operators" styleClass="operators"/>
+                                <script>
+                                    if('{!JSENCODE('FieloEE__Member__c')}' == ''){
+                                        $( '.operators' ).attr('disabled', 'disabled');
+                                    }
+                                    var initialValue = document.getElementById('{!$Component.operators}').value;
+                                </script>
+                            </apex:column>
+                            <apex:column headerValue="{!$Label.fieloee__value}">
+                                <apex:inputField id="texto" required="false" value="{!criteriaWrapper.criteria.FieloCH__Values__c}" />
+                                <apex:inputField id="fecha" required="false" value="{!criteriaWrapper.criteria.FieloCH__DateValue__c}"/>
+                                <apex:inputField id="numero" required="false" value="{!criteriaWrapper.criteria.FieloCH__NumberValue__c}"/>
+                                <apex:inputField id="boolean" required="false" value="{!criteriaWrapper.criteria.FieloCH__BooleanValue__c}"/>
+
+                                <apex:inputHidden value="{!criteriaWrapper.listValue}" id="listaHidden"/>
+                                <select size="3" id="lista_{!contador}" onchange="fillValue(this,'{!$Component.listaHidden}'); return false;" multiple="multiple">
+                                    <apex:repeat value="{!optionsValues}" var="o">
+                                        <option value="{!o.value}">{!o.label}</option>
+                                    </apex:repeat>
+                                </select>
+                                <script>
+                                   if('{!JSENCODE(criteriaWrapper.secondary)}'==''){
+                                       optionList = document.getElementById('{!$Component.listaHidden}').value;
+                                       analizeRow('{!$Component.criteriaFields}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators}', mapFieldTypes, aOptions, operators, '{!$Component.optionFields}');
+                                       fillValuePicklist('{!$Component.criteriaFields}','{!$Component.texto}','{!$Component.listaHidden}');
+                                   }
+                                </script>
+                            </apex:column>
+                            <apex:column >
+                                <apex:panelGroup rendered="{!searchCriterias.size > 1}">
+                                    <apex:variable var="contador" value="{! Text(Value(contador) + 1)}" />
+                                    {!$Label.fieloee__and}
+                                </apex:panelGroup>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    <apex:commandLink value="{!$Label.fieloee__add}" action="{!addSearchCriteria}" reRender="searchTable"/>
+                    </apex:panelGroup>
+                    <apex:commandButton action="{!doSearch}" value="{!$Label.fieloee__search}" style="float:right;" />
+                    <apex:commandLink action="{!toggleAdvanced}" value="{!$Label.fieloee__advanced}" reRender="searchCriteriaFields"/>
+                </apex:pageBlockSection>
+
+            <!-- Criteria Table -->
+
+
+            <apex:pageMessage summary="{!IF (AND(challenge.FieloCH__Mode__c != 'Teams', challenge.FieloCH__Mode__c != 'Groups'), $Label.fieloch__infonomembersadd, $Label.fieloch__infonoteamsadd)}" severity="info" strength="2" rendered="{!recordList.size == 0 && isSearch }"/>
+            <apex:pageBlockSection Title="{!IF(AND(challenge.FieloCH__Mode__c != 'Teams', challenge.FieloCH__Mode__c != 'Groups'), $Label.fieloch__listavailablemembers, $Label.fieloch__listavailableteams)}" collapsible="false" rendered="{!OR(recordList.size > 0, AND(isSearch, recordList.size > 0)) }">
+                <apex:pagemessages />
+
+            </apex:pageBlockSection>
+            <apex:pageBlockTable value="{!recordList}" var="a" id="actionList" rowClasses="odd,even" styleClass="tableClass" rendered="{!OR(recordList.size > 0, AND(isSearch, recordList.size > 0)) }">
+                <apex:column width="10px">
+                    <apex:facet name="header">
+                        <apex:inputCheckbox >
+                            <apex:actionSupport event="onclick" onsubmit="checkAll(this)" rerender="Selected_PBS"/>
+                        </apex:inputCheckbox>
+                    </apex:facet>
+                    <apex:inputCheckbox value="{!a.selected}" id="checkedone"/>
+                </apex:column>
+                <apex:column headerValue="{!IF (AND(challenge.FieloCH__Mode__c != 'Teams', challenge.FieloCH__Mode__c != 'Groups'), $ObjectType.FieloEE__Member__c.Label, $ObjectType.FieloCH__Team__c.Label)}">
+                    <apex:outputText styleClass="thickbox" >
+                        {!a.label}
+                    </apex:outputText>
+                </apex:column>
+            </apex:pageBlockTable>
+
+            <center>
+                <apex:panelGroup rendered="{!recordList.size < listSize}" id="buttons" >
+                    <apex:commandLink action="{!doFirst}" rendered="{!recordPaginator.hasPrevious && fullList}" reRender="actionList, buttons">
+                        {!$Label.fieloee__first}
+
+                    </apex:commandLink>
+                    &nbsp;
+                    <apex:commandLink action="{!doPrevious}" rendered="{!recordPaginator.hasPrevious && fullList}" reRender="actionList, buttons">
+                        {!$Label.fieloee__previous}
+
+                    </apex:commandLink>
+                    &nbsp;
+                    <apex:outputText value=" {!ActualPage}/{!TotalPages} " rendered="{!fullList}"/>
+                    <apex:commandLink action="{!doNext}" rendered="{!recordPaginator.hasNext && fullList}" reRender="actionList, buttons">
+                        {!$Label.fieloee__next}
+
+                        </apex:commandLink>
+                    &nbsp;
+                    <apex:commandLink action="{!doLast}" rendered="{!recordPaginator.hasNext && fullList}" reRender="actionList, buttons">
+                        {!$Label.fieloee__last}
+
+                    </apex:commandLink>
+                </apex:panelGroup>
+            </center>
+
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

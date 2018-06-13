@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Edit_Challenge_Competition</fullName>
+    <active>true</active>
+    <description>If the competition type is modified, check that is has no missions associated.</description>
+    <errorConditionFormula>IF( AND(FieloCH__MissionsCounter__c &gt; 0,   ISCHANGED(FieloCH__CompetitionType__c) ), true, false)</errorConditionFormula>
+    <errorDisplayField>FieloCH__CompetitionType__c</errorDisplayField>
+    <errorMessage>Cannot change Competition Type if already have missions.</errorMessage>
+</ValidationRule>

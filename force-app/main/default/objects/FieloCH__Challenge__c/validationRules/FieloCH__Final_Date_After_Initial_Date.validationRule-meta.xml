@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Final_Date_After_Initial_Date</fullName>
+    <active>true</active>
+    <errorConditionFormula>FieloCH__InitialDate__c &gt;  FieloCH__FinalDate__c</errorConditionFormula>
+    <errorMessage>Initial Date must be before Final Date</errorMessage>
+</ValidationRule>

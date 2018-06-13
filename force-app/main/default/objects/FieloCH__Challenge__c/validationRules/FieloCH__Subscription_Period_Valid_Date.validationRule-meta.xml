@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Subscription_Period_Valid_Date</fullName>
+    <active>true</active>
+    <description>Check that the period is the same or before from the Active period of the Challenge.</description>
+    <errorConditionFormula>AND( NOT( OR( ISBLANK(FieloCH__SubscribeFrom__c), ISNULL(FieloCH__SubscribeFrom__c) )),
+OR( FieloCH__InitialDate__c &lt;  FieloCH__SubscribeFrom__c, FieloCH__SubscribeFrom__c &gt;  FieloCH__SubscribeTo__c ))</errorConditionFormula>
+    <errorDisplayField>FieloCH__SubscribeFrom__c</errorDisplayField>
+    <errorMessage>The Subscription Initial Date cannot be greater than Subscription Final Date or greater than Challenge Initial Date</errorMessage>
+</ValidationRule>

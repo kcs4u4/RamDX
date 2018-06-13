@@ -1,0 +1,43 @@
+<apex:page showHeader="false" sidebar="false">
+
+<!--  START STYLES -->
+    <style>
+        .bold { font-weight: bold; }
+        .col_50 { width:50%; }
+        .col_50 .pbHeader { border: none !important; }
+        .col_50 .pbHeader table{ border: none !important; }
+        .col_50 .pbSubsection { background-color: #FFFFFF !important; border: 1px solid #E8E8E8; margin: 5px 0 0; padding: 5px; }
+        .col_50 .pbSubsection td{ border: none !important; }
+        .reportsAndTools { width: 100%; }
+        
+        .splash_title       { font-size:26px; color:#777777; font-weight:bold; }
+        .splash_main        { font-size:18px; color:#777777; }
+        .splash_subtitle    { font-size:16px; color:#111111; text-align:center; }
+        .splash_text        { font-size:12px; color:#777777; }
+        .splash_numbers     { font-family:helvetica; font-size:28px; color:#2D64CB; font-weight:bold; }
+    </style>
+<!--  END STYLES -->
+        <div style="width:800px; margin:20px;">
+            <div class="splash_title"><apex:outputText value="{!$Label.fieloee__rewards}"/></div>
+            <div class="splash_main">{!$Label.SplashRewardsMain}</div>
+            <div style="position:relative; margin:50px auto 20px; width:575px; height:255px; background:no-repeat url({!URLFOR($Resource.images, 'splash/rewards.png')})">
+                <div style="position:absolute; top:-30px; left:60px; " class="splash_numbers">1</div>
+                <div style="position:absolute; top:-30px; left:260px;" class="splash_numbers">2</div>
+                <div style="position:absolute; top:-30px; left:480px;" class="splash_numbers">3</div>
+                <div style="position:absolute; top:65px;  left:40px; " class="splash_subtitle">{!$Label.Categories}</div>
+                <div style="position:absolute; top:65px;  left:250px;" class="splash_subtitle">{!$Label.Tags}</div>
+                <div style="position:absolute; top:65px;  left:450px;" class="splash_subtitle">{!$Label.fieloee__rewards}</div>
+                <div style="position:absolute; top:155px; left:20px;  width:160px;" class="splash_text">{!$Label.SplashRewardsCategories}</div>
+                <div style="position:absolute; top:155px; left:220px; width:160px;" class="splash_text">{!$Label.SplashRewardsTags}</div>
+                <div style="position:absolute; top:155px; left:420px; width:160px;" class="splash_text">{!$Label.SplashRewardsRewards}</div>
+            </div>
+            
+            <div class="splash_subtitle" style="text-align:left;"><apex:outputText value="{!$Label.fieloee__splashrewardsredemption}" escape="false"/></div>
+            <div class="splash_text"><p><apex:outputText value="{!$Label.fieloee__splashrewardstext}" escape="false"/></p></div>
+            <div class="splash_text"><p><apex:outputText value="{!$Label.fieloee__splashrewardsnote}" escape="false"/></p></div>            
+        </div>  
+
+<!--   END SPLASH -->
+
+
+</apex:page>

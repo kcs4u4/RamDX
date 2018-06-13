@@ -1,0 +1,12 @@
+<apex:page standardController="FieloEE__Promotion__c" extensions="FieloEE.RuleActionDefaultBackEndController">
+     <apex:form >
+         <apex:pageBlock >
+             <apex:pageMessages ></apex:pageMessages>
+             <apex:pageBlockSection title="{!$Label.fieloee__defaultrule}" columns="1" collapsible="false">
+                 <apex:outputfield value="{!rule.FieloEE__Type__c}"/>
+                 <apex:outputfield value="{!rule.FieloEE__ConvertionTypeTransaction__c}"/>
+                 <apex:outputfield value="{!rule.FieloEE__ConvertionValue__c}"/>
+             </apex:pageBlockSection>
+          </apex:pageBlock>
+     </apex:form>
+</apex:page>

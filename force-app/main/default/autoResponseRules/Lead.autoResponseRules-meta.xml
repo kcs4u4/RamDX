@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AutoResponseRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <autoResponseRule>
+        <fullName>NewRule</fullName>
+        <active>false</active>
+        <ruleEntry>
+            <criteriaItems>
+                <field>Lead.City</field>
+                <operation>notEqual</operation>
+            </criteriaItems>
+            <senderEmail>kcs4u4@gmail.com</senderEmail>
+            <senderName>sc</senderName>
+            <template>unfiled$public/asdasd</template>
+        </ruleEntry>
+        <ruleEntry>
+            <booleanFilter>1 AND 2</booleanFilter>
+            <criteriaItems>
+                <field>Lead.AnnualRevenue</field>
+                <operation>equals</operation>
+                <value>100000</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Lead.Branch_Code__c</field>
+                <operation>notEqual</operation>
+            </criteriaItems>
+            <senderEmail>kcs4u4@gmail.com</senderEmail>
+            <senderName>chandrashekhar goud</senderName>
+            <template>unfiled$public/CommunityChangePasswordEmailTemplate</template>
+        </ruleEntry>
+    </autoResponseRule>
+    <autoResponseRule>
+        <fullName>NewTestLead</fullName>
+        <active>true</active>
+        <ruleEntry>
+            <formula>Branch_Code__c &lt;&gt; NULL</formula>
+            <senderEmail>kcs4u4@gmail.com</senderEmail>
+            <senderName>Test</senderName>
+            <template>unfiled$public/CommunityChangePasswordEmailTemplate</template>
+        </ruleEntry>
+    </autoResponseRule>
+</AutoResponseRules>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ChangeStockMode</fullName>
+    <active>true</active>
+    <errorConditionFormula>((ISPICKVAL(PRIORVALUE(FieloEE__VoucherCreationMode__c), &#39;Controlled By Quantity&#39;) &amp;&amp; (ISPICKVAL(FieloEE__VoucherCreationMode__c, &#39;Unlimited&#39;) || ISPICKVAL(FieloEE__VoucherCreationMode__c, &#39;Controlled By Item&#39;))) ||
+(ISPICKVAL(PRIORVALUE(FieloEE__VoucherCreationMode__c), &#39;Controlled By Item&#39;) &amp;&amp; (ISPICKVAL(FieloEE__VoucherCreationMode__c, &#39;Unlimited&#39;) ||
+ISPICKVAL(FieloEE__VoucherCreationMode__c, &#39;Controlled By Quantity&#39;)))) &amp;&amp;
+FieloEE__Stock__c &gt; 0</errorConditionFormula>
+    <errorDisplayField>FieloEE__VoucherCreationMode__c</errorDisplayField>
+    <errorMessage>This operation is allowed when stock is equal to zero</errorMessage>
+</ValidationRule>

@@ -1,0 +1,95 @@
+<apex:page standardController="FieloCH__Challenge__c" Extensions="FieloCH.ChallengeHighlightPanelExtension">
+
+    <apex:includescript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+    <!-- <apex:includescript value="{!URLFOR($Resource.FieloEE__js, 'jquery-ui.js')}"/>     -->
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+
+    <!-- Font Awesome -->
+        <apex:stylesheet value="{!URLFOR($Resource.FieloCH__challenge_images, 'FontAwesome/css/font-awesome.css')}"/>
+        <!--[if IE 7]>
+            <apex:stylesheet value="{!URLFOR($Resource.FieloCH__challenge_images, 'FontAwesome/css/font-awesome-ie7.css')}"/>
+        <![endif]-->
+    <!-- Fin Font Awesome -->
+
+<apex:outputField value="{!FieloCH__Challenge__c.FieloCH__IsActive__c}" rendered="false" />
+
+<table style="width: 100%;">
+    <tr>
+        <td style="width: 10%;">
+            <apex:image value="{!URLFOR($Action.Attachment.Download, FieloCH__Challenge__c.FieloCH__AttachmentId__c)}" rendered="{!NOT(ISBLANK(FieloCH__Challenge__c.FieloCH__AttachmentId__c))}" style="width: 125px;"/>
+            <apex:panelGroup rendered="{!ISBLANK(FieloCH__Challenge__c.FieloCH__AttachmentId__c)}" style="font-size: 60px; color: #666666;">
+                <span class="icon-stack iconAttach">
+                    <i class="icon-sign-blank icon-stack-base"></i>
+                    <i class="icon-camera icon-light"></i>
+                </span>
+            </apex:panelGroup>
+        </td>
+        <td style="line-height: normal; width: 25%; ">
+            <div style="font-size: 30px; font-weight: bold;">
+                <apex:outputField value="{!FieloCH__Challenge__c.Name}"/>
+            </div>
+            <div style="font-size: 16px;">
+                <apex:panelGroup rendered="{!IF(OR(FieloCH__Challenge__c.FieloCH__Status__c == 'Finished', AND(!ISNULL(FieloCH__Challenge__c.FieloCH__FinalDate__c), FieloCH__Challenge__c.FieloCH__FinalDate__c < TODAY()) ), true, false)}">
+                    <apex:outputText value="{!FieloCH__Challenge__c.FieloCH__Status__c}" style="font-weight: bold;"/>
+                </apex:panelGroup>
+
+                <apex:panelGroup rendered="{!!IF(OR(FieloCH__Challenge__c.FieloCH__Status__c == 'Finished', AND(!ISNULL(FieloCH__Challenge__c.FieloCH__FinalDate__c), FieloCH__Challenge__c.FieloCH__FinalDate__c < TODAY()) ), true, false)}">
+                    <apex:panelGroup rendered="{!IF(FieloCH__Challenge__c.FieloCH__InitialDate__c > TODAY(), true, false)}">
+                        <apex:outputText value="{!$Label.fieloch__startin} "/>
+                        <apex:outputText value="{!startDays}" style="font-weight: bold;"/>
+                        <apex:outputText value="{!$Label.fieloch__variabledays}" style="font-weight: bold;"/>
+                    </apex:panelGroup>
+                    <apex:panelGroup rendered="{!!IF(FieloCH__Challenge__c.FieloCH__InitialDate__c > TODAY(), true, false)}">
+                        <apex:outputText value="{!$Label.fieloch__finisheson}"/>
+                        <apex:outputText value="{0, number, 0}" style="font-weight: bold;">
+                            <apex:param value="{!FieloCH__Challenge__c.FieloCH__DaysLeft__c}" />
+                        </apex:outputText>
+                        <apex:outputText value=" {!$Label.fieloch__variabledays}" style="font-weight: bold;"/>
+                    </apex:panelGroup>
+                </apex:panelGroup>
+            </div>
+        </td>
+        <td class="tdContentStepBar">
+            <apex:variable value="1" var="step"/>
+            <apex:variable value="0" var="widthBar"/>
+            <div class="clearfix stepBar">
+                <apex:repeat value="{!lista}" var="l" >
+                    <div class="stepPoint step{!step} {!IF(l.accomplished, 'active', '')}">
+                        <div class="step">
+                            <span class="icon-stack">
+                                <i class="icon-circle icon-stack-base"></i>
+                                <i class="icon-ok icon-light"></i>
+                            </span>
+                        </div>
+                        <div class="stepLabel">
+                            <span>{!l.step}</span>
+                        </div>
+                    </div>
+                    <apex:variable value="{!IF(Challenge__c.IsActive__c, 100, VALUE(widthBar)+33.5) }" var="widthBar" rendered="{!AND(l.accomplished, VALUE(step) != 1)}"/>
+                    <apex:variable value="{!VALUE(step)+1}" var="step"/>
+                </apex:repeat>
+                <div class="progress">
+                    <div class="bar" style="width: {!widthBar}%"></div>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<style>
+    .tdContentStepBar { width: 50%; padding-left: 120px; position:relative; }
+    .stepBar { position: relative; height: 60px; }
+    .stepBar .progress { margin-top: 10px; width: 94%; margin-left: 4%; }
+    .stepBar .progress .bar { background: #62c462; }
+    .stepBar .stepPoint { position: absolute; top: 5px; text-align: center; }
+    .stepBar .stepPoint .step span.icon-stack { font-size: 15px; }
+    .stepBar .stepPoint .step span.icon-stack .icon-stack-base { color: #E6E6E6; }
+    .stepBar .stepPoint .stepLabel { font-size: 12px; }
+    .stepBar .stepPoint.active .step span.icon-stack .icon-stack-base { color: #549E54; }
+    .stepBar .stepPoint.active .stepLabel { font-weight: bold; }
+    .step1 { left: 0%; }
+    .step2 { left: 30%; }
+    .step3 { right: 30%; }
+    .step4 { right: 0%; }
+</style>
+</apex:page>

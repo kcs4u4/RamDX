@@ -1,0 +1,35 @@
+<apex:page standardController="FieloEE__Reward__c" extensions="FieloEE.RewardItemCreateBackEndController" > 
+    <style>
+        .col50          { width:50%; }
+    </style>
+
+    <apex:form >  
+        <apex:panelGroup rendered="{!(FieloEE__Reward__c.FieloEE__VoucherCreationMode__c = 'Controlled By Quantity')}" id="numero">
+   <!--         <apex:pageBlock title="{!$Label.RewardStock}: {!TEXT(Reward__c.Stock__c)}"> --> 
+                <b>{!$ObjectType.FieloEE__Reward__c.fields.FieloEE__Stock__c.label}: <apex:outputField value="{!FieloEE__Reward__c.FieloEE__Stock__c}" /></b>
+                <apex:panelGrid columns="2" columnClasses="col50" style="height:180px">
+           
+                    <apex:panelGrid columns="2" columnClasses="middle">
+                        <apex:image value="{!URLFOR($Resource.FieloEE__images, 'mas.png')}" />
+                       <apex:panelGroup >
+                            <apex:outputText value="{!$Label.fieloee__manage} {!$Label.fieloee__stock}" style="font-weight:bold"/><br/>
+                            <apex:outputLabel value="{!$Label.fieloee__errorrewardscreateitems}" for="cantidadAdd" escape="false"/>
+                        </apex:panelGroup>
+                    </apex:panelGrid>
+                    
+                    <apex:panelGrid columns="2" style="margin:0 auto">
+                        <apex:inputField value="{!FieloEE__Reward__c.FieloEE__Stock__c}" id="cantidad" style="width:50px;"/>
+                        <apex:commandButton value="{!$Label.fieloee__save}" action="{!doUpdate}"/>                    
+                    </apex:panelGrid>
+                    
+                </apex:panelGrid>
+        <!--     </apex:pageBlock> --> 
+        </apex:panelGroup>
+
+        <apex:panelGrid style="margin:10px auto" id="mensajes">
+            <!--<apex:pageMessages /> TODO: REVISAR, ESTO ESTÁ COMENTADO SINO EL MENSAJE DE ERROR APARECE DOS VECES-->
+        </apex:panelGrid>
+    </apex:form>
+    
+    <c:Rewarditemloadbackend reward="{!FieloEE__Reward__c.id}" rendered="{!FieloEE__Reward__c.FieloEE__VoucherCreationMode__c == 'Controlled By Item'}" />
+</apex:page>

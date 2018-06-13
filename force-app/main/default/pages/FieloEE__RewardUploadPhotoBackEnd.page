@@ -1,0 +1,5 @@
+<apex:page id="uploadPrizeImage" standardController="FieloEE__Reward__c" >  
+    <div style="margin:0 auto 0 auto;">
+        <c:PhotoUpload myObject="{!FieloEE__Reward__c}" saveInRecordField="true" attachField="AttachmentId__c" info="{!$Label.fieloee__inforewardchangephoto}" />
+    </div>
+</apex:page>

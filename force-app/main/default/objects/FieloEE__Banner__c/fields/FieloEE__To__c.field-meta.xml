@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__To__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Date until which the banner will show in the members&#39; portal.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set the last day this banner will be shown in the front end.</inlineHelpText>
+    <label>To</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

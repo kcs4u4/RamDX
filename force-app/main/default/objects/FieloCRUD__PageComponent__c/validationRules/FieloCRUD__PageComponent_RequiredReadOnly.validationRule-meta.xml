@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__PageComponent_RequiredReadOnly</fullName>
+    <active>true</active>
+    <errorConditionFormula>FieloCRUD__ReadOnly__c = TRUE
+&amp;&amp;
+FieloCRUD__Required__c = TRUE</errorConditionFormula>
+    <errorMessage>Required and Read Only fields cannot be checked at the same time.</errorMessage>
+</ValidationRule>

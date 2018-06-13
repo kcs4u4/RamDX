@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Points_Required</fullName>
+    <active>true</active>
+    <description>Validation to set allways a point value to the reward</description>
+    <errorConditionFormula>ISNULL( FieloEE__PointsCant__c )</errorConditionFormula>
+    <errorDisplayField>FieloEE__PointsCant__c</errorDisplayField>
+    <errorMessage>The points of the reward are mandatory</errorMessage>
+</ValidationRule>

@@ -1,0 +1,3 @@
+<apex:page standardController="FieloEE__PromotionRule__c" extensions="FieloEE.PromotionRedirectBackEndExtension" action="{!redirect}">
+    <apex:pageMessages ></apex:pageMessages>
+</apex:page>

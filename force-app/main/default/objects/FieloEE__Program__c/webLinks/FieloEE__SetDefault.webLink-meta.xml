@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__SetDefault</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Set Default</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/22.0/connection.js")}
+
+var programUpdate = [];
+
+var idProgram = "{!FieloEE__Program__c.Id}";
+var resultProgram = sforce.connection.query("SELECT Id, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Default__c FROM {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__c WHERE Id = \&#39;{!FieloEE__Program__c.Id}\&#39; ");
+
+var program = resultProgram.getArray("records")[0];
+program.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Default__c = &#39;true&#39;;
+programUpdate.push(program);
+
+if(confirm(&#39;{!$Label.fieloee__programsetdefault}&#39;)){
+  result = sforce.connection.update(programUpdate);
+  parent.location.href = idProgram;
+}</url>
+</WebLink>

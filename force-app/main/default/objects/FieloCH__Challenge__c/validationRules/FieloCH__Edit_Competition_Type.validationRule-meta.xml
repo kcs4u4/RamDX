@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Edit_Competition_Type</fullName>
+    <active>true</active>
+    <description>Check if it has rewards associated.</description>
+    <errorConditionFormula>AND(If( FieloCH__RewardCounter__c &gt; 0, true, false ) , ISCHANGED(FieloCH__CompetitionType__c))</errorConditionFormula>
+    <errorDisplayField>FieloCH__CompetitionType__c</errorDisplayField>
+    <errorMessage>Cannot modified Competition Type if you had associated rewards. Go to "Manage Rewards"  and delete them first.</errorMessage>
+</ValidationRule>

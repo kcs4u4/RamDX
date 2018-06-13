@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DelegateGroup xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customObjects>Branch</customObjects>
+    <customObjects>Branch1</customObjects>
+    <groups>Test1</groups>
+    <groups>NEWTESTGROUP</groups>
+    <label>NewAutoTest</label>
+    <loginAccess>true</loginAccess>
+    <permissionSets>App1</permissionSets>
+    <permissionSets>AutoRabitPermission</permissionSets>
+    <profiles>SysAdmin</profiles>
+    <roles>CEO2</roles>
+    <roles>CEO3</roles>
+    <roles>CEO</roles>
+    <roles>SVP, Customer Service &amp; Support</roles>
+</DelegateGroup>

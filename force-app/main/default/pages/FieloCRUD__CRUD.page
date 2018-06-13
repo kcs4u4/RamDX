@@ -1,0 +1,433 @@
+<apex:page controller="FieloCRUD.CRUDController" standardStylesheets="false" sidebar="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0">
+    <apex:composition template="FieloCRUD__SiteTemplateForIFrame">
+
+        <apex:define name="body">
+
+            <apex:panelGroup rendered="{!NOT(configError)}" styleClass="{!fieloComponentCSSClassName}" layout="block">
+                <apex:variable var="backLink" value="{!strPageRetUrl}" rendered="{!playout.FieloCRUD__BackActionMenu__c == NULL}"/>
+                <apex:variable var="backLink" value="Menu/{!playout.BackActionMenu__r.FieloEE__ExternalName__c}?recordId={!record['id']}&mode=d&backPage={!URLENCODE(crudRetURL)}" rendered="{!playout.FieloCRUD__BackActionMenu__c != NULL}"/>
+                <apex:variable var="editLink" value="Menu/{!playout.EditActionMenu__r.FieloEE__ExternalName__c}?recordId={!record['id']}&mode=u&backPage={!URLENCODE(crudRetURL)}"/>
+                
+                <!-- REDIRECTION -->
+                <apex:panelGroup rendered="{!redirectingPage != NULL}" layout="block">
+                    <apex:panelGroup rendered="{!pLayout.RecordType.DeveloperName != 'Form'}" layout="none">
+                        <script>top.window.location = '{!redirectingPage}';</script>
+                    </apex:panelGroup>
+                    <apex:panelGroup rendered="{!pLayout.RecordType.DeveloperName == 'Form'}" layout="block">
+                        <!-- BACK LINK -->
+                        <apex:outputLink target="_top" value="{!redirectingPage}" rendered="{!!playout.FieloCRUD__HideBackButton__c}" styleClass="backBtn">
+                            <i class="icon-arrow-left"></i><apex:outputText value="{!$Label.fielocrud__crud_back}"/>
+                        </apex:outputLink>
+                        <apex:outputText value="{!playout.FieloCRUD__HTMLContent__c}" escape="false"/>
+                        <style>{!playout.FieloCRUD__CSSContent__c}</style>
+                        
+                        <apex:panelGroup rendered="{!NOT(ISNULL(pLayout.FieloCRUD__SaveActionMenuOverride__c))}" layout="none">
+                            <script>top.window.location = '{!redirectingPage}';</script>
+                        </apex:panelGroup>
+                    </apex:panelGroup>
+                </apex:panelGroup>
+                
+                <!-- PAGE LAYOUT -->
+                <apex:panelgroup rendered="{!redirectingPage == NULL}" layout="none">
+                    
+                    <!-- INSUFFICIENT PRIVILEGES -->
+                    <apex:panelGroup rendered="{!privilegeError}" layout="none">
+                        <div class="alert alert-block internalError" >
+                            <apex:form styleClass="pull-right">
+                                <apex:outputLink target="_top" value="{!backLink}" styleClass="close">
+                                    <i class="icon-reply"></i> 
+                                </apex:outputLink>
+                            </apex:form>            
+                            <h4><apex:outputText value="{!$Label.fielocrud__crud_insufficientprivileges}"/></h4>
+                        </div>
+                    </apex:panelGroup>
+                    
+                    <apex:panelGroup rendered="{!NOT(privilegeError)}" layout="none">
+                        
+                        <!-- PAGE LAYOUT (DELETE) -->
+                        <apex:panelGroup rendered="{!mode = 'd'}" layout="block">
+                            <apex:form >
+                                <!-- BACK LINK -->
+                                <apex:outputLink target="_top" value="{!backLink}" rendered="{!!playout.FieloCRUD__HideBackButton__c}" styleClass="backBtn">
+                                    <i class="icon-arrow-left"></i><apex:outputText value="{!$Label.fielocrud__crud_back}"/>
+                                </apex:outputLink>
+                                
+                                <apex:pageMessage summary="{!$Label.fielocrud__crud_deleteconfirm}" severity="warning"/>
+                                
+                                <!-- DELETE ACTION -->
+                                <apex:commandLink target="_top" action="{!doDelete}" styleClass="btn deleteBtn">
+                                    <apex:outputText value="{!$Label.fielocrud__crud_delete}"/>
+                                </apex:commandLink>
+                            </apex:form>
+                        </apex:panelGroup>
+                        <!-- END PAGE LAYOUT (DELETE) -->
+                        
+                        
+                        <!-- PAGE LAYOUT (READ) -->
+                        <apex:panelGroup rendered="{!mode = 'r'}" layout="block" styleClass="crudReadView">
+                            <apex:panelGroup rendered="{!playout.PageCustomButtons__r.size != null && playout.PageCustomButtons__r.size > 0}" layout="none">
+                                <apex:includeScript value="{!URLFOR($Resource.FieloCRUD__SFConnection)}"/>
+                                <apex:includeScript value="{!URLFOR($Resource.FieloCRUD__SFApex)}"/>
+                                <script>
+                                    sforce.connection.sessionId = '{!GETSESSIONID()}';
+                                    sforce.connection.serverUrl = '{!$Site.Prefix}/services/Soap/u/36.0';
+                                    var recordId = '{!record.Id}';
+                                </script>
+                            </apex:panelGroup>
+                            
+                            <apex:form >
+                                <script>goToError();</script>
+                                
+                                <!-- BACK LINK -->
+                                <apex:outputLink target="_top" value="{!backLink}" rendered="{!!playout.FieloCRUD__HideBackButton__c}" styleClass="backBtn">
+                                    <i class="icon-arrow-left"></i><apex:outputText value="{!$Label.fielocrud__crud_back}"/>
+                                </apex:outputLink>
+                                
+                                <!-- BUTTONS TOP -->
+                                <apex:panelGroup rendered="{!playout.FieloCRUD__ButtonsPlacement__c == 'Top' || playout.FieloCRUD__ButtonsPlacement__c == 'Both'}" layout="block" styleClass="topBtn">
+                                    <div style="text-align:{!playout.FieloCRUD__ButtonsAlignment__c}; ">
+                                        <!-- EDIT ACTION -->
+                                        <apex:outputLink target="_top" value="{!editLink}" styleClass="btn editBtn" rendered="{!playout.FieloCRUD__EditActionMenu__c != NULL}">
+                                            <apex:outputText value="{!$Label.fielocrud__crud_edit}"/>
+                                        </apex:outputLink>
+                                        
+                                        <!-- DELETE ACTION -->
+                                        <apex:panelGroup rendered="{!playout.FieloCRUD__DeletionFrom__c != NULL}" layout="none">
+                                            <!-- DIRECT DELETION -->
+                                            <apex:commandLink target="_top" action="{!doDelete}" onclick="return confirm('{!$Label.fielocrud__crud_deleteconfirm}');" styleClass="btn deleteBtn" rendered="{!playout.FieloCRUD__DeletionFrom__c == 'Page Layout'}">
+                                                <apex:outputText value="{!$Label.fielocrud__crud_delete}"/>
+                                            </apex:commandLink>
+                                            <!-- MENU DELETE ACTION -->
+                                            <apex:outputLink target="_top" value="Menu/{!playout.DeleteActionMenu__r.FieloEE__ExternalName__c}?recordId={!record['id']}&mode=d&backPage={!URLENCODE(crudRetURL)}" rendered="{!playout.FieloCRUD__DeletionFrom__c == 'Action Menu'}">
+                                                <apex:outputText value="{!$Label.fielocrud__crud_delete}"/>
+                                            </apex:outputLink>
+                                        </apex:panelGroup>
+                                        
+                                        <!-- CUSTOM BUTTONS -->
+                                        <apex:repeat value="{!playout.PageCustomButtons__r}" var="button">
+                                            <a href="" onClick="{!button.JSOnClick__c}" class="btn">{!button.SiteName__c}</a>
+                                            <apex:panelGroup rendered="{!button.FieloCRUD__JSCode__c != null}" layout="none">
+                                                <script>{!button.FieloCRUD__JSCode__c}</script>
+                                            </apex:panelGroup>
+                                        </apex:repeat>
+                                    </div>
+                                </apex:panelGroup>
+                                
+                                <!-- SECTIONS AND COMPONENTS -->
+                                <div class="displayView sections clearfix">
+                                    <apex:repeat value="{!pLayoutSections}" var="section">
+                                        <apex:panelGroup rendered="{!section.FieloCRUD__Visibility__c != 'Edit'}" layout="none">
+                                            <div class="section {!SUBSTITUTE(section.FieloCRUD__SiteName__c, ' ', '')} clearfix">
+                                                
+                                                <!-- SECTIONS NAME -->
+                                                <apex:panelGroup rendered="{!AND(NOT(ISBLANK(section.FieloCRUD__SiteName__c)), NOT(ISNULL(section.FieloCRUD__SiteName__c)), section.FieloCRUD__SiteName__c != '')}" layout="block">
+                                                    <legend class="clearfix"><div class="pull-left"><apex:outputText value="{!section.FieloCRUD__SiteName__c}" /></div></legend>
+                                                </apex:panelGroup>
+                                                
+                                                <!-- SECTIONS COMPONENTS -->
+                                                <div class="form-horizontal row-fluid">
+                                                    <apex:repeat value="{!section.PageComponents__r}" var="component">
+                                                        <div class="control-group span{!FLOOR(12/VALUE(section.Columns__c))}" >
+                                                            
+                                                            <!-- FIELDS -->
+                                                            <apex:panelGroup rendered="{!(component.RecordType.DeveloperName == 'Field' || component.RecordType.DeveloperName == 'CustomComponentField') && component.FieloCRUD__Visibility__c != 'Edit'}" layout="block">
+                                                                <apex:outputLabel value="{!$ObjectType[playout.FieloCRUD__ObjectAPIName__c].fields[component.FieloCRUD__FieldApiName__c].label}" styleClass="control-label" rendered="{!!component.FieloCRUD__HideLabel__c}"/>
+                                                                <div class="controls {!component.FieloCRUD__FieldApiName__c} {!IF($ObjectType[playout.FieloCRUD__ObjectAPIName__c].fields[component.FieloCRUD__FieldApiName__c].type == 'reference', 'noLink', '')}">
+                                                                    <apex:outPutField value="{!record[component.FieloCRUD__FieldApiName__c]}" html-tabindex="{!component.FieloCRUD__TabIndex__c}" rendered="{!!component.FieloCRUD__HTMLEscape__c}"/>
+                                                                    <apex:outPutText value="{!record[component.FieloCRUD__FieldApiName__c]}" html-tabindex="{!component.FieloCRUD__TabIndex__c}" escape="false" rendered="{!component.FieloCRUD__HTMLEscape__c}"/>
+                                                                </div>
+                                                            </apex:panelGroup>
+                                                            
+                                                            <!-- BLANK SPACES -->
+                                                            <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'BlankSpace'}" layout="none">
+                                                                <apex:outputText value="" html-tabindex="{!component.FieloCRUD__TabIndex__c}"/>
+                                                            </apex:panelGroup>
+                                                            
+                                                            <!-- HTML CONTENT -->
+                                                            <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'HTMLContent'}" layout="none">
+                                                                <apex:panelGroup rendered="{!NOT(ISNULL(component.FieloCRUD__CSSContent__c))}" layout="none">
+                                                                    <style>{!component.FieloCRUD__CSSContent__c}</style>
+                                                                </apex:panelGroup>
+                                                                <apex:outputText escape="false" value="{!component.FieloCRUD__HTMLContent__c}" html-tabindex="{!component.FieloCRUD__TabIndex__c}"/>
+                                                            </apex:panelGroup>
+                                                            
+                                                            <!-- IFRAME -->
+                                                            <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'iFrame'}" layout="none">
+                                                                <div tabindex="{!component.FieloCRUD__TabIndex__c}">
+                                                                    <apex:variable var="pageIframe" value="{!SUBSTITUTE(component.FieloCRUD__PageName__c, '[recordId]', record['Id'])}"/>
+                                                                    <iframe id="{!component.Id}" src="{!pageIframe}" height="{!IF(component.Height__c != NULL, component.Height__c,'1000px')}" width="{!IF(component.Width__c != NULL, component.Width__c,'100%')}" style="{!component.CSSContent__c}" scrolling="no" frameborder="0"/>
+                                                                </div>
+                                                            </apex:panelGroup>
+                                                        </div>
+                                                    </apex:repeat>
+                                                </div>
+                                            </div>
+                                        </apex:panelGroup>
+                                    </apex:repeat>
+                                </div>
+                            </apex:form>
+                            
+                            <!-- RELATED LISTS -->
+                            <apex:repeat value="{!playout.RelatedLists__r}" var="relatedList">
+                                <!-- Related List Standard -->
+                                <apex:panelGroup rendered="{!relatedList.RecordType.DeveloperName = 'RelatedList'}" layout="none">
+                                    <iframe src="{!$Site.BaseSecureUrl}/ListView?listViewId={!relatedList.Id}&recordParentId={!recordId}&crudRetURL={!URLENCODE(crudRetURL)}" scrolling="no" height="500px" width="100%" frameborder="0" />
+                                </apex:panelGroup>
+                                <!-- Attachments -->
+                                <apex:panelGroup rendered="{!relatedList.RecordType.DeveloperName == 'Attachment'}" layout="block">
+                                    <legend>{!IF(relatedList.FieloCRUD__SiteName__c != NULL, relatedList.FieloCRUD__SiteName__c, $ObjectType[relatedList.FieloCRUD__RelatedListObjectAPIName__c].LabelPlural)}</legend>
+                                    <apex:iframe src="FieloCRUD__FileUpload?parentId={!recordId}&readOnly=true" scrolling="false" height="120px" width="100%"/>
+                                </apex:panelGroup>
+                            </apex:repeat>
+                            
+                            <apex:form >
+                                <script>goToError();</script>
+                                <!-- BUTTONS BOTTOM -->
+                                <apex:panelGroup rendered="{!playout.FieloCRUD__ButtonsPlacement__c == 'Bottom' || playout.FieloCRUD__ButtonsPlacement__c == 'Both'}" layout="block" styleClass="bottomBtn">
+                                    <div style="text-align:{!playout.FieloCRUD__ButtonsAlignment__c};">
+                                        <!-- EDIT ACTION -->
+                                        <apex:outputLink target="_top" value="{!editLink}" styleClass="btn editBtn" rendered="{!playout.FieloCRUD__EditActionMenu__c != NULL}">
+                                            <apex:outputText value="{!$Label.fielocrud__crud_edit}"/>
+                                        </apex:outputLink>
+                                        
+                                        <!-- DELETE ACTION -->
+                                        <apex:panelGroup rendered="{!playout.FieloCRUD__DeletionFrom__c != NULL}" layout="none">
+                                            <!-- DIRECT DELETION -->
+                                            <apex:commandLink target="_top" action="{!doDelete}" onclick="return confirm('{!$Label.fielocrud__crud_deleteconfirm}');" styleClass="btn deleteBtn" rendered="{!playout.FieloCRUD__DeletionFrom__c == 'Page Layout'}">
+                                                <apex:outputText value="{!$Label.fielocrud__crud_delete}"/>
+                                            </apex:commandLink>
+                                            <!-- MENU DELETE ACTION -->
+                                            <apex:outputLink target="_top" value="Menu/{!playout.DeleteActionMenu__r.FieloEE__ExternalName__c}?recordId={!record['id']}&mode=d&backPage={!URLENCODE(crudRetURL)}" rendered="{!playout.FieloCRUD__DeletionFrom__c == 'Action Menu'}">
+                                                <apex:outputText value="{!$Label.fielocrud__crud_delete}"/>
+                                            </apex:outputLink>
+                                        </apex:panelGroup>
+                                        
+                                        <!-- CUSTOM BUTTONS -->
+                                        <apex:repeat value="{!playout.PageCustomButtons__r}" var="button">
+                                            <a href="" onClick="{!button.JSOnClick__c}" class="btn">{!button.SiteName__c}</a>
+                                            <apex:panelGroup rendered="{!button.FieloCRUD__JSCode__c != null}" layout="none">
+                                                <script>{!button.FieloCRUD__JSCode__c}</script>
+                                            </apex:panelGroup>
+                                        </apex:repeat>
+                                    </div>
+                                </apex:panelGroup>
+                            </apex:form>
+                            
+                        </apex:panelGroup>
+                        <!-- END PAGE LAYOUT (READ) -->
+                        
+                        
+                        <!-- PAGE LAYOUT (CREATE OR EDIT) -->
+                        <apex:panelGroup rendered="{!(OR(mode = 'c', mode = 'u')) && !privilegeError}" layout="block" styleClass="crudEditView">
+                            <apex:form >
+                                <script>goToError();</script>
+                                <!-- INCLUDE DATE PICKER STATIC RESOURCE -->
+                                <apex:includeScript value="{!URLFOR($Resource.FieloCRUD__DatePicker, 'jquery-ui.js')}"/>
+                                
+                                <!-- BUTTONS TOP -->
+                                <apex:panelGroup rendered="{!playout.FieloCRUD__ButtonsPlacement__c == 'Top' || playout.FieloCRUD__ButtonsPlacement__c == 'Both'}" layout="block" styleClass="topBtn">
+                                    <div style="text-align:{!playout.FieloCRUD__ButtonsAlignment__c};">
+                                        <apex:panelGroup rendered="{!NOT(pLayout.RecordType.DeveloperName == 'Form')}" layout="none">
+                                            <!-- SAVE BUTTON -->
+                                            <apex:commandLink action="{!doSave}" styleClass="btn saveBtn" onclick="$('.btn.saveBtn').hide();$('.btn.saveBtn.disabled').show();"> <!-- oncomplete="goToError();"> -->
+                                                <apex:outputText value="{!IF(playout.FieloCRUD__LabelSaveButton__c != null, $Label[playout.FieloCRUD__LabelSaveButton__c], $Label.fielocrud__crud_save)}" />
+                                            </apex:commandLink>
+                                            <a href="#" onclick="return false" class="btn saveBtn disabled" style="display:none;"><apex:outputtext value="{!IF(playout.FieloCRUD__LabelSaveButton__c != null, $Label[playout.FieloCRUD__LabelSaveButton__c], $Label.fielocrud__crud_save)}"/></a>
+                                            
+                                            <!-- CANCEL BUTTON -->
+                                            <apex:outputLink target="_top" value="{!backLink}" styleClass="btn cancelBtn" rendered="{!!playout.FieloCRUD__HideBackButton__c}">
+                                                <apex:outputText value="{!$Label.fielocrud__crud_cancel}" />
+                                            </apex:outputLink>
+                                        </apex:panelGroup>
+                                        
+                                        <apex:panelGroup rendered="{!pLayout.RecordType.DeveloperName == 'Form'}" layout="none">
+                                            <!-- SUBMIT BUTTON -->
+                                            <div class="acctionBtn">
+                                                <apex:commandlink action="{!doSave}" styleclass="btn submitBtn" onclick="$('.btn.submitBtn').hide();$('.btn.submitBtn.disabled').show();"> <!-- oncomplete="goToError();"> -->
+                                                    <apex:outputtext value="{!IF(playout.FieloCRUD__LabelSaveButton__c != null, $Label[playout.FieloCRUD__LabelSaveButton__c], $Label.fielocrud__crud_submit)}"/>
+                                                </apex:commandlink>
+                                                <a href="#" onclick="return false" class="btn submitBtn disabled" style="display:none;"><apex:outputtext value="{!IF(playout.FieloCRUD__LabelSaveButton__c != null, $Label[playout.FieloCRUD__LabelSaveButton__c], $Label.fielocrud__crud_submit)}"/></a>
+                                            </div>
+                                        </apex:panelGroup>
+                                    </div>
+                                </apex:panelGroup>
+                                
+                                <!-- SECTIONS AND COMPONENTS -->
+                                <div class="displayView sections clearfix">
+                                    <apex:repeat value="{!pLayoutSections}" var="section">
+                                        <apex:panelGroup rendered="{!section.FieloCRUD__Visibility__c != 'View'}" layout="none">
+                                            <div class="section {!SUBSTITUTE(section.FieloCRUD__SiteName__c, ' ', '')} clearfix">
+                                                
+                                                <!-- SECTIONS NAME -->
+                                                <apex:panelGroup rendered="{!AND(NOT(ISBLANK(section.FieloCRUD__SiteName__c)), NOT(ISNULL(section.FieloCRUD__SiteName__c)), section.FieloCRUD__SiteName__c != '')}" layout="block">
+                                                    <legend><apex:outputText value="{!section.FieloCRUD__SiteName__c}" /></legend>
+                                                </apex:panelGroup>
+                                                                                                
+                                                <!-- SECTIONS COMPONENTS -->
+                                                <div class="form-horizontal row-fluid">
+                                                    <apex:repeat value="{!section.PageComponents__r}" var="component" rendered="{!section.FieloCRUD__Visibility__c != 'View'}">
+                                                        <apex:panelGroup rendered="{!component.FieloCRUD__Visibility__c != 'View'}" layout="none">
+                                                            <div class="control-group span{!FLOOR(12/VALUE(section.FieloCRUD__Columns__c))}">
+                                                                
+                                                                <!-- FIELDS -->
+                                                                <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'Field' || component.RecordType.DeveloperName == 'CustomComponentField'}" layout="none">
+                                                                    
+                                                                    <!-- LABEL AND HELP TEXTS -->
+                                                                    <apex:outputLabel value="{!$ObjectType[playout.FieloCRUD__ObjectAPIName__c].fields[component.FieloCRUD__FieldApiName__c].label}" styleClass="control-label" rendered="{!!component.FieloCRUD__HideLabel__c}">
+                                                                        <apex:panelGroup rendered="{!$ObjectType[playout.FieloCRUD__ObjectAPIName__c].fields[component.FieloCRUD__FieldApiName__c].InlineHelpText != NULL}" layout="none">
+                                                                            <i class="icon-question-sign" title="{!$ObjectType[playout.ObjectAPIName__c].fields[component.FieldApiName__c].InlineHelpText}"></i>
+                                                                        </apex:panelGroup>
+                                                                    </apex:outputLabel>
+                                                                    
+                                                                    <div class="controls {!component.FieloCRUD__FieldApiName__c} {!IF(component.FieloCRUD__Required__c, 'isRequired', '')}">
+                                                                        <!-- MODIFICABLE FIELDS -->
+                                                                        <apex:panelGroup rendered="{!!component.FieloCRUD__ReadOnly__c}" layout="none">
+                                                                            <!-- FIELDS -->
+                                                                            <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'Field'}" layout="none">
+                                                                                <!-- OTHER FIELDS -->
+                                                                                <apex:inputField value="{!record[component.FieloCRUD__FieldApiName__c]}" html-tabindex="{!component.FieloCRUD__TabIndex__c}" required="{!component.FieloCRUD__Required__c}" rendered="{!component.FieloCRUD__FieldType__c != 'lookup' && component.FieloCRUD__FieldType__c != 'date'}"/>
+                                                                                
+                                                                                <!-- DATE FIELDS -->
+                                                                                <c:DatePicker myObject="{!record}" myField="{!component.FieloCRUD__FieldApiName__c}" buttonImageURL="http://jqueryui.com/resources/demos/datepicker/images/calendar.gif" isRequired="{!component.FieloCRUD__Required__c}" rendered="{!component.FieloCRUD__FieldType__c == 'date'}" tabIndex="{!component.FieloCRUD__TabIndex__c}" picklistYear="{!component.FieloCRUD__PicklistYear__c}" yearRange="{!component.FieloCRUD__YearRange__c}"/> 
+                                                                                
+                                                                                <!-- LOOKUP FIELDS -->
+                                                                                <c:LookupToPicklist sObjectRecord="{!record}" ApiFieldLookup="{!component.FieloCRUD__FieldApiName__c}" ApiFieldToshow="{!IF(component.FieloCRUD__FieldLookupFieldToShow__c != NULL, component.FieloCRUD__FieldLookupFieldToShow__c, 'Name')}" whereCondition="{!component.FieloCRUD__FieldLookupWhereCondition__c}" isRequired="{!component.FieloCRUD__Required__c}" rendered="{!component.FieloCRUD__FieldType__c == 'lookup'}" tabIndex="{!component.FieloCRUD__TabIndex__c}"/>
+                                                                            </apex:panelGroup>
+                                                                            
+                                                                            <!-- CUSTOM COMPONENT FIELD -->
+                                                                            <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'CustomComponentField'}" layout="none">
+                                                                                <apex:inputText value="{!record[component.FieloCRUD__FieldApiName__c]}" required="{!component.FieloCRUD__Required__c}" style="display:none"/>
+                                                                                <input type="text" value="" class="{!component.AdditionalCSSClasses__c}"/>
+                                                                                <apex:outputText value="{!component.FieloCRUD__HTMLCode__c}" escape="false" rendered="{!component.FieloCRUD__HTMLCode__c != NULL}"/>
+                                                                                <apex:panelGroup rendered="{!component.FieloCRUD__JSCode__c != null}" layout="none">
+                                                                                    <script>{!component.FieloCRUD__JSCode__c}</script>
+                                                                                </apex:panelGroup>
+                                                                            </apex:panelGroup>
+                                                                        </apex:panelGroup>
+                                                                        
+                                                                        <!-- READ ONLY FIELDS -->
+                                                                        <apex:panelGroup rendered="{!component.FieloCRUD__ReadOnly__c}" layout="block">
+                                                                            <div class="readOnly">
+                                                                                <apex:outputField value="{!record[component.FieloCRUD__FieldApiName__c]}" html-tabindex="{!component.FieloCRUD__TabIndex__c}" rendered="{!component.FieloCRUD__ReadOnly__c}"/>
+                                                                            </div>
+                                                                        </apex:panelGroup>
+                                                                    </div>
+                                                                </apex:panelGroup>
+                                                                                                                                
+                                                                <!-- BLANK SPACES -->
+                                                                <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'BlankSpace'}" layout="none">
+                                                                    <apex:outputText value="" html-tabindex="{!component.FieloCRUD__TabIndex__c}"/>
+                                                                </apex:panelGroup>
+                                                                
+                                                                <!-- HTML CONTENT -->
+                                                                <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'HTMLContent'}" layout="none">
+                                                                    <apex:panelGroup rendered="{!NOT(ISNULL(component.FieloCRUD__CSSContent__c))}" layout="none">
+                                                                        <style>{!component.FieloCRUD__CSSContent__c}</style>
+                                                                    </apex:panelGroup>
+                                                                    <apex:outputText value="{!component.FieloCRUD__HTMLContent__c}" html-tabindex="{!component.FieloCRUD__TabIndex__c}" escape="false"/>
+                                                                </apex:panelGroup>
+                                                                
+                                                                <!-- FILE UPLOAD -->
+                                                                <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'FileUpload'}" layout="block" styleClass="fileUploadContainer">
+                                                                    <div tabindex="{!component.FieloCRUD__TabIndex__c}" class="crudFileUpload">
+                                                                        <apex:iframe src="FieloCRUD__FileUpload?attachmentName={!randomAttachmentName}&parentId={!record['Id']}&limitDocs={!component.FieloCRUD__LimitAttachments__c}&showDelete={!component.FieloCRUD__ShowDelete__c}&autoUpload={!component.FieloCRUD__UploadFilesAutomatically__c}" scrolling="false" height="80px" width="100%"/>
+                                                                    </div>
+                                                                </apex:panelGroup>
+                                                                
+                                                                <!-- IFRAME -->
+                                                                <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'iFrame'}" layout="block">
+                                                                    <div tabindex="{!component.FieloCRUD__TabIndex__c}">
+                                                                        <apex:variable var="pageIframe" value="{!SUBSTITUTE(component.FieloCRUD__PageName__c, '[recordId]', record['Id'])}"/>
+                                                                        <iframe id="{!component.Id}" src="{!pageIframe}" height="{!IF(component.Height__c != NULL, component.Height__c,'1000px')}" width="{!IF(component.Width__c != NULL, component.Width__c,'100%')}" style="{!component.CSSContent__c}" scrolling="no" frameborder="0"/>
+                                                                    </div>
+                                                                </apex:panelGroup>
+
+                                                                <!-- RELATED DETAILS -->
+                                                                <apex:panelGroup rendered="{!component.RecordType.DeveloperName == 'RelatedDetails'}" layout="none">
+                                                                    <div tabindex="{!component.FieloCRUD__TabIndex__c}">
+                                                                        <c:RelatedDetails parentId="{!record['Id']}" component="{!component}" listToDelete="{!childRecordsWrapper[component.Id].objToDelete}" listToUpsert="{!childRecordsWrapper[component.Id].objToUpsert}" configError="{!configError}"/>
+                                                                    </div>
+                                                                </apex:panelGroup>
+                                                            </div>
+                                                        </apex:panelGroup>
+                                                    </apex:repeat>
+                                                </div>
+                                            </div>
+                                        </apex:panelGroup>
+                                    </apex:repeat>
+                                </div>
+                                
+                                <!-- BUTTONS BOTTOM -->
+                                <apex:panelGroup rendered="{!playout.FieloCRUD__ButtonsPlacement__c == 'Bottom' || playout.FieloCRUD__ButtonsPlacement__c == 'Both'}" layout="block" styleClass="bottomBtn">
+                                    <div style="text-align:{!playout.FieloCRUD__ButtonsAlignment__c};">
+                                        <apex:panelGroup rendered="{!NOT(pLayout.RecordType.DeveloperName == 'Form')}" layout="none">
+                                            <!-- SAVE BUTTON -->
+                                            <apex:commandLink action="{!doSave}" styleClass="btn saveBtn" onclick="$('.btn.saveBtn').hide();$('.btn.saveBtn.disabled').show();"> <!-- oncomplete="goToError();"> -->
+                                                <apex:outputText value="{!IF(playout.FieloCRUD__LabelSaveButton__c != null, $Label[playout.FieloCRUD__LabelSaveButton__c], $Label.fielocrud__crud_save)}" />
+                                            </apex:commandLink>
+                                            <a href="#" onclick="return false" class="btn saveBtn disabled" style="display:none;"><apex:outputtext value="{!IF(playout.FieloCRUD__LabelSaveButton__c != null, $Label[playout.FieloCRUD__LabelSaveButton__c], $Label.fielocrud__crud_save)}"/></a>
+                                            
+                                            <!-- CANCEL BUTTON -->
+                                            <apex:outputLink target="_top" value="{!backLink}" styleClass="btn cancelBtn" rendered="{!!playout.FieloCRUD__HideBackButton__c}">
+                                                <apex:outputText value="{!$Label.fielocrud__crud_cancel}" />
+                                            </apex:outputLink>
+                                        </apex:panelGroup>
+                                        
+                                        <apex:panelGroup rendered="{!pLayout.RecordType.DeveloperName == 'Form'}" layout="none">
+                                            <!-- SUBMIT BUTTON -->
+                                            <div class="acctionBtn">
+                                                <apex:commandlink action="{!doSave}" styleclass="btn submitBtn" onclick="$('.btn.submitBtn').hide();$('.btn.submitBtn.disabled').show();"> <!-- oncomplete="goToError();"> -->
+                                                    <apex:outputtext value="{!IF(playout.FieloCRUD__LabelSaveButton__c != null, $Label[playout.FieloCRUD__LabelSaveButton__c], $Label.fielocrud__crud_submit)}"/>
+                                                </apex:commandlink>
+                                                <a href="#" onclick="return false" class="btn submitBtn disabled" style="display:none;"><apex:outputtext value="{!IF(playout.FieloCRUD__LabelSaveButton__c != null, $Label[playout.FieloCRUD__LabelSaveButton__c], $Label.fielocrud__crud_submit)}"/></a>
+                                            </div>
+                                        </apex:panelGroup>
+                                    </div>
+                                </apex:panelGroup>
+                                
+                            </apex:form>
+                        </apex:panelGroup>
+                        <!-- END PAGE LAYOUT (CREATE OR EDIT) -->
+                        
+                    </apex:panelGroup>
+                </apex:panelgroup>
+                
+            </apex:panelgroup>
+            
+            <!-- SCRIPTS -->
+            <script>
+                $(document).ready(function(){
+                    if($('.errorMsg').length == 0){
+                    $('.errorM3').css( "display", "block" );
+                    }else{
+                    $('.errorM3').css("display", "none");
+                    } 
+                });
+                messagesStyle();
+                
+                function messagesStyle(){
+                   var messages = $('[class^=\"message\"]');
+                   for (var i = 0; i < messages.length; i++) { 
+                       if(messages[i].className.indexOf('confirm') != -1) {
+                           messages[i].className = 'alert alert-success marTB10';
+                       }
+                       if(messages[i].className.indexOf('error') != -1) {
+                           messages[i].className = 'alert alert-error marTB10';
+                       }
+                       if(messages[i].className.indexOf('fatal') != -1) {
+                           messages[i].className = 'alert alert-error marTB10';
+                       }
+                       if(messages[i].className.indexOf('info') != -1) {
+                           messages[i].className = 'alert alert-info marTB10';
+                       }
+                       if(messages[i].className.indexOf('warning') != -1) {
+                           messages[i].className = 'alert marTB10';
+                       }
+                   }
+                }
+            </script>
+            
+        </apex:define>
+        
+    </apex:composition>
+</apex:page>

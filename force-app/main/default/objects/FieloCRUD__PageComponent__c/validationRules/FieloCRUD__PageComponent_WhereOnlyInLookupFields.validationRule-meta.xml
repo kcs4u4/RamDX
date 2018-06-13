@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__PageComponent_WhereOnlyInLookupFields</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+	FieloCRUD__FieldType__c != &#39;lookup&#39;,
+	RecordType.DeveloperName != &#39;RelatedDetails&#39;,
+	NOT(ISBLANK(FieloCRUD__FieldLookupWhereCondition__c))
+)</errorConditionFormula>
+    <errorDisplayField>FieloCRUD__FieldLookupWhereCondition__c</errorDisplayField>
+    <errorMessage>Field "Where Condition" can only be completed when field type is "Lookup" or record type is "Related Details".</errorMessage>
+</ValidationRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Member__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Member who redeemed the reward</description>
+    <externalId>false</externalId>
+    <label>Member</label>
+    <referenceTo>FieloEE__Member__c</referenceTo>
+    <relationshipLabel>Redemptions</relationshipLabel>
+    <relationshipName>Redemptions</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

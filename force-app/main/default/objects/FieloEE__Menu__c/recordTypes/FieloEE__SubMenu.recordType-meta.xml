@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__SubMenu</fullName>
+    <active>true</active>
+    <label>Sub Menu</label>
+    <picklistValues>
+        <picklist>FieloEE__ImagePosition__c</picklist>
+        <values>
+            <fullName>Left</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Only Image</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Only Name</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Right</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloEE__Layout__c</picklist>
+        <values>
+            <fullName>Advanced</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Banner %2B Two Columns</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>One Column</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Two Columns</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloEE__Link__c</picklist>
+        <values>
+            <fullName>External</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Internal</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloEE__Placement__c</picklist>
+        <values>
+            <fullName>Footer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Main</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Top</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloEE__visibility__c</picklist>
+        <values>
+            <fullName>Both</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Private</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ReorderChildCategories</fullName>
+    <availability>online</availability>
+    <displayType>link</displayType>
+    <linkType>page</linkType>
+    <masterLabel>Reorder Categories</masterLabel>
+    <openType>replace</openType>
+    <page>FieloEE__CategoryReorderBackEnd</page>
+    <protected>false</protected>
+</WebLink>

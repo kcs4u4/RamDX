@@ -1,0 +1,5 @@
+<apex:page id="uploadProgramImage" standardController="FieloEE__Program__c" >   
+	<div style="margin:0 auto 0 auto;">
+		<c:PhotoUpload myObject="{!FieloEE__Program__c}" saveInRecordField="true" attachField="AttachmentId__c" info="{!$Label.fieloee__infochangephoto}" />             
+	</div>
+</apex:page>

@@ -1,0 +1,183 @@
+<apex:page showHeader="true" sidebar="true" controller="FieloCH.ManagePendingRecordsBackEndController">
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js,'/jquery.js')}"/>
+
+   <!-- Font Awesome -->
+        <apex:stylesheet value="{!URLFOR($Resource.FieloCH__challenge_images, 'FontAwesome/css/font-awesome.css')}"/>
+        <!--[if IE 7]>
+            <apex:stylesheet value="{!URLFOR($Resource.challenge_images, 'FontAwesome/css/font-awesome-ie7.css')}"/>
+        <![endif]-->
+    <!-- Fin Font Awesome -->
+    <style type="text/css">
+        span.dateInput span.dateFormat { display:none; }
+        .firstRadio { border-bottom: 2px solid #8E9DBE !important; }
+        .limitCels { vertical-align: middle !important; }
+    </style>
+
+    <script>function setFocusOnLoad() {}</script>
+    
+    <apex:sectionHeader title="{!$Label.fieloch__managependingrecords}"/>
+
+    <apex:form >
+    
+        <apex:selectList value="{!selectedObject}" multiselect="false" size="1" Id="selectedObject" style="margin-bottom: 10px;">
+            <apex:selectOptions value="{!objects}"/>
+            <apex:actionSupport event="onchange" action="{!refreshSelect}" onsubmit="$('.icon-spinner').css({'display' : 'inline-block'});"/>
+            <apex:actionStatus id="status" startStyleClass="icon-spinner icon-spin icon-2x"/>
+        </apex:selectList>
+
+        <div>
+            <apex:panelGroup rendered="{!processAll}">
+                <apex:outputText value="{!$Label.fieloch__batchsize}" style="font-weight: bold; padding: 10px 10px 10px 0px;"/>
+                <apex:inputText value="{!batchSize}" style="width: 30px; text-align: right; padding: 0px 10px 0px 0px;"/>
+                <apex:commandButton action="{!doProcessAll}" value="{!$Label.fieloch__processallrecords}" style="margin-left: 10px;"/>                
+            </apex:panelGroup>
+        </div>
+        <br/>
+
+        <apex:panelGroup >
+            <apex:pageMessages rendered="{!isMsgeTop}"/>
+            <apex:panelGroup id="listas">
+                <apex:pageBlock rendered="{!selectedObject = 'Pending Subscription' && showFilter}" tabStyle="FieloCH__Challenge__c">
+
+                    <apex:pageBlockSection columns="1" title="{!$Label.fieloch__filter}">                       
+                        <apex:panelGroup >
+                            <b>{!$Label.fieloch__challengename}  </b><apex:inputText value="{!searchText1}"/> &nbsp; &nbsp;
+                            <b>{!$Label.MemberTeamName}  </b><apex:inputText value="{!searchText2}"/>
+                        </apex:panelGroup>
+                        <apex:commandButton action="{!changeTable}" value="{!$Label.fieloee__search}" style="float:left;" />
+                        <apex:pageMessages rendered="{!NOT(isMsgeTop)}"/>
+                    </apex:pageBlockSection>
+                                        
+                    <apex:pageBlockSection columns="1" Id="actionList1" title="{!$Label.fieloch__pendingsubscriptions} - {!$Label.fieloch__totalrecords} {!countRecords}" rendered="{! AND(!ISNULL(challengeMembers), challengeMembers.size > 0) }">
+                        <apex:pageBlockTable value="{!challengeMembers}" var="f">
+                            <apex:column headerValue="{!$ObjectType.FieloCH__Challenge__c.Label}">
+                                <apex:outputField value="{!f.Challenge2__r.Name}" />
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.FieloEE__Member__c.Label} / {!$ObjectType.FieloCH__Team__c.Label}">
+                                {!IF(ISNULL(f.FieloCH__Team__c), f.Member__r.FieloEE__Name__c + ' (Member)', f.Team__r.Name + ' (Team)')}
+                            </apex:column>
+                            <apex:column >
+                                <apex:commandLink action="{!doProcess}" >
+                                    {!$Label.fieloch__processrecord}
+                                    <apex:param value="{!f.Id}" name="recordId"/>
+                                </apex:commandLink>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+
+                <apex:pageBlock rendered="{!selectedObject = 'Accomplished Pending' && showFilter}" tabStyle="FieloCH__Challenge__c">
+                               
+                    <apex:pageBlockSection columns="1" title="{!$Label.fieloch__filter}">                       
+                        <apex:panelGroup >
+                            <b>{!$Label.fieloch__challengename}  </b><apex:inputText value="{!searchText1}"/> &nbsp; &nbsp;
+                            <b>{!$Label.MemberTeamName}  </b><apex:inputText value="{!searchText2}"/>
+                        </apex:panelGroup>
+                        <apex:commandButton action="{!changeTable}" value="{!$Label.fieloee__search}" style="float:left;" />
+                        <apex:pageMessages rendered="{!NOT(isMsgeTop)}"/>
+                    </apex:pageBlockSection>
+                
+                    <apex:pageBlockSection columns="1" Id="actionList2" title="{!$Label.fieloch__accomplishpending} - {!$Label.fieloch__totalrecords} {!countRecords}" rendered="{! AND(!ISNULL(challengeMembersAccomplish), challengeMembersAccomplish.size > 0) }">
+                        <apex:pageBlockTable value="{!challengeMembersAccomplish}" var="f">
+                            <apex:column headerValue="{!$ObjectType.FieloCH__Challenge__c.Label}">
+                                <apex:outputField value="{!f.Challenge2__r.Name}" />
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.FieloEE__Member__c.Label} / {!$ObjectType.FieloCH__Team__c.Label}">
+                                 {!IF(ISNULL(f.FieloCH__Team__c), f.Member__r.FieloEE__Name__c + ' (Member)', f.Team__r.Name + ' (Team)')}
+                            </apex:column>
+                            <apex:column >
+                                <apex:commandLink action="{!doProcess}" >
+                                    {!$Label.fieloch__processrecord}
+                                    <apex:param value="{!f.Id}" name="recordId"/>
+                                </apex:commandLink>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+
+                <apex:pageBlock rendered="{!selectedObject = 'BadgeMember Pending' && showFilter}" tabStyle="FieloCH__Challenge__c">
+
+                    <apex:pageBlockSection columns="1" title="{!$Label.fieloch__filter}">                     
+                        <apex:panelGroup >
+                            <b>{!$Label.fieloch__badgename}  </b><apex:inputText value="{!searchText1}"/> &nbsp; &nbsp;
+                            <b>{!$Label.MemberName}  </b><apex:inputText value="{!searchText2}"/>
+                        </apex:panelGroup>
+                        <apex:commandButton action="{!changeTable}" value="{!$Label.fieloee__search}" style="float:left;" />
+                        <apex:pageMessages rendered="{!NOT(isMsgeTop)}"/>
+                    </apex:pageBlockSection>
+                    
+                    <apex:pageBlockSection columns="1" Id="actionList3" title="{!$Label.fieloch__badgememberpending} - {!$Label.fieloch__totalrecords} {!countRecords}" rendered="{! AND(!ISNULL(badgeMembers), badgeMembers.size > 0) }">
+                        <apex:pageBlockTable value="{!badgeMembers}" var="f">
+                            <apex:column headerValue="{!$ObjectType.FieloEE__Badge__c.Label}">
+                                <apex:outputField value="{!f.FieloEE__Badge2__r.Name}" />
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.FieloEE__Member__c.Label}">
+                                <apex:outputField value="{!f.FieloEE__Member2__r.FieloEE__Name__c}" />
+                            </apex:column>
+                            <apex:column >
+                                <apex:commandLink action="{!doProcess}" >
+                                    {!$Label.fieloch__processrecord}
+                                    <apex:param value="{!f.Id}" name="recordId"/>
+                                </apex:commandLink>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+
+                <apex:pageBlock rendered="{!selectedObject = 'Events Pending' && showFilter}" tabStyle="FieloCH__Challenge__c">
+
+                    <apex:pageBlockSection columns="1" title="{!$Label.fieloch__filter}">                        
+                        <apex:panelGroup >
+                            <b>{!$Label.fieloch__eventname}  </b><apex:inputText value="{!searchText1}"/> &nbsp; &nbsp;
+                            <b>{!$Label.MemberName}  </b><apex:inputText value="{!searchText2}"/>
+                        </apex:panelGroup>
+                        <apex:commandButton action="{!changeTable}" value="{!$Label.fieloee__search}" style="float:left;" />
+                        <apex:pageMessages rendered="{!NOT(isMsgeTop)}"/>
+                    </apex:pageBlockSection>
+
+                    <apex:pageBlockSection columns="1" Id="actionList4" title="{!$Label.fieloch__eventspending} - {!$Label.fieloch__totalrecords} {!countRecords}" rendered="{! AND(!ISNULL(events), events.size > 0) }">
+                        <apex:pageBlockTable value="{!events}" var="f">
+                            <apex:column headerValue="{!$ObjectType.FieloEE__Event__c.Label}">
+                                <apex:outputField value="{!f.Name}" />
+                            </apex:column>
+                            <apex:column headerValue="{!$ObjectType.FieloEE__Member__c.Label}">
+                                <apex:outputField value="{!f.FieloEE__Member__r.FieloEE__Name__c}" />
+                            </apex:column>
+                            <apex:column >
+                                <apex:commandLink action="{!doProcess}" >
+                                    {!$Label.fieloch__processrecord}
+                                    <apex:param value="{!f.Id}" name="recordId"/>
+                                </apex:commandLink>
+                            </apex:column>
+                        </apex:pageBlockTable>
+                    </apex:pageBlockSection>
+                </apex:pageBlock>
+            </apex:panelGroup>
+            <apex:panelGroup Id="paginador" rendered="{! showPaginator }">
+                <center>
+                    <!--<apex:panelGroup rendered="{!records.size < listSize}" id="buttons1" >-->
+                        <apex:commandLink action="{!first}" rendered="{!records.hasPrevious}" reRender="paginador, listas, buttons1">
+                            {!$Label.fieloee__first}
+                        </apex:commandLink>
+                        &nbsp;
+                        <apex:commandLink action="{!previous}" rendered="{!records.hasPrevious}" reRender="paginador, listas, buttons1">
+                            {!$Label.fieloee__previous}
+                        </apex:commandLink>
+                        &nbsp;
+                        <!--<apex:outputText value=" {!ActualPage}/{!TotalPages} " rendered="{!fullList}"/>-->
+                        <apex:commandLink action="{!next}" rendered="{!records.hasNext}" reRender="paginador, listas, buttons1">
+                            {!$Label.fieloee__next}
+                            </apex:commandLink>
+                        &nbsp;
+                        <apex:commandLink action="{!last}" rendered="{!records.hasNext}" reRender="paginador, listas, buttons1">
+                            {!$Label.fieloee__last}
+                        </apex:commandLink>
+                    <!--</apex:panelGroup>-->
+                </center>
+            </apex:panelGroup>
+
+            
+            <apex:commandButton action="{!doCancel}" value="{!$Label.fieloee__back}" />
+        </apex:panelGroup>
+    </apex:form>
+</apex:page>

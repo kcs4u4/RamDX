@@ -1,0 +1,49 @@
+<apex:page sidebar="false" showHeader="false">
+  
+<!--  START STYLES -->
+    <style>
+        .bold { font-weight: bold; }
+        .col_50 { width:50%; }
+        .col_50 .pbHeader { border: none !important; }
+        .col_50 .pbHeader table{ border: none !important; }
+        .col_50 .pbSubsection { background-color: #FFFFFF !important; border: 1px solid #E8E8E8; margin: 5px 0 0; padding: 5px; }
+        .col_50 .pbSubsection td{ border: none !important; }
+        .reportsAndTools { width: 100%; }
+        
+        .splash_title       { font-size:26px; color:#777777; font-weight:bold; }
+        .splash_main        { font-size:18px; color:#777777; }
+        .splash_subtitle    { font-size:16px; color:#111111; text-align:center; }
+        .splash_text        { font-size:12px; color:#777777; }
+        .splash_numbers     { font-family:helvetica; font-size:28px; color:#2D64CB; font-weight:bold; }
+    </style>
+<!--  END STYLES -->
+
+
+<!--   START SPLASH -->
+
+        <div style="width:800px; margin:20px;">
+            <div class="splash_title"><apex:outputText value="{!$Label.fieloee__member}"/></div>
+            <div class="splash_main">{!$Label.SplashMembersMain}</div>
+            <div style="position:relative; margin:50px auto 20px; height:400px;">
+                <div style="position:absolute; top:10px; left:263px; width:247px; height:207px; background:no-repeat url({!URLFOR($Resource.images, 'splash/members.png')});"></div>
+                <div style="position:absolute; top:25px; left:100px; width:180px;">
+                    <div class="splash_subtitle"><apex:outputText value="{!$Label.fieloee__splashmemberscampaignstitle}" escape="false"/></div>
+                    <div class="splash_text"><apex:outputText value="{!$Label.fieloee__splashmemberscampaignstext}"/></div>
+                </div>
+                <div style="position:absolute; top:25px; left:480px; width:180px;">
+                    <div class="splash_subtitle"><apex:outputText value="{!$Label.fieloee__splashmembersmemberstitle}" escape="false"/></div>
+                    <div class="splash_text"><apex:outputText value="{!$Label.fieloee__splashmembersmemberstext}"/></div>
+                </div>
+                <div style="position:absolute; top:225px; left:180px; width:180px;">
+                    <div class="splash_subtitle"><apex:outputText value="{!$Label.fieloee__splashmemberslevelstitle}" escape="false"/></div>
+                    <div class="splash_text"><apex:outputText value="{!$Label.fieloee__splashmemberslevelstext}"/></div>
+                </div>
+                <div style="position:absolute; top:225px; left:410px; width:180px;">
+                    <div class="splash_subtitle"><apex:outputText value="{!$Label.fieloee__splashmembersregistrationtitle}" escape="false"/></div>
+                    <div class="splash_text"><apex:outputText value="{!$Label.fieloee__splashmembersregistrationtext}"/></div>
+                </div>
+            </div>
+        </div>
+
+<!--   END SPLASH -->
+</apex:page>

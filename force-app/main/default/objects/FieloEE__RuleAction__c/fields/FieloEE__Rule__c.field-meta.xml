@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Rule__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Deprecated Field</description>
+    <externalId>false</externalId>
+    <label>zz_deprecated_Rule</label>
+    <referenceTo>FieloEE__Rule__c</referenceTo>
+    <relationshipLabel>Rule Actions</relationshipLabel>
+    <relationshipName>RuleActions</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

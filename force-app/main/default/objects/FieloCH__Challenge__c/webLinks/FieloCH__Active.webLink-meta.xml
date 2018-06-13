@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Active</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Change Status</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT ("/soap/ajax/23.0/connection.js")}
+
+var missionsChallenge = sforce.connection.query("SELECT Id, Name, {!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Mission__r.RecordType.DeveloperName FROM {!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}MissionChallenge__c WHERE {!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Challenge__c = \&#39;{!FieloCH__Challenge__c.Id}\&#39; ");
+
+var records = missionsChallenge.getArray("records");
+var withObjective = new Array();
+var withoutObjective = new Array();
+
+for (var i = 0; i &lt; records.length; i++) {
+    var record = records[i];
+    if(record.{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Mission__r.RecordType.DeveloperName == &#39;WithObjective&#39;){
+        withObjective.push(record);
+    }else{
+        withoutObjective.push(record);
+    }
+}
+
+if("{!FieloCH__Challenge__c.FieloCH__CompetitionType__c}" == "Performance" &amp;&amp; withoutObjective == &#39;&#39;){
+    alert(&#39;{!$Label.fieloch__cantactivateperformancewithoutobjective}&#39;);
+}else{
+    //create challenge and update list
+    var newChallenge = new sforce.SObject("{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Challenge__c");
+    var challengesToUpdate = [];
+
+    //set challenge with current challenge&#39;s ID
+    newChallenge.Id = &#39;{!FieloCH__Challenge__c.Id}&#39;;
+
+    // logically invert &#39;isActive&#39;
+    newChallenge.{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}IsActive__c = ! {!FieloCH__Challenge__c.FieloCH__IsActive__c};
+
+    //adds challenge to update to update list
+    challengesToUpdate.push(newChallenge);
+
+    //updates list
+    result = sforce.connection.update(challengesToUpdate);
+
+    if ( !result[0].getBoolean("success") ) {
+        alert(result[0].getArray("errors")[0].message );
+    } else {
+        if(withObjective == &#39;&#39; &amp;&amp; {!FieloCH__Challenge__c.FieloCH__IsActive__c} == 0){
+            alert(&#39;There are no missions with objective, so there is the chance that some members could win a reward without making any action.&#39;);
+        }
+        //refreshes window
+        window.location.reload();
+    }
+}</url>
+</WebLink>

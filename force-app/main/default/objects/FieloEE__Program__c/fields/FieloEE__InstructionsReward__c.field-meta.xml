@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__InstructionsReward__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The instructions for redeeming a reward.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the instructions for redeeming a reward. It will also be shown in the vouchers.</inlineHelpText>
+    <label>Reward Instructions</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

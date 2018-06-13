@@ -1,0 +1,57 @@
+<apex:page controller="FieloEE.CodeUploadBackEndController" tabStyle="FieloEE__Code__c"> 
+    <style>
+        .col50      { width:50%; }
+        .label      { padding:6px 10px 0 0;font-weight:bold; color:#666666; }
+    </style>
+    
+    <apex:sectionHeader title="{!$Label.fieloee__loadcodebackendtitle}" />
+    <apex:form >
+        <apex:selectList value="{!programId}" label="{!$Label.fieloee__program}" multiselect="false" size="1" onchange="refreshInfo();">
+            <apex:selectOptions value="{!programs}"/>
+        </apex:selectList>
+        <apex:actionFunction action="{!changeProgram}" name="refreshInfo" />
+
+        <!-- LOAD -->
+        <apex:messages id="errorMessages" rendered="{!(codesInserted==false) }"/>
+        <apex:pageBlock rendered="{!(codesInserted == false && program.FieloEE__AutomaticCode__c == false)}" title="Load" >
+            <apex:pageBlockButtons location="Bottom">
+                <apex:commandButton value="{!$Label.fieloee__load}" action="{!importFile}"/> 
+            </apex:pageBlockButtons>
+            
+            <apex:panelGrid columns="2" style="width:100%" columnClasses="col50">
+                <apex:panelGrid style="margin-right:30px;">
+                    <apex:outputText value="{!$Label.fieloee__loadcodetext}" escape="false" style="color:#666666"/>
+                </apex:panelGrid>
+                <apex:panelGrid columns="2" columnClasses="label,info">
+                    <apex:outputText value="{!$Label.fieloee__file}"/>
+                    <apex:inputFile value="{!uploadFile.body}" fileName="{!uploadFile.Name}" />
+                </apex:panelGrid>
+            </apex:panelGrid>       
+        </apex:pageBlock>
+
+        <!--RESULT -->
+        <apex:pageBlock id="result" rendered="{!codesInserted && (!program.FieloEE__AutomaticCode__c)}" title="{!$Label.fieloee__result}">
+            <apex:pageBlockButtons Location="Bottom">         
+                <apex:commandButton action="{!newLoad}" value="{!$Label.fieloee__newload}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection collapsible="false" columns="1" id="results"> 
+                <apex:panelGroup >
+                    <apex:outputText value="{!recordsInserted} {!$Label.fieloee__inforewaritemloadinserted}" />
+                </apex:panelGroup>
+
+                <apex:outputText value="{!recordsNotInserted} {!$Label.fieloee__inforewaritemloadinsertedfailed}"/>
+                <apex:pageBlockTable value="{!errorCodes}"  var="i" rendered="{!(recordsNotInserted > 0)}">
+                    <apex:column headerValue="{!$Label.fieloee__codes}" value="{!i.code}" />
+                    <apex:column headerValue="{!$Label.fieloee__error}" value="{!i.error}"/>
+                </apex:pageBlockTable>           
+            </apex:pageBlockSection>   
+        </apex:pageBlock>
+
+        <!--ERROR--> 
+        <apex:pageBlock id="error" rendered="{!program.FieloEE__AutomaticCode__c}" title="Load">
+            <apex:pageBlockSection collapsible="false" columns="1" id="results"> 
+                <apex:outputText value="{!$Label.fieloee__infoloadcodeoption}"/>
+            </apex:pageBlockSection>   
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

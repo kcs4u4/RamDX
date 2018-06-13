@@ -1,0 +1,235 @@
+<apex:page standardController="FieloEE__Program__c" extensions="FieloEE.BatchExecutionBackEndController" recordSetVar="programs" >
+    <!-- Here is the css styles that will be used for the progress bars -->
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'FontAwesome/css/font-awesome.css')}"/>
+    <style>
+        .progress   { margin-bottom:0px; }
+        .table      { font-size:11px; }
+        .table th   { vertical-align:bottom; }
+        .table td   { vertical-align:middle; }
+        .TextHelp   { color:#999999; }
+        .status_Completed   { color:#00cc00 !important; }
+        .status_Queued      { color:#cc0000 !important; }
+    </style>
+<style id="css-custom">
+        /* Bootsrap fixes for Fielo Backend */
+        body {
+            font-size: 75%;
+            line-height: initial;
+        }
+        img {
+            vertical-align: initial;
+            max-width: initial;
+        }
+        form {
+            margin: initial;
+        }
+        h2 {
+            font-size: initial;
+        }
+        h1,
+        h2,
+        h3 {
+            line-height: initial;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: initial;
+            font-size: 100%;
+        }
+        a {
+            color: #333435;
+            text-decoration: underline;
+        }
+        .btn {
+            line-height: initial;
+        }
+        label,
+        input,
+        button,
+        select,
+        textarea {
+            line-height: initial;
+        }
+        input[type="file"],
+        input[type="image"],
+        input[type="submit"],
+        input[type="reset"],
+        input[type="button"],
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: initial;
+        }
+        input, textarea,
+        .uneditable-input {
+            width: initial;
+        }
+        .mruIcon.userDefinedImage {width: 16px;height: 16px;}
+
+    </style>
+
+    <apex:form >
+    <apex:actionPoller action="{!getJobs}" reRender="batch_table" interval="5"/>
+
+        <apex:pageBlock id="batch_table">
+            <table id="jobs" class="table table-striped table-hover">
+                <tr>
+                    <th><apex:outputText value="{!$Label.fieloee__name}" /></th>
+                    <th style="text-align:center; white-space:normal; width:10px;"><apex:outputText value="{!$Label.fieloee__completeddate}" /></th>
+                    <th style="white-space:normal; width:10px;"><apex:outputText value="{!$Label.fieloee__status}" /></th>
+                    <th style="text-align:center; white-space:normal; width:10px;"><apex:outputText value="{!$Label.fieloee__totalbatches}" /></th>
+                    <th style="text-align:center; white-space:normal; width:10px;"><apex:outputText value="{!$Label.fieloee__batchesprocessed}" /></th>
+                    <th style="text-align:center; white-space:normal; width:10px;"><apex:outputText value="{!$Label.fieloee__failures}" /></th>
+                    <th style="text-align:center; white-space:normal;"><apex:outputText value="{!$Label.fieloee__errordescription}" /></th>
+                    <th style="text-align:center; white-space:normal; width:10px;"><apex:outputText value="" /></th>
+                    <th style="text-align:center; white-space:normal; width:10px;"><apex:outputText value="{!$Label.fieloee__progress}" /></th>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <apex:outputText value="{!$Label.fieloee__batchschedulelevelassignmentname}" /><br/>
+                        <apex:outputText value="{!$Label.fieloee__batchschedulelevelassignmenthelp}" styleClass="TextHelp"/>
+                    </td>
+                    <td style="text-align:center"><apex:outputField id="schedLevelCompletedDate" value="{!levelBatch.job.CompletedDate}" /><apex:panelGroup rendered="{!NOT(ISNULL(levelBatch.percentComplete)) && levelBatch.percentComplete <> 100}"><i class="icon-spinner icon-spin icon-large"></i></apex:panelGroup></td>
+                    <td class="status_{!levelBatch.job.Status}"><apex:outputField id="schedLevelStatus" value="{!levelBatch.job.Status}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedLevelTotJobItems" value="{!levelBatch.job.TotalJobItems}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedLevelJobItemsProc" value="{!levelBatch.job.JobItemsProcessed}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedLevelNumErr" value="{!levelBatch.job.NumberOfErrors}" /></td>
+                    <td><apex:outputField id="schedLevelExtStatus" value="{!levelBatch.job.ExtendedStatus}" /></td>
+                    <td><apex:commandButton id="schedLevelRun" value="Run" action="{!executeLevelBatch}" disabled="{!levelBatch.job.Status = 'Queued' || levelBatch.job.Status = 'Processing' || levelBatch.job.Status = 'Preparing'}"/></td>
+                    <td><apex:outputPanel id="schedLevelBar">
+                        <div class="progress">
+                            <div class="bar" style="width: {!levelBatch.percentComplete}%;">{!levelBatch.percentComplete}%</div>
+                        </div>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <apex:outputText value="{!$Label.fieloee__batchschedulepointsexpirationname}" /><br/>
+                        <apex:outputText value="{!$Label.fieloee__batchschedulepointsexpirationhelp}" styleClass="TextHelp"/>
+                    </td>
+                    <td style="text-align:center"><apex:outputField id="schedPointsCompletedDate" value="{!pointsBatch.job.CompletedDate}" /><apex:panelGroup rendered="{!NOT(ISNULL(pointsBatch.percentComplete)) && pointsBatch.percentComplete <> 100}"><i class="icon-spinner icon-spin icon-large"></i></apex:panelGroup></td>
+                    <td class="status_{!pointsBatch.job.Status}"><apex:outputField id="schedPointsStatus" value="{!pointsBatch.job.Status}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedPointsTotJobItems" value="{!pointsBatch.job.TotalJobItems}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedPointsJobItemsProc" value="{!pointsBatch.job.JobItemsProcessed}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedPointsNumErr" value="{!pointsBatch.job.NumberOfErrors}" /></td>
+                    <td><apex:outputField id="schedPointsExtStatus" value="{!pointsBatch.job.ExtendedStatus}" /></td>
+                    <td><apex:commandButton id="schedPointsRun" value="Run" action="{!executePointsBatch}" disabled="{!pointsBatch.job.Status = 'Queued' || pointsBatch.job.Status = 'Processing' || pointsBatch.job.Status = 'Preparing'}"/></td>
+                    <td><apex:outputPanel id="schedPointsBar">
+                        <div class="progress">
+                            <div class="bar" style="width: {!pointsBatch.percentComplete}%;">{!pointsBatch.percentComplete}%</div>
+                        </div>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        <apex:outputText value="{!$Label.fieloee__batchschedulepartialpointsexpirationname}" /><br/>
+                        <apex:outputText value="{!$Label.fieloee__batchschedulepartialpointsexpirationhelp}" styleClass="TextHelp"/>
+                    </td>
+                    <td style="text-align:center"><apex:outputField value="{!partialPointsBatch.job.CompletedDate}" /><apex:panelGroup rendered="{!NOT(ISNULL(partialPointsBatch.percentComplete)) && partialPointsBatch.percentComplete <> 100}"><i class="icon-spinner icon-spin icon-large"></i></apex:panelGroup></td>
+                    <td class="status_{!partialPointsBatch.job.Status}"><apex:outputField value="{!partialPointsBatch.job.Status}" /></td>
+                    <td style="text-align:center"><apex:outputField value="{!partialPointsBatch.job.TotalJobItems}" /></td>
+                    <td style="text-align:center"><apex:outputField value="{!partialPointsBatch.job.JobItemsProcessed}" /></td>
+                    <td style="text-align:center"><apex:outputField value="{!partialPointsBatch.job.NumberOfErrors}" /></td>
+                    <td><apex:outputField value="{!partialPointsBatch.job.ExtendedStatus}" /></td>
+                    <td><apex:commandButton value="Run" action="{!executePartialPointsBatch}" disabled="{!partialPointsBatch.job.Status = 'Queued' || partialPointsBatch.job.Status = 'Processing' || partialPointsBatch.job.Status = 'Preparing'}"/></td>
+                    <td><apex:outputPanel >
+                        <div class="progress">
+                            <div class="bar" style="width: {!partialPointsBatch.percentComplete}%;">{!partialPointsBatch.percentComplete}%</div>
+                        </div>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <apex:outputText value="{!$Label.fieloee__batchscheduleredemptionitemexpirationname}" /><br/>
+                        <apex:outputText value="{!$Label.fieloee__batchscheduleredemptionitemexpirationhelp}" styleClass="TextHelp"/>
+                    </td>
+                    <td style="text-align:center"><apex:outputField id="schedRedCompletedDate" value="{!redemptionItemsBatch.job.CompletedDate}" /><apex:panelGroup rendered="{!NOT(ISNULL(redemptionItemsBatch.percentComplete)) && redemptionItemsBatch.percentComplete <> 100}"><i class="icon-spinner icon-spin icon-large"></i></apex:panelGroup></td>
+                    <td class="status_{!redemptionItemsBatch.job.Status}"><apex:outputField id="schedRedStatus" value="{!redemptionItemsBatch.job.Status}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedRedTotJobItems" value="{!redemptionItemsBatch.job.TotalJobItems}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedRedJobItemsProc" value="{!redemptionItemsBatch.job.JobItemsProcessed}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedRedNumErr" value="{!redemptionItemsBatch.job.NumberOfErrors}" /></td>
+                    <td><apex:outputField id="schedRedExtStatus" value="{!redemptionItemsBatch.job.ExtendedStatus}" /></td>
+                    <td><apex:commandButton id="schedRedRun" value="Run" action="{!executeRedemptionItemsBatch}" disabled="{!redemptionItemsBatch.job.Status = 'Queued' || redemptionItemsBatch.job.Status = 'Processing' || redemptionItemsBatch.job.Status = 'Preparing'}"/></td>
+                    <td><apex:outputPanel id="schedRedBar">
+                        <div class="progress">
+                            <div class="bar" style="width: {!redemptionItemsBatch.percentComplete}%;">{!redemptionItemsBatch.percentComplete}%</div>
+                        </div>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <apex:outputText value="{!$Label.fieloee__batchscheduleuserinactivationname}" /><br/>
+                        <apex:outputText value="{!$Label.fieloee__batchscheduleuserinactivationhelp}" styleClass="TextHelp"/>
+                    </td>
+                    <td style="text-align:center"><apex:outputField id="schedUserCompletedDate" value="{!userInactivationBatch.job.CompletedDate}" /><apex:panelGroup rendered="{!NOT(ISNULL(userInactivationBatch.percentComplete)) && userInactivationBatch.percentComplete <> 100}"><i class="icon-spinner icon-spin icon-large"></i></apex:panelGroup></td>
+                    <td class="status_{!userInactivationBatch.job.Status}"><apex:outputField id="schedUserStatus" value="{!userInactivationBatch.job.Status}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedUserTotJobItems" value="{!userInactivationBatch.job.TotalJobItems}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedUserJobItemsProc" value="{!userInactivationBatch.job.JobItemsProcessed}" /></td>
+                    <td style="text-align:center"><apex:outputField id="scheUserNumErr" value="{!userInactivationBatch.job.NumberOfErrors}" /></td>
+                    <td><apex:outputField id="schedUserExtStatus" value="{!userInactivationBatch.job.ExtendedStatus}" /></td>
+                    <td><apex:commandButton id="schedUserRun" value="Run" action="{!executeUserInactivationBatch}" disabled="{!userInactivationBatch.job.Status = 'Queued' || userInactivationBatch.job.Status = 'Processing' || userInactivationBatch.job.Status = 'Preparing'}"/></td>
+                    <td><apex:outputPanel id="schedUserBar">
+                        <div class="progress">
+                            <div class="bar" style="width: {!userInactivationBatch.percentComplete}%;">{!userInactivationBatch.percentComplete}%</div>
+                        </div>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <apex:outputText value="{!$Label.fieloee__batchscheduleredemptiondeletename}" /><br/>
+                        <apex:outputText value="{!$Label.fieloee__batchscheduleredemptiondeletehelp}" styleClass="TextHelp"/>
+                    </td>
+                    <td style="text-align:center"><apex:outputField id="schedDelCompletedDate" value="{!redemptionDeleteBatch.job.CompletedDate}" /><apex:panelGroup rendered="{!NOT(ISNULL(redemptionDeleteBatch.percentComplete)) && redemptionDeleteBatch.percentComplete <> 100}"><i class="icon-spinner icon-spin icon-large"></i></apex:panelGroup></td>
+                    <td class="status_{!redemptionDeleteBatch.job.Status}"><apex:outputField id="schedDelStatus" value="{!redemptionDeleteBatch.job.Status}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedDelTotJobItems" value="{!redemptionDeleteBatch.job.TotalJobItems}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedDelJobItemsProc" value="{!redemptionDeleteBatch.job.JobItemsProcessed}" /></td>
+                    <td style="text-align:center"><apex:outputField id="scheDelNumErr" value="{!redemptionDeleteBatch.job.NumberOfErrors}" /></td>
+                    <td><apex:outputField id="schedDelExtStatus" value="{!redemptionDeleteBatch.job.ExtendedStatus}" /></td>
+                    <td><apex:commandButton id="schedDelRun" value="Run" action="{!executeRedemptionDeleteBatch}" disabled="{!redemptionDeleteBatch.job.Status = 'Queued' || redemptionDeleteBatch.job.Status = 'Processing' || redemptionDeleteBatch.job.Status = 'Preparing'}"/></td>
+                    <td><apex:outputPanel id="schedDelBar">
+                        <div class="progress">
+                            <div class="bar" style="width: {!redemptionDeleteBatch.percentComplete}%;">{!redemptionDeleteBatch.percentComplete}%</div>
+                        </div>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>
+                        <apex:outputText value="{!$Label.fieloee__batchscheduletransactionofflinename}" /><br/>
+                        <apex:outputText value="{!$Label.fieloee__batchscheduletransactionofflinehelp}" styleClass="TextHelp"/>
+                    </td>
+                    <td style="text-align:center"><apex:outputField id="schedOffCompletedDate" value="{!transactionBatch.job.CompletedDate}" /><apex:panelGroup rendered="{!NOT(ISNULL(transactionBatch.percentComplete)) && transactionBatch.percentComplete <> 100}"><i class="icon-spinner icon-spin icon-large"></i></apex:panelGroup></td>
+                    <td class="status_{!transactionBatch.job.Status}"><apex:outputField id="schedOffStatus" value="{!transactionBatch.job.Status}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedOffTotJobItems" value="{!transactionBatch.job.TotalJobItems}" /></td>
+                    <td style="text-align:center"><apex:outputField id="schedOffJobItemsProc" value="{!transactionBatch.job.JobItemsProcessed}" /></td>
+                    <td style="text-align:center"><apex:outputField id="scheOffNumErr" value="{!transactionBatch.job.NumberOfErrors}" /></td>
+                    <td><apex:outputField id="schedOffExtStatus" value="{!transactionBatch.job.ExtendedStatus}" /></td>
+                    <td><apex:commandButton id="schedOffRun" value="Run" action="{!executeTransactionBatch}" disabled="{!transactionBatch.job.Status = 'Queued' || transactionBatch.job.Status = 'Processing' || transactionBatch.job.Status = 'Preparing'}"/></td>
+                    <td><apex:outputPanel id="schedOffBar">
+                        <div class="progress">
+                            <div class="bar" style="width: {!transactionBatch.percentComplete}%;">{!transactionBatch.percentComplete}%</div>
+                        </div>
+                        </apex:outputPanel>
+                    </td>
+                </tr>
+            </table>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

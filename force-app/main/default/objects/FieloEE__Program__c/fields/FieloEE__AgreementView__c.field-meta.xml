@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__AgreementView__c</fullName>
+    <deprecated>false</deprecated>
+    <description>This page will be the one that overwrites the standard one to show the Agreement in the Front End.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This page will be the one that overwrites the standard one to show the Agreement in the front end.</inlineHelpText>
+    <label>Agreement View</label>
+    <length>80</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

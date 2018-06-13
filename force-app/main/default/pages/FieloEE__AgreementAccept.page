@@ -1,0 +1,39 @@
+<apex:page cache="false" showHeader="false" standardStylesheets="false" controller="FieloEE.AgreementAcceptController">
+    <apex:composition template="{!$Site.Template}" >
+        <apex:define name="body" >
+            <div class="agreementFields">
+            <apex:repeat value="{!fieldSet}" var="f" >
+                <apex:panelGroup layout="none" rendered="{! Left(f,2) != 'c:'}">
+                    <div class="agreementFields-item agreementFields-item--is{!$ObjectType.FieloEE__Agreement__c.Fields[f].Name}">
+                        <div class="agreementFields-name">{!$ObjectType.FieloEE__Agreement__c.Fields[f].Label}</div>
+                        <div class="agreementFields-value"><apex:outputText value="{!agreement[f]}" escape="false"/></div>
+                    </div>
+                </apex:panelGroup>
+                <apex:panelGroup layout="none" rendered="{! f == 'c:PDF'}">
+                    <div class="agreementFields-item agreementFields-item--isPDF">
+                        <apex:outputLink value="/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}AgreementViewPDF?id={!agreement.Id}" target="_blank" styleClass="agreementFields-anchor" ><apex:outputText value="{!$Label.fieloee__agreementpdf}" escape="false"/></apex:outputLink>
+                    </div>
+                </apex:panelGroup>
+            </apex:repeat>
+            </div>
+            <apex:form styleClass="padding20 agreementFields-form">
+                    <fieldset> 
+                        <div class="control-group">
+                            <div class="controls">
+                                <!--Checkbox -->
+                                <label class="checkbox">
+                                    <apex:inputCheckbox value="{!acceptAgreement}"> 
+                                        <apex:actionSupport event="onclick" rerender="botonId"/>
+                                    </apex:inputCheckbox> 
+                                    <apex:outputText value="{!$Label.fieloee__iagree}" /> 
+                                </label>
+                                <!--Button -->
+                                <apex:commandButton value="{!$Label.fieloee__save}" action="{!doSave}" styleClass="btn" id="botonId"/>
+                                
+                            </div>
+                        </div>
+                    </fieldset>
+            </apex:form>
+        </apex:define>
+    </apex:composition> 
+</apex:page>

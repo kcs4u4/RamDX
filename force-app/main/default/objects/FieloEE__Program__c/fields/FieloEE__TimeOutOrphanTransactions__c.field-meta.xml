@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__TimeOutOrphanTransactions__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The number of days after which a transaction will expire if the person who performed it does not register in your program.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Set the time in days for transactions to expire if the member doesn&#39;t register in Fielo.</inlineHelpText>
+    <label>TimeOut Orphan Transactions</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

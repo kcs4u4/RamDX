@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Component__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>The name of the component that shows the banner.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Choose a name for this component.</inlineHelpText>
+    <label>Component</label>
+    <referenceTo>FieloEE__Component__c</referenceTo>
+    <relationshipLabel>Banners</relationshipLabel>
+    <relationshipName>Banners</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

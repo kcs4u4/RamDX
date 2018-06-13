@@ -1,0 +1,6 @@
+<apex:page showHeader="false" sidebar="false" action="{!redirect}" controller="FieloEE.UserActivateRedirectController" >
+    <apex:composition template="{!$Site.template}">
+        <apex:define name="body">
+        </apex:define>
+    </apex:composition>
+</apex:page>

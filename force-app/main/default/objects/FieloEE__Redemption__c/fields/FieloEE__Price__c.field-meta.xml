@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Price__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Price of the reward in the moment that the reward was redeemed.</description>
+    <externalId>false</externalId>
+    <label>Price</label>
+    <summarizedField>FieloEE__RedemptionItem__c.FieloEE__RewardItemPrice__c</summarizedField>
+    <summaryForeignKey>FieloEE__RedemptionItem__c.FieloEE__Redemption__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

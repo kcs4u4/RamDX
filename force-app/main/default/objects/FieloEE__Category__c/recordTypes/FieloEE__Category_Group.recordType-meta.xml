@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Category_Group</fullName>
+    <active>true</active>
+    <description>Element that represent a set of categories</description>
+    <label>Category Group</label>
+</RecordType>

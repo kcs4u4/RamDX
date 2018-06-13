@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__All_Promotions</fullName>
+    <columns>NAME</columns>
+    <columns>FieloEE__Program__c</columns>
+    <columns>FieloEE__InitialDate__c</columns>
+    <columns>FieloEE__FinalDate__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Promotions</label>
+    <language>en_US</language>
+</ListView>

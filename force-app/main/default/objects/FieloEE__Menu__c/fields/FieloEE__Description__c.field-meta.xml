@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Description__c</fullName>
+    <deprecated>false</deprecated>
+    <description>A description of this menu, for your use only.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter a description for this menu (only visible from the back end).</inlineHelpText>
+    <label>Description</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

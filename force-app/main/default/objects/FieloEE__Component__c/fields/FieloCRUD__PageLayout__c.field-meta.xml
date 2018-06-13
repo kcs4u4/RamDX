@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__PageLayout__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Only complete this field if you want to display "Form" or "Profile" page layouts.</inlineHelpText>
+    <label>Page Layout</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>FieloCRUD__PageLayout__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value>Form, Profile, Static</value>
+        </filterItems>
+        <filterItems>
+            <field>FieloCRUD__PageLayout__c.FieloCRUD__ObjectSettings__c</field>
+            <operation>equals</operation>
+            <valueField>$Source.FieloCRUD__ObjectSettings__c</valueField>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>FieloCRUD__PageLayout__c</referenceTo>
+    <relationshipLabel>Components</relationshipLabel>
+    <relationshipName>Components</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

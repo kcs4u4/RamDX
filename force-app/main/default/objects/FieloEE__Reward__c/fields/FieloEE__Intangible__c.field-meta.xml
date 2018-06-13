@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Intangible__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Deprecated Field</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Click here to set an unlimited quantity for this reward.</inlineHelpText>
+    <label>zz_deprecated_Unlimited Quantity?</label>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

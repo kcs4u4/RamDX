@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>new_Branchh_List_owner_2</fullName>
+    <columns>NAME</columns>
+    <columns>NewEmail__c</columns>
+    <columns>NewForm__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>new123__c</field>
+        <operation>equals</operation>
+        <value>B,C,D,E</value>
+    </filters>
+    <label>new Branchh List owner 2</label>
+    <language>en_US</language>
+</ListView>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Date__c</fullName>
+    <defaultValue>now()</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Date and time of this transaction.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter date and time of this transaction.</inlineHelpText>
+    <label>Date &amp; Time</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

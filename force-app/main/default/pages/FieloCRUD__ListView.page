@@ -1,0 +1,304 @@
+<apex:page controller="FieloCRUD.ListViewController" standardStylesheets="false" sidebar="false" showHeader="false" applyHtmlTag="false" applyBodyTag="false" docType="html-5.0" cache="true">
+    <apex:composition template="FieloCRUD__SiteTemplateForIFrame">
+    
+        <apex:define name="body">
+            
+            <apex:form id="thePage" styleClass="{!fieloComponentCssClassName}">
+                
+                <!-- INTERNAL ERRORS -->
+                <apex:panelGroup rendered="{!internalError != null}" styleClass="alert alert-block internalError"  layout="block">
+                    <apex:outputText value="{!internalError}" escape="false"/>
+                </apex:panelGroup>
+                
+                <!-- MAIN -->
+                <apex:panelGroup rendered="{!internalError == null}" layout="none">
+                
+                    <apex:panelGroup rendered="{!currentLV.FieloCRUD__ScrollTable__c}">
+                        <script>
+                            function table(rowsN){
+                                if($('table.scroll tr').length > rowsN + 1 || $('table.scroll tr').length > 6){
+                                    $('.scrollHeader').text('');
+                                    $('.scrollContainer table').clone().appendTo($('.scrollHeader'));
+                                    var headerH = $('.scrollHeader thead').height();
+                                    $('.scrollHeader').css('max-height',headerH);
+                                    headerH = '-' + headerH + 'px';
+                                    $('.scrollContainer table').css('top', headerH);
+        
+                                    var rows = rowsN || 5;
+                                    var sum = 0;
+                                    for (var i=1; i<(rows+1); i++) {
+                                        sum = sum + $(".scrollContainer table tbody tr:nth-child("+i+")" ).height();
+                                    }
+                                    sum = sum + 15;
+                                    $('.scrollContainer').css('max-height', sum);
+                                }
+                            };
+                        </script>
+                        <style>
+                            .scrollContainer{overflow-y:scroll}
+                            .scrollContainer table{margin-bottom: 0}
+                        </style>
+                    </apex:panelGroup>
+                    
+                    <!-- DISPLAY RELATED LIST NAME -->
+                    <apex:panelGroup layout="none" styleClass="relatedListName" rendered="{!recordParentId != null}">
+                        <legend><apex:outputText value="{!IF(currentLV.FieloCRUD__SiteName__c != NULL, currentLV.FieloCRUD__SiteName__c, $ObjectType[currentLV.FieloCRUD__RelatedListObjectAPIName__c].LabelPlural)}" escape="false"/></legend>
+                    </apex:panelGroup>
+                    
+                    <!-- TOP SECTION -->
+                    <apex:panelGroup styleClass="clearfix listViewtopBar" layout="block" rendered="{!OR((listViews.size != null && listViews.size > 1),(currentLV.FieloCRUD__SearchFields__c != NULL && (!currentLV.FieloCRUD__HideSearch__c)),(OR(currentLV.FieloCRUD__DisplayRecordsPerPage__c == 'Top', currentLV.FieloCRUD__DisplayRecordsPerPage__c == 'Both')),(listViewActionGlobalActions.size != null && listViewActionGlobalActions.size > 0),(currentLV.FieloCRUD__DateFilter__c != NULL))}">
+                    
+                        <!-- TOP CONTROLS -->
+                        <apex:panelGroup styleClass="form-inline topControls" layout="block">
+                            
+                            <!-- RELATED LIST VIEWS SELECTION LIST -->
+                            <apex:panelGroup rendered="{!listViews.size != null && listViews.size > 1}" layout="block" styleClass="views topControlsItem" >
+                                <apex:outputLabel value="{!$Label.fielocrud__listview_view}" styleClass="topControlsLabel" />
+                                <apex:selectList value="{!listViewSelected}" multiselect="false" size="1" styleClass="viewInput">
+                                    <apex:selectOptions value="{!listViews}"/>
+                                    <apex:actionSupport event="onchange" action="{!doChangeView}"/>
+                                </apex:selectList>
+                            </apex:panelGroup>
+                            
+                            <!-- SEARCH -->
+                            <apex:panelGroup rendered="{!currentLV.FieloCRUD__SearchFields__c != NULL && (!currentLV.FieloCRUD__HideSearch__c)}" styleClass="searchBar topControlsItem" layout="block">
+                                <script>
+                                    function pressOnSearch(e){
+                                        var key;
+                                        if(window.event){
+                                            key = window.event.keyCode;//IE
+                                        }else{
+                                            key = e.which;//firefox
+                                        }
+                                        if(key==13){
+                                            doSearch();
+                                            return false;
+                                        }
+                                    }                      
+                                </script>
+                                
+                                <apex:actionFunction name="doSearch" action="{!generatePager}"/>
+                                
+                                <apex:outputLabel value="{!$Label.fielocrud__search}:" styleClass="topControlsLabel" />
+                                <apex:inputText value="{!searchVal}" onkeypress="return pressOnSearch(event);" styleClass="searchInput"/>
+                                <apex:commandLink action="{!generatePager}" styleClass="btn searchBtn searchIcon">
+                                    <i class="icon-search"></i>
+                                </apex:commandLink>
+                            </apex:panelGroup>
+                            
+                            <!-- PAGINATOR SIZE SELECTION LIST TOP -->
+                            <apex:panelGroup rendered="{!OR(currentLV.FieloCRUD__DisplayRecordsPerPage__c == 'Top', currentLV.FieloCRUD__DisplayRecordsPerPage__c == 'Both')}" layout="block" styleClass="paginator topControlsItem">
+                                <apex:outputLabel value="{!$Label.fielocrud__listview_numofrecords}" styleClass="topControlsLabel" />
+                                <apex:selectList value="{!selectedSizeTop}" multiselect="false" size="1" styleClass="paginatorInput">
+                                    <apex:selectOptions value="{!pagesize}"/>
+                                    <apex:actionSupport event="onchange" action="{!resizePagerTop}"/>
+                                </apex:selectList>
+                            </apex:panelGroup>
+                            
+                            <!-- DATE FILTER -->
+                            <apex:panelGroup rendered="{!currentLV.FieloCRUD__DateFilter__c != NULL}" layout="block" styleClass="dateFilterBar topControlsItem">
+                                <!-- INCLUDE DATE PICKER STATIC RESOURCE -->
+                                <apex:includeScript value="{!URLFOR($Resource.FieloCRUD__DatePicker, 'jquery-ui.js')}"/>
+                                
+                                <div class="inline"><apex:outputLabel value="{!IF(currentLV.FieloCRUD__LabelDateFilterFrom__c == null, $Label.fielocrud__listview_datefilterfrom, $Label[currentLV.FieloCRUD__LabelDateFilterFrom__c])}" styleClass="topControlsLabel" /></div>
+                                <div class="inline dateInput">
+                                    <!-- DATE PICKER FROM -->
+                                    <div class="inline"><c:DatePicker myObject="{!dateFromObj}" myField="FieloCRUD__ProxyDateFrom__c" buttonImageURL="http://jqueryui.com/resources/demos/datepicker/images/calendar.gif"/></div>
+                                    <div class="dateDivider inline"><apex:outputLabel value="{!IF(currentLV.FieloCRUD__LabelDateFilterTo__c == null, $Label.fielocrud__listview_datefilterto, $Label[currentLV.FieloCRUD__LabelDateFilterTo__c])}" escape="false"/></div>
+                                    <!-- DATE PICKER TO -->
+                                    <div class="inline"><c:DatePicker myObject="{!dateToObj}" myField="FieloCRUD__ProxyDateTo__c" buttonImageURL="http://jqueryui.com/resources/demos/datepicker/images/calendar.gif"/></div>
+                                </div>
+                                <!-- DATE FILTER SEARCH BUTTON -->
+                                <div class="inline dateSearch">
+                                    <apex:commandLink action="{!doFilterDates}" styleClass="btn dateFilterBtn searchIcon">
+                                        <apex:outputText value="{!IF(currentLV.FieloCRUD__LabelDateFilterSearchButton__c == null, $Label.fielocrud__listview_datefiltersearchbutton, $Label[currentLV.FieloCRUD__LabelDateFilterSearchButton__c])}" escape="false"/>
+                                    </apex:commandLink>
+                                </div>
+                            </apex:panelGroup>
+                        </apex:panelGroup>
+                        
+                        <!-- GLOBAL ACTIONS -->
+                        <apex:panelGroup rendered="{!listViewActionGlobalActions.size != null && listViewActionGlobalActions.size > 0}" styleClass="pull-right" layout="block">
+                            <apex:repeat value="{!listViewActionGlobalActions}" var="ga">
+                                <apex:variable var="buttonLabel" value="{!IF(ga.FieloCRUD__LabelSiteName__c == null, ga.Name, $Label[ga.FieloCRUD__LabelSiteName__c])}"/>
+                                
+                                <!-- GLOBAL ACTION "MENU" -->
+                                <apex:panelGroup layout="none" rendered="{!ga.Action__c == 'Menu Action'}">
+                                    <apex:variable var="retOnSave" value="{!IF(ga.MenuRedirectAfterAction__c != NULL, URLENCODE('Menu/' + ga.MenuRedirectAfterAction__r.FieloEE__ExternalName__c), URLENCODE(currentURL))}"/>
+                                    <apex:outputLink target="_top" value="Menu/{!ga.ActionMenu__r.FieloEE__ExternalName__c}?mode={!ga.FieloCRUD__ActionMode__c}&relationId={!recordParentId}&relationField={!currentLV.FieloCRUD__ParentField__c}&backPage={!URLENCODE(crudRetURL)}&retOnSave={!retOnSave}" styleClass="btn">
+                                        <apex:outputText value="{!buttonLabel}" escape="false"/>
+                                    </apex:outputLink>
+                                </apex:panelGroup>
+                                
+                                <!-- GLOBAL ACTION "JS" -->
+                                <apex:panelGroup layout="none" rendered="{!ga.Action__c == 'JS Action'}">
+                                    <a href="" onClick="{!ga.JSOnClick__c}" class="btn"><apex:outputText value="{!buttonLabel}" escape="false"/></a>
+                                    <apex:panelGroup rendered="{!ga.FieloCRUD__JSCode__c != null}" layout="none">
+                                        <script>{!ga.FieloCRUD__JSCode__c}</script>
+                                    </apex:panelGroup>
+                                </apex:panelGroup>
+                            </apex:repeat>
+                        </apex:panelGroup>
+                    
+                    </apex:panelGroup>
+                        
+                    <!-- LABEL NO RECORDS FOUND -->
+                    <apex:panelGroup rendered="{!!(pager.Records.size != null && pager.Records.size > 0)}" styleClass="alert alert-info" layout="block">
+                        <i class="icon-warning-sign" style="marging-right: 10px;"></i>
+                        <apex:outputText value="{!IF(currentLV.FieloCRUD__LabelEmptyList__c == null, $Label.fielocrud__listview_norecords, $Label[currentLV.FieloCRUD__LabelEmptyList__c])}" escape="false"/>
+                    </apex:panelGroup>
+                    
+                    <!-- JS ACTIONS SCRIPTS -->
+                    <apex:repeat value="{!listViewActionRecordRowActions}" var="rra">
+                        <apex:panelGroup layout="none" rendered="{!rra.FieloCRUD__Action__c == 'JS Action'}">
+                            <apex:panelGroup rendered="{!rra.FieloCRUD__JSCode__c != null}" layout="none">
+                                <script>{!rra.FieloCRUD__JSCode__c}</script>
+                            </apex:panelGroup>
+                        </apex:panelGroup>
+                    </apex:repeat>
+                    <apex:repeat value="{!listViewActionFieldActions}" var="fa">
+                        <apex:panelGroup layout="none" rendered="{!listViewActionFieldActions[fa].Action__c == 'JS Action'}">
+                            <apex:panelGroup rendered="{!listViewActionFieldActions[fa].JSCode__c != null}" layout="none">
+                                <script>{!listViewActionFieldActions[fa].JSCode__c}</script>
+                            </apex:panelGroup>
+                        </apex:panelGroup>
+                    </apex:repeat>
+                        
+                    <!-- TABLE OF RECORDS -->
+                    <apex:panelGroup rendered="{!pager.Records.size != null && pager.Records.size > 0}" layout="none">
+
+                        <apex:panelGroup rendered="{!currentLV.FieloCRUD__ScrollTable__c && !currentLV.FieloCRUD__HideHeader__c}">                    
+                           <div class="scrollHeader">
+                           </div>
+                        </apex:panelGroup>
+                        <div class="scrollContainer">
+                            <apex:dataTable value="{!pager.Records}" var="record" styleClass="table {!IF(currentLV.FieloCRUD__ScrollTable__c, 'scroll', '')} {!IF(!currentLV.FieloCRUD__HideHeader__c, '', 'hideHeader')} {!IF(!currentLV.FieloCRUD__BorderedTable__c, '', 'table-bordered')} {!IF(!currentLV.FieloCRUD__CondensedTable__c, '', 'table-condensed')} {!IF(!currentLV.FieloCRUD__HoverRows__c, '', 'table-hover')} {!IF(!currentLV.FieloCRUD__StripedRows__c, '', 'table-striped')}" id="recordsTable">
+                                <apex:repeat value="{!listFields}" var="field"> 
+                                    <apex:column headerClass="{!field}" styleClass="{!$ObjectType[TRIM(objectToShow)].fields[TRIM(field)].type}">
+                                        
+                                        <!-- TABLE HEADER -->
+                                        <apex:facet name="header" >
+                                            <apex:panelgroup rendered="{!!currentLV.FieloCRUD__HideHeader__c}" >
+                                                <!-- COLUMN HEADER THAT DOESN'T SUPPORT ORDER -->
+                                                <apex:outputText value="{!$ObjectType[TRIM(objectToShow)].fields[TRIM(field)].label}" rendered="{!$ObjectType[TRIM(objectToShow)].fields[TRIM(field)].type == 'textarea'}" />
+                                                
+                                                <!-- COLUMN HEADER THAT DOES SUPPORT ORDER -->
+                                                <apex:commandLink action="{!doOrderColumn}" immediate="true" rendered="{!$ObjectType[TRIM(objectToShow)].fields[TRIM(field)].type != 'textarea'}" reRender="recordsTable">
+                                                    <apex:outputText value="{!$ObjectType[TRIM(objectToShow)].fields[TRIM(field)].label}"/>
+                                                    <apex:outputText value="▲" rendered="{!((orderAscOrDesc == 'ASC') && (TRIM(field) == fieldToOrder))}"/>
+                                                    <apex:outputText value="▼" rendered="{!((orderAscOrDesc == 'DESC') && (TRIM(field) == fieldToOrder))}"/>
+                                                    <apex:param name="columnToOrder" value="{!TRIM(field)}"/>
+                                                </apex:commandLink>
+                                            </apex:panelgroup>
+                                        </apex:facet>
+                                        
+                                        <!-- TABLE FIELDS RECORDS -->
+                                        
+                                        <!-- OUTPUT FIELDS -->
+                                        <apex:panelgroup layout="none" rendered="{!!CONTAINS(listViewActionFieldActionsKeys, '@'+TRIM(field)+'@')}">
+                                            <apex:panelgroup styleClass="{!IF($ObjectType[TRIM(objectToShow)].fields[TRIM(field)].type == 'reference', 'noLink', IF($ObjectType[TRIM(objectToShow)].fields[TRIM(field)].type == 'picklist', TRIM(field)+' '+record[TRIM(field)], ''))} ">
+                                                <apex:outputField value="{!record[TRIM(field)]}" styleClass="otherField"/>
+                                            </apex:panelgroup>
+                                        </apex:panelgroup>
+                                        
+                                        <!-- ACTION FIELDS -->
+                                        <apex:panelgroup layout="none" rendered="{!listViewActionFieldActionsKeys != '' && CONTAINS(listViewActionFieldActionsKeys, '@'+TRIM(field)+'@')}">
+                                            <apex:variable var="ga" value="{!listViewActionFieldActions[TRIM(field)]}"/>
+                                            
+                                            <apex:panelGroup rendered="{!(ga.ConditionField__c == NULL || ga.ConditionValue__c == NULL) || (record[ga.ConditionField__c] == ga.ConditionValue__c)}" layout="none">
+                                                <!-- FIELD ACTION "MENU" -->
+                                                <apex:panelGroup layout="none" rendered="{!ga.Action__c == 'Menu Action'}">
+                                                    <apex:variable var="retOnSave" value="{!IF(ga.MenuRedirectAfterAction__c != NULL, URLENCODE('Menu/' + ga.MenuRedirectAfterAction__r.FieloEE__ExternalName__c), URLENCODE(currentURL))}"/>
+                                                    <apex:outputLink target="_top" value="Menu/{!ga.ActionMenu__r.FieloEE__ExternalName__c}?recordId={!record['id']}&mode={!ga.ActionMode__c}&backPage={!URLENCODE(crudRetURL)}&retOnSave={!retOnSave}">
+                                                        <apex:outputText value="{!record[TRIM(field)]}" escape="false"/>
+                                                    </apex:outputLink>
+                                                </apex:panelGroup>
+                                                
+                                                <!-- FIELD ACTION "JS" -->
+                                                <apex:panelGroup layout="none" rendered="{!ga.Action__c == 'JS Action'}">
+                                                    <a href="" onClick="{!ga.JSOnClick__c}" data-id="{!record['id']}"><apex:outputText value="{!record[TRIM(field)]}" escape="false"/></a>
+                                                </apex:panelGroup>
+                                            </apex:panelGroup>
+                                            
+                                            <apex:panelGroup rendered="{!NOT((ga.ConditionField__c == NULL || ga.ConditionValue__c == NULL) || (record[ga.ConditionField__c] == ga.ConditionValue__c))}" layout="none">
+                                                <apex:outputText value="{!record[TRIM(field)]}" escape="false"/>
+                                            </apex:panelGroup>
+                                        </apex:panelgroup>
+                                        
+                                    </apex:column>
+                                </apex:repeat>
+                                
+                                <!-- ACTION COLUMN -->
+                                <apex:column id="actionColumn" rendered="{!listViewActionRecordRowActions.size != null && listViewActionRecordRowActions.size > 0}">
+                                    <apex:facet name="header">
+                                        <apex:panelgroup rendered="{!!currentLV.FieloCRUD__HideHeader__c}" layout="block">
+                                            <apex:outputText value="{!$Label.fielocrud__listview_actions}" escape="false"/>
+                                        </apex:panelgroup>
+                                    </apex:facet>
+                                    
+                                    <apex:repeat value="{!listViewActionRecordRowActions}" var="rra">
+                                        <apex:panelGroup rendered="{!(rra.FieloCRUD__ConditionField__c == NULL || rra.FieloCRUD__ConditionValue__c == NULL) || (record[rra.FieloCRUD__ConditionField__c] == rra.FieloCRUD__ConditionValue__c)}" layout="none">
+                                            <apex:variable var="buttonLabel" value="{!IF(rra.FieloCRUD__LabelSiteName__c == null, rra.Name, $Label[rra.FieloCRUD__LabelSiteName__c])}"/>
+                                            
+                                            <!-- DIRECT DELETION -->
+                                            <apex:commandLink style="margin-left:10px" action="{!doDelete}" onclick="return confirm('{!$Label.fielocrud__listview_deleteconfirm}');" rendered="{!rra.FieloCRUD__ActionMenu__c == null && rra.FieloCRUD__JSOnClick__c == null}" styleClass="deleteAction">
+                                                <apex:param name="recordIdToDelete" value="{!record['id']}"/>
+                                                <apex:outputText value="{!buttonLabel}" escape="false"/>
+                                            </apex:commandLink>
+                                            
+                                            <!-- RECORD ROW ACTIONS -->
+                                            <apex:panelGroup rendered="{!NOT(rra.FieloCRUD__ActionMenu__c == null && rra.FieloCRUD__JSOnClick__c == null)}">
+                                                <!-- RECORD ROW ACTION "MENU" -->
+                                                <apex:panelGroup layout="none" rendered="{!rra.FieloCRUD__Action__c == 'Menu Action'}">
+                                                    <apex:variable var="retOnSave" value="{!IF(rra.FieloCRUD__MenuRedirectAfterAction__c != NULL, URLENCODE('Menu/' + rra.MenuRedirectAfterAction__r.FieloEE__ExternalName__c), URLENCODE(currentURL))}"/>
+                                                    <apex:outputLink target="_top" value="Menu/{!rra.ActionMenu__r.FieloEE__ExternalName__c}?recordId={!record['id']}&mode={!rra.FieloCRUD__ActionMode__c}&backPage={!URLENCODE(crudRetURL)}&retOnSave={!retOnSave}">
+                                                        <apex:outputText value="{!buttonLabel}" escape="false"/>
+                                                    </apex:outputLink>
+                                                </apex:panelGroup>
+                                                
+                                                <!-- RECORD ROW ACTION "JS" -->
+                                                <apex:panelGroup layout="none" rendered="{!rra.FieloCRUD__Action__c == 'JS Action'}">
+                                                    <a href="" onClick="{!rra.JSOnClick__c}" data-id="{!record['id']}"><apex:outputText value="{!buttonLabel}" escape="false"/></a>
+                                                </apex:panelGroup>
+                                            
+                                            </apex:panelGroup>
+                                        </apex:panelGroup>
+                                    </apex:repeat>
+                                    
+                                </apex:column>
+                                
+                            </apex:dataTable>
+
+                        </div>
+                        <apex:panelGroup rendered="{!currentLV.FieloCRUD__ScrollTable__c}">
+                            <script>
+                                table({!currentLV.FieloCRUD__ScrollRows__c});
+                            </script>
+                        </apex:panelGroup>    
+                        <div>
+                            <apex:panelGroup layout="block" styleClass="pageNavigationContainer">
+                                <!-- PAGINATOR SIZE SELECTION LIST BOTTOM -->
+                                <apex:panelGroup rendered="{!OR(currentLV.FieloCRUD__DisplayRecordsPerPage__c == 'Bottom', currentLV.FieloCRUD__DisplayRecordsPerPage__c == 'Both')}" styleClass="itemsPerPage form-inline" layout="block">
+                                    <apex:outputLabel value="{!$Label.fielocrud__listview_numofrecords}" styleClass="inline"/>
+                                    <apex:selectList value="{!selectedSizeBottom}" multiselect="false" size="1" styleClass="paginatorInput inline">
+                                        <apex:selectOptions value="{!pagesize}"/>
+                                        <apex:actionSupport event="onchange" action="{!resizePagerBottom}"/>
+                                    </apex:selectList>
+                                </apex:panelGroup>
+                                
+                                <!-- PAGER -->
+                                <apex:panelGroup styleClass="pageNavigation" layout="block">
+                                    <c:PageNavigation pager="{!pager}" toRerender="thePage" mode="{!currentLV.FieloCRUD__Navigation__c}" rendered="{!pager != null}"/>
+                                </apex:panelGroup>
+                            </apex:panelGroup>
+                        </div>
+                    </apex:panelGroup>
+                    <!-- END TABLE OF RECORDS -->
+                    
+                </apex:panelGroup>
+            </apex:form>
+            
+        </apex:define>
+    </apex:composition>
+    
+</apex:page>

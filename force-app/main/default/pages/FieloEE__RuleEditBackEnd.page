@@ -1,0 +1,468 @@
+<apex:page id="page" standardController="FieloEE__Rule__c" extensions="FieloEE.RuleEditBackEndExtension" action="{!checkDefaultRule}" docType="html-5.0"> 
+    
+    <style type="text/css">
+        span.dateInput span.dateFormat  { display:none; }
+        .hidden { display:none; }
+        .radiobutton { padding:3px 0 }
+        th.labelCol , td.dataCol    { vertical-align:middle !important; }
+    </style> 
+
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js,'/criteriasFunctions.js')}"/>
+
+    <script>
+        var mapFieldTypes = new Array();
+        var aOptions = new Array();
+        var operators = new Array();
+        <apex:repeat value="{!mapFieldTypes}" var="ft" >
+            mapFieldTypes['{!ft}'] = '{!mapFieldTypes[ft]}';
+        </apex:repeat>
+    
+        <apex:repeat value="{!mapOptions}" var="ft" >                          
+            var i = 0;                          
+            aOptions['{!ft}']=new Array();
+            <apex:repeat value="{!mapOptions[ft]}" var="o" >
+                aOptions['{!ft}'][i] = new Option('{!JSENCODE(o.Label)}', '{!JSENCODE(o.Value)}', false, false);
+                i++;
+            </apex:repeat>
+        </apex:repeat>
+
+        pos = 0;
+        <apex:repeat value="{!Operators}" var="opr" >
+            operators[pos]= new Option('{!opr.Label}','{!opr.Value}',false,false);
+            pos++;
+        </apex:repeat>                     
+    </script> 
+
+    <script>
+
+        function loadSecondary(fieldName, idSecondary, idHiddenSecondary, idText, idDate,idNumber,idBoolean,idList,idOperator, mapFieldTypes, aOptions, operators ){     
+            var oSecondary = document.getElementById(idSecondary);
+            var initValue = initialValue; 
+            var opSelected = optionList;       
+
+            if(mapFieldTypes[fieldName.value] == 'REFERENCE'){
+               oSecondary.style.display = 'inline';
+               oSecondary.options.length = 0;
+                
+               {!$RemoteAction.RuleEditBackEndExtension.getSecondaryFields}(fieldName.value, function (result, event) {
+                   var resultSplited = result.split(',');              
+
+                   var hiddenSecondaryValue = null;
+                   var hiddenSecondary = document.getElementById(idHiddenSecondary);
+                   if(hiddenSecondary != null) 
+                       hiddenSecondaryValue = hiddenSecondary.value;
+
+                   for(var i = 0 ; i < resultSplited.length; i++){
+                       var item = resultSplited[i].split('|');
+                       oSecondary[i] = new Option(item[1], item[0], false, (item[0] == hiddenSecondaryValue));
+                       if(item[2] != null){
+                           mapFieldTypes[item[0]] = item[2];
+                           if(mapFieldTypes[item[0]] == 'List'){
+                               {!$RemoteAction.RuleEditBackEndExtension.getPicklistValues}(item[0],function(result1,event){
+                                   var resultSplited = result1.split(',');
+                                   for(var i = 0; i < resultSplited.length ; i++){
+                                       var item = resultSplited[i].split('|');
+                                       if(aOptions[item[0]] == null)
+                                           aOptions[item[0]] = new Array();
+                                       aOptions[item[0]][i] = new Option(item[2], item[1], false, false);
+                                   }
+                                   if(hiddenSecondary != null){
+                                       initialValue = initValue;
+                                       optionList = opSelected;                                       
+                                       try{analizeRow(idHiddenSecondary,idText,idDate,idNumber,idBoolean,idList,idOperator,mapFieldTypes,aOptions,operators);}catch(e){}
+                                       try{fillValuePicklist(idHiddenSecondary,idText,'optionFields_' + idList.replace('lista_',''));}catch(e){}
+                                   }
+                               }, {escape:true});
+                           }
+                       }                   
+                   }
+
+                   if(hiddenSecondary != null){                  
+                       initialValue = initValue;
+                       optionList = opSelected;                        
+                       analizeRow(idHiddenSecondary, idText, idDate,idNumber,idBoolean,idList,idOperator, mapFieldTypes, aOptions, operators);
+                   } 
+               }, {escape:true});
+            } else {
+               oSecondary.style.display = 'none';
+            }
+        }
+
+        function fillValuePicklist(valueId, idText ,idList){
+            var lista = document.getElementById(idList);            
+            var oInputText = document.getElementById(idText);
+            var oInputValue = document.getElementById(valueId);
+            
+            try{
+                sValue = oInputValue.options[oInputValue.selectedIndex].value;                
+            }catch (e){
+                sValue = oInputValue.value;                
+            }
+            
+            removeOptions(lista);
+            
+            if(lista != null){                
+                <apex:repeat value="{!fieldNames}" var="ft" >                                                            
+                    if(mapFieldTypes['{!ft.value}'] == mapFieldTypes[sValue]){                                                
+                        lista.add(new Option('{!ft.label}' , '{!ft.value}' , false , oInputText.value == '{!ft.value}'));                 
+                    }
+                </apex:repeat>  
+            }
+        }
+
+        function showActions(select){            
+            if(select.value == 'Best Option'){                                
+                document.getElementById('rewardAction').style.display = 'none';
+            }else{                
+                document.getElementById('rewardAction').style.display = 'block';
+            }
+        }
+                
+        function showExpMonths(programFieldId){
+            var expMonthsLabel = document.getElementById('page:form:pageBlock:pointsSection:expMonths:expirationLabel_helpText-_help');
+            var expMonthsValue = document.getElementById('page:form:pageBlock:pointsSection:expMonths:expirationField');
+
+            
+
+            if('{!$CurrentPage.parameters.id}' == ''){
+                var programField = document.getElementById(programFieldId);                        
+                {!$RemoteAction.RuleEditBackEndExtension.hasExpirationAvailable}(programField.value, function (result, event) {
+                    if(result){
+                        expMonthsLabel.style.display = 'block';
+                        expMonthsValue.style.display = 'block';
+                    }else{
+                        expMonthsLabel.style.display = 'none';
+                        expMonthsValue.style.display = 'none';
+                    }   
+                }, {escape:true});            
+            }else{
+                if('{!program.FieloEE__ExpirationMode__c}' == 'Partial - Created' || '{!program.FieloEE__ExpirationMode__c}' == 'Partial - Expiration'){
+                    expMonthsLabel.style.display = 'block';
+                    expMonthsValue.style.display = 'block';
+                }else{
+                    expMonthsLabel.style.display = 'none';
+                    expMonthsValue.style.display = 'none';
+                }
+            }
+        }
+
+        function showExpMonths(){
+            var expMonthsLabel = document.getElementById('page:form:pageBlock:pointsSection:expMonths:expirationLabel_helpText-_help');
+            var expMonthsValue = document.getElementById('page:form:pageBlock:pointsSection:expMonths:expirationField');
+
+            var pointsConvertionNone = document.querySelectorAll('input[data-conversiontype="null"]')[0].checked;
+            if(pointsConvertionNone == false){
+                expMonthsLabel.style.display = 'block';
+                expMonthsValue.style.display = 'block';
+            }else{
+                expMonthsLabel.style.display = 'none';
+                expMonthsValue.style.display = 'none';
+            }
+        }
+
+            
+    </script> 
+
+    <apex:sectionHeader title="{!$Label.fieloee__rule}"/>
+    <apex:form id="form">
+        <apex:pageMessages />
+        <apex:pageBlock id="pageBlock">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="{!$Label.fieloee__save}" action="{!doSave}"/>
+                <apex:commandButton value="{!$Label.fieloee__saveandnew}" action="{!doSaveNew}" rendered="{!!ISNULL(FieloEE__Rule__c.Id)}"/>
+                <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+            <!-- Rule Information -->
+            <apex:pageBlockSection id="information" columns="2" collapsible="false">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.FieloEE__Rule__c.Fields['Name'].Label}" />
+                    <apex:outputPanel styleClass="requiredInput" layout="block"  >
+                        <apex:outputPanel styleClass="requiredBlock" layout="block" />                   
+                        <apex:inputField id="ruleName" value="{!FieloEE__Rule__c.Name}" /> 
+                    </apex:outputPanel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:outputField value="{!FieloEE__Rule__c.FieloEE__Program__c}" rendered="{!AND(NOT(singleProgram), NOT(AND(ISNULL($CurrentPage.parameters.idPromotion), ISNULL(FieloEE__Rule__c.Id))))}" />
+                <apex:inputField id="progId" value="{!FieloEE__Rule__c.FieloEE__Program__c}" onchange="showExpMonths('{!$Component.progId}_lkid');" rendered="{!AND(NOT(singleProgram), AND(ISNULL($CurrentPage.parameters.idPromotion), ISNULL(FieloEE__Rule__c.Id)))}" />
+                <apex:inputField value="{!FieloEE__Rule__c.FieloEE__Type__c}" id="ruleMode" onchange="showActions(this);" />
+                <apex:repeat value="{!$ObjectType.FieloEE__Rule__c.FieldSets.FieloEE__Edit}" var="f" >
+                    <apex:inputField value="{!FieloEE__Rule__c[f]}" />
+                </apex:repeat>
+            </apex:pageBlockSection>
+
+            <!-- Criterias -->
+            <apex:variable id="contador" var="contador" value="1" />
+            <apex:pageBlockSection id="criteriaList" title="{!$Label.fieloee__criterias}" columns="1" collapsible="false">
+
+                <apex:pageBlockTable id="pageBlockTable" value="{!criteriasWrapper}" var="criteriaWrapper" >                     
+                    <apex:column value="{!contador}."/> 
+                    <apex:column headerValue="{!$Label.fieloee__field}"> 
+                        <apex:selectList id="availablesFieldsId" size="1" onchange="clearSecondary('{!$Component.secondaryHidden}');loadSecondary(this, 'auxSelect_{!contador}',null, '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.Operator}', mapFieldTypes, aOptions, operators); analizeRow('{!$Component.availablesFieldsId}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.pageBlockTable.operators.operator}', mapFieldTypes, aOptions, operators); fillValuePicklist('{!$Component.availablesFieldsId}','{!$Component.texto}','optionFields_{!contador}');" value="{!criteriaWrapper.criteria.FieloEE__FieldName__c}"> 
+                            <apex:selectOptions value="{!FieldNames}" /> 
+                        </apex:selectList> 
+                        <apex:inputHidden value="{!criteriaWrapper.secondary}" id="secondaryHidden"/> 
+                        <select id="auxSelect_{!contador}" class="hidden" onchange="fillValue(this,'{!$Component.secondaryHidden}');analizeRow('{!$Component.secondaryHidden}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.pageBlockTable.operators.operator}', mapFieldTypes, aOptions, operators); fillValuePicklist('{!$Component.secondaryHidden}','{!$Component.texto}','optionFields_{!contador}');" ></select> 
+                        <script>
+                            initialValue = '{!JSENCODE(criteriaWrapper.criteria.Operator__c)}';                           
+                            optionList = '{!JSENCODE(criteriaWrapper.listValue)}';
+                            loadSecondary(document.getElementById('{!$Component.availablesFieldsId}'), 'auxSelect_{!contador}','{!$Component.secondaryHidden}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.operators.Operator}', mapFieldTypes, aOptions, operators);                                                                                                              
+                        </script> 
+                    </apex:column>  
+                    <apex:column headerValue="{!$Label.fieloee__operator}"> 
+                        <apex:pageBlockSectionItem id="operators"> 
+                            <apex:inputField value="{!criteriaWrapper.criteria.FieloEE__Operator__c}" id="operator"/> 
+                            <script>
+                                if('{!JSENCODE(criteriaWrapper.secondary)}'==''){
+                                    initialValue = document.getElementById('{!$Component.operator}').value;
+                                }
+                            </script>   
+                        </apex:pageBlockSectionItem> 
+                    </apex:column>  
+                    <apex:column headerValue="{!$Label.fieloee__value}"> 
+                        <apex:panelGroup id="grp" style="display:block;">
+                            <apex:inputField id="texto" required="false" value="{!criteriaWrapper.criteria.FieloEE__Values__c}"/> 
+                            <apex:inputField id="fecha" required="false" value="{!criteriaWrapper.criteria.FieloEE__DateValue__c}"/> 
+                            <apex:inputField id="numero" required="false" value="{!criteriaWrapper.criteria.FieloEE__NumberValue__c}"/> 
+                            <apex:inputField id="boolean" required="false" value="{!criteriaWrapper.criteria.FieloEE__BooleanValue__c}"/> 
+
+                            <apex:inputHidden value="{!criteriaWrapper.listValue}" id="listaHidden"/>
+                            <select size="3" id="lista_{!contador}" onchange="fillValue(this,'{!$Component.listaHidden}'); return false;" multiple="true">
+                                <apex:repeat value="{!optionsValues}" var="o">
+                                    <option value="{!o.value}">{!o.label}</option>
+                                </apex:repeat> 
+                            </select>
+                        </apex:panelGroup>
+                        <apex:panelGroup id="grpField" style="display:none;">
+                            <select size="1" id="optionFields_{!contador}" onchange="setValue(this,'{!$Component.texto}',null);" />                             
+                        </apex:panelGroup> 
+                    </apex:column>
+                    <apex:column headerValue="{!$ObjectType.FieloEE__RuleCriteria__c.Fields['Field__c'].Label}">
+                        <apex:inputField id="checkField" value="{!criteriaWrapper.criteria.FieloEE__Field__c}" onclick=" showFields(this, '{!$Component.pageBlockTable.grp}', '{!$Component.pageBlockTable.grpField}'); analizeFieldsPicklist(); setValue(document.getElementById('optionFields_{!contador}'), '{!$Component.texto}',this); if(!this.checked){fillValue(this,'{!$Component.pageBlockTable.listaHidden}');} " />
+                        <script>
+                            optionList = document.getElementById('{!$Component.listaHidden}').value;                                                                                               
+                            var checked = document.getElementById('{!$Component.checkField}');
+                            showFields(checked , '{!$Component.pageBlockTable.grp}', '{!$Component.pageBlockTable.grpField}');
+                            analizeFieldsPicklist();
+                            
+                            function analizeFieldsPicklist(){
+                                if('{!JSENCODE(criteriaWrapper.secondary)}' == ''){          
+                                    analizeRow('{!$Component.availablesFieldsId}', '{!$Component.texto}', '{!$Component.fecha}','{!$Component.numero}', '{!$Component.boolean}','lista_{!contador}','{!$Component.pageBlockTable.operators.operator}', mapFieldTypes, aOptions, operators);                                   
+                                    fillValuePicklist('{!$Component.availablesFieldsId}','{!$Component.texto}','optionFields_{!contador}');
+                                } 
+                            }                           
+                        </script>
+                    </apex:column>
+                    <apex:column > 
+                        <apex:panelGroup rendered="{!criteriasWrapper.size <> value(contador)}">                         
+                            <apex:variable var="contador" value="{! Text(Value(contador) + 1)}" /> 
+                            {!$Label.fieloee__and} 
+                        </apex:panelGroup>                       
+                    </apex:column> 
+                </apex:pageBlockTable>                                           
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="1">
+                <apex:commandButton action="{!doAddCriteria}" rerender="criteriaList, contador" value="{!$Label.fieloee__addcriteria}"/>
+            </apex:pageBlockSection>
+            
+            <div>
+                <apex:pageBlockSection id="pointsSection" title="{!$Label.fieloee__points}" collapsible="false">
+                    <apex:pageBlockSectionItem id="sectionType" >
+                        <apex:outputLabel value="{!$Label.fieloee__type}" />                        
+                        <apex:panelGroup >                            
+                            <apex:inputHidden id="convertionPoints" value="{!FieloEE__Rule__c.FieloEE__ConvertionTypeTransaction__c}"/>
+                            
+                            <apex:repeat value="{!tranActionTypes}" var="rec">
+                                <div class="radiobutton">
+                                    <input type="radio" name="radio" id="{!rec.value}" data-conversiontype="{!rec.value}" onclick="setRadio(this.id); analizePointFields(); showExpMonths('{!$Component.rec.value.progId}_lkid');" >{!rec.label}</input>
+                                </div>
+                                <script>
+                                    var convertionType = document.getElementById('{!$Component.convertionPoints}');
+                                    var inputRadio = document.getElementById('{!rec.value}');
+                                    if((inputRadio.id == 'null' && convertionType.value == '') || (convertionType.value == inputRadio.id)){
+                                        inputRadio.checked = true;
+                                    }
+                                </script>
+                            </apex:repeat> 
+                                                       
+                            <script>
+                                function setRadio(value){
+                                    var inputField = document.getElementById('{!$Component.convertionPoints}');
+                                    if(value == 'null')
+                                        inputField.value = '';
+                                    else
+                                        inputField.value = value;
+                                }
+                            </script>
+                        </apex:panelGroup>
+                    </apex:pageBlockSectionItem>                    
+                    
+                    <!--formula-->
+                    <apex:pageBlockSectionItem id="sectionFormula" >                        
+                        <apex:outputLabel value="{!$Label.fieloee__assignedpoints} = " />
+                        <apex:panelGroup >
+                            <apex:selectList id="actionFieldsPoints" size="1" value="{!FieloEE__Rule__c.FieloEE__FieldNameTransaction__c}"> 
+                                <apex:selectOptions value="{!numericFields}" />
+                            </apex:selectList>
+                            <span id="symbolPoints" style="font-weight:bold;padding:0 5px;"></span>
+                            <apex:inputField id="convertionValue" value="{!FieloEE__Rule__c.FieloEE__ConvertionValue__c}" style="width:60px" required="false"/> 
+                        </apex:panelGroup>
+                    </apex:pageBlockSectionItem>
+                    
+                    <!--expiration-->
+                    <!-- TODO resolver expiration de points cuando es nuevo-->
+                    <apex:pageBlockSectionItem id="expMonths" helpText="{!$ObjectType.FieloEE__Rule__c.fields['ExpirationMonth__c'].InlineHelpText}">
+                        <apex:outputLabel id="expirationLabel" value="{!$ObjectType.FieloEE__Rule__c.fields.FieloEE__ExpirationMonth__c.Label}" />
+                        <apex:inputField id="expirationField" value="{!FieloEE__Rule__c.FieloEE__ExpirationMonth__c}" required="false" /><!-- rendered="{!(program.ExpirationMode__c == 'Partial - Created') || (program.ExpirationMode__c == 'Partial - Expiration')}" -->
+                    </apex:pageBlockSectionItem>
+                    <script>showExpMonths('{!$Component.information.progId}_lkid');</script> 
+                    
+                    <script>                        
+                        function analizePointFields(){
+                            var convertionType = document.getElementById('{!$Component.sectionType.convertionPoints}');
+                            var convertionValue = document.getElementById('{!$Component.sectionFormula.convertionValue}');                    
+                            var availableFields = document.getElementById('{!$Component.sectionFormula.actionFieldsPoints}');
+                            var symbol = document.getElementById('symbolPoints');                    
+                            
+                            switch(convertionType.value){
+                                case 'Fix Value':                                
+                                    convertionValue.style.display = 'inline';
+                                    availableFields.style.display = 'none';                                
+                                    symbol.innerHTML = '';
+                                    break;
+                                case 'Factor':                                
+                                    convertionValue.style.display = 'inline';
+                                    availableFields.style.display = 'inline';                                
+                                    symbol.innerHTML = '/';
+                                    break;
+                                case 'Multiplier':                                
+                                    convertionValue.style.display = 'inline';
+                                    availableFields.style.display = 'inline';                                
+                                    symbol.innerHTML = '*';
+                                    break;
+                                case 'Custom':                                
+                                    convertionValue.style.display = 'none';
+                                    availableFields.style.display = 'inline';                                
+                                    symbol.innerHTML = '';
+                                    break;
+                                default:                                
+                                    convertionValue.style.display = 'none';
+                                    availableFields.style.display = 'none';                                
+                                    symbol.innerHTML = '0';
+                                    break;
+                            }
+                        }
+                    </script>
+                </apex:pageBlockSection>
+            </div>
+
+            <div id="rewardAction" >
+                <apex:pageBlockSection id="pageBlockSectionInstantReward" title="{!$Label.fieloee__instantreward}" collapsible="false">
+                    <apex:pageBlockSectionItem id="sectionType" >
+                        <apex:outputLabel value="{!$Label.fieloee__type}" />
+                        <apex:panelGroup >                            
+                            <apex:inputHidden id="convertionReward" value="{!FieloEE__Rule__c.FieloEE__ConvertionTypeReward__c}"/>
+                            <apex:repeat value="{!rewActionTypes}" var="rec">
+                                <div class="radiobutton">
+                                     <input type="radio" name="radioRew" id="rew{!rec.value}" onclick="setRewRadio('{!rec.value}'); analizeRewardFields();showExpMonths();" >
+                                     {!rec.label}
+                                     <apex:panelGroup layout="none" rendered="{!rec.value == 'Reward Field'}">
+                                        <span class="helpButton" id="fieloIsRewardFieldColumn1-_help">
+                                            <img src="/s.gif" alt="" class="helpOrb" title=""/>
+                                            <script>sfdcPage.setHelp('fieloIsRewardFieldColumn1', '{!$Label.DynamicRewardFieldHelp}');</script>
+                                        </span>
+                                     </apex:panelGroup>
+                                    </input>
+                                </div>
+                                <script>
+                                    var convertionType = document.getElementById('{!$Component.convertionReward}');
+                                    var inputRadio = document.getElementById('rew{!rec.value}');                                    
+                                    if((inputRadio.id == 'rewnull' && (convertionType.value == '' || convertionType.value == null)) || ('rew'+convertionType.value == inputRadio.id)){                                        
+                                        inputRadio.checked = true;
+                                    }
+                                </script>
+                            </apex:repeat>
+                            <script>                                
+                                function setRewRadio(value){                                    
+                                    var inputField = document.getElementById('{!$Component.convertionReward}');
+                                    if(value == 'null')
+                                        inputField.value = '';
+                                    else
+                                        inputField.value = value;
+                                }
+                            </script>
+                        </apex:panelGroup>
+                    </apex:pageBlockSectionItem>
+                    
+                    <!--formula-->
+                    <apex:pageBlockSectionItem id="sectionFormula" helpText="{!$Label.fieloee__instantrewardfixvalueanddynamichelp}" >
+                        <apex:panelGroup id="panelFormulaLabel" layout="none">
+                            <apex:outputLabel id="formulaLabel" value="{!$Label.fieloee__assignedreward}" />
+                        </apex:panelGroup>
+                        <apex:panelGroup >
+                            <apex:panelGroup id="panelReward" >
+                                <apex:inputField id="inputReward" value="{!FieloEE__Rule__c.FieloEE__InstantReward__c}" required="false"/>
+                            </apex:panelGroup>
+                            <apex:selectList id="actionFieldsReward" size="1" value="{!FieloEE__Rule__c.FieloEE__FieldNameReward__c}">
+                                <apex:selectOptions value="{!rewardFields}" />
+                            </apex:selectList>
+                        </apex:panelGroup>
+                        
+                    </apex:pageBlockSectionItem>
+                    
+                    <apex:outputText value="" /> 
+
+                    <!--stock-->
+                    <apex:pageBlockSectionItem id="stockControl">
+                        <apex:outputLabel id="stockLabel" value="{!$objectType.FieloEE__Rule__c.fields.FieloEE__StockControl__c.label}" />
+                        <apex:inputField id="stockValue" value="{!FieloEE__Rule__c.FieloEE__StockControl__c}"  />
+                    </apex:pageBlockSectionItem>
+
+                    <script>
+                        function analizeRewardFields(){
+                            var convertionType = document.getElementById('{!$Component.sectionType.convertionReward}');
+                            var pickReward = document.getElementById('page:form:pageBlock:pageBlockSectionInstantReward:sectionFormula:panelFormulaLabel_helpText-_help');                 
+                            var instantReward = document.getElementById('{!$Component.sectionFormula.panelReward}');
+                            var availableFields = document.getElementById('{!$Component.sectionFormula.actionFieldsReward}');
+                            var label = document.getElementById('{!$Component.sectionFormula.formulaLabel}');
+                            var stockLabel = document.getElementById('{!$Component.stockControl.stockLabel}');
+                            var stockValue = document.getElementById('{!$Component.stockControl.stockValue}');
+                                
+                            switch(convertionType.value){
+                                case 'Fix Value':
+                                    availableFields.style.display = 'none';                                
+                                    instantReward.style.display = 'inline';   
+                                    stockLabel.style.display = 'inline';     
+                                    stockValue.style.display = 'inline';  
+                                    label.style.display = 'inline';
+                                    pickReward.style.display = 'inline';
+                                    break;
+                                case 'Reward Field':
+                                    availableFields.style.display = 'inline';                                
+                                    instantReward.style.display = 'none';  
+                                    stockLabel.style.display = 'inline';     
+                                    stockValue.style.display = 'inline';  
+                                    label.style.display = 'inline';
+                                    pickReward.style.display = 'inline';
+                                    break;
+                                default:
+                                    availableFields.style.display = 'none';                                
+                                    instantReward.style.display = 'none';                                  
+                                    label.style.display = 'none';
+                                    stockLabel.style.display = 'none';     
+                                    stockValue.style.display = 'none'; 
+                                    pickReward.style.display = 'none';    
+                                    break;
+                            }
+
+                        }
+                    </script>                    
+                </apex:pageBlockSection>
+            </div>
+            <script>
+                showActions(document.getElementById('{!$Component.information.ruleMode}')); 
+                analizePointFields();
+                analizeRewardFields();                
+            </script> 
+        </apex:pageBlock>        
+    </apex:form> 
+</apex:page>

@@ -1,0 +1,5 @@
+<apex:page standardController="FieloEE__RedemptionItem__c" >
+    <apex:pageBlock >
+        <apex:outputText value="{!$Label.fieloee__errorredemptionclosed}" />
+    </apex:pageBlock>
+</apex:page>

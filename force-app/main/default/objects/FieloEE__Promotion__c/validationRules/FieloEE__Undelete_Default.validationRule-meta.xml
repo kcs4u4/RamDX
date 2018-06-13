@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Undelete_Default</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISNULL(FieloEE__InitialDate__c )  &amp;&amp;
+ISNULL( FieloEE__FinalDate__c )</errorConditionFormula>
+    <errorMessage>Can not delete the Default Promotion</errorMessage>
+</ValidationRule>

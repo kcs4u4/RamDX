@@ -1,0 +1,5 @@
+<apex:page standardController="FieloEE__Tag__c" >
+    <div style="margin:0 auto 0 auto;">
+        <c:PhotoUpload myObject="{!FieloEE__Tag__c}" saveInRecordField="true" attachField="AttachmentId__c" info="{!$Label.fieloee__infotagchangephoto}" />                
+    </div>
+</apex:page>

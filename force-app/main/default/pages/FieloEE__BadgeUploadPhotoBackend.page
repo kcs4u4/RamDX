@@ -1,0 +1,5 @@
+<apex:page standardController="FieloEE__Badge__c" >   
+    <div style="margin:0 auto 0 auto;">
+        <c:PhotoUpload myObject="{!FieloEE__Badge__c}" saveInRecordField="true" attachField="AttachmentId__c" />             
+    </div>
+</apex:page>

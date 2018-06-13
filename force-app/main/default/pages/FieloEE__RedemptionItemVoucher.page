@@ -1,0 +1,77 @@
+<apex:page Controller="FieloEE.RedemptionItemVoucherController"  sidebar="false" showHeader="false" standardStylesheets="false"  renderAs="pdf">
+<!--<apex:page Controller="RedemptionItemVoucherController"  sidebar="false" showHeader="false" standardStylesheets="false">-->
+
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'voucher.css')}" />
+    <apex:variable var="newUI" value="newSkinOn"  rendered="{!(voucherCustomVoucher != null)}">
+        <apex:stylesheet value="{!URLFOR($Action.Document.Download, voucherCustomVoucher)}" />
+    </apex:variable>
+
+    <apex:variable var="cont" value="1" />
+
+    <apex:repeat value="{!Vouchers}" var="v" >
+        <apex:panelGroup rendered="{!VALUE(cont) > 1}" >
+            <div style="page-break-after:always;"><!-- Salto de pagina --></div>
+        </apex:panelGroup>
+
+        <div class="contentVoucher" style="width:670px; font-size:20px; color:#000000;">
+            <div class="panelTop clearfix">
+                <!--imagen logo-->
+                <div class="logo left">
+                    <apex:image styleClass="logoCustom" rendered="{!!ISNULL(imageId)}" value="{!IF(LEFT(imageId,3) == '00P', URLFOR($Action.Attachment.Download, imageId), IF(LEFT(imageId,3) == '015', URLFOR($Action.Document.Download, imageId), URLFOR($Resource.FieloEE__Templates, imageId)))}" />
+
+                    <apex:image styleClass="logoDefault"  rendered="{!ISNULL(imageId)}" value="{!URLFOR($Resource.FieloEE__images, 'logo/fielo-000000.png')}" />
+                </div>
+                <!--Codigo de barras-->
+                <div class="barCode right">
+                    <apex:panelGroup rendered="{!program.FieloEE__ShowVoucherCode__c}" >
+                        <c:BarCode Value="{!v.redemptionItem.FieloEE__UniqueCode__c}"/>
+                        <div style="height: 24px;margin-top: 46px;"><apex:outputText Value="{!v.redemptionItem.FieloEE__UniqueCode__c}" style="font-size:20px;" /></div>
+                    </apex:panelGroup>
+                </div>
+            </div>
+            <div class="infoVoucher clearfix">
+                <!--imagen premio-->
+                <div class="image left" style="border:none">
+                    <!--<apex:image value="{!URLFOR($Action.Attachment.Download, v.imageId)}"  rendered="{!NOT(ISBLANK(v.imageId))}"/>-->
+
+                    <apex:panelGroup layout="none" rendered="{!NOT(ISBLANK(v.imageId))}">
+                        <!-- no se cachea la imagen con el https como en otros lados porque al renderizar esta página como PDF hace que no se vea la imagen-->
+                        <img src="{!IF(LEFT(v.imageId,3) == '00P', URLFOR($Action.Attachment.Download, v.imageId), IF(LEFT(v.imageId,3) == '015', URLFOR($Action.Document.Download, v.imageId),URLFOR($Resource.Images, v.imageId)))}" />
+                    </apex:panelGroup>
+
+
+                </div>
+
+                <!--datos premio -->
+                <div class="info left">
+                    <apex:repeat value="{!$ObjectType.FieloEE__RedemptionItem__c.FieldSets.FieloEE__Voucher}" var="f">
+                        <div class="{!SUBSTITUTE($ObjectType.FieloEE__RedemptionItem__c.Fields[f].label, ' ', '')}">
+                            <apex:outputLabel value="{!$ObjectType.FieloEE__RedemptionItem__c.Fields[f].label}:"/>&nbsp;<apex:outputField value="{!v.redemptionItem[f]}"/>
+                        </div>
+                    </apex:repeat>
+                    <apex:panelGroup rendered="{!v.redemptionItem.Reward__r.FieloEE__UniqueVoucher__c}">
+                        <apex:outputLabel value="{!$ObjectType.FieloEE__RedemptionItem__c.Fields.FieloEE__Quantity__c.label}:"/>&nbsp;<apex:outputField value="{!v.redemptionItem.FieloEE__Quantity__c}"/>
+                    </apex:panelGroup>
+                </div>
+            </div>
+        </div>
+        <apex:panelGrid style="margin-top:15px; font-size:20px; color:#000000; font-family:Helvetica;">
+            <!-- Instrucciones Reward -->
+            <apex:panelGroup >
+                         <apex:outputText value="{!v.instructionsReward}" escape="false"/>
+            </apex:panelGroup>
+        </apex:panelGrid>
+
+        <apex:panelGrid style="margin:15px; font-size:20px; color:#000000; font-family:Helvetica;">
+            <!-- Instrucciones Generales -->
+        <apex:outputText value="{!v.instructionsVoucher}" escape="false"/>
+        </apex:panelGrid>
+
+
+<!--         <apex:panelGroup rendered="{!v.voucherNum  == 2}"> -->
+<!--             <br /><div style="page-break-after:always;"></div><br /> -->
+<!--         </apex:panelGroup> -->
+
+        <apex:variable var="cont" value="{!VALUE(cont)+1}" />
+    </apex:repeat>
+</apex:page>

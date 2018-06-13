@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PostTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <default>false</default>
+    <fields>Name</fields>
+    <fields>srinu__c</fields>
+    <fields>CreatedBy</fields>
+    <fields>Hello__c</fields>
+    <label>NewPostTest</label>
+</PostTemplate>

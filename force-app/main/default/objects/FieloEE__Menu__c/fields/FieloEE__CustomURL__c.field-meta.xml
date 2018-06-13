@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__CustomURL__c</fullName>
+    <deprecated>false</deprecated>
+    <description>An external or internal link to a customized page.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the URL to where you want to redirect. The link must be of the form http://www.domain.com.</inlineHelpText>
+    <label>Custom URL</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

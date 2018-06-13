@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__EditActionMenu__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Menu that handles record edition through page layout. Commonly is a menu that contains a CRUD component that references this page layout but it can also be a custom page.</inlineHelpText>
+    <label>Edit Action Menu</label>
+    <referenceTo>FieloEE__Menu__c</referenceTo>
+    <relationshipLabel>Edit Actions from Page Layouts</relationshipLabel>
+    <relationshipName>PageLayoutEditAction</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

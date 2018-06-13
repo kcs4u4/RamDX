@@ -1,0 +1,54 @@
+<apex:page standardController="Contact" Extensions="FieloEE.ContactConvertionExtension" recordSetVar="contacts">
+    <apex:sectionHeader title="{!$ObjectType.Contact.LabelPlural}" subtitle="{!$Label.fieloee__convertcontacts}"/>
+    
+    <apex:pageBlock >
+        <apex:form >
+            <apex:pageBlockSection columns="1">
+                <apex:outputText value="{!$Label.fieloee__convertcontactinfo}" rendered="{!!converted}"/>
+                <apex:selectList value="{!programId}" multiselect="false" size="1" rendered="{!!converted}">
+                    <apex:selectOptions value="{!programs}"/>
+                </apex:selectList>
+                
+                <apex:commandButton value="{!$Label.fieloee__convertcontacts}" action="{!convert}" rendered="{!!converted}"/>
+                <apex:commandButton value="{!$Label.fieloee__back}" action="{!goToContacts}" rendered="{!converted && !(contactErrorsId.size > 0 || !ISNULL(generalMessage))}"/>            
+            </apex:pageBlockSection>            
+            <apex:pageBlockSection columns="1" rendered="{!contactErrorsId.size > 0 || !ISNULL(generalMessage)}">                                
+                <!-- No contacts -->
+                <apex:panelGroup rendered="{!!ISNULL(generalMessage) && contactErrorsId.size < 1}">
+                    <div class="message warningM3" role="alert">
+                        <table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">
+                            <tbody><tr valign="top">
+                                <td><img alt="ERROR" class="msgIcon" src="/s.gif" title="ERROR"/></td>
+                                <td class="messageCell"><div class="messageText"><apex:outputText value="{!generalMessage}" /></div></td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                </apex:panelGroup>
+                
+                <!-- Errors -->
+                <apex:panelGroup rendered="{!contactErrorsId.size > 0}">                    
+                    <apex:outputText value="{!generalMessage}" />
+                    <div class="message errorM3" role="alert">
+                        <table border="0" cellpadding="0" cellspacing="0" class="messageTable" style="padding:0px;margin:0px;">
+                            <tbody><tr valign="top">
+                                <td><img alt="ERROR" class="msgIcon" src="/s.gif" title="ERROR"/></td>
+                                <td class="messageCell">
+                                    <div class="messageText">
+                                        <h4><apex:outputText value="{!$Label.fieloee__convertcontactserrors}" /></h4>
+                                        <ul style="padding-left:10px">
+                                            <apex:repeat value="{!contactErrorsId}" var="contactId" >
+                                                <li><apex:outputText value="{!results[contactId]}"/></li>
+                                            </apex:repeat>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+                </apex:panelGroup>
+                
+                <apex:commandButton value="{!$Label.fieloee__back}" action="{!goToContacts}" rendered="{!converted}"/>
+            </apex:pageBlockSection>
+        </apex:form>
+    </apex:pageBlock>
+</apex:page>

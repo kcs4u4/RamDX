@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__CPF_Validation</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(  ISPICKVAL( FieloEE__IdentificationType__c , &#39;CPF&#39; ) , NOT(
+OR(
+  LEN( FieloEE__IdentificationCode__c ) = 0,
+  AND(
+   LEN(FieloEE__IdentificationCode__c) = 14,
+   CONTAINS("0123456789", LEFT(FieloEE__IdentificationCode__c, 1)),
+   CONTAINS("0123456789", MID(FieloEE__IdentificationCode__c, 2, 1)),
+   CONTAINS("0123456789", MID(FieloEE__IdentificationCode__c, 3, 1)),
+   MID(FieloEE__IdentificationCode__c, 4, 1) = ".",
+   CONTAINS("0123456789", MID(FieloEE__IdentificationCode__c, 5, 1)),
+   CONTAINS("0123456789", MID(FieloEE__IdentificationCode__c, 6, 1)),
+   CONTAINS("0123456789", MID(FieloEE__IdentificationCode__c, 7, 1)),
+   MID(FieloEE__IdentificationCode__c, 8, 1) = ".",
+   CONTAINS("0123456789", MID(FieloEE__IdentificationCode__c, 9, 1)),
+   CONTAINS("0123456789", MID(FieloEE__IdentificationCode__c, 10, 1)),
+   CONTAINS("0123456789", MID(FieloEE__IdentificationCode__c, 11, 1)),
+   MID(FieloEE__IdentificationCode__c, 12, 1) = "-",
+   CONTAINS("0123456789", MID(FieloEE__IdentificationCode__c, 13, 1)),
+   CONTAINS("0123456789", MID(FieloEE__IdentificationCode__c, 14, 1))
+))))</errorConditionFormula>
+    <errorMessage>invalid CPF  999.999.999-99
+Ex.: 478.497.338-94</errorMessage>
+</ValidationRule>

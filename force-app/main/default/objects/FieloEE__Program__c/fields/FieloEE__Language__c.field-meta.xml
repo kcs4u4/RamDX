@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Language__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Language</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>en_US</fullName>
+                <default>false</default>
+                <label>en_US</label>
+            </value>
+            <value>
+                <fullName>es</fullName>
+                <default>false</default>
+                <label>es</label>
+            </value>
+            <value>
+                <fullName>pt_BR</fullName>
+                <default>false</default>
+                <label>pt_BR</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

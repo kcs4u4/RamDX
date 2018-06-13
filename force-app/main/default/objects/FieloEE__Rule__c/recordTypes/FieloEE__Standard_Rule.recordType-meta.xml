@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Standard_Rule</fullName>
+    <active>true</active>
+    <label>Standard Rule</label>
+    <picklistValues>
+        <picklist>FieloEE__ConvertionTypeReward__c</picklist>
+        <values>
+            <fullName>Fix Value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Reward Field</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloEE__ConvertionTypeTransaction__c</picklist>
+        <values>
+            <fullName>Factor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fix Value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Multiplier</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>FieloEE__Type__c</picklist>
+        <values>
+            <fullName>Best Option</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Competition</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+</RecordType>

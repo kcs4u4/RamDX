@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Tablet__c</fullName>
+    <defaultValue>true</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Checking this option will make this menu show in a tablet computer.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this option for making this menu visible on a tablet computer.</inlineHelpText>
+    <label>Tablet</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

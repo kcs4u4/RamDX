@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Age__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Age of the member</description>
+    <externalId>false</externalId>
+    <formula>IF ( OR ( MONTH (  FieloEE__Birthdate__c  ) &gt; MONTH (TODAY()), AND( MONTH ( FieloEE__Birthdate__c ) = MONTH (TODAY()), DAY ( FieloEE__Birthdate__c ) &gt;= DAY (TODAY()+1))), YEAR (TODAY()) - YEAR ( FieloEE__Birthdate__c ) -1, YEAR (TODAY()) - YEAR ( FieloEE__Birthdate__c ))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Enter the age of the member.</inlineHelpText>
+    <label>Age</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__CSS__c</fullName>
+    <deprecated>false</deprecated>
+    <description>CSS code to modify the look and formatting of this menu.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter a CSS code for this menu.</inlineHelpText>
+    <label>CSS</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

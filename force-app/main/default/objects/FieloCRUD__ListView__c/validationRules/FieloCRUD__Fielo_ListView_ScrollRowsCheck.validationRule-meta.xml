@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__Fielo_ListView_ScrollRowsCheck</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( NOT(FieloCRUD__ScrollTable__c) ,  NOT(ISNULL(FieloCRUD__ScrollRows__c)) )</errorConditionFormula>
+    <errorDisplayField>FieloCRUD__ScrollTable__c</errorDisplayField>
+    <errorMessage>In order to set scroll rows, scroll table must be checked</errorMessage>
+</ValidationRule>

@@ -1,0 +1,39 @@
+<apex:page standardController="FieloEE__News__c" extensions="FieloEE.NewsViewExtensions"  showHeader="false"  sidebar="false"> 
+<apex:composition template="{!$Site.template}">
+        <apex:define name="body">
+            <apex:form >
+                <div class="newView">
+                    <div class="newViewTitle">
+                        <apex:outputField value="{!FieloEE__News__c.FieloEE__Title__c}"/>
+                    </div>
+                    <apex:repeat value="{!viewFieldSet}" var="f">
+                        <td>
+                            <apex:outputField value="{!FieloEE__News__c[f]}"/>
+                        </td>
+                    </apex:repeat>
+                    
+                    <div class="pagination pagination-centered" >
+                        <ul>
+                            <li>
+                                <apex:outputLink value="{!$CurrentPage.Parameters.ReturnUrl}">{!$Label.fieloee__back}</apex:outputLink>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <apex:panelGroup rendered="{!NOT(ISBLANK(member.id))}">
+                             <table >
+                                <tr>
+                                    <td>
+                                        <apex:commandLink action="{!doLikeIt}" styleClass="{!IF(likeIt, 'socialOn', 'socialOff')}">
+                                            <i class="icon-thumbs-up icon-large"></i>
+                                        </apex:commandLink>
+                                    </td>
+                                </tr>
+                            </table>
+                            </apex:panelGroup>
+            </apex:form>
+            
+            <c:Comments pageRedirect="NewsView" ></c:Comments>
+        </apex:define>
+    </apex:composition>
+</apex:page>

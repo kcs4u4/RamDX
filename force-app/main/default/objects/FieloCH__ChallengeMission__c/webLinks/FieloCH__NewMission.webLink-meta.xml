@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__NewMission</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>New Mission</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>{!REQUIRESCRIPT("/soap/ajax/28.0/connection.js")}
+
+if({!FieloCH__Challenge__c.FieloCH__IsActive__c} == 1){
+    alert(&#39;{!$Label.fieloch__infocannotaddmissions}&#39;);
+}else{
+    window.location = "{!URLFOR($Action.FieloCH__Mission__c.New)}";
+}</url>
+</WebLink>

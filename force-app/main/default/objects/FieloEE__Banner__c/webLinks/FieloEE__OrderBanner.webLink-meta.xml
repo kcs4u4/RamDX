@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__OrderBanner</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Order Banner</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url>{!IF( ISNULL(FieloEE__Component__c.Id)||  ISBLANK(FieloEE__Component__c.Id)  , URLFOR("/apex/" + $Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c + "BannerOrderBackEnd"), URLFOR("/apex/" +  $Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c + "BannerOrderBackEnd", null, [&#39;id&#39; = FieloEE__Component__c.Id]))}</url>
+</WebLink>

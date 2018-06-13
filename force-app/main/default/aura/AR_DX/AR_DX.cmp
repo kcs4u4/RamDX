@@ -1,0 +1,35 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <ltng:require scripts="/resource/jquery,/resource/momentjs,/resource/aljs" afterScriptsLoaded="{!c.scriptsLoaded}" />
+    <div aura:id="main">
+        <div class="slds-container_medium devhub-mg-container">    
+            <div class="slds-tabs--default" data-aljs="tabs">
+                <ul class="slds-tabs--default__nav" role="tablist">
+                    <li class="slds-tabs--default__item slds-text-heading--label" title="Item One" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0)" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" data-aljs-show="tab-default-1">Hub Management</a></li>
+                    <li class="slds-tabs--default__item slds-text-heading--label" title="Item Two" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0)" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" data-aljs-show="tab-default-2">Salesforce Orgs</a></li>
+                    <li class="slds-tabs--default__item slds-text-heading--label" title="Item Three" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0)" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" data-aljs-show="tab-default-3">VC Repository</a></li>
+                    <li class="slds-tabs--default__item slds-text-heading--label" title="Item One" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0)" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-4" data-aljs-show="tab-default-4">EZ_Commit</a></li>
+                    <li class="slds-tabs--default__item slds-text-heading--label" title="Item Two" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0)" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-5" data-aljs-show="tab-default-5">ScratchOrgs</a></li>
+                    <li class="slds-tabs--default__item slds-text-heading--label" title="Item Three" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0)" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-6" data-aljs-show="tab-default-6">Load MetaData</a></li>
+                </ul>
+                <div id="tab-default-1" class="slds-tabs--default__content slds-hide" role="tabpanel">
+                    <h2>Hub Management</h2>
+                </div>
+                <div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel">
+                    <h2>Salesforce Orgs</h2>
+                </div>
+                <div id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel">
+                    <h2>VC Repository</h2>
+                </div>
+                <div id="tab-default-4" class="slds-tabs--default__content slds-hide" role="tabpanel">
+                    <h2>EZ_Commit</h2>
+                </div>
+                <div id="tab-default-5" class="slds-tabs--default__content slds-hide" role="tabpanel">
+                    <h2>ScratchOrgs</h2>
+                </div>
+                <div id="tab-default-6" class="slds-tabs--default__content slds-hide" role="tabpanel">
+                    <h2>Load MetaData</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</aura:component>

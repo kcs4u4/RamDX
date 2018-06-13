@@ -1,0 +1,9 @@
+<apex:page standardController="FieloCH__ChallengeMission__c" >
+    <apex:form >
+        <apex:actionfunction name="redirect" action="{!URLFOR($Action.Mission__c.Edit, ChallengeMission__c.Mission2__c, [retURL=$CurrentPage.parameters.retURL])}" />
+    </apex:form>
+    <script>
+        redirect();
+    </script>
+    <apex:outputField value="{!FieloCH__ChallengeMission__c.FieloCH__Mission2__c}" />
+</apex:page>

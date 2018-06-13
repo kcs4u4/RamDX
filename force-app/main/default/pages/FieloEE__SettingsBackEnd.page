@@ -1,0 +1,111 @@
+<apex:page sidebar="true" standardController="FieloEE__Program__c" id="page" extensions="FieloEE.SettingsBackEndController" tabStyle="Settings__tab" action="{!redirectDefaultProgram}" >
+    <apex:form >
+        <apex:pageBlock title="{!program.Name}" mode="edit">
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!doSave}" value="{!$Label.fieloee__save}"/>
+                <apex:commandButton action="{!cancel}" value="{!$Label.fieloee__cancel}"/>
+            </apex:pageBlockButtons>
+
+            <apex:pageBlockSection title="{!$Label.fieloee__programadvanceexpirationmode}" columns="1">
+                <apex:pageBlockSectionItem helpText="{!$ObjectType.FieloEE__Program__c.fields['ExpirationMode__c'].InlineHelpText}">
+                    <apex:outputLabel value="{!$ObjectType.FieloEE__Program__c.fields['ExpirationMode__c'].Label}:" />
+                    <apex:selectList id="expirationTypes" value="{!program.FieloEE__ExpirationMode__c}" size="1" onchange="renderExpirationValueOrDetail(this.value);" >
+                        <apex:selectOptions value="{!expirationTypes}" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel id="typeDetailsLabel" value="{!$Label.fieloee__type}:" />
+                    <apex:selectList id="typeDetails" value="{!expirationTypeDetail}" size="1" >
+                        <apex:selectOptions value="{!partialDetails}" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel id="expirationLabel" value="{!$ObjectType.FieloEE__Program__c.fields['ExpirationPeriod__c'].Label}:" />
+                    <apex:inputField id="inputExpirationPeriod" value="{!program.FieloEE__ExpirationPeriod__c}" />
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+
+            <apex:pageblockSection title="{!$Label.fieloee__programadvancelanguage}" >
+                <!--<apex:inputField value="{!FieloEE__Program__c.FieloEE__Language__c}" />-->
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.FieloEE__Program__c.fields.FieloEE__Language__c.Label}:" />
+                    <apex:selectList value="{!FieloEE__Program__c.FieloEE__Language__c}" size="1" >
+                        <apex:selectOptions value="{!languages}" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.FieloEE__Program__c.fields.FieloEE__Locale__c.Label}:" />
+                    <apex:selectList value="{!FieloEE__Program__c.FieloEE__Locale__c}" size="1" >
+                        <apex:selectOptions value="{!locales}" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.FieloEE__Program__c.fields.FieloEE__TimeZone__c.Label}:" />
+                    <apex:selectList value="{!FieloEE__Program__c.FieloEE__TimeZone__c}" size="1" >
+                        <apex:selectOptions value="{!timeZones}" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageblockSection>
+
+            <apex:pageblockSection title="{!$Label.fieloee__programadvancetemplate}" >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="{!$ObjectType.FieloEE__Program__c.fields.FieloEE__EmailTemplateRegister__c.Label}:" />
+                    <apex:selectList value="{!FieloEE__Program__c.FieloEE__EmailTemplateRegister__c}" size="1" >
+                        <apex:selectOptions value="{!templates}" />
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageblockSection>
+        </apex:pageBlock>
+    </apex:form>
+    
+        <script>
+            var previousOnLoad = window.onload;
+            window.onload = function() {
+                if (previousOnLoad) {
+                    previousOnLoad();
+                }
+                var expirationMode = '{!program.FieloEE__ExpirationMode__c}';
+                var lista = document.getElementById("page:j_id0:j_id1:j_id5:j_id6:expirationTypes");
+                for(i = 0; i < lista.length; i++){
+                    if(expirationMode.indexOf(lista[i].value) >= 0){
+                        lista.selectedIndex = i;
+                    }
+                }
+                renderExpirationValueOrDetail(expirationMode);
+            };
+
+            function renderExpirationValueOrDetail(expirationMode){
+                var inputExpirationPeriod = document.getElementById("page:j_id0:j_id1:j_id5:j_id11:inputExpirationPeriod");
+                var labelExpirationPeriod = document.getElementById("page:j_id0:j_id1:j_id5:j_id11:expirationLabel");
+                var typeDetailsLabel = document.getElementById("page:j_id0:j_id1:j_id5:j_id9:typeDetailsLabel");
+                var typeDetails = document.getElementById("page:j_id0:j_id1:j_id5:j_id9:typeDetails");
+                if(expirationMode == 'Total'){
+                    inputExpirationPeriod.style.display = 'block';
+                    labelExpirationPeriod.style.display = 'block';
+                    typeDetailsLabel.style.display = 'none';
+                    typeDetails.style.display = 'none';
+                }else if(expirationMode == 'Partial -' || expirationMode == 'Partial - Expiration' || expirationMode == 'Partial - Created'){
+                    inputExpirationPeriod.style.display = 'none';
+                    labelExpirationPeriod.style.display = 'none';
+                    typeDetailsLabel.style.display = 'block';
+                    typeDetails.style.display = 'block';
+
+                    for(i = 0; i < typeDetails.length; i++){
+                        if(expirationMode.indexOf(typeDetails[i].value) >= 0){
+                            typeDetails.selectedIndex = i;
+                        }
+                    }
+
+                }else{
+                    inputExpirationPeriod.style.display = 'none';
+                    labelExpirationPeriod.style.display = 'none';
+                    typeDetailsLabel.style.display = 'none';
+                    typeDetails.style.display = 'none';
+                }
+            }
+        </script>
+</apex:page>

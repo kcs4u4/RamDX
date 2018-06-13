@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ValidateTransactionValue</fullName>
+    <active>false</active>
+    <errorConditionFormula>FieloEE__Value__c = 0 &amp;&amp; ISPICKVAL(FieloEE__Type__c, &#39;Purchase&#39; )</errorConditionFormula>
+    <errorDisplayField>FieloEE__Value__c</errorDisplayField>
+    <errorMessage>Value cannot be 0</errorMessage>
+</ValidationRule>

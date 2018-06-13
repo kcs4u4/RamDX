@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Closed</fullName>
+    <columns>NAME</columns>
+    <columns>FieloEE__Member__c</columns>
+    <columns>FieloEE__Origin__c</columns>
+    <columns>FieloEE__Points__c</columns>
+    <columns>FieloEE__Price__c</columns>
+    <columns>FieloEE__Status__c</columns>
+    <columns>FieloEE__TotalItems__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>FieloEE__Status__c</field>
+        <operation>equals</operation>
+        <value>Close</value>
+    </filters>
+    <label>Closed</label>
+    <language>en_US</language>
+</ListView>

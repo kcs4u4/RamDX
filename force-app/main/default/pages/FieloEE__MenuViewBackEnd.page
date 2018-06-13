@@ -1,0 +1,560 @@
+<apex:page standardController="FieloEE__Menu__c" extensions="FieloEE.MenuViewBackEndExtensions" action="{!initPreview}">
+  <!-- Bootstrap -->
+  <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+  <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'FontAwesome/css/font-awesome.css')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+  <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+  <!-- Fin Bootstrap -->
+  <apex:pageMessages />
+  <chatter:feedWithFollowers entityId="{!FieloEE__Menu__c.Id}" showHeader="true" />
+  <apex:detail relatedList="false" />
+  <apex:relatedList list="Menu__r" rendered="{!(FieloEE__Menu__c.RecordType.DeveloperName == 'Menu')}" />
+  <apex:relatedList list="SegmentDomain__r" />
+  <apex:relatedList list="Sections__r" rendered="{!$CurrentPage.parameters.sections != ''}" />
+
+  <style>
+    label   { font-size:10px; }
+    i   { border:1px solid transparent; }
+    .icon_comp          { float:left; }
+    .text_comp          { float:left; font-size:13px; font-weight:bold; color:#333333; }
+    .info_comp          { color:#666666 !important; }
+    .list-container     { width:140px; margin:0 auto; }
+
+    .fielosf-hide {
+      display: none;
+    }
+    
+    .fielosf-add-component__button {
+      width: 120px;
+      margin: 10px auto 0;
+      text-align: center;
+      line-height: 24px;
+      cursor: pointer;
+      font-weight: bold;
+      border: 1px solid #bdbdbf;
+      border-radius: 10px;
+      padding: 5px;
+    }
+    .fielosf-add-component__button:hover {
+      border-color: #b0c7ce;
+      color: #054850;
+      background-color: #e9f7f9;
+    }
+    .fielosf-add-component__backdrop {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: rgba(65, 82, 117, 0.27);
+      top: 0;
+      left: 0;
+      z-index: 99;
+    }
+    .fielosf-add-component__container {
+      position: fixed;
+      top: 10%;
+      left: calc(50% - 230px);
+      width: 460px;
+      height: 70%;
+      background: #f8f9f9;
+      border: 1px solid #b3b7bf;
+      border-radius: 10px;
+      z-index: 99;
+    }
+
+    .fielosf-add-component__close {
+      font-size: 22px;
+      position: absolute;
+      right: 5px;
+      margin-top: 3px;
+      color: #bda6a6;
+      cursor: pointer;
+      padding: 0px 5px;
+    }
+
+    .fielosf-add-component__close:hover {
+      color:#d24343;
+    }
+
+    .fielosf-add-component__title {
+      text-align: center;
+      padding: 5px 0;
+      font-size: 14px;
+      margin: 16px 20px 0px;
+    }
+
+    .fielosf-add-component__tabs {
+      overflow: hidden;
+      list-style: none;
+      margin: 2px 20px 10px;
+      border-bottom: 1px solid #c9cacc;
+    }
+    .fielosf-add-component__tabs-item {
+      float: left;
+      cursor: pointer;
+      margin: 10px;
+      padding: 0 5px 2px 5px;
+      line-height: 20px;
+      text-transform: uppercase;
+    }
+    .fielosf-add-component__tabs-item:hover {
+      border-bottom: 2px solid black;
+      padding-bottom: 0;
+    }
+    .fielosf-add-component__tabs-item.fielosf-active {
+      border-bottom: 2px solid #5073e4;
+      padding-bottom: 0;
+    }
+    
+    .fielosf-add-component__search {
+      text-align: left;
+      padding: 0 0 10px;
+      margin: 0 20px;
+    }
+
+    .fielosf-add-component__search i {
+      position: absolute;
+      right: 30px;
+      margin-top: 7px;
+      color: #c7cbd5;
+    }
+
+    .fielosf-add-component__search-input {
+      width: calc(100% - 24px);
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 5px;
+      border: 1px solid #d4d4d4;
+    }
+
+    .fielosf-add-component__list {
+      overflow: hidden;
+      margin: 0px 20px 0;
+      overflow-y: scroll;
+      height: calc(100% - 140px);
+      list-style: none;
+    }
+    .fielosf-add-component__list-item {
+      margin: 0px 0 6px 0px;
+      line-height: 14px;
+    }
+    .fielosf-add-component__list-item i:before {
+      width: 18px;
+      margin: 0 0 6px 5px;
+    }
+    .fielosf-add-component__list-item a {
+      text-decoration: none;
+    }
+    .fielosf-add-component__list-item a:hover {
+      text-decoration: underline;
+    }
+    /* Oculto templates */
+    .fielosf-add-component__tabs {
+      display: none;
+    }
+  </style>
+  <style id="css-custom">
+    /* Bootsrap fixes for Fielo Backend */
+    body {
+    font-size: 75%;
+    line-height: initial;
+    }
+    img {
+    vertical-align: initial;
+    max-width: initial;
+    }
+    form {
+    margin: initial;
+    }
+    h2 {
+    font-size: initial;
+    }
+    h1,
+    h2,
+    h3 {
+    line-height: initial;
+    }
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+    margin: initial;
+    font-size: 100%;
+    }
+    a {
+    color: #333435;
+    text-decoration: underline;
+    }
+    .btn {
+    line-height: initial;
+    }
+    label,
+    input,
+    button,
+    select,
+    textarea {
+    line-height: initial;
+    }
+    input[type="file"],
+    input[type="image"],
+    input[type="submit"],
+    input[type="reset"],
+    input[type="button"],
+    input[type="radio"],
+    input[type="checkbox"] {
+    width: initial;
+    }
+    input, textarea,
+    .uneditable-input {
+    width: initial;
+    }
+    .mruIcon.userDefinedImage {width: 16px;height: 16px;}
+    .banner img {
+    max-width: 100%;
+    }
+  </style>
+  <apex:form >
+    <!--rendered="{!ShowComponents}" -->
+    <apex:pageBlock id="menuPrevisualization" title="{!$Label.fieloee__menuview}">
+      <apex:pageBlockSection collapsible="false" columns="1">
+        <apex:pageBlockSectionItem >
+          <apex:panelGroup layout="none">
+            <div class="fielosf-preview-mode">
+              <apex:selectRadio value="{!previewMode}">
+                <apex:selectOption itemValue="Wireframe" itemLabel="Wireframe"  />
+                <apex:selectOption itemValue="Live" itemLabel="Live"  />
+              </apex:selectRadio>
+            </div>
+
+            <div class="fielosf-preview-options disabled">
+              <span class="fielosf-preview-options__program-id fielosf-hide">{!menu.FieloEE__Program__c}</span>
+              <label class="fielosf-preview-options__overlay-label">Overlay 
+                <apex:selectList value="{!previewOverlay}" size="1" styleClass="fielosf-preview-options__overlay-input">
+                    <apex:selectOption itemValue="Hover" itemLabel="Hover"  />
+                    <apex:selectOption itemValue="All" itemLabel="All"  />
+                    <apex:selectOption itemValue="Disabled" itemLabel="Disabled"  />
+                </apex:selectList>
+              </label>
+              <label class="fielosf-preview-options__height-label">Height<apex:inputText styleclass="fielosf-preview-options__height-input"  value="{!previewHeight}"/></label>
+              <label class="fielosf-preview-options__language-label">{!$Label.fieloee__language}
+                <apex:selectList value="{!previewLanguage}" size="1" styleClass="fielosf-preview-options__language-input">
+                    <apex:selectOptions value="{!previewLanguages}"/>
+                </apex:selectList>
+              </label>              
+              <div class="fielosf-preview-options__overlay"></div>
+              <div class="fielosf-preview-segment">
+                <a class="btn" href="{!$Page.PreviewSegmentSelection}?programId={!Menu__c.Program__c}&retURL={!$Page.MenuViewBackEnd}?Id={!FieloEE__Menu__c.Id}" >{!$Label.SegmentSelection}</a>
+              </div>
+            </div>
+          </apex:panelGroup>
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+      <apex:pageBlockSection collapsible="false" columns="1">
+        <apex:pageBlockSectionItem >
+          <iframe id="livePreview" src="" scrolling="no" ></iframe>
+        </apex:pageBlockSectionItem>
+        <apex:pageBlockSectionItem >
+          <apex:panelGroup styleClass="fielosf-wireframe" layout="block">
+            <apex:repeat value="{!sections}" var="s">
+              <apex:variable value="0" var="Qcomponents"/>
+              <div style="position:relative; margin-top:10px; border:5px solid #eeeeee; padding:10px;">
+                <div class="row-fluid" style="padding-top: 10px;">
+                  <apex:repeat value="{!componentsSection[s.Id]}"  var="subSection" >
+                    <div class="span{!subSection.Type__c}">
+                      <!-- Empty Section -->
+                      <apex:repeat value="{!subSection.Components__r}"  var="c" >
+                        <apex:variable value="{!VALUE(Qcomponents)+1}" var="Qcomponents"/>
+                      </apex:repeat>
+                      <!-- Empty Section -->
+                      <apex:repeat value="{!subSection.Components__r}"  var="c" >
+                        <div style="margin-top:5px; border:3px solid #dddddd; padding:10px;" data-component-id="{!c.Id}">
+                          <div style="overflow:auto; border-bottom:1px solid #eeeeee; padding-bottom:5px;">
+                            <div class="icon_comp">
+                              <c:ICOcomponents component="{!LOWER(c.RecordType.Name)}" />
+                            </div>
+                            <div class="text_comp">{!JSENCODE(c.Name)}</div>
+                            <div style="float:right; margin:0 4px;">
+                              <apex:commandLink onclick="if(!confirm('{!$Label.fieloee__areyousure}')) return false;" action="{!deleteComponent}" styleClass="fielosf-delete">
+                                <i class="icon-trash icon-large"></i>
+                                <apex:param name="componentId" value="{!c.id}"/>
+                              </apex:commandLink>
+                            </div>
+                            <div style="float:right; margin:0 4px;">
+                              <apex:outputLink value="/{!c.id}?retURL=/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}MenuViewBackEnd?id={!menu.id}"><i class="icon-cogs icon-large"></i></apex:outputLink>
+                            </div>
+                          </div>
+                          <!-- RESPONSIVE DESIGN -->
+                          <div>
+                            <div style="float:left; margin-right:10px; font-weight:bold; text-align:center">{!$Label.ViewIn}</div>
+                            <label class="checkbox" style="float:left; margin-right:10px;">
+                              <apex:inputField value="{!c.Desktop__c}" >
+                                <apex:actionSupport event="onchange" action="{!changeAttributes}" rerender="pageBlock" >
+                                  <apex:param name="componentId" value="{!c.Id}" />
+                                  <apex:param name="desktopValue" value="{!c.Desktop__c}" />
+                                </apex:actionSupport>
+                              </apex:inputField>
+                              {!$Label.fieloee__desktop}
+                            </label>
+                            <label class="checkbox" style="float:left; margin-right:10px;">
+                              <apex:inputField value="{!c.Tablet__c}" >
+                                <apex:actionSupport event="onchange" action="{!changeAttributes}" rerender="pageBlock" >
+                                  <apex:param name="componentId" value="{!c.Id}" />
+                                  <apex:param name="tabletValue" value="{!c.Tablet__c}" />
+                                </apex:actionSupport>
+                              </apex:inputField>
+                              {!$Label.fieloee__tablet}
+                            </label>
+                            <label class="checkbox" style="float:left; margin-right:10px;">
+                              <apex:inputField value="{!c.Mobile__c}" >
+                                <apex:actionSupport event="onchange" action="{!changeAttributes}" rerender="pageBlock" >
+                                  <apex:param name="componentId" value="{!c.Id}" />
+                                  <apex:param name="mobileValue" value="{!c.Mobile__c}" />
+                                </apex:actionSupport>
+                              </apex:inputField>
+                              {!$Label.Mobile}
+                            </label>
+                          </div>
+                          <!-- RESPONSIVE DESIGN -->
+                          <div class="row-fluid">
+                            <div class="span12">
+                              <!-- Optional Name -->
+                              <apex:panelGroup rendered="{!c.OptionalName__c != ''}">
+                                <div style="overflow:auto">
+                                  <div style="float:left">
+                                    <apex:outputLabel value="Title"/>
+                                  </div>
+                                  <div style="float:left; margin-left:3px; color:#333333;">
+                                    <apex:outputText value="{!c.OptionalName__c}"/>
+                                  </div>
+                                </div>
+                              </apex:panelGroup>
+                            </div>
+                          </div>
+                        </div>
+                      </apex:repeat>
+                      <c:AddComponent section="{!s}" subsection="{!subSection}" menu="{!menu.id}"/>
+                    </div>
+                  </apex:repeat>
+                  <div style="position:absolute; top:4px; right:4px;">
+                    <apex:outputLink value="/{!s.id}?retURL=/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}MenuViewBackEnd?id={!menu.id}"><i class="icon-cogs icon-large"></i></apex:outputLink>
+                    <!-- Delete Empty Section -->
+                    <apex:panelGroup rendered="{!VALUE(Qcomponents)==0}">
+                      <apex:commandLink onclick="if(!confirm('{!$Label.fieloee__areyousure}')) return false;" action="{!deleteSection}" style="text-decoration:none;" title="{!$Label.fieloee__deletesection}">
+                        <i class="icon-trash icon-large"></i>
+                        <apex:param name="sectionId" value="{!s.id}"/>
+                      </apex:commandLink>
+                    </apex:panelGroup>
+                    <!-- Delete Empty Section -->
+                  </div>
+                </div>
+              </div>
+            </apex:repeat>
+            <div style="margin-top:10px; border:5px dashed #eeeeee; padding:10px;" class="pagination-centered">
+              <div>{!$Label.NewSection}</div>
+              <apex:commandLink action="{!createSection}" >
+                <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/one_column.jpg')}" />
+                <apex:param name="section" value="12"/>
+              </apex:commandLink>
+              <apex:commandLink action="{!createSection}" >
+                <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/two_column_right.jpg')}"/>
+                <apex:param name="section" value="3-9"/>
+              </apex:commandLink>
+              <apex:commandLink action="{!createSection}" >
+                <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/two_column_left.jpg')}"/>
+                <apex:param name="section" value="9-3"/>
+              </apex:commandLink>
+              <apex:commandLink action="{!createSection}" >
+                <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/three_columns_center.jpg')}"/>
+                <apex:param name="section" value="3-6-3"/>
+              </apex:commandLink>
+              <apex:commandLink action="{!createSection}" >
+                <apex:image value="{!URLFOR($Resource.FieloEE__images, 'sections/two_columns.jpg')}"/>
+                <apex:param name="section" value="6-6"/>
+              </apex:commandLink>
+            </div>
+          </apex:panelGroup>
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+    </apex:pageBlock>
+  </apex:form>
+  <script type="text/javascript">
+    (function() {
+      'use strict';
+
+      /**
+       * @description Constructor class for FieloAddComponents.
+       * Fielo Component activate preview functionalities
+       * Implements MDL patterns at
+       * {@link https://github.com/jasonmayes/mdl-component-design-pattern}
+       *
+       * @version 1
+       * @author Hugo Gómez Mac Gregor <hugo.gomez@fielo.com>
+       * @param {HTMLElement} element - Element to be upgraded
+       * @constructor
+       */
+      var FieloAddComponent = function FieloAddComponent(element) {
+        this.element_ = element;
+
+        // Initialize instance.
+        this.init();
+      };
+      window.FieloAddComponent = FieloAddComponent;
+
+      /**
+       * Defines all constants
+       * @enum {string | number}
+       * @private
+       */
+      FieloAddComponent.prototype.Constant_ = {};
+
+      /**
+       * Defines css classes
+       * @enum {string}
+       * @private
+       */
+      FieloAddComponent.prototype.CssClasses_ = {
+        HIDE: 'fielosf-hide',
+        ACTIVE: 'fielosf-active',
+        BUTTON: 'fielosf-add-component__button',
+        BACKDROP: 'fielosf-add-component__backdrop',
+        CONTAINER: 'fielosf-add-component__container',
+        CLOSE: 'fielosf-add-component__close',
+        TITLE: 'fielosf-add-component__title',
+        TABS: 'fielosf-add-component__tabs',
+        TABS_ITEM: 'fielosf-add-component__tabs-item',
+        TAB_COMPONENT: 'fielosf-add-component__tabs--component',
+        TAB_TEMPLATE: 'fielosf-add-component__tabs--template',
+        LIST: 'fielosf-add-component__list',
+        LIST_ITEM: 'fielosf-add-component__list-item',
+        LIST_COMPONENT: 'fielosf-add-component__list--is-component',
+        LIST_TEMPLATE: 'fielosf-add-component__list--is-template',
+        SEARCH: 'fielosf-add-component__search-input'
+      };
+
+      /**
+       * register Elements
+       */
+      FieloAddComponent.prototype.register_ = function() {
+        this.button_ =
+          this.element_.getElementsByClassName(this.CssClasses_.BUTTON)[0];
+        this.backdrop_ =
+          this.element_.getElementsByClassName(this.CssClasses_.BACKDROP)[0];
+        this.container_ =
+          this.element_.getElementsByClassName(this.CssClasses_.CONTAINER)[0];
+        this.close_ =
+          this.element_.getElementsByClassName(this.CssClasses_.CLOSE)[0];
+        this.title_ =
+          this.element_.getElementsByClassName(this.CssClasses_.TITLE)[0];
+        this.tabs_ =
+          this.element_.getElementsByClassName(this.CssClasses_.TABS)[0];
+        this.tabs_items_ =
+          this.element_.getElementsByClassName(this.CssClasses_.TABS_ITEM);
+        this.tab_component_ =
+          this.element_.getElementsByClassName(this.CssClasses_.TAB_COMPONENT)[0];
+        this.tab_template_ =
+          this.element_.getElementsByClassName(this.CssClasses_.TAB_TEMPLATE)[0];
+        this.list_ =
+          this.element_.getElementsByClassName(this.CssClasses_.LIST);
+        this.list_items_ =
+          this.element_.getElementsByClassName(this.CssClasses_.LIST_ITEM);
+        this.list_component_ =
+          this.element_.getElementsByClassName(this.CssClasses_.LIST_COMPONENT)[0];
+        this.list_template_ =
+          this.element_.getElementsByClassName(this.CssClasses_.LIST_TEMPLATE)[0];
+        this.search_ =
+          this.element_.getElementsByClassName(this.CssClasses_.SEARCH)[0];
+      };
+
+      /**
+       * Open / close modal
+       */
+      FieloAddComponent.prototype.toggleModal_ = function() {
+        this.backdrop_.classList.toggle(this.CssClasses_.HIDE);
+        this.container_.classList.toggle(this.CssClasses_.HIDE);
+        this.search_.focus();
+      };
+
+      /**
+       * Set the listener for every element
+       */
+      FieloAddComponent.prototype.setListeners_ = function() {
+        this.button_.addEventListener('click', this.toggleModal_.bind(this));
+        this.backdrop_.addEventListener('click', this.toggleModal_.bind(this));
+        this.close_.addEventListener('click', this.toggleModal_.bind(this));
+        // tabs items
+        [].forEach.call(this.tabs_items_, function(tab) {
+          tab.addEventListener('click', this.selectTab_.bind(this, tab));
+        }, this);
+
+        this.search_.addEventListener('input', this.filterItems_.bind(this));
+      };
+
+      /**
+       * Select as active tab
+       */
+      FieloAddComponent.prototype.selectTab_ = function(tab) {
+        // hide all tabs
+        [].forEach.call(this.tabs_items_, function(tab, index) {
+          tab.classList.remove(this.CssClasses_.ACTIVE);
+          this.list_[index].classList.add(this.CssClasses_.HIDE);
+        }, this);
+
+        // show tab selected
+        if (typeof tab === 'number') {
+          tab = this.tabs_items_[1 - tab];
+        }
+
+        tab.classList.add(this.CssClasses_.ACTIVE);
+        this.list_[tab.getAttribute('name')].classList.remove(this.CssClasses_.HIDE);
+        this.search_.focus();
+      };
+
+      /**
+       * Filter tabs items
+       */
+      FieloAddComponent.prototype.filterItems_ = function(tab) {
+        if (this.search_.value.length > 2) {
+          [].forEach.call(this.list_items_, function (item) {
+            item.classList.add(this.CssClasses_.HIDE);
+            if (item.textContent.toLowerCase().trim().indexOf(
+              this.search_.value.toLowerCase()
+              ) > -1
+            ) {
+              item.classList.remove(this.CssClasses_.HIDE);
+            }
+          }, this);
+        } else if (
+          this.search_.value.length == 2 ||
+          this.search_.value.length == 0
+        ) {
+          [].forEach.call(this.list_items_, function (item) {
+            item.classList.remove(this.CssClasses_.HIDE);
+          }, this);
+        }
+      };
+
+      /**
+       * Init of the Component
+       */
+      FieloAddComponent.prototype.init = function() {
+        if (this.element_) {
+          // register elements
+          this.register_();
+          this.setListeners_();
+          this.selectTab_(1);
+        }
+      };
+    })();
+
+    $(document).ready(function(){ 
+      
+      // Prepare settings
+      document.querySelectorAll('.fielosf-add-component').forEach( function(component) {
+        component.FieloAddComponent = new FieloAddComponent(component);
+      });
+    });
+  </script>
+  <c:LivePreviewForParent pagePreviewUrl="{!pagePreviewUrl}"/>
+  <!-- end preview -->
+</apex:page>

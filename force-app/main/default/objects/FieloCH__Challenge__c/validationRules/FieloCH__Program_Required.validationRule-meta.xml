@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Program_Required</fullName>
+    <active>true</active>
+    <description>Checks that the challenge has a program when is edited.</description>
+    <errorConditionFormula>AND(NOT( ISNEW() ), OR(ISNULL( FieloCH__Program__c ), ISBLANK(FieloCH__Program__c) ) )</errorConditionFormula>
+    <errorDisplayField>FieloCH__Program__c</errorDisplayField>
+    <errorMessage>The Challenge must belong to a Program.</errorMessage>
+</ValidationRule>

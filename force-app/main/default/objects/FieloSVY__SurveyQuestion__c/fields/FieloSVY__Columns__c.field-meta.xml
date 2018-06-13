@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloSVY__Columns__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Amount of columns for Radio buttons or Checkbox options</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Amount of columns for Radio buttons or Checkbox options</inlineHelpText>
+    <label>Columns</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>FieloSVY__Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1</fullName>
+                <default>false</default>
+                <label>1</label>
+            </value>
+            <value>
+                <fullName>2</fullName>
+                <default>false</default>
+                <label>2</label>
+            </value>
+            <value>
+                <fullName>3</fullName>
+                <default>false</default>
+                <label>3</label>
+            </value>
+            <value>
+                <fullName>4</fullName>
+                <default>false</default>
+                <label>4</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Radio Horizontal</controllingFieldValue>
+            <controllingFieldValue>Checkboxes</controllingFieldValue>
+            <valueName>1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Radio Horizontal</controllingFieldValue>
+            <controllingFieldValue>Checkboxes</controllingFieldValue>
+            <valueName>2</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Radio Horizontal</controllingFieldValue>
+            <controllingFieldValue>Checkboxes</controllingFieldValue>
+            <valueName>3</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Radio Horizontal</controllingFieldValue>
+            <controllingFieldValue>Checkboxes</controllingFieldValue>
+            <valueName>4</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

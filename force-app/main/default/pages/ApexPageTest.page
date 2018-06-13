@@ -1,0 +1,36 @@
+<apex:page standardController="Account"> 
+<apex:pageBlock title="Contacts">
+ <apex:dataTable value="{!account.contacts}" var="contacts"  >
+    <apex:column >
+      <apex:facet name="header">Name</apex:facet>
+        {!contacts.Name}
+     </apex:column>
+     <apex:column >
+      <apex:facet name="header">Phone</apex:facet>
+      {!contacts.phone}
+      </apex:column>
+     </apex:dataTable>
+
+</apex:pageBlock>
+<!-- <apex:detail subject="{!account.ownerId}" relatedList="false"  title="True" />
+
+    <apex:form >
+ <apex:pageBlock id="in" title="Edir records for {!$User.FirstName}">
+   <apex:pageMessages ></apex:pageMessages>
+   <apex:pageBlockButtons >
+   <apex:commandButton value="Save" action="{!Save}" reRender="in,out"/>
+   </apex:pageBlockButtons>
+     <apex:pageBlockSection >
+     <apex:inputField value="{!account.name}" />
+     <apex:inputField value="{!account.industry}" />
+     </apex:pageBlockSection>
+     </apex:pageBlock>
+  </apex:form>
+  <apex:pageBlock id="out" title="Read Out" >
+  <apex:pageBlockSection >
+  <apex:actionStatus startText="starting...." id="Text" />
+  <apex:outputField value="{!account.name}" />
+  <apex:outputField value="{!account.Industry}" />
+  </apex:pageBlockSection>
+  </apex:pageBlock> -->
+</apex:page>

@@ -1,0 +1,105 @@
+<apex:page standardController="FieloEE__Reward__c" extensions="FieloEE.RewardViewExtension" sidebar="false" showHeader="false" standardStylesheets="false">
+<script>
+var labels = {
+    SuccessRewardAddToChart:"{!$Label.SuccessRewardAddToChart}"
+};
+</script>
+  <link rel="stylesheet" type="text/css" href="{!URLFOR($Resource.css, 'RewardView.min.css')}"></link>
+    <apex:composition template="{!$Site.template}">
+        <apex:define name="body">
+        <apex:form >
+
+            <div class="row-fluid">
+                <!-- Image -->
+                <div class="span6">
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(FieloEE__Reward__c.FieloEE__AttachmentId__c))}" layout="none">
+                        <img class="reward-image" src="{!IF(LEFT(Reward__c.AttachmentId__c,3) == '00P', URLFOR($Action.Attachment.Download, Reward__c.AttachmentId__c), IF(LEFT(Reward__c.AttachmentId__c,3) == '015', IF(ISBLANK($Setup.PublicSettings__c.Instance__c), $Site.Prefix, DocURL)+'/servlet/servlet.ImageServer?id='+Reward__c.AttachmentId__c+'&oid='+orgId, URLFOR($Resource.Images, Reward__c.AttachmentId__c)))}" />
+                    </apex:panelGroup>
+                </div>
+
+                <!--Info -->
+                <div class="span6">
+                    <div class="reward-name"><apex:outputText value="{!FieloEE__Reward__c.Name}"/></div>
+                    <div class="media-body reward-descrip">
+                        <p>
+                            <apex:outputText value="{!FieloEE__Reward__c.FieloEE__Description__c}"/>
+                        </p>
+
+                        <ul class="rewardFields">
+                        <apex:repeat value="{!listFieldSet}" var="l" >
+                            <apex:panelGroup >
+                                <li class="rewardFields-item rewardFields-item--is{!$ObjectType.FieloEE__Reward__c.Fields[l].Name}">
+                                    <span class="rewardFields-name">{!$ObjectType.FieloEE__Reward__c.Fields[l].Label}</span>
+                                    <span class="rewardFields-value">{!FieloEE__Reward__c[l]}</span>
+                                </li>
+                            </apex:panelGroup>
+                        </apex:repeat>
+                        </ul>
+                        <apex:panelGroup rendered="{!showSegments}" layout="none">
+                        	<div  class="segmentsAssociated">
+	                            <span class="segmentsAssociated-title"><apex:outputText value="{!$ObjectType.FieloEE__RedemptionRule__c.Label}{!$Label.fieloee__availables}" /></span>
+	                            <ul class="segmentsAssociated-list">
+	                                <apex:repeat value="{!segments}" var="s">
+	                                    <li class="segmentsAssociated-item">{!s}</li>
+	                                </apex:repeat>
+	                            </ul>
+                        	</div>
+                        </apex:panelGroup>
+                    </div>
+                    <table class="reward-points">
+                        <tr>
+                            <td><apex:outputText value="{!$Label.fieloee__points}:" /></td>
+                            <td>
+                                <span class="badge badge-important" style="font-size: 16px !important;">
+                                    <apex:outputField value="{!FieloEE__Reward__c.FieloEE__PointsCant__c}" />
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <apex:panelGroup rendered="{!NOT(ISBLANK(member.id))}" id="grp">
+                        <!-- Purchase -->
+                        <div class="input-append reward-purchase">
+                            <apex:inputText value="{!cantidad}"/>
+                            <apex:commandLink action="{!doAddToCart}" styleClass="add-on" reRender="result" status="status" oncomplete=" if({!success} == true){ window.setTimeout(function(){location.reload()},3000) }">
+                                <i class="icon-shopping-cart"></i>
+                            </apex:commandLink>
+                            <script src="{!URLFOR($Resource.js, 'RewardView.min.js')}" type="text/javascript"></script>
+                        </div>
+
+                        <!--Like & WishList -->
+                        <table class="reward-likewish">
+                            <tr>
+                                <td style="width:50%; text-align:center">
+                                    <apex:commandLink action="{!doLikeIt}" styleClass="{!IF(likeIt, 'socialOn', 'socialOff')}">
+                                        <i class="icon-thumbs-up icon-large"></i>
+                                    </apex:commandLink>
+                                </td>
+                                <td style="width:50%; text-align:center">
+                                    <apex:commandLink action="{!wishList}" styleClass="{!IF(isWish, 'socialOn', 'socialOff')}">
+                                        <i class="icon-heart icon-large"></i>
+                                    </apex:commandLink>
+                                </td>
+                            </tr>
+                        </table>
+                        <apex:actionStatus id="status" startStyleClass="icon-spinner icon-spin icon-2x pull-left"><i class="icon-spinner icon-spin icon-2x pull-left"></i></apex:actionStatus>
+                        <apex:panelGroup id="result" styleClass="rewardMessages" >
+                            <apex:messages />
+                        </apex:panelGroup>
+                    </apex:panelGroup>
+                </div>
+            </div>
+
+            <div class="pagination pagination-centered" >
+                <ul>
+                    <li>
+                        <apex:commandLink value="{!$Label.fieloee__back}" action="{!doBack}"/>
+                    </li>
+                </ul>
+            </div>
+
+        </apex:form>
+        <c:Comments />
+        </apex:define>
+    </apex:composition>
+</apex:page>

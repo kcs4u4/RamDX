@@ -1,0 +1,343 @@
+<apex:page standardController="FieloCH__Challenge__c" extensions="FieloCH.ChallengeSeriesBackEndExtension">
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js,'/jquery.js')}"/>
+
+    <!-- Bootstrap -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1"/>
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapResponsiveMin.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+    <!-- Fin Bootstrap -->
+
+    <apex:includeScript value="{!URLFOR($Resource.FieloCH__FullCalendar,'fullcalendar.min.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloCH__FullCalendar, 'fullcalendar.css')}"/>
+    <style>
+        .fc-event { height: 40px; border: none;}
+        .fc-event-title{ display: block; text-align: center; font-size: 18px; padding-top: 10px; font-weight: bold; color: white; }
+        #container1 .table tr:last-child td {border-bottom: 1px solid #DDDDDD; }
+        #container1 .pagination-centered .btn-group .btn { font-weight: normal; }
+        .monthWeek { width: 100%; }
+        .monthWeek td { border: none !important; }
+        .monthWeek td input { margin: 0px; }
+        .monthWeek td label { display: inline; }
+        #description p { font-weight: bold; }
+    </style>
+    <script>
+        window.onload = function(){
+            $('.recurrenceType').focus();
+            showDetails('{!JSENCODE(recurrenceType)}');
+
+            if('{!JSENCODE(finishOption)}' == '1'){
+                $('#radio1').attr('checked', true);
+                $('#radio2').removeAttr('checked');
+            }else{
+                $('#radio1').removeAttr('checked');
+                $('#radio2').attr('checked', true);
+            }
+
+            if($('#radio1').is(':checked')){
+                $('.date').attr('disabled', 'disabled');
+            }else{
+                $('.interval').attr('disabled', 'disabled');
+            }
+
+            fillDescription();
+
+            //Fill Calendar
+            $('#calendar').fullCalendar({
+                height: 500,
+                contentHeight: 400,
+                weekMode: 'variable',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: null,
+                },
+                editable: false,
+                events: [
+                    {
+                        //title: '{!FieloCH__Challenge__c.Name}',
+                        start: setDate('{!JSENCODE(TEXT(FieloCH__Challenge__c.FieloCH__InitialDate__c))}'),
+                        end: setDate('{!JSENCODE(TEXT(FieloCH__Challenge__c.FieloCH__FinalDate__c))}'),
+                        backgroundColor: '#888888',
+                        allDay: true
+                    },
+                    <apex:repeat value="{!childs}" var="c" >
+                    {
+                        //title: '{!c.Name}',
+                        start: setDate('{!JSENCODE(TEXT(c.FieloCH__InitialDate__c))}'),
+                        end: setDate('{!JSENCODE(TEXT(c.FieloCH__FinalDate__c))}'),
+                        allDay: true
+                    },
+                    </apex:repeat>
+                ]
+            });
+        }
+
+        function setDate(d){
+            var date = new Date(d);
+            date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+            return date;
+        }
+
+        function showDetails(selected){
+            if(selected == 'Daily'){
+                $('#repeat').show();
+                $('.repeatEvery').empty();
+                $('.repeatEvery').append( document.createTextNode('{!$Label.fieloch__days}') );
+
+                $('#daysWeek').hide();
+                $('#monthWeek').hide();
+            }else if(selected == 'Weekday'){
+                $('#repeat').hide();
+                $('#daysWeek').hide();
+                $('#monthWeek').hide();
+            }else if(selected == 'Weekly'){
+                $('#repeat').show();
+                $('.repeatEvery').empty();
+                $('.repeatEvery').append( document.createTextNode('{!$Label.fieloch__weeks}') );
+
+                $('#daysWeek').show();
+                $('#monthWeek').hide();
+            }else if(selected == 'Monthly'){
+                $('#repeat').show();
+                $('.repeatEvery').empty();
+                $('.repeatEvery').append( document.createTextNode('{!$Label.fieloch__months}') );
+
+                $('#daysWeek').hide();
+                $('#monthWeek').show();
+            }else if(selected == 'Yearly'){
+                $('#repeat').show();
+                $('.repeatEvery').empty();
+                $('.repeatEvery').append( document.createTextNode('{!$Label.fieloch__years}') );
+
+                $('#daysWeek').hide();
+                $('#monthWeek').hide();
+            }
+        }
+
+        function disabledFinish(selected){
+            if(selected == 'radio1'){
+                $('.interval').removeAttr( 'disabled' );
+                $('.date').attr('disabled', 'disabled');
+            }else{
+                $('.date').removeAttr( 'disabled' );
+                $('.interval').attr('disabled', 'disabled');
+            }
+        }
+
+        var weekday = new Array('{!$ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onSunday__c.Label}', '{!$ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onMonday__c.Label}', '{!$ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onTuesday__c.Label}', '{!$ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onWednesday__c.Label}', '{!$ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onThursday__c.Label}', '{!$ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onFriday__c.Label}', '{!$ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onSaturday__c.Label}');
+        var monthNames = new Array('{!$Label.fieloch__january}', '{!$Label.fieloch__february}', '{!$Label.fieloch__march}', '{!$Label.fieloch__april}', '{!$Label.fieloch__may}', '{!$Label.fieloch__june}', '{!$Label.fieloch__july}', '{!$Label.fieloch__august}', '{!$Label.fieloch__september}', '{!$Label.fieloch__october}', ' {!$Label.fieloch__november}', '{!$Label.fieloch__december}');
+
+        function fillDescription(){
+            var recType = $('.recurrenceType option:selected').text();
+            var days = $('.days option:selected').val();
+            $('#description').empty();
+            var description = '';
+
+            //set amount of days
+            if( $('.recurrenceType option:selected').val() != 'Weekday' ){
+                if(days != '1'){
+                    var recurrenceArray = recType.split(' ');
+                    description = recurrenceArray[0]+' '+days+' '+recurrenceArray[1] + 's';
+                }else{
+                    description = recType;
+                }
+            }else{
+                description = recType;
+            }
+
+            //set weekdays
+            if( $('.recurrenceType option:selected').val() == 'Weekly' ){
+                $('.Weekly').each(function( ) {
+                    if( this.checked ){
+                        var id = this.id.split(':');
+                        description = description +', ' + id[3] +''
+                    }
+                });
+            }
+
+            //set monthly
+            if( $('.recurrenceType option:selected').val() == 'Monthly' ){
+                $('.monthWeek').each(function( ) {
+                    $('td > *', this).each(function() {
+                        if(this.nodeName == 'INPUT') {
+                            if( $(this).is(':checked') ){
+                                var d = setDate('{!JSENCODE(TEXT(FieloCH__Challenge__c.FieloCH__InitialDate__c))}');
+                                if( $(this).val() == 'month'){
+                                    description = description + ', {!$Label.fieloch__theday} ' + d.getDate();
+                                }else{
+                                    description = description + ', {!$Label.fieloch__the} ' + weekAndDay(d);
+                                }
+                            }
+                        }
+                    });
+                });
+
+            }
+
+            //set finish
+            if($('#radio1').is(':checked')){
+                var interval = $('.interval').val();
+                description = description +', ' + interval + ' {!$Label.fieloch__times}';
+            }else{
+                if($('.date').val() != '' && $('.date').val() != null){
+                    var d = new Date( convertFormat($('.date').val()) );
+                    var fecha = ', {!$Label.fieloch__until} ' + d.getDate() + ' {!$Label.fieloch__of} ' + monthNames[d.getMonth()] +' {!$Label.fieloch__of} ' + d.getFullYear();
+                    description = description + fecha;
+                }
+            }
+            $('#description').append('<p>'+description+'</p>');
+        }
+
+        function weekAndDay(d){
+            var date = setDate(d);
+
+            prefixes = ['{!$Label.fieloch__first}', '{!$Label.fieloch__second}', '{!$Label.fieloch__third}', '{!$Label.fieloch__fourth}', '{!$Label.fieloch__fifth}'];
+
+            return prefixes[0 | date.getDate() / 7] + ' ' + weekday[date.getDay()];
+        }
+
+        function convertFormat(strFecha) {
+            var formatedDate = strFecha;
+            if ('{!JSENCODE(userLocale)}' == 'pt_BR' || '{!JSENCODE(userLocale)}' == 'es_AR') {
+                var split = strFecha.split('/');
+                formatedDate = split[1] + '/' + split[0] + '/' + split[2];
+            }
+            return formatedDate;
+        }
+    </script>
+    <apex:Form >
+        <apex:sectionHeader title="{!$ObjectType.FieloCH__Challenge__c.Label} {!FieloCH__Challenge__c.Name}"/>
+        <apex:pageMessages />
+
+        <apex:pageMessage summary="A serie has already been created. If you create a new one, the previous will be deleted." severity="warning" strength="2" rendered="{!hasChilds}"/>
+
+        <apex:pageBlock id="subPageBlock" Title="{!$Label.fieloch__challengeseriestitle}" rendered="{!!ISNULL(FieloCH__Challenge__c.FieloCH__FinalDate__c)}">
+            <table style="width: 100%;">
+                <tr>
+                    <td style="width: 50%;">
+                        <div id="container1">
+                            <table class="table table-condensed" style="width: 90%;">
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="{!$Label.fieloch__repeated}" for="recurrenceType"/>
+                                    </td>
+                                    <td>
+                                        <apex:selectList styleClass="recurrenceType" value="{!recurrenceType}" size="1" onchange="showDetails(this.value); fillDescription();">
+                                            <apex:selectOptions value="{!RecurrenceTypes}"/>
+                                        </apex:selectList>
+                                    </td>
+                                </tr>
+                                <tr Id="repeat">
+                                    <td>
+                                        <apex:outputLabel value="{!$Label.fieloch__repeatevery}"/>
+                                    </td>
+                                    <td>
+                                        <apex:selectList value="{!interval}" size="1" styleClass="days" onchange="fillDescription();">
+                                            <apex:selectOptions value="{!daysOptions}"/>
+                                        </apex:selectList>
+                                        <span class="repeatEvery"></span>
+                                    </td>
+                                </tr>
+                                <tr Id="daysWeek">
+                                    <td>
+                                        <apex:outputLabel value="{!$Label.fieloch__repeat}"/>
+                                    </td>
+                                    <td>
+                                        <label class="checkbox inline">
+                                            <apex:inputField styleClass="Weekly" value="{!challenge.FieloCH__onMonday__c}" Id="Monday" onchange="fillDescription();"/>
+                                            <apex:outputLabel value="{!LEFT($ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onMonday__c.Label, 3)}" for="Monday"/>
+                                        </label>
+                                        <label class="checkbox inline">
+                                            <apex:inputCheckbox styleClass="Weekly" value="{!challenge.FieloCH__onTuesday__c}" Id="Tuesday" onchange="fillDescription();"/>
+                                            <apex:outputLabel value="{!LEFT($ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onTuesday__c.Label, 3)}" for="Tuesday"/>
+                                        </label>
+                                        <label class="checkbox inline">
+                                            <apex:inputCheckbox styleClass="Weekly" value="{!challenge.FieloCH__onWednesday__c}" Id="Wednesday" onchange="fillDescription();"/>
+                                            <apex:outputLabel value="{!LEFT($ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onWednesday__c.Label, 3)}" for="Wednesday"/>
+                                        </label>
+                                        <label class="checkbox inline">
+                                            <apex:inputCheckbox styleClass="Weekly" value="{!challenge.FieloCH__onThursday__c}" Id="Thursday" onchange="fillDescription();"/>
+                                            <apex:outputLabel value="{!LEFT($ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onThursday__c.Label, 3)}" for="Thursday"/>
+                                        </label>
+                                        <label class="checkbox inline">
+                                            <apex:inputCheckbox styleClass="Weekly" value="{!challenge.FieloCH__onFriday__c}" Id="Friday" onchange="fillDescription();"/>
+                                            <apex:outputLabel value="{!LEFT($ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onFriday__c.Label, 3)}" for="Friday"/>
+                                        </label>
+                                        <label class="checkbox inline">
+                                            <apex:inputCheckbox styleClass="Weekly" value="{!challenge.FieloCH__onSaturday__c}" Id="Saturday" onchange="fillDescription();"/>
+                                            <apex:outputLabel value="{!LEFT($ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onSaturday__c.Label, 3)}" for="Saturday"/>
+                                        </label>
+                                        <label class="checkbox inline">
+                                            <apex:inputCheckbox styleClass="Weekly" value="{!challenge.FieloCH__onSunday__c}" Id="Sunday" onchange="fillDescription();"/>
+                                            <apex:outputLabel value="{!LEFT($ObjectType.FieloCH__Challenge__c.Fields.FieloCH__onSunday__c.Label, 3)}" for="Sunday"/>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr Id="monthWeek">
+                                    <td>
+                                        <apex:outputLabel value="{!$Label.fieloch__repeatevery}"/>
+                                    </td>
+                                    <td>
+                                        <apex:selectRadio styleClass="monthWeek" value="{!monthWeek}" onchange="fillDescription();">
+                                            <apex:selectOption itemValue="month" itemLabel="{!$Label.fieloch__dayofmonth}"/>
+                                            <apex:selectOption itemValue="week" itemLabel="{!$Label.fieloch__dayofweek}"/>
+                                        </apex:selectRadio>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="{!$Label.fieloch__finisheson}"/>
+                                    </td>
+                                    <td>
+                                        <apex:inputHidden value="{!finishOption}" Id="finish"/>
+                                        <input type="radio" Id="radio1" onchange="document.getElementById('{!$Component.finish}').value= '1'; $('#radio2').removeAttr('checked'); disabledFinish(this.id); fillDescription();" />
+                                        <span>{!$Label.After}</span>
+                                        <apex:inputText styleClass="interval" style="width: 70px;" value="{!cycles}" onchange="fillDescription();"/>
+                                        <span> {!$Label.Repetitions} </span>
+                                        <br/>
+                                        <input type="radio" Id="radio2" onchange="document.getElementById('{!$Component.finish}').value= '2'; $('#radio1').removeAttr('checked'); disabledFinish(this.id); fillDescription();" />
+                                        <span>{!$Label.The} </span>
+                                        <apex:inputField styleClass="date" value="{!challengeDate.FieloCH__SubscribeTo__c}" onchange="fillDescription();"/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <apex:outputLabel value="{!$Label.fieloch__summary} "/>
+                                    </td>
+                                    <td>
+                                        <span Id="description"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">
+                                        <label class="checkbox">
+                                            <apex:inputField value="{!challenge.FieloCH__RecurrenceAutoSubscribe__c}" />
+                                            <apex:outputLabel value="{!$ObjectType.FieloCH__Challenge__c.Fields['recurrenceAutoSubscribe__c'].Label}" />
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="pagination-centered">
+                                <div class="btn-group">
+                                    <apex:CommandButton value="{!$Label.fieloee__save}" action="{!doSave}" styleClass="btn"/>
+                                    <apex:CommandButton value="{!$Label.fieloee__preview}" action="{!doPreview}" styleClass="btn"/>
+                                    <apex:CommandButton value="{!$Label.fieloee__back}" action="{!doBack}" styleClass="btn" rendered="{!!ISNULL(FieloCH__Challenge__c.FieloCH__FinalDate__c)}"/>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="width: 50%;">
+                        <!-- Calendar -->
+                        <div id='container2'>
+                            <div id='calendar' style='margin:10px 0;font-size:13px'></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </apex:pageBlock>
+        <apex:CommandButton value="{!$Label.fieloee__back}" action="{!doBack}" styleClass="btn" rendered="{!ISNULL(FieloCH__Challenge__c.FieloCH__FinalDate__c)}"/>
+        <apex:inputField value="{!FieloCH__Challenge__c.FieloCH__InitialDate__c}" rendered="false"/>
+        <apex:inputField value="{!FieloCH__Challenge__c.FieloCH__FinalDate__c}" rendered="false"/>
+    </apex:Form>
+</apex:page>

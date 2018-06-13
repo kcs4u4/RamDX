@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Segment2__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Segment</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>FieloEE__RedemptionRule__c.RecordType.DeveloperName</field>
+            <operation>equals</operation>
+            <value>Manual</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>FieloEE__RedemptionRule__c</referenceTo>
+    <relationshipLabel>Member Segment (Segment)</relationshipLabel>
+    <relationshipName>MemberSegments</relationshipName>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

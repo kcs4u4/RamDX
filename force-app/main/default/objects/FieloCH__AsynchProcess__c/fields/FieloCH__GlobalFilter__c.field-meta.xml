@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__GlobalFilter__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Global challenges could add a lot of unnecessary processing. In order to avoid the segmentation overhead, this filter is a pre-segmentation that match fields from the Challenge and the Member. For example country</inlineHelpText>
+    <label>GlobalFilter</label>
+    <length>120</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

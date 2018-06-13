@@ -1,0 +1,127 @@
+<apex:page standardController="FieloEE__Promotion__c" RecordSetVar="Proms" extensions="FieloEE.PromotionTimeLineController">
+    <style id="css-custom">
+        /* Bootsrap fixes for Fielo Backend */
+        body {
+            font-size: 75%;
+            line-height: initial;
+        }
+        img {
+            vertical-align: initial;
+            max-width: initial;
+        }
+        form {
+            margin: initial;
+        }
+        h2 {
+            font-size: initial;
+        }
+        h1,
+        h2,
+        h3 {
+            line-height: initial;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: initial;
+            font-size: 100%;
+        }
+        a {
+            color: #333435;
+            text-decoration: underline;
+        }
+        .btn {
+            line-height: initial;
+        }
+        label,
+        input,
+        button,
+        select,
+        textarea {
+            line-height: initial;
+        }
+        input[type="file"],
+        input[type="image"],
+        input[type="submit"],
+        input[type="reset"],
+        input[type="button"],
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: initial;
+        }
+        input, textarea,
+        .uneditable-input {
+            width: initial;
+        }
+        .mruIcon.userDefinedImage {width: 16px;height: 16px;}
+    </style>
+    
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__js, '/Gantter/lib/jquery-ui-1.8.4.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__js, '/Gantter/example/reset.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__js, '/Gantter/jquery.ganttView.css')}"/>
+    
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, '/Gantter/lib/jquery-1.4.2.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, '/Gantter/lib/date.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, '/Gantter/lib/jquery-ui-1.8.4.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, '/Gantter/jquery.ganttView.js')}"/>
+    <apex:includeScript value="/soap/ajax/20.0/connection.js"/>
+    
+    <apex:sectionHeader title="{!$ObjectType.FieloEE__Promotion__c.label}" subtitle="{!$Label.fieloee__titletimeline}"/>
+    <apex:outputText value="{!program.Name}" />
+    <apex:form >
+        <br/><br/>
+        <apex:outputLink value="/{!defaultPromotion.id}" rendered="{!(defaultPromotion != null)}">{!$Label.fieloee__gotodefaultpromotion}</apex:outputLink>
+        <div id="ganttChart"></div>
+        
+        <script type="text/javascript">
+            <apex:outputText value="{!PromotionGanttJson}" />
+            var lineTime = jQuery.noConflict();
+            
+            lineTime(function () {
+                var dropEvent = function (data) {
+                            var startDate = data["start"];
+                            var endDate = data["end"];
+                            var id = data["id"];
+                            var sobject; 
+                            sobject = new sforce.SObject("{!objectType}");
+                            sobject['Id'] = id;
+                            sobject['{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}InitialDate__c'] = startDate;
+                            sobject['{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}FinalDate__c'] = endDate;
+                                
+                            sforce.connection.sessionId = "{!$Api.Session_ID}";
+                            sforce.connection.update([sobject],{
+                                    onSuccess : function(result){
+                                                },
+                                    onFailure : function(result){
+                                                    alert('An error has ocurred: '+result);
+                                                }
+                            })
+                        }
+                var readonly = "{!readonly}" != "true";
+                lineTime("#ganttChart").ganttView({ 
+                    data: ganttDataPromotion,
+                    slideWidth: ((document.documentElement.offsetWidth)-550),
+                    showWeekends: true,
+                    behavior: {
+                        draggable: readonly,
+                        resizable: readonly, 
+                        onClick: function (data) {
+                            if(data && data.id){
+                                parent.location.href = '/'+data.id;
+                            }
+                        },
+                        onResize: dropEvent,
+                        onDrag: dropEvent
+                    }
+                });
+            });
+        </script>
+        <apex:outputLink target="_top" value="{!$Page.PromotionTimeLine }">[{!$Label.fieloee__reload}]</apex:outputLink>
+        &nbsp;&nbsp;
+        <apex:outputLink target="_top" value="{!$Page.FieloEE__PromotionLandingPageBackEnd}">{!$Label.fieloee__back}</apex:outputLink>
+    </apex:form>
+
+</apex:page>

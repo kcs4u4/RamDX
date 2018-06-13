@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Open_Redemption_Days</fullName>
+    <active>true</active>
+    <errorConditionFormula>FieloEE__OpenRedemptionDays__c &lt; 0</errorConditionFormula>
+    <errorDisplayField>FieloEE__OpenRedemptionDays__c</errorDisplayField>
+    <errorMessage>Value cannot be negative</errorMessage>
+</ValidationRule>

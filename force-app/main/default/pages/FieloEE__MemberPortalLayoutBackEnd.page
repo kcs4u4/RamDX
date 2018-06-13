@@ -1,0 +1,952 @@
+<apex:page standardController="FieloEE__ProgramLayout__c" extensions="FieloEE.MemberPortalLayoutBackEndController" standardStylesheets="false" cache="false" tabStyle="MemberPortal__tab" id="page">
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, '/jscolor/jscolor.js')}" />
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapResponsiveMin.css')}"/>
+
+    <apex:variable var="backAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__BackgroundAttribute__c == '100%'}" value="background-size:100%" />
+    <apex:variable var="backAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__BackgroundAttribute__c != '100%'}" value="background-repeat:{!FieloEE__ProgramLayout__c.FieloEE__BackgroundAttribute__c}" />
+    <apex:variable var="headAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__HeaderBackgroundAttribute__c == '100%'}" value="background-size:100%" />
+    <apex:variable var="headAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__HeaderBackgroundAttribute__c != '100%'}" value="background-repeat:{!FieloEE__ProgramLayout__c.FieloEE__HeaderBackgroundAttribute__c}" />
+    <apex:variable var="bodyAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundAttribute__c == '100%'}" value="background-size:100%" />
+    <apex:variable var="bodyAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundAttribute__c != '100%'}" value="background-repeat:{!FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundAttribute__c}" />
+    <apex:variable var="footAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundAttribute__c == '100%'}" value="background-size:100%" />
+    <apex:variable var="footAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundAttribute__c != '100%'}" value="background-repeat:{!FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundAttribute__c}" />
+    
+    <apex:variable var="color" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont02__c}"/>
+    <apex:variable var="color" value="000000" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__ColorFont02__c)}"/>
+    <apex:variable var="colorLogoFoot" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont04__c}"/>
+    <apex:variable var="colorLogoFoot" value="FFFFFF" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__ColorFont04__c)}"/>
+    <apex:variable var="logo" value="{!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__Logo__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__Logo__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__Logo__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__Logo__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__Logo__c)))}"/>
+    <apex:variable var="logo" value="{!URLFOR($Resource.FieloEE__images, 'logo/fielo-'+ color +'.png')}" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__Logo__c)}"/>
+    
+    <style type="text/css">
+        label   { font-size:13px; color:#666666; margin:0; }
+        select  { margin-bottom: 5px !important; }
+
+        .nav-tabs > li      { margin: 0 }
+        .nav-tabs > li > a  { padding: 0 6px }
+
+        .nav-nav > li       { float: left; }
+        .nav-nav > li > a   { padding: 0 4px }
+
+        .radio-group        { width: 100%; }
+        .radio-group td     { overflow: auto; }
+        .radio-group input  { float: left; }
+        .radio-group label  { float: left; margin-left: 5px; }
+
+        .color      { width:50px; margin-top: 10px; font-size:12px !important; border:none; text-align:center; }
+        .subsection { margin-bottom:5px; border-bottom:1px dotted #dddddd; }
+
+        .form-horizontal .control-group { margin:0; }
+        .help_text    { font-size:0.9em; color:#888888; }
+
+        #pr-back
+        {
+            height: 500px;
+            overflow: auto;
+            border: 1px solid #cccccc;
+            background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color01__c};
+            font-family:{!FieloEE__ProgramLayout__c.FieloEE__Font__c};
+        }
+        #pr-back .backgroundImage
+        {
+            <apex:panelGroup layout="none" rendered="{!NOT(ISNULL(FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c))}">
+            background-image:url({!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c)))});
+            </apex:panelGroup>
+            {!headAtt};
+            {!backAtt};
+        }
+        #pr-head 
+        {
+            height: 60px;
+            <apex:panelGroup layout="none" rendered="{!NOT(ISNULL(FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c))}">
+                background-image: url({!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c)))});
+            </apex:panelGroup>
+            {!headAtt};
+        }
+        #pr-body
+        {
+            width: 75%;
+            margin: 0 auto;
+            <apex:panelGroup layout="none" rendered="{!NOT(ISNULL(FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c))}">
+            background-image:url({!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c)))});
+            </apex:panelGroup>
+            {!bodyAtt};
+        }
+        #pr-foot
+        {
+            height: 50px;
+            <apex:panelGroup layout="none" rendered="{!NOT(ISNULL(FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c))}">
+            background-image: url({!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c)))});
+            </apex:panelGroup>
+            {!footAtt};
+        }
+
+        .imgLogo        { height:50px; margin:5px; }
+        .imgLogoFoot    { height:30px; margin:5px 20px; }
+
+        #pr-head.fixed          { width:100%; position:absolute; top: 0; }
+        #pr-head.fullsize       { width:100%; }
+        #pr-head.pagesize       { width: 75%; margin: 0 auto; }
+        #pr-head.fixed .innerhead, 
+        #pr-head.fullsize .innerhead    { width:75%; margin: 0 auto; }
+        #pr-head.pagesize .innerhead    { width:100%; }
+
+        #pr-foot.fixed          { width:100%; position:absolute; bottom: 0; }
+        #pr-foot.fullsize       { width:100%; }
+        #pr-foot.pagesize       { width: 75%; margin: 0 auto; }
+        #pr-foot.fixed .innerfoot, 
+        #pr-foot.fullsize .innerfoot    { width:75%; margin: 0 auto; }
+        #pr-foot.pagesize .innerfoot    { width:100%; }
+
+        #pr-body.fixed  { padding-top: 60px; }
+
+        #pr-menu li     { float:left; list-style:none; }
+        #pr-menu .amenu { float:left; list-style:none; color: #{!FieloEE__ProgramLayout__c.FieloEE__Color05__c}; }
+        #menu-active        { color:#{!FieloEE__ProgramLayout__c.FieloEE__ColorFont06__c}; }
+        #pr-menu.tabs li    { border-radius: 4px 4px 0 0; padding:1px 6px; }
+        #pr-menu.pills li   { border-radius: 4px; padding:1px 6px; margin-bottom:3px; }
+        #pr-menu.nav li { padding:1px 6px; }
+
+        #categ-back, #comp-bar1, #comp-bar2, #comp-bar3 { border-radius: 4px; }
+        #comp-bar1  { height:22px; padding:4px 8px; }
+
+        #categ-select, .categ   { padding: 4px 8px; }
+        #comp-bar2 ul li    { float:left; list-style:none; padding: 4px 0; }
+        #compbar-active { padding: 4px 6px 6px !important; }
+
+        .reward     { border-radius:2px; border:1px solid #cccccc; margin:10px 0; height:160px; }
+        #backPreview img    { width:100px; height:100px; }
+        .advancedSettingsButton {display: block;color: #9C2222;font-weight: bold;}
+    </style>
+    <style id="css-custom">
+        /* Bootsrap fixes for Fielo Backend */
+        body {
+            font-size: 75%;
+            line-height: initial;
+        }
+        img {
+            vertical-align: initial;
+            max-width: initial;
+        }
+        form {
+            margin: initial;
+        }
+        h2 {
+            font-size: initial;
+        }
+        h1,
+        h2,
+        h3 {
+            line-height: initial;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin: initial;
+            font-size: 100%;
+        }
+        a {
+            color: #333435;
+            text-decoration: underline;
+        }
+        .btn {
+            line-height: initial;
+        }
+        label,
+        input,
+        button,
+        select,
+        textarea {
+            line-height: initial;
+        }
+        input[type="file"],
+        input[type="image"],
+        input[type="submit"],
+        input[type="reset"],
+        input[type="button"],
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: initial;
+        }
+        input, textarea,
+        .uneditable-input {
+            width: initial;
+        }
+        .mruIcon.userDefinedImage {width: 16px;height: 16px;}
+    </style>
+    
+    <script>
+        
+        window.onload = function doTransparent()
+        {
+            if ( '{!FieloEE__ProgramLayout__c.FieloEE__Color02__c}' == '' )   {   document.getElementById('noColor2').checked = true;     document.getElementById('page:form:pageBlock:color2').value = ' ';  }else{  document.getElementById('yesColor2').checked = true;    }
+            if ( '{!FieloEE__ProgramLayout__c.FieloEE__Color03__c}' == '' )   {   document.getElementById('noColor3').checked = true;     document.getElementById('page:form:pageBlock:color3').value = ' ';  }else{  document.getElementById('yesColor3').checked = true;    }
+            if ( '{!FieloEE__ProgramLayout__c.FieloEE__Color04__c}' == '' )   {   document.getElementById('noColor4').checked = true;     document.getElementById('page:form:pageBlock:color4').value = ' ';  }else{  document.getElementById('yesColor4').checked = true;    }
+            if ( '{!FieloEE__ProgramLayout__c.FieloEE__Color06__c}' == '' )   {   document.getElementById('noColor6').checked = true;     document.getElementById('page:form:pageBlock:color6').value = ' ';  }else{  document.getElementById('yesColor6').checked = true;    }
+            if ( '{!FieloEE__ProgramLayout__c.FieloEE__Color07__c}' == '' )   {   document.getElementById('noColor7').checked = true;     document.getElementById('page:form:pageBlock:color7').value = ' ';  }else{  document.getElementById('yesColor7').checked = true;    }
+            if ( '{!FieloEE__ProgramLayout__c.FieloEE__Color08__c}' == '' )   {   document.getElementById('noColor8').checked = true;     document.getElementById('page:form:pageBlock:color8').value = ' ';  }else{  document.getElementById('yesColor8').checked = true;    }
+            if ( '{!FieloEE__ProgramLayout__c.FieloEE__Color09__c}' == '' )   {   document.getElementById('noColor9').checked = true;     document.getElementById('page:form:pageBlock:color9').value = ' ';  }else{  document.getElementById('yesColor9').checked = true;    }
+            if ( '{!FieloEE__ProgramLayout__c.FieloEE__Color10__c}' == '' )   {   document.getElementById('noColor10').checked = true;    document.getElementById('page:form:pageBlock:color10').value = ' '; }else{  document.getElementById('yesColor10').checked = true;   }
+            if ( '{!FieloEE__ProgramLayout__c.FieloEE__Color11__c}' == '' )   {   document.getElementById('noColor11').checked = true;    document.getElementById('page:form:pageBlock:color11').value = ' '; }else{  document.getElementById('yesColor11').checked = true;   }
+        }
+
+        function changeFont(font)
+        {
+            var myObj  = document.getElementById('fontPreview');
+            var myObj2 = document.getElementById('fontPreviewText');
+            var body   = document.getElementById('pr-back');
+
+            if(font.value == null){
+                myObj.innerHTML = font;
+                myObj.style.fontFamily = font;
+                myObj2.style.fontFamily = font;
+                body.style.fontFamily = font;
+            }else{
+                myObj.innerHTML = font.value;
+                myObj.style.fontFamily = font.value;
+                myObj2.style.fontFamily = font.value;
+                body.style.fontFamily = font.value;
+            }
+        }
+
+        function changeMenuColor (input,color) {
+            var fields = document.getElementsByClassName('amenu');
+            for (var i = 0; i < fields.length; i++) {
+                fields[i].style.color='#'+color.value;
+            }
+            document.getElementById('page:form:pageBlock:color'+input).value = color.value;
+        }
+
+        function changeImage(type)
+        {
+            if (document.getElementById(type+'Preview').style.display == 'none'){
+                document.getElementById(type+'Preview').style.display = 'block';
+            }else{
+                document.getElementById(type+'Preview').style.display = 'none';
+            }
+            if (document.getElementById(type+'Upload').style.display == 'none'){
+                document.getElementById(type+'Upload').style.display = 'block';
+            }else{
+                document.getElementById(type+'Upload').style.display = 'none';
+            }
+            if ( type != 'logo' ){
+                if (document.getElementById(type+'Attributes').style.display == 'none'){
+                    document.getElementById(type+'Attributes').style.display = 'block';
+                }else{
+                    document.getElementById(type+'Attributes').style.display = 'none';
+                }
+            }
+        }
+
+        function changeAtributte(divid,att)
+        {
+            if ( divid == 'pr-back' ){
+                if ( att.value == '100%' ){
+                    document.getElementsByClassName('backgroundImage')[0].style.backgroundSize = att.value;
+                    document.getElementsByClassName('backgroundImage')[0].style.backgroundRepeat = 'No-repeat';
+                }else{
+                    document.getElementsByClassName('backgroundImage')[0].style.backgroundRepeat = att.value;
+                    document.getElementsByClassName('backgroundImage')[0].style.backgroundSize = 'auto auto';
+                }
+            }else{
+                if ( att.value == '100%' ){
+                    document.getElementById(divid).style.backgroundSize = att.value;
+                    document.getElementById(divid).style.backgroundRepeat = 'No-repeat';
+                }else{
+                    document.getElementById(divid).style.backgroundRepeat = att.value;
+                    document.getElementById(divid).style.backgroundSize = 'auto auto';
+                }
+            }
+        }
+
+        function changeColor(input,divid,color)
+        {
+            if (input == 2){
+                if ( document.getElementById('imgLogo').src.indexOf('fielo-') > 0 ){
+                    {!$RemoteAction.MemberPortalLayoutBackEndController.getColor}(color.value,function(result,event)
+                    {
+                        document.getElementById('imgLogo').src = document.getElementById('imgLogo').src.replace("000000",result);
+                        document.getElementById('imgLogo').src = document.getElementById('imgLogo').src.replace("FFFFFF",result);
+                    }, {escape:true});
+                }
+            }
+            if (input == 4){
+                {!$RemoteAction.MemberPortalLayoutBackEndController.getColor}(color.value,function(result,event)
+                {
+                    document.getElementById('imgLogoFoot').src = document.getElementById('imgLogoFoot').src.replace("000000",result);
+                    document.getElementById('imgLogoFoot').src = document.getElementById('imgLogoFoot').src.replace("FFFFFF",result);
+                }, {escape:true});
+            }
+            if (input == 1){
+                    if ( color.value == ' ' ) {
+                        document.getElementById('page:form:pageBlock:color'+input).value = ' ';
+                    }else{
+                        if ( color.color != null) {
+                            document.getElementById(divid).style.backgroundColor = '#'+color.color;
+                        }else{
+                            document.getElementById(divid).style.backgroundColor = '#'+color.value;
+                        }
+                        document.getElementById('page:form:pageBlock:color'+input).value = color.value;
+                    }
+            }else{
+                if ( color.value == ' '){
+                    document.getElementById('yesColor'+input).checked = false;
+                    document.getElementById('yesColor'+input).value = document.getElementById('page:form:pageBlock:color'+input).value;
+                    document.getElementById(divid).style.backgroundColor = null;
+                    document.getElementById('page:form:pageBlock:color'+input).value = ' ';
+                }else{
+                    if ( color.color != null){
+                        document.getElementById(divid).style.backgroundColor = '#'+color.color;
+                    }else{
+                        document.getElementById(divid).style.backgroundColor = '#'+color.value;
+                    }
+                    document.getElementById('noColor'+input).checked = false;
+                    document.getElementById('yesColor'+input).checked = true;
+                    document.getElementById('page:form:pageBlock:color'+input).value = color.value;
+                }
+            }
+        }
+
+        function changeBadgeColor(input,color)
+        {
+            var fields = document.getElementsByClassName('badge');
+            if ( color.value == ' '){
+                document.getElementById('yesColor'+input).checked = false;
+                document.getElementById('yesColor'+input).value = document.getElementById('page:form:pageBlock:color'+input).value;
+                for (var i = 0; i < fields.length; i++) {
+                    fields[i].style.backgroundColor='Transparent';
+                }
+                document.getElementById('page:form:pageBlock:color'+input).value = ' ';
+            }else{
+                if ( color.color != null){
+                    for (var i = 0; i < fields.length; i++) {
+                        fields[i].style.backgroundColor= '#'+color.color;
+                    }
+                }else{
+                    for (var i = 0; i < fields.length; i++) {
+                        fields[i].style.backgroundColor= '#'+color.value;
+                    }
+                }
+                document.getElementById('noColor'+input).checked = false;
+                document.getElementById('yesColor'+input).checked = true;
+                document.getElementById('page:form:pageBlock:color'+input).value = color.value;
+            }
+        }
+
+        function getOppositeColor(target,color,input)
+        {
+            {!$RemoteAction.MemberPortalLayoutBackEndController.getColor}(color.value,function(result,event)
+            {
+                var fields = document.getElementsByClassName(target);
+                for (var i = 0; i < fields.length; i++) {
+                    fields[i].style.color='#'+result;
+                }
+                document.getElementById('page:form:pageBlock:colorFont'+input).value = result;
+            }, {escape:true});
+        }
+
+        function setFocusOnLoad() {}
+
+    </script> 
+    
+    <apex:form id="form" styleClass="form-horizontal">
+            <apex:sectionHeader title="{!$Label.fieloee__titlememberportalsettings}"/>
+            <apex:pagemessages />
+
+            <apex:pageblock title="{!$Label.fieloee__layoutconfiguration}" helpUrl="FieloHelp?hlp=CustomizeSite" helpTitle="" id="pageBlock">
+                <apex:pageBlockButtons >
+                    <apex:commandButton action="{!doSave}" value="{!$Label.fieloee__save}"/>  
+                    <apex:commandButton action="{!doQuickSave}" value="{!$Label.fieloee__quicksave}"/>                 
+                    <apex:commandButton action="{!cancel}" value="{!$Label.fieloee__cancel}"/>
+                </apex:pageBlockButtons>
+
+                <apex:pageBlockSection columns="1">
+
+                    <!-- Segment -->
+                    <apex:panelGroup >
+                        <div class="control-group">
+                            <apex:outputLabel styleClass="control-label" >{!$ObjectType.FieloEE__ProgramLayout__c.fields['Segment__c'].Label}</apex:outputLabel>
+                            <div class="controls">
+                                <apex:panelGroup rendered="{!ISNULL(FieloEE__ProgramLayout__c.Id)}" >
+                                    <apex:selectList value="{!segmentSelected}" size="1" >
+                                        <apex:selectOptions value="{!segmentsOptions}" />
+                                    </apex:selectList>
+                                </apex:panelGroup>
+                                <apex:panelGroup rendered="{!!ISNULL(FieloEE__ProgramLayout__c.Id)}" >
+                                    <apex:outputText value="{!segmentSelected}" style="color:#BBBBBB; font-size:25px; font-weight:bold;" />
+                                </apex:panelGroup>
+<!--                             <span class="help-inline">{!$Label.InfoLayoutTitle}</span> -->
+                            </div>
+                        </div>
+                    </apex:panelGroup>
+
+                    <!-- Select template -->
+                    <apex:panelGroup >
+                        <div class="control-group">
+                        <apex:outputLabel styleClass="control-label" value="{!$Label.fieloee__selecttemplate}" />
+                            <div class="controls">
+                                <apex:selectList value="{!templateSelected}" size="1" >
+                                    <apex:actionsupport event="onchange" action="{!changeTemplate}" />
+                                    <apex:selectOptions value="{!templatesOptions}" ></apex:selectOptions>
+                                </apex:selectList>
+    <!--                             <span class="help-inline">{!$Label.InfoLayoutTitle}</span> -->
+                            </div>
+                        </div>
+                    </apex:panelGroup>
+
+                    <!-- Program -->
+                    <apex:panelGroup >
+                        <div class="control-group">
+                        <apex:outputLabel styleClass="control-label" value="{!$ObjectType.FieloEE__ProgramLayout__c.fields.FieloEE__Program__c.Label}" />
+                            <div class="controls">
+                                <apex:outputField styleClass="input-xlarge" value="{!FieloEE__ProgramLayout__c.FieloEE__Program__c}" />                                
+                            </div>
+                        </div>
+                    </apex:panelGroup>
+
+                    <!-- Title -->
+                    <apex:panelGroup >
+                        <div class="control-group">
+                        <apex:outputLabel styleClass="control-label" value="{!$ObjectType.FieloEE__ProgramLayout__c.fields.FieloEE__Title__c.Label}" />
+                            <div class="controls">
+                                <apex:inputText styleClass="input-xlarge" value="{!FieloEE__ProgramLayout__c.FieloEE__Title__c}" />
+                                <span class="help-inline">{!$Label.fieloee__infolayouttitle}</span>
+                            </div>
+                        </div>
+                    </apex:panelGroup>
+
+                    <!-- Home -->
+                    <apex:panelGroup >
+                        <div class="control-group">
+                        <apex:outputLabel styleClass="control-label" value="{!$ObjectType.FieloEE__ProgramLayout__c.fields.FieloEE__Home__c.Label}" />
+                            <div class="controls">
+                                <apex:inputField styleClass="input-xlarge" value="{!FieloEE__ProgramLayout__c.FieloEE__Home__c}" />
+                            </div>
+                        </div>
+                    </apex:panelGroup>
+
+                    <!-- Logo -->
+                    <apex:panelGroup >
+                        <div id="logo" class="control-group">
+                            <apex:outputLabel styleClass="control-label" value="{!$Label.fieloee__logo}" />
+                            <div class="controls" style="margin-top:5px;">
+                                <div id="logoPreview" style="display:block;">
+                                    <apex:panelGrid columns="2">
+                                        <apex:image style="width:" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__Logo__c)}" value="{!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__Logo__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__Logo__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__Logo__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__Logo__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__Logo__c)))}" />
+                                        <apex:panelGroup >
+                                            <a href="javascript:void(0);" onclick="changeImage('logo');">
+                                                <apex:outputText value="{!$Label.fieloee__changeimage}" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__Logo__c)}" />
+                                                <apex:outputText value="{!$Label.fieloee__uploadimage}" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__Logo__c)}" />
+                                            </a><br/>
+                                            <apex:commandLink value="{!$Label.fieloee__deleteimage}" action="{!deleteLogo}" onclick="if (!confirm('{!$Label.fieloee__areyousure}')) return false;" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__Logo__c)}"/>
+                                        </apex:panelGroup>
+                                    </apex:panelGrid>
+                                </div>
+                                <div id="logoUpload" class="control-group" style="display:none;">
+                                    <apex:panelGrid columns="2">
+                                        <!--<apex:outputText value="{!$Label.fieloee__selectafile}"/>-->
+                                        <apex:inputFile value="{!inputFile.Body}" size="13" contentType="{!inputFile.ContentType}" filename="{!inputFile.Name}" fileSize="{!inputFile.BodyLength}" />
+                                        <!--<apex:outputLabel value="(240 x 130 pixels)" style="font-size:9px; color:#4A4A56;"/>-->
+                                        <apex:panelGroup ><span class="help-inline">(240 x 100 pixels)</span></apex:panelGroup>
+                                        <apex:panelGrid columns="2">
+                                            <apex:commandButton id="Next" value="{!$Label.fieloee__upload}" action="{!uploadLogo}" />
+                                            <a href="javascript:void(0)" onclick="changeImage('logo');">{!$Label.fieloee__cancel}</a>
+                                        </apex:panelGrid>
+                                    </apex:panelGrid>
+                                </div>
+                            </div>
+                        </div>
+                    </apex:panelGroup>
+                </apex:pageBlockSection>
+
+                <!-- Preview -->
+                <div class="row-fluid">
+                    <div class="span9 well well-small">
+                        <div style="position:relative">
+                            <div id="pr-back">
+                                <div class="backgroundImage">
+                                    <div id="pr-head" class="{!FieloEE__ProgramLayout__c.FieloEE__Header__c}" style="background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color02__c};">
+                                        <div class="innerhead clearfix row-fluid">
+                                            <div class="span3"><img id="imgLogo" class="imgLogo" src="{!logo}" /></div>
+                                            <div class="span9" style="position:relative; height:60px;">
+                                                <ul id="pr-menu" class="{!FieloEE__ProgramLayout__c.FieloEE__Menu__c}" style="position:absolute; bottom:0; margin:0;" role="menu" aria-labelledby="dLabel">
+                                                    <li class="amenu-active" id="menu-active" style="background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color06__c};">{!$Label.SampleText}</li>
+                                                    <li class="amenu">{!$Label.SampleText}</li>
+                                                    <li class="amenu">{!$Label.SampleText}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                                    <div id="pr-body" class="{!FieloEE__ProgramLayout__c.FieloEE__Header__c} bodyFontColor" style="background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color03__c};">
+                                                        <div class="row-fluid">
+                                                            <div class="span3" style="padding:10px">
+                                                                <div id="comp-bar1" class="compbar" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont07__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color07__c};color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont07__c};">{!$Label.SampleText}</div>
+                                                                <div id="categ-back" style="background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color09__c}">
+                                                                    <div class="categ" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont09__c}">{!$Label.SampleText}</div>
+                                                                    <div id="categ-select" class="categ-select" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont10__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color10__c};">{!$Label.SampleText}</div>
+                                                                    <div class="categ" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont09__c}">{!$Label.SampleText}</div>
+                                                                    <div class="categ" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont09__c}">{!$Label.SampleText}</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="span9" style="padding-right:10px">
+                                                                <div id="comp-bar2" class="compbar" style="height:30px; color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont07__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color07__c};">
+                                                                    <ul>
+                                                                        <li id="compbar-active" class="compbar-active" style="background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color08__c}">{!$Label.SampleText}</li>
+                                                                        <li>{!$Label.SampleText}</li>
+                                                                        <li>{!$Label.SampleText}</li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="row-fluid">
+                                                                    <div class="span3 reward">
+                                                                        <div style="margin:10px; background:#f7f7f7; height:70px;"></div>
+                                                                        <div style="margin:0; line-height:15px; text-align:center;"><b>{!$Label.SampleText}</b><br/>{!$Label.SampleText}</div>
+                                                                        <div style="margin:10px; text-align:center;"><span class="badge" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont11__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color11__c};">000</span></div>
+                                                                    </div>
+                                                                    <div class="span3 reward">
+                                                                        <div style="margin:10px; background:#f7f7f7; height:70px;"></div>
+                                                                        <div style="margin:0; line-height:15px; text-align:center;"><b>{!$Label.SampleText}</b><br/>{!$Label.SampleText}</div>
+                                                                        <div style="margin:10px; text-align:center;"><span class="badge" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont11__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color11__c};">000</span></div>
+                                                                    </div>
+                                                                    <div class="span3 reward">
+                                                                        <div style="margin:10px; background:#f7f7f7; height:70px;"></div>
+                                                                        <div style="margin:0; line-height:15px; text-align:center;"><b>{!$Label.SampleText}</b><br/>{!$Label.SampleText}</div>
+                                                                        <div style="margin:10px; text-align:center;"><span class="badge" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont11__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color11__c};">000</span></div>
+                                                                    </div>
+                                                                    <div class="span3 reward">
+                                                                        <div style="margin:10px; background:#f7f7f7; height:70px;"></div>
+                                                                        <div style="margin:0; line-height:15px; text-align:center;"><b>{!$Label.SampleText}</b><br/>{!$Label.SampleText}</div>
+                                                                        <div style="margin:10px; text-align:center;"><span class="badge" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont11__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color11__c};">000</span></div>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="comp-bar3" style="height:30px; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color07__c};"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row-fluid">
+                                                            <div class="span12" style="padding:30px 10px">
+                                                                <table class="table table-hover">
+                                                                    <thead>
+                                                                        <tr id="comp-bar4" style="background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color07__c};">
+                                                                            <th class="compbar" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont07__c};">{!$Label.SampleText}</th>
+                                                                            <th class="compbar" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont07__c};">{!$Label.SampleText}</th>
+                                                                            <th class="compbar" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont07__c};">{!$Label.SampleText}</th>
+                                                                            <th class="compbar" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont07__c};">{!$Label.SampleText}</th>
+                                                                            <th class="compbar" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont07__c};">{!$Label.SampleText}</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tr><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td style="text-align:center"><span class="badge" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont11__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color11__c};">000</span></td></tr>
+                                                                    <tr><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td style="text-align:center"><span class="badge" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont11__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color11__c};">000</span></td></tr>
+                                                                    <tr><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td style="text-align:center"><span class="badge" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont11__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color11__c};">000</span></td></tr>
+                                                                    <tr><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td style="text-align:center"><span class="badge" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont11__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color11__c};">000</span></td></tr>
+                                                                    <tr><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td class="bodyFontColor">{!$Label.SampleText}</td><td style="text-align:center"><span class="badge" style="color: #{!FieloEE__ProgramLayout__c.FieloEE__ColorFont11__c}; background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color11__c};">000</span></td></tr>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div id="pr-foot" class="{!FieloEE__ProgramLayout__c.FieloEE__Footer__c}" style="background-color: #{!FieloEE__ProgramLayout__c.FieloEE__Color04__c};">
+                                                        <div class="innerfoot clearfix" style="color:#{!FieloEE__ProgramLayout__c.FieloEE__ColorFont04__c};">
+                                                            <div class="pull-left">{!$Label.SampleText}</div>
+                                                            <div class="pull-right"><img id="imgLogoFoot" class="imgLogoFoot" src="{!URLFOR($Resource.images, 'logo/fielo-small-'+ colorLogoFoot +'.png')}" /></div>    
+                                                        </div>
+                                                    </div>
+                                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span3 well well-small">
+                                    {!$Label.Advanced}
+                                    <div class="tabbable">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active"><a href="#back" data-toggle="tab">{!$Label.Page}</a></li>
+                                            <li><a href="#head" data-toggle="tab">{!$Label.Head}</a></li>
+                                            <li><a href="#body" data-toggle="tab">{!$Label.Body}</a></li>
+                                            <li><a href="#foot" data-toggle="tab">{!$Label.Foot}</a></li>
+                                        </ul>
+                                        <div class="tab-content">
+
+                                            <!-- BACK -->
+                                            <div class="tab-pane active" id="back">
+                                                <div class="subsection">
+                                                    <div><apex:outputLabel value="{!$Label.fieloee__background}"/></div>
+                                                    <div><apex:inputText id="color1" value="{!FieloEE__ProgramLayout__c.FieloEE__Color01__c}" styleClass="color" onchange="changeColor('1', 'pr-back', this);"/></div>
+                                                </div>
+                                                <div class="subsection clearfix">
+                                                    <div class="span6">
+                                                        <div id="backPreview" style="display:block;">
+                                                            <apex:image rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c)}" value="{!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c)))}"/>
+                                                            <a href="javascript:void(0);" onclick="changeImage('back');">
+                                                                <apex:outputText value="{!$Label.fieloee__changeimage}" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c)}" />
+                                                    <apex:outputText value="{!$Label.fieloee__uploadimage}" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c)}" />
+                                                </a><br/>
+                                                            <apex:commandLink value="{!$Label.fieloee__deleteimage}" action="{!deleteBackground}" onclick="if (!confirm('{!$Label.fieloee__areyousure}')) return false;" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c)}"/>
+                                                        </div>
+                                                        <div id="backUpload" style="display:none;">
+                                                            <apex:panelGrid >
+                                                                <apex:outputText value="{!$Label.fieloee__selectafile}"/>
+                                                                <apex:inputFile value="{!inputFile.Body}" size="13" contentType="{!inputFile.ContentType}" filename="{!inputFile.Name}" fileSize="{!inputFile.BodyLength}" />
+                                                                <apex:panelGrid columns="2">
+                                                                    <apex:commandButton value="{!$Label.fieloee__upload}" action="{!uploadBackground}"/>
+                                                                    <a href="javascript:void(0)" onclick="changeImage('back');">{!$Label.fieloee__cancel}</a>
+                                                                </apex:panelGrid>
+                                                            </apex:panelGrid>
+                                                        </div>
+                                                    </div>
+                                                    <div class="span6">
+                                                        <div id="backAttributes">
+                                                            <apex:panelGroup rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__BackgroundId__c)}" >
+                                                                <apex:selectRadio value="{!FieloEE__ProgramLayout__c.FieloEE__BackgroundAttribute__c}" onchange="changeAtributte('pr-back', this);" layout="pageDirection" styleClass="radio-group">
+                                                                    <apex:selectOptions value="{!picklistValues}"/>
+                                                                </apex:selectRadio>
+                                                            </apex:panelGroup>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="subsection">
+                                                    <apex:panelGrid columns="2" width="100%">
+                                                        <apex:outputLabel style="margin-top:5px" value="{!$Label.fieloee__font}" for="fontId" />
+                                                        <apex:selectList value="{!FieloEE__ProgramLayout__c.FieloEE__Font__c}" size="1" id="fontId" onchange="changeFont(this);">
+                                                            <apex:selectOptions value="{!fonts}" />
+                                                        </apex:selectList>
+                                                    </apex:panelGrid>
+                                                    <div class="well well-small" style="background:#fcfcfc">
+                                                        <span id="fontPreview" style="line-height:40px; font-size:20px;">{!$Label.FontPreview}</span><br/>
+                                                        <span id="fontPreviewText" style="font-size:11px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tristique, est sagittis sodales ultrices, nisl nunc euismod elit, vel placerat mauris libero vitae ipsum.</span>
+                                                    </div>
+                                                </div>
+                                                <!-- SEARCH REWARD
+                                                <div class="subsection">
+                                                    <apex:outputLabel value="{!$Label.SearchReward}" />
+                                                    <apex:inputField styleClass="span12" value="{!ProgramLayout__c.SearchRewardMenu__c}" />
+                                                    <apex:outputLabel value="{!$Label.InfoLayoutSearchReward}"/>
+                                                </div>
+                                                -->
+                                            </div>
+
+                                            <!-- HEAD -->
+                                            <div class="tab-pane" id="head">
+                                                <div class="subsection">
+                                                    <apex:outputLabel value="{!$Label.fieloee__background}"/>
+                                                    <apex:panelGrid columns="2">
+                                                        <apex:panelGroup >
+                                                            <apex:inputText id="color2" value="{!FieloEE__ProgramLayout__c.FieloEE__Color02__c}" styleClass="color" onchange="changeColor('2', 'pr-head', this, '2');getOppositeColor('compbar', this, '2');"/>
+                                                            <apex:inputHidden id="colorFont2" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont02__c}"/>
+                                                        </apex:panelGroup>
+                                                        <apex:panelGrid columns="2">
+                                                            <input type="radio" id="noColor2" value=" " onchange="changeColor('2', 'pr-head', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__transparent}"/>
+                                                            <input type="radio" id="yesColor2" value=" " onchange="changeColor('2', 'pr-head', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__color}"/>
+                                                        </apex:panelGrid>
+                                                    </apex:panelGrid>
+                                                </div>
+                                                <div class="subsection clearfix">
+                                                    <div class="span6">
+                                                        <div id="headPreview" style="display:block;">
+                                                            <apex:image style="width:100px" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c)}" value="{!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c)))}"/>
+                                                            <a href="javascript:void(0);" onclick="changeImage('head');">
+                                                                <apex:outputText value="{!$Label.fieloee__changeimage}" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c)}" />
+                                                    <apex:outputText value="{!$Label.fieloee__uploadimage}" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c)}" />
+                                                </a><br/>
+                                                            <apex:commandLink value="{!$Label.fieloee__deleteimage}" action="{!deleteHeaderBackground}" onclick="if (!confirm('{!$Label.fieloee__areyousure}')) return false;" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c)}"/> 
+                                                        </div>
+                                                        <div id="headUpload" style="display:none;">
+                                                            <apex:panelGrid >
+                                                                <apex:outputText value="{!$Label.fieloee__selectafile}"/>
+                                                                <apex:inputFile value="{!inputFile.Body}" size="13" contentType="{!inputFile.ContentType}" filename="{!inputFile.Name}" fileSize="{!inputFile.BodyLength}" />
+                                                                <apex:panelGrid columns="2">
+                                                                    <apex:commandButton value="{!$Label.fieloee__upload}" action="{!uploadHeaderBackground}" />
+                                                                    <a href="javascript:void(0)" onclick="changeImage('head');">{!$Label.fieloee__cancel}</a>
+                                                                </apex:panelGrid>
+                                                            </apex:panelGrid>
+                                                        </div>
+                                                    </div>
+                                                    <div class="span6">
+                                                        <div id="headAttributes">
+                                                            <apex:panelGroup rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__headerBackgroundId__c)}" >
+                                                                <apex:selectRadio value="{!FieloEE__ProgramLayout__c.FieloEE__HeaderBackgroundAttribute__c}" onchange="changeAtributte('pr-head', this);" layout="pageDirection" styleClass="radio-group">
+                                                                    <apex:selectOptions value="{!picklistValues}"/>
+                                                                </apex:selectRadio>
+                                                            </apex:panelGroup>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="subsection">
+                                                    <apex:outputLabel styleClass="span4" value="{!$Label.fieloee__type}" />
+                                                    <apex:inputField id="pickHead" styleClass="span8" value="{!FieloEE__ProgramLayout__c.FieloEE__Header__c}"  onchange="document.getElementById('pr-head').setAttribute('class', this.value);document.getElementById('pr-body').setAttribute('class', this.value)" />
+                                                    <script>
+                                                        var pick = document.getElementById('{!$Component.pickHead}');                                                    
+                                                        pick.remove(0);
+                                                    </script>
+                                                </div>
+                                                <div class="subsection">
+                                                    <apex:outputLabel styleClass="span4" value="{!$ObjectType.FieloEE__ProgramLayout__c.fields.FieloEE__Menu__c.Label}" />
+                                                    <apex:inputField id="pickMenu" styleClass="span8" value="{!FieloEE__ProgramLayout__c.FieloEE__Menu__c}" onchange="document.getElementById('pr-menu').setAttribute('class', this.value)" />
+                                                    <script>
+                                                        var pick = document.getElementById('{!$Component.pickMenu}');                                                    
+                                                        pick.remove(0);
+                                                    </script>
+                                                </div>
+                                                <div class="subsection">
+                                                    <div><apex:outputLabel value="{!$Label.fieloee__fontmenu}"/></div>
+                                                    <div>
+                                                        <apex:inputText id="color5" value="{!FieloEE__ProgramLayout__c.FieloEE__Color05__c}" styleClass="color" onchange="changeMenuColor('5', this);getOppositeColor('amenu-active', this, '5');"/>
+                                                        <apex:inputHidden id="colorFont5" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont05__c}"/>
+                                                    </div>
+                                                    <apex:outputLabel value="{!$Label.fieloee__menuselection}"/>
+                                                    <apex:panelGrid columns="2">
+                                                        <apex:panelGroup >
+                                                            <apex:inputText id="color6" value="{!FieloEE__ProgramLayout__c.FieloEE__Color06__c}" styleClass="color" onchange="changeColor('6', 'menu-active', this);getOppositeColor('amenu-active', this, '6');"/>
+                                                            <apex:inputHidden id="colorFont6" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont06__c}"/>
+                                                        </apex:panelGroup>
+                                                        <apex:panelGrid columns="2">
+                                                            <input type="radio" id="noColor6" value=" " onchange="changeColor('6', 'menu-active', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__transparent}"/>
+                                                            <input type="radio" id="yesColor6" value=" " onchange="changeColor('6', 'menu-active', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__color}"/>
+                                                        </apex:panelGrid>
+                                                    </apex:panelGrid>
+                                                </div>
+                                            </div>
+
+                                            <!-- BODY -->
+                                            <div class="tab-pane" id="body">
+                                                <div class="subsection">
+                                                    <apex:outputLabel value="{!$Label.fieloee__background}"/>
+                                                    <apex:panelGrid columns="2">
+                                                        <apex:panelGroup >
+                                                            <apex:inputText id="color3" value="{!FieloEE__ProgramLayout__c.FieloEE__Color03__c}" styleClass="color" onchange="changeColor('3', 'pr-body', this);getOppositeColor('bodyFontColor', this, '3');"/>
+                                                            <apex:inputHidden id="colorFont3" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont03__c}"/>
+                                                        </apex:panelGroup>
+                                                        <apex:panelGrid columns="2">
+                                                            <input type="radio" id="noColor3" value=" " onchange="changeColor('3', 'pr-body', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__transparent}"/>
+                                                            <input type="radio" id="yesColor3" value=" " onchange="changeColor('3', 'pr-body', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__color}"/>
+                                                        </apex:panelGrid>
+                                                    </apex:panelGrid>
+                                                </div>
+                                                <div class="subsection clearfix">
+                                                    <div class="span6">
+                                                        <div id="bodyPreview" style="display:block;">
+                                                            <apex:image style="width:100px" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c)}" value="{!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c)))}" />
+                                                            <a href="javascript:void(0);" onclick="changeImage('body');">
+                                                                <apex:outputText value="{!$Label.fieloee__changeimage}" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c)}" />
+                                                    <apex:outputText value="{!$Label.fieloee__uploadimage}" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c)}" />
+                                                </a><br/>
+                                                            <apex:commandLink value="{!$Label.fieloee__deleteimage}" action="{!deleteBodyBackground}" onclick="if (!confirm('{!$Label.fieloee__areyousure}')) return false;" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c)}"/>
+                                                        </div>
+                                                        <div id="bodyUpload" style="display:none;">
+                                                            <apex:panelGrid >
+                                                                <apex:outputText value="{!$Label.fieloee__selectafile}"/>
+                                                                <apex:inputFile value="{!inputFile.Body}" size="13" contentType="{!inputFile.ContentType}" filename="{!inputFile.Name}" fileSize="{!inputFile.BodyLength}" />
+                                                                <apex:panelGrid columns="2">
+                                                                    <apex:commandButton value="{!$Label.fieloee__upload}" action="{!uploadBodyBackground}" />
+                                                                    <a href="javascript:void(0)" onclick="changeImage('body');">{!$Label.fieloee__cancel}</a>
+                                                                </apex:panelGrid>
+                                                            </apex:panelGrid>
+                                                        </div>
+                                                    </div>
+                                                    <div class="span6">
+                                                        <div id="bodyAttributes">
+                                                            <apex:panelGroup rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundId__c)}" >
+                                                                <apex:selectRadio value="{!FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundAttribute__c}" onchange="changeAtributte('pr-body', this);" layout="pageDirection" styleClass="radio-group">
+                                                                    <apex:selectOptions value="{!picklistValues}"/>
+                                                                </apex:selectRadio>
+                                                            </apex:panelGroup>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="subsection">
+                                                    <apex:outputLabel value="{!$Label.fieloee__componentbar}"/>
+                                                    <apex:panelGrid columns="2">
+                                                        <apex:panelGroup >
+                                                            <apex:inputText id="color7" value="{!FieloEE__ProgramLayout__c.FieloEE__Color07__c}" styleClass="color" onchange="changeColor('7', 'comp-bar1', this);changeColor('7', 'comp-bar2', this);changeColor('7', 'comp-bar3', this);changeColor('7', 'comp-bar4', this);getOppositeColor('compbar', this, '7');"/>
+                                                            <apex:inputHidden id="colorFont7" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont07__c}"/>
+                                                        </apex:panelGroup>
+                                                        <apex:panelGrid columns="2">
+                                                            <input type="radio" id="noColor7" value=" " onchange="changeColor('7', 'comp-bar1', this);changeColor('7', 'comp-bar2', this);changeColor('7', 'comp-bar3', this);changeColor('7', 'comp-bar4', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__transparent}"/>
+                                                            <input type="radio" id="yesColor7" value=" " onchange="changeColor('7', 'comp-bar1', this);changeColor('7', 'comp-bar2', this);changeColor('7', 'comp-bar3', this);changeColor('7', 'comp-bar4', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__color}"/>
+                                                        </apex:panelGrid>
+                                                    </apex:panelGrid>
+                                                    <apex:outputLabel value="{!$Label.fieloee__componentbarselectitem}"/>
+                                                    <apex:panelGrid columns="2">
+                                                        <apex:panelGroup >
+                                                            <apex:inputText id="color8" value="{!FieloEE__ProgramLayout__c.FieloEE__Color08__c}" styleClass="color" onchange="changeColor('8', 'compbar-active', this);getOppositeColor('compbar-active', this, '8');"/>
+                                                            <apex:inputHidden id="colorFont8" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont08__c}"/>
+                                                        </apex:panelGroup>
+                                                        <apex:panelGrid columns="2">
+                                                            <input type="radio" id="noColor8" value=" " onchange="changeColor('8', 'compbar-active', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__transparent}"/>
+                                                            <input type="radio" id="yesColor8" value=" " onchange="changeColor('8', 'compbar-active', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__color}"/>
+                                                        </apex:panelGrid>
+                                                    </apex:panelGrid>
+                                                    <apex:outputLabel value="{!$Label.fieloee__categoriesbackground}"/>
+                                                    <apex:panelGrid columns="2">
+                                                        <apex:panelGroup >
+                                                            <apex:inputText id="color9" value="{!FieloEE__ProgramLayout__c.FieloEE__Color09__c}" styleClass="color" onchange="changeColor('9', 'categ-back', this);getOppositeColor('categ', this, '9');"/>
+                                                            <apex:inputHidden id="colorFont9" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont09__c}"/>
+                                                        </apex:panelGroup>
+                                                        <apex:panelGrid columns="2">
+                                                            <input type="radio" id="noColor9" value=" " onchange="changeColor('9', 'categ-back', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__transparent}"/>
+                                                            <input type="radio" id="yesColor9" value=" " onchange="changeColor('9', 'categ-back', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__color}"/>
+                                                        </apex:panelGrid>
+                                                    </apex:panelGrid>
+                                                    <apex:outputLabel value="{!$Label.fieloee__categoryselected}"/>
+                                                    <apex:panelGrid columns="2">
+                                                        <apex:panelGroup >
+                                                            <apex:inputText id="color10" value="{!FieloEE__ProgramLayout__c.FieloEE__Color10__c}" styleClass="color" onchange="changeColor('10', 'categ-select', this);getOppositeColor('categ-select', this, '10');"/>
+                                                            <apex:inputHidden id="colorFont10" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont10__c}"/>
+                                                        </apex:panelGroup>
+                                                        <apex:panelGrid columns="2">
+                                                            <input type="radio" id="noColor10" value=" " onchange="changeColor('10', 'categ-select', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__transparent}"/>
+                                                            <input type="radio" id="yesColor10" value=" " onchange="changeColor('10', 'categ-select', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__color}"/>
+                                                        </apex:panelGrid>
+                                                    </apex:panelGrid>
+                                                    <apex:outputLabel value="{!$Label.fieloee__badge}"/>
+                                                    <apex:panelGrid columns="2">
+                                                        <apex:panelGroup >
+                                                            <apex:inputText id="color11" value="{!FieloEE__ProgramLayout__c.FieloEE__Color11__c}" styleClass="color" onchange="changeBadgeColor('11', this);getOppositeColor('badge', this, '11');"/>
+                                                            <apex:inputHidden id="colorFont11" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont11__c}"/>
+                                                        </apex:panelGroup>
+                                                        <apex:panelGrid columns="2">
+                                                            <input type="radio" id="noColor11" value=" " onchange="changeBadgeColor('11', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__transparent}"/>
+                                                            <input type="radio" id="yesColor11" value=" " onchange="changeBadgeColor('11', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__color}"/>
+                                                        </apex:panelGrid>
+                                                    </apex:panelGrid>
+                                                </div>
+                                            </div>
+
+                                            <!-- FOOT -->
+                                            <div class="tab-pane" id="foot">
+                                                <div class="subsection">
+                                                    <apex:outputLabel value="{!$Label.fieloee__background}"/>
+                                                    <apex:panelGrid columns="2">
+                                                        <apex:panelGroup >
+                                                            <apex:inputText id="color4" value="{!FieloEE__ProgramLayout__c.FieloEE__Color04__c}" styleClass="color" onchange="changeColor('4', 'pr-foot', this);getOppositeColor('innerfoot', this, '4');"/>
+                                                            <apex:inputHidden id="colorFont4" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont04__c}"/>
+                                                        </apex:panelGroup>
+                                                        <apex:panelGrid columns="2">
+                                                            <input type="radio" id="noColor4" value=" " onchange="changeColor('4', 'pr-foot', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__transparent}"/>
+                                                            <input type="radio" id="yesColor4" value=" " onchange="changeColor('4', 'pr-foot', this);"/>
+                                                            <apex:outputLabel value="{!$Label.fieloee__color}"/>
+                                                        </apex:panelGrid>
+                                                    </apex:panelGrid>
+                                                </div>
+                                                <div class="subsection clearfix">
+                                                    <div class="span6">
+                                                        <div id="footPreview" style="display:block;">
+                                                            <apex:image style="width:100px" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c)}" value="{!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c)))}"/>
+                                                            <a href="javascript:void(0);" onclick="changeImage('foot');">
+                                                                <apex:outputText value="{!$Label.fieloee__changeimage}" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c)}" />
+                                                    <apex:outputText value="{!$Label.fieloee__uploadimage}" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c)}" />
+                                                </a><br/>
+                                                            <apex:commandLink value="{!$Label.fieloee__deleteimage}" action="{!deleteFooterBackground}" onclick="if (!confirm('{!$Label.fieloee__areyousure}')) return false;" rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c)}"/>
+                                                        </div>
+                                                        <div id="footUpload" style="display:none;">
+                                                            <apex:panelGrid >
+                                                                <apex:outputText value="{!$Label.fieloee__selectafile}"/>
+                                                                <apex:inputFile value="{!inputFile.Body}" size="13" contentType="{!inputFile.ContentType}" filename="{!inputFile.Name}" fileSize="{!inputFile.BodyLength}" />
+                                                                <apex:panelGrid columns="2">
+                                                                    <apex:commandButton value="{!$Label.fieloee__upload}" action="{!uploadFooterBackground}" />
+                                                                    <a href="javascript:void(0)" onclick="changeImage('foot');">{!$Label.fieloee__cancel}</a>
+                                                                </apex:panelGrid>
+                                                            </apex:panelGrid>
+                                                        </div>
+                                                    </div>
+                                                    <div class="span6">
+                                                        <div id="footAttributes">
+                                                            <apex:panelGroup rendered="{!!ISNULL(FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundId__c)}" >
+                                                                <apex:selectRadio value="{!FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundAttribute__c}" onchange="changeAtributte('pr-foot', this);" layout="pageDirection" styleClass="radio-group">
+                                                                    <apex:selectOptions value="{!picklistValues}"/>
+                                                                </apex:selectRadio>
+                                                            </apex:panelGroup>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="subsection">
+                                                    <apex:outputLabel styleClass="span4" value="{!$Label.fieloee__type}" />
+                                                    <apex:inputField id="pickFoot" styleClass="span8" value="{!FieloEE__ProgramLayout__c.FieloEE__Footer__c}"  onchange="document.getElementById('pr-foot').setAttribute('class', this.value)" />
+                                                    <script>
+                                                        var pick = document.getElementById('{!$Component.pickFoot}');                                                    
+                                                        pick.remove(0);
+                                                    </script>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                    </div>
+                    <div class="span3 well well-small">
+                        <apex:outputLabel value="{!$Label.fieloee__saveastemplate}"/>
+                        <apex:inputText value="{!templateName}" />
+                        <apex:commandButton value="{!$Label.fieloee__save}" action="{!saveTemplate}" />
+                    </div>
+                </div>
+
+            <!-- Custom CSS -->
+            <div class="row-fluid">
+                <div class="span9 well well-small">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <apex:outputLabel value="{!$ObjectType.FieloEE__ProgramLayout__c.fields['CSS__c'].Label}" />
+                            <apex:outputText value="{!$ObjectType.FieloEE__ProgramLayout__c.fields['CSS__c'].InlineHelpText}" styleClass="help_text" />
+                        </div>
+                        <div class="pull-right"><input type="button" class="btn" value="{!$Label.ApplyCSS}" onclick="document.getElementById('css-custom').innerHTML=document.getElementsByClassName('cssCustom')[0].value"/></div>
+                    </div>
+                    <div class="row-fluid" style="margin-top:10px;Site ">
+                        <apex:inputField value="{!FieloEE__ProgramLayout__c.FieloEE__CSS__c}" styleClass="span12 cssCustom" style="height:200px;"/>
+                    </div>
+                </div>
+            </div>
+
+            
+
+            <!-- Custom HTML -->
+            <div class="row-fluid">
+                <span class="advancedSettingsButton">{!$Label.AdvancedSettings}</span>
+            </div>
+            <div class="row-fluid advancedSettingsViewer">
+                <div class="span9 well well-small">
+                    <div class="clearfix">
+                        <div class="pull-left">
+                            <apex:outputLabel value="{!$ObjectType.FieloEE__ProgramLayout__c.fields['HTMLHeadLayout__c'].Label}" />
+                            <apex:outputText value="{!$ObjectType.FieloEE__ProgramLayout__c.fields['HTMLHeadLayout__c'].InlineHelpText}" styleClass="help_text" />
+                        </div>
+                    </div>
+                    <div class="row-fluid" style="margin-top:10px;Site ">
+                        <apex:inputField value="{!FieloEE__ProgramLayout__c.FieloEE__HTMLHeadLayout__c}" styleClass="span12 cssCustom" style="height:200px;"/>
+                    </div>
+                </div>
+
+
+                
+            </div>
+
+            <!-- Save button -->
+            <!--<div class="row-fluid">
+                <div class="span12" style="text-align:center">
+                    <apex:commandButton value="{!$Label.fieloee__save}" action="{!doSave}" />
+                </div>
+            </div>-->
+
+        </apex:pageblock>
+    </apex:form>
+    
+    <!-- Preview Script -->
+    
+</apex:page>

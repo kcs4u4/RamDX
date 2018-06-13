@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NewValidation1</fullName>
+    <active>false</active>
+    <errorConditionFormula>$Label.kcs_dev__dx_api2 +$Label.kcs_dev__dx_api = Branch1_formula__c +                                                                  Branch1_formula__c+ &#39;$ObjectType.kcs_dev__A__c.Fields.kcs_dev__Email__c&#39; + &#39;$Permission.New_Permission&#39;+ &#39;$Setup.kcs_dev__Custom_Test1__c.kcs_dev__Checked__c &#39;</errorConditionFormula>
+    <errorMessage>No Error</errorMessage>
+</ValidationRule>

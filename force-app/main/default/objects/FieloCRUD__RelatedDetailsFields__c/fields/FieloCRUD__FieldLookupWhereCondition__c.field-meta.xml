@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__FieldLookupWhereCondition__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <inlineHelpText>Define your WHERE condition clause for the object related through the lookup. You may include fields; ORDER BY and LIMIT clauses; and variables for Member Id, Account Id, Contact Id, UserId (ex. Member__c =: memberId)</inlineHelpText>
+    <label>Where Condition</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,12 @@
+<apex:page standardController="FieloCH__ChallengeMember__c" extensions="FieloCH.ChallengeMemberDeleteBackEndExtension" >
+	<apex:sectionHeader title="{!$ObjectType.FieloCH__ChallengeMember__c.Label}"/>
+	<apex:form >
+        <apex:pageBlock >
+	        <apex:pageMessage summary="{!$Label.fieloch__infochangestatus}" severity="Info" strength="2" />
+	        <apex:pageBlockButtons location="bottom">
+	            <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!cancel}"/>
+	            <apex:commandButton value="{!$Label.fieloee__continue}" action="{!unsubscribe}"/>
+	        </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -1,0 +1,27 @@
+<apex:page standardController="FieloEE__Level__c"  >
+    <apex:pageBlock >
+    	<apex:variable id="contador" var="contador" value="1" />
+	    <apex:pageBlockTable id="pageBlockTable" value="{!FieloEE__Level__c.LevelCriterias__r}" var="c" >                             
+	        <apex:column value="{! contador }." /> 
+	        <apex:column headerValue="{!$Label.fieloee__field}" value="{!$ObjectType.FieloEE__Member__c.fields[SUBSTITUTE(c.FieloEE__FieldName__c,'__r.Name','__c')].Label}"/> 
+	        <apex:column headerValue="{!$Label.fieloee__operator}" value="{!c.FieloEE__Operator__c}"/> 
+	        <apex:column headerValue="{!$Label.fieloee__value}"> 
+	            <apex:panelGroup id="grp" > 
+	                <apex:outputField id="texto" value="{!c.FieloEE__Values__c}" rendered="{!OR(c.FieloEE__FieldType__c=='Text', c.FieloEE__FieldType__c=='REFERENCE')}"/> 
+	                <apex:outputField id="fecha" value="{!c.FieloEE__DateValue__c}" rendered="{!c.FieloEE__FieldType__c=='Date'}"/>                
+	                <apex:outputText id="numero" value="{0,number,#,###.##}" rendered="{!c.FieloEE__FieldType__c=='Number'}"> 
+	                    <apex:param value="{!c.FieloEE__NumberValue__c}" /> 
+	                </apex:outputText> 
+	                <apex:outputField id="boolean" value="{!c.FieloEE__BooleanValue__c}" rendered="{!c.FieloEE__FieldType__c=='Boolean'}"/> 
+	                <apex:outputText id="list" value="{!c.FieloEE__Values__c}" rendered="{!c.FieloEE__FieldType__c=='List'}"/> 
+	            </apex:panelGroup> 
+	        </apex:column> 
+	        <apex:column >                          
+	            <apex:panelGroup >                                      
+	                {!$Label.fieloee__and} 
+	                <apex:variable var="contador" value="{! Text(Value(contador) + 1)}" /> 
+	            </apex:panelGroup> 
+	        </apex:column>                                                                                                
+	    </apex:pageBlockTable>
+    </apex:pageBlock>                                             	
+</apex:page>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Email__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Email of this member.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>If you do not enter an email account, the system will create one of the form "name.lastname@fielo.com".</inlineHelpText>
+    <label>E-Mail</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Email</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,25 @@
+<apex:page standardController="FieloEE__Menu__c" extensions="FieloEE.MenuPhotoUploadBackEndExtension" >
+    <apex:pageBlock title="{!$objectType.FieloEE__Menu__c.Label} {!$Label.fieloee__photoupload}" id="pgBlock">
+        <c:PhotoUpload myObject="{!FieloEE__Menu__c}" saveInRecordField="true" attachField="AttachmentId__c" info="{!$Label.fieloee__infomenuchangephoto}" />
+        <apex:form >
+            <apex:selectRadio value="{!FieloEE__Menu__c.FieloEE__ImagePosition__c}" >
+                <apex:actionSupport event="onchange" action="{!doSave}" />
+                <apex:selectOptions value="{!imagePositions}" />
+            </apex:selectRadio>
+            <apex:panelGroup rendered="{!(FieloEE__Menu__c.FieloEE__ImagePosition__c == 'Only Image')}">
+            	<apex:outputField value="{!FieloEE__Menu__c.FieloEE__Image__c}" />
+            </apex:panelGroup>
+            <apex:panelGroup rendered="{!(FieloEE__Menu__c.FieloEE__ImagePosition__c == 'Left')}">
+            	<apex:outputField value="{!FieloEE__Menu__c.FieloEE__Image__c}" />
+            	<apex:outputField value="{!FieloEE__Menu__c.Name}" />
+            </apex:panelGroup>
+            <apex:panelGroup rendered="{!(FieloEE__Menu__c.FieloEE__ImagePosition__c == 'Right')}">
+            	<apex:outputField value="{!FieloEE__Menu__c.Name}" />
+            	<apex:outputField value="{!FieloEE__Menu__c.FieloEE__Image__c}" />
+            </apex:panelGroup>
+            <apex:panelGroup rendered="{!(FieloEE__Menu__c.FieloEE__ImagePosition__c == 'Only Name')}">
+            	<apex:outputField value="{!FieloEE__Menu__c.Name}" />
+            </apex:panelGroup>
+        </apex:form>
+    </apex:pageblock>
+</apex:page>

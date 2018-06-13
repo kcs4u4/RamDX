@@ -1,0 +1,26 @@
+<apex:page StandardController="FieloEE__Agreement__c" extensions="FieloEE.AgreementEditBackEndExtension" >
+    <apex:form rendered="{!(FieloEE__Agreement__c.FieloEE__Status__c != 'Deprecated')}">
+        <apex:sectionHeader title="{!$Label.fieloee__agreement} {!$Label.fieloee__edit}" subtitle="{!FieloEE__Agreement__c.Name}" />
+        <apex:pageBlock title="{!$Label.fieloee__agreement} {!$Label.fieloee__edit}" >
+            <apex:pageMessage id="warning" summary="{!$Label.fieloee__agreementwarninguse}" severity="warning" strength="3" rendered="{!!useAgreement}"/>
+            <apex:pageMessages />
+            <apex:pageBlockButtons >
+                <apex:commandButton value="{!$Label.fieloee__save}" action="{!doSave}" />                
+                <apex:commandButton value="{!$Label.fieloee__cancel}" action="{!cancel}" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="1" collapsible="false" title="{!$Label.fieloee__information}" >
+                <apex:repeat value="{!$ObjectType.FieloEE__Agreement__c.FieldSets.FieloEE__Agreements}" var="f" >
+                    <apex:inputField value="{!FieloEE__Agreement__c[f]}" />
+                </apex:repeat>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:form rendered="{!(FieloEE__Agreement__c.FieloEE__Status__c == 'Deprecated')}">
+        <apex:pageBlock >
+            <apex:pageBlockButtons >                               
+                <apex:commandButton value="{!$Label.fieloee__back}" action="{!cancel}" />
+            </apex:pageBlockButtons>
+            <apex:outputText value="{!$Label.fieloee__erroreditagreement}" />            
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

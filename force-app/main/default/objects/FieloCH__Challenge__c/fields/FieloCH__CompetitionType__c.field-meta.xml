@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__CompetitionType__c</fullName>
+    <deprecated>false</deprecated>
+    <description>If Challenge is competition type, Defines if is by performance, by time or by objective that completes challenge</description>
+    <externalId>false</externalId>
+    <inlineHelpText>-Objective:  Each member that accomplishes the challenge wins
+-Time: Its a race time, wins the first member that completes the challenge
+-Performance: It’s a competition by value, the member with best performance  wins challenge</inlineHelpText>
+    <label>Competition Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>FieloCH__Mode__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Objective</fullName>
+                <default>true</default>
+                <label>Objective</label>
+            </value>
+            <value>
+                <fullName>Performance</fullName>
+                <default>false</default>
+                <label>Performance</label>
+            </value>
+            <value>
+                <fullName>Time</fullName>
+                <default>false</default>
+                <label>Time</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Competition</controllingFieldValue>
+            <controllingFieldValue>Collaborative</controllingFieldValue>
+            <controllingFieldValue>Teams</controllingFieldValue>
+            <valueName>Objective</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Competition</controllingFieldValue>
+            <controllingFieldValue>Teams</controllingFieldValue>
+            <controllingFieldValue>Groups</controllingFieldValue>
+            <valueName>Performance</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Competition</controllingFieldValue>
+            <controllingFieldValue>Teams</controllingFieldValue>
+            <valueName>Time</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

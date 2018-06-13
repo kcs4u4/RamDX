@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__FilterBySegment__c</fullName>
+    <defaultValue>false</defaultValue>
+    <deprecated>false</deprecated>
+    <description>The segment of members to which this item will be showed.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Pick the segments you want to show this item to.</inlineHelpText>
+    <label>Filter By Segment</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

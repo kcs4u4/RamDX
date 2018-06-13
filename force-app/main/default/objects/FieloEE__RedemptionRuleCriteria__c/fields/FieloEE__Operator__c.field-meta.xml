@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Operator__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Operator</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>equals</fullName>
+                <default>false</default>
+                <label>equals</label>
+            </value>
+            <value>
+                <fullName>not equals</fullName>
+                <default>false</default>
+                <label>not equals</label>
+            </value>
+            <value>
+                <fullName>greater than</fullName>
+                <default>false</default>
+                <label>greater than</label>
+            </value>
+            <value>
+                <fullName>greater or equal</fullName>
+                <default>false</default>
+                <label>greater or equal</label>
+            </value>
+            <value>
+                <fullName>less than</fullName>
+                <default>false</default>
+                <label>less than</label>
+            </value>
+            <value>
+                <fullName>less or equal</fullName>
+                <default>false</default>
+                <label>less or equal</label>
+            </value>
+            <value>
+                <fullName>contains</fullName>
+                <default>false</default>
+                <label>contains</label>
+            </value>
+            <value>
+                <fullName>not contains</fullName>
+                <default>false</default>
+                <label>not contains</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

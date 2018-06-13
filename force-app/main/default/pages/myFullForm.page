@@ -1,0 +1,47 @@
+<apex:page standardController="Branch1__c" extensions="compositionExample">
+<apex:pageBlock rendered="{!$Permission.New_Permission}"></apex:pageBlock>
+<apex:pageMessage severity="info" 
+   strength="1" 
+   summary="{!$Label.kcs_dev__dx_api}"  
+   />
+    <apex:outputLabel value="{!$Label.kcs_dev__dx_api2}" />
+    <apex:messages />
+    <apex:composition template="myFormComposition">
+   
+
+     <c:SiteFooter />
+     <apex:include pageName="renderaspdf"/>
+     {!$Page.ChallengeHelpBackend}
+     <apex:image url="{!$Resource.loading}" width="50" height="50"/>
+   
+    <apex:repeat value="{!$ObjectType.Branch2__c.FieldSets.Test}" var="f"> 
+        <apex:outputText value="{!Branch2__c[f]}" /><br/>
+    </apex:repeat>
+     <apex:outputPanel id="helpWorkstationHeight" 
+        rendered="{!$Setup.Custom_Test__c.Expense__c}">
+        Enter the height for your workstation in inches, measured from the 
+        floor to top of the work surface.
+    </apex:outputPanel>
+     <flow:interview name="ModemTroubleShooting" interview="{!newFlow}"/>
+      
+    <apex:define name="meal">
+        <apex:outputLabel value="Enter your favorite meal: " for="mealField"/>
+        <apex:inputText id="mealField" value="{!mealField}"/>
+    </apex:define>
+
+    <apex:define name="age">
+        <apex:outputLabel value="Enter your age: " for="ageField"/>
+        <apex:inputText id="ageField" value="{!ageField}"/>
+    </apex:define>
+    {!Branch1__c.Branch2__c}
+    {!Branch1__c.Branch_Code__c}
+    {!Branch1__c.kcs_dev__Branch2__r.kcs_dev__Branch_Code2__c}
+   <apex:outputLabel value="Enter your favorite color: " for="colorField"/>
+   <apex:inputText id="colorField" value="{!colorField}"/>
+    
+    </apex:composition>
+    
+    <apex:outputText id="greeting" rendered="{!showGreeting}" value="Hello {!nameField}. 
+    You look {!ageField} years old. Would you like some {!colorField} {!mealField}?"/>
+ 
+</apex:page>

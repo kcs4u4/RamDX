@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__ReorderButtons</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Reorder Buttons</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url>var objectApiName = &#39;PageCustomButton__c&#39;; 
+var parentId = &#39;{!FieloCRUD__PageLayout__c.Id}&#39;; 
+var whereCondition = &#39;FieloCRUD__PageLayout__c = \&#39;&#39; + parentId + &#39;\&#39;&#39;; 
+
+window.location.href = &#39;/apex/FieloCRUD__RecordsReorder?objectApiName=&#39;+objectApiName+&#39;&amp;urlSave=/&#39;+parentId+&#39;&amp;whereCond=&#39;+whereCondition;</url>
+</WebLink>

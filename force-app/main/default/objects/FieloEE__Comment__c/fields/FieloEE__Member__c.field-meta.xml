@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Member__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <deprecated>false</deprecated>
+    <description>The member who made this comment.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter the name of the member who made this commment.</inlineHelpText>
+    <label>Member</label>
+    <referenceTo>FieloEE__Member__c</referenceTo>
+    <relationshipName>Comments</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

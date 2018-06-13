@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Preview</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Preview</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT("/soap/ajax/22.0/connection.js")}
+
+var menus= sforce.connection.query("SELECT {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}SiteURL__c, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}CustomPage__c FROM {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Menu__c WHERE Id = \&#39;{!FieloEE__Menu__c.Id}\&#39; ");
+var menu = menus.getArray("records")[0];
+
+if(null==menu.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}CustomPage__c || &#39;&#39;==menu.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}CustomPage__c){
+     window.open(menu.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}SiteURL__c+&#39;{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Page?idMenu=&#39;+&#39;{!FieloEE__Menu__c.Id}&#39;+&#39;&amp;isPreview=1&#39;);
+}else{
+     window.open(menu.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}SiteURL__c+&#39;apex/&#39;+menu.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}CustomPage__c+&#39;?idMenu=&#39;+&#39;{!FieloEE__Menu__c.Id}&#39;+&#39;&amp;isPreview=1&#39;);
+}</url>
+</WebLink>

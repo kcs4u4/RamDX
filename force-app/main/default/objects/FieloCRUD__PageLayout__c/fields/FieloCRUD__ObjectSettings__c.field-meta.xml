@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__ObjectSettings__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>Object Settings</label>
+    <referenceTo>FieloCRUD__ObjectSettings__c</referenceTo>
+    <relationshipLabel>Page Layouts</relationshipLabel>
+    <relationshipName>PageLayouts</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

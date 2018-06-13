@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__PageLayout_Type</fullName>
+    <active>true</active>
+    <errorConditionFormula>NOT(ISBLANK(FieloCRUD__ValueToDefinePageLayout__c))
+&amp;&amp;
+ISBLANK(FieloCRUD__ObjectSettings__r.FieloCRUD__FieldToDefinePageLayout__c)</errorConditionFormula>
+    <errorDisplayField>FieloCRUD__ValueToDefinePageLayout__c</errorDisplayField>
+    <errorMessage>Please complete the field "Field To Define Page Layout" in the related "Object Settings" record</errorMessage>
+</ValidationRule>

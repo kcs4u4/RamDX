@@ -1,0 +1,5 @@
+<apex:page standardController="FieloSVY__Survey__c" >  
+    <div style="margin:0 auto 0 auto;">
+        <FieloEE:PhotoUpload myObject="{!FieloSVY__Survey__c}" saveInRecordField="true" attachField="FieloSVY__AttachmentId__c" info="{!$Label.fielosvy__infosurveychangephoto}" />             
+    </div>
+</apex:page>

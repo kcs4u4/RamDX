@@ -1,0 +1,37 @@
+<apex:page showHeader="true" sidebar="true" controller="FieloEE.AuditPermissionBackendController" >
+    <apex:sectionHeader title="{!$Label.fieloee__grantadminpermissions}"/>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageMessages />
+            <apex:pageBlockSection columns="3" >
+                <apex:inputField value="{!member.FieloEE__User__c}" />
+                <apex:inputField value="{!adminPermission.FieloEE__To__c}" />
+            </apex:pageBlockSection>
+
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton action="{!doSave}" value="{!$Label.fieloee__save}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+        <apex:pageBlock title="{!$Label.fieloee__auditlogs}">
+            <apex:pageBlockTable value="{!auditLogs}" var="a" >
+                <apex:column headerValue="{!$ObjectType.FieloEE__AuditLogs__c.Fields['GrantingUser__c'].Label}">
+                    <apex:commandLink action="{!URLFOR('/' + a.GrantingUser__c)}" value="{!users[a.FieloEE__GrantingUser__c].Name}" />
+                </apex:column>
+                <apex:column headerValue="{!$ObjectType.FieloEE__AuditLogs__c.Fields['UserGranted__c'].Label}">
+                    <apex:commandLink action="{!URLFOR('/' + a.UserGranted__c)}" value="{!users[a.FieloEE__UserGranted__c].Name}" />
+                </apex:column>
+                <apex:column headerValue="{!$Label.fieloee__profile}">
+                    <apex:outputText value="{!profiles[users[a.FieloEE__UserGranted__c].ProfileId].Name}" />
+                </apex:column>
+                <apex:column value="{!a.FieloEE__From__c}" />
+                <apex:column value="{!a.FieloEE__To__c}" />
+                <apex:column >
+                    <apex:commandLink rendered="{!IF(a.FieloEE__To__c > NOW(), true, false)}"  action="{!doRevoke}">
+                        {!$Label.fieloee__revoke}
+                        <apex:param value="{!a.Id}" name="recordId"/>
+                    </apex:commandLink>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

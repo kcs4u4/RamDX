@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Mode__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The mode define if the missions are  a competition between members or a collaborative mission between all the challenge community.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Select Competition if you want to create a challenge to each member or Collaborative if you want to create a single mission that will be accomplish by the hole challenge community.</inlineHelpText>
+    <label>Mode</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Competition</fullName>
+                <default>true</default>
+                <label>Competition</label>
+            </value>
+            <value>
+                <fullName>Collaborative</fullName>
+                <default>false</default>
+                <label>Collaborative</label>
+            </value>
+            <value>
+                <fullName>Teams</fullName>
+                <default>false</default>
+                <label>Teams</label>
+            </value>
+            <value>
+                <fullName>Groups</fullName>
+                <default>false</default>
+                <label>Groups</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

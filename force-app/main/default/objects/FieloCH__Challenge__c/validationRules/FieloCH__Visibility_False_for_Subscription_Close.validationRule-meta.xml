@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Visibility_False_for_Subscription_Close</fullName>
+    <active>true</active>
+    <description>When the subscription is closed, the visibility must be false so it wont be shown.</description>
+    <errorConditionFormula>AND( ISPICKVAL( FieloCH__Subscription__c  , &#39;Open&#39;),  NOT(FieloCH__Visible__c)  )</errorConditionFormula>
+    <errorDisplayField>FieloCH__Visible__c</errorDisplayField>
+    <errorMessage>If Subscription Mode is Open then visibility must be checked.</errorMessage>
+</ValidationRule>

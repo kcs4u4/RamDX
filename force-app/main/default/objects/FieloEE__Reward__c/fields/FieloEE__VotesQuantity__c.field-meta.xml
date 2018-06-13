@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__VotesQuantity__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Rate of the product</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This is the quantity of &#39;likes&#39; the reward received by members.</inlineHelpText>
+    <label>Quantity Votes</label>
+    <summaryForeignKey>FieloEE__RewardLike__c.FieloEE__Reward__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

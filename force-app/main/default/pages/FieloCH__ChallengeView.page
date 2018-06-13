@@ -1,0 +1,22 @@
+<apex:page Id="page" sidebar="false" showHeader="false" >
+    <apex:composition template="{!$Site.template}">
+        <apex:define name="body">          
+            <!-- Challenge Details Component -->
+                    <c:ChallengeViewDetails challengeId="{!$CurrentPage.parameters.Id}" fieldsSet="{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}AttachmentId__c,Name,{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Description__c,{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}InitialDate__c,{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}MemberCounter__c,c:progressbar"/>
+            <!-- END Challenge Details Component -->
+            
+            <!-- Challenge Missions Component -->
+                    <c:ChallengeMissionsViewDetails challengeId="{!$CurrentPage.parameters.Id}" layout="List" fieldsSet="c:progressbar,Name,{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Description__c"/>
+            <!-- END Challenge Missions Component -->
+            
+            <!-- Challenge Rewards Component -->
+                    <c:ChallengeRewardsViewDetails challengeId="{!$CurrentPage.parameters.Id}" layout="Grid" fieldsSet="{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Position__c,{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}AttachmentId__c,{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Title__c,{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}Description__c"/>
+            <!-- END Challenge Rewards Component -->
+         
+            <!-- Challenge Leaderboard Component -->
+                    <c:ChallengeLeaderboardView challengeId="{!$CurrentPage.parameters.Id}" layout="List" fieldsSet="position,Member__r.FieloEE__imageId__c,name,value"/>
+            <!-- END Challenge Leaderboard Component -->
+            <c:CSSChallenges />
+        </apex:define>
+    </apex:composition>
+</apex:page>

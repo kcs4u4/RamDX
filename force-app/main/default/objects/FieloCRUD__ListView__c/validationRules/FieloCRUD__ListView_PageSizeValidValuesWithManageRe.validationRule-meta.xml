@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__ListView_PageSizeValidValuesWithManageRe</fullName>
+    <active>true</active>
+    <description>Validates page size valid values when "Manage Records Per Page" is true.</description>
+    <errorConditionFormula>AND(
+	NOT(ISBLANK(TEXT(FieloCRUD__DisplayRecordsPerPage__c))),
+	FieloCRUD__PageSize__c &lt;&gt; 10,
+	FieloCRUD__PageSize__c &lt;&gt; 25,
+	FieloCRUD__PageSize__c &lt;&gt; 50,
+	FieloCRUD__PageSize__c &lt;&gt; 100
+)</errorConditionFormula>
+    <errorDisplayField>FieloCRUD__PageSize__c</errorDisplayField>
+    <errorMessage>When "Manage Records Per Page" is checked, the only valid values for page size are: 10, 25, 50 and 100.</errorMessage>
+</ValidationRule>

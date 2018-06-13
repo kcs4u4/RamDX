@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__MultiVoucher</fullName>
+    <active>true</active>
+    <errorConditionFormula>FieloEE__UniqueVoucher__c &amp;&amp;  ISPICKVAL(FieloEE__VoucherCreationMode__c, &#39;Controlled By Item&#39;)</errorConditionFormula>
+    <errorMessage>Rewards controlled By Item with preloaded vouchers can&#39;t be unique voucher</errorMessage>
+</ValidationRule>

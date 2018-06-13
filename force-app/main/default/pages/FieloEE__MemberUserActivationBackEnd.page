@@ -1,0 +1,11 @@
+<apex:page standardController="FieloEE__Member__c" extensions="FieloEE.MemberUserActivationBackEndExtension">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection id="pageBlockSectionID" columns="3">
+                <apex:outputField value="{!FieloEE__Member__c.User__r.Name}" />
+                <apex:outputField value="{!FieloEE__Member__c.User__r.IsActive}" />
+                <apex:commandButton value="{!$Label.fieloee__changestatus}" action="{!activateUser}" rerender="pageBlockSectionID" />
+            </apex:pageBlockSection>
+         </apex:pageBlock>
+      </apex:form>
+</apex:page>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__Edit_Reward</fullName>
+    <active>true</active>
+    <description>If the Challenge is active then the reward cannot be modified</description>
+    <errorConditionFormula>FieloCH__Challenge__r.FieloCH__IsActive__c</errorConditionFormula>
+    <errorMessage>Cannot modified the Reward if the Challenge is Active.</errorMessage>
+</ValidationRule>

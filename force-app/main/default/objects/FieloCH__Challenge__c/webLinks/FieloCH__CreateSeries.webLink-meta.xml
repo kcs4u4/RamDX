@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCH__CreateSeries</fullName>
+    <availability>online</availability>
+    <description>Choose diferents options to create a series of the Challenge</description>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Create Series</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT ("/soap/ajax/23.0/connection.js")}
+
+if({!FieloCH__Challenge__c.FieloCH__IsActive__c} == 0){
+    alert(&#39;{!$Label.fieloch__challengemustbeactivated}&#39;);
+}else if( {!ISNULL(FieloCH__Challenge__c.FieloCH__FinalDate__c) } ){
+    alert(&#39;This Challenge Cannot be serialize.&#39;);
+}else {
+    var url = &#39;/apex/&#39;+&#39;{!$Setup.FieloEE__PublicSettings__c.FieloEE__ChallengesPrefix__c}&#39;+&#39;ChallengeSeriesBackend?id=&#39;+&#39;{!FieloCH__Challenge__c.Id}&#39;;
+
+    window.location.href = url;
+}</url>
+</WebLink>

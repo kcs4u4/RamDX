@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__IdentificationType__c</fullName>
+    <deprecated>false</deprecated>
+    <description>The type of personal document of this member.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Pick the type of personal document of this member.</inlineHelpText>
+    <label>Identification Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+                <label>Mobile</label>
+            </value>
+            <value>
+                <fullName>Passport</fullName>
+                <default>false</default>
+                <label>Passport</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

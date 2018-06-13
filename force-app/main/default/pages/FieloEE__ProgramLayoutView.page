@@ -1,0 +1,218 @@
+<apex:page standardController="FieloEE__ProgramLayout__c" cache="false" tabStyle="MemberPortal__tab" id="page">
+    
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapResponsiveMin.css')}"/>
+
+    <apex:variable var="backAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__BackgroundAttribute__c == '100%'}" value="background-size:100%" />
+    <apex:variable var="backAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__BackgroundAttribute__c != '100%'}" value="background-repeat:{!FieloEE__ProgramLayout__c.FieloEE__BackgroundAttribute__c}" />
+    <apex:variable var="headAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__HeaderBackgroundAttribute__c == '100%'}" value="background-size:100%" />
+    <apex:variable var="headAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__HeaderBackgroundAttribute__c != '100%'}" value="background-repeat:{!FieloEE__ProgramLayout__c.FieloEE__HeaderBackgroundAttribute__c}" />
+    <apex:variable var="bodyAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundAttribute__c == '100%'}" value="background-size:100%" />
+    <apex:variable var="bodyAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundAttribute__c != '100%'}" value="background-repeat:{!FieloEE__ProgramLayout__c.FieloEE__BodyBackgroundAttribute__c}" />
+    <apex:variable var="footAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundAttribute__c == '100%'}" value="background-size:100%" />
+    <apex:variable var="footAtt" rendered="{!FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundAttribute__c != '100%'}" value="background-repeat:{!FieloEE__ProgramLayout__c.FieloEE__FooterBackgroundAttribute__c}" />
+    
+    <apex:variable var="color" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont02__c}"/>
+    <apex:variable var="color" value="000000" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__ColorFont02__c)}"/>
+    <apex:variable var="colorLogoFoot" value="{!FieloEE__ProgramLayout__c.FieloEE__ColorFont04__c}"/>
+    <apex:variable var="colorLogoFoot" value="FFFFFF" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__ColorFont04__c)}"/>
+    <apex:variable var="logo" value="{!IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__Logo__c,3) == '00P', URLFOR($Action.Attachment.Download, FieloEE__ProgramLayout__c.FieloEE__Logo__c), IF(LEFT(FieloEE__ProgramLayout__c.FieloEE__Logo__c,3) == '015', URLFOR($Action.Document.Download, FieloEE__ProgramLayout__c.FieloEE__Logo__c), URLFOR($Resource.FieloEE__Templates, FieloEE__ProgramLayout__c.FieloEE__Logo__c)))}"/>
+    <apex:variable var="logo" value="{!URLFOR($Resource.FieloEE__images, 'logo/fielo-'+ color +'.png')}" rendered="{!ISNULL(FieloEE__ProgramLayout__c.FieloEE__Logo__c)}"/>
+    
+    <style type="text/css">
+        label   { font-size:13px; color:#666666; margin:0; }
+        select  { margin-bottom: 5px !important; }
+
+        .nav-tabs > li      { margin: 0 }
+        .nav-tabs > li > a  { padding: 0 6px }
+
+        .nav-nav > li       { float: left; }
+        .nav-nav > li > a   { padding: 0 4px }
+
+        .radio-group        { width: 100%; }
+        .radio-group td     { overflow: auto; }
+        .radio-group input  { float: left; }
+        .radio-group label  { float: left; margin-left: 5px; }
+
+        .color      { width:50px; margin-top: 10px; font-size:12px !important; border:none; text-align:center; }
+        .subsection { margin-bottom:5px; border-bottom:1px dotted #dddddd; }
+
+        .form-horizontal .control-group { margin:0; }
+
+        #pr-back
+        {
+            height: 500px;
+            overflow: auto;
+            border: 1px solid #cccccc;
+            background-color: #{!ProgramLayout__c.Color01__c};
+        }
+        #pr-back .backgroundImage
+        {
+            background-image:url({!IF(LEFT(ProgramLayout__c.BackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, ProgramLayout__c.BackgroundId__c), IF(LEFT(ProgramLayout__c.BackgroundId__c,3) == '015', URLFOR($Action.Document.Download, ProgramLayout__c.BackgroundId__c), URLFOR($Resource.Templates, ProgramLayout__c.BackgroundId__c)))});
+            {!backAtt};
+        }
+        #pr-head 
+        {
+            height: 60px;
+            background-image: url({!IF(LEFT(ProgramLayout__c.headerBackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, ProgramLayout__c.headerBackgroundId__c), IF(LEFT(ProgramLayout__c.headerBackgroundId__c,3) == '015', URLFOR($Action.Document.Download, ProgramLayout__c.headerBackgroundId__c), URLFOR($Resource.Templates, ProgramLayout__c.headerBackgroundId__c)))});
+            {!headAtt};
+        }
+        #pr-body
+        {
+            width: 75%;
+            margin: 0 auto;
+            background-image:url({!IF(LEFT(ProgramLayout__c.BodyBackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, ProgramLayout__c.BodyBackgroundId__c), IF(LEFT(ProgramLayout__c.BodyBackgroundId__c,3) == '015', URLFOR($Action.Document.Download, ProgramLayout__c.BodyBackgroundId__c), URLFOR($Resource.Templates, ProgramLayout__c.BodyBackgroundId__c)))});
+            {!bodyAtt};
+        }
+        #pr-foot
+        {
+            height: 50px;
+            background-image: url({!IF(LEFT(ProgramLayout__c.FooterBackgroundId__c,3) == '00P', URLFOR($Action.Attachment.Download, ProgramLayout__c.FooterBackgroundId__c), IF(LEFT(ProgramLayout__c.FooterBackgroundId__c,3) == '015', URLFOR($Action.Document.Download, ProgramLayout__c.FooterBackgroundId__c), URLFOR($Resource.Templates, ProgramLayout__c.FooterBackgroundId__c)))});
+            {!footAtt};
+        }
+
+        .imgLogo    { height:50px; margin:5px; }
+
+        #pr-head.fixed          { width:100%; position:absolute; top: 0; }
+        #pr-head.fullsize       { width:100%; }
+        #pr-head.pagesize       { width: 75%; margin: 0 auto; }
+        #pr-head.fixed .innerhead, 
+        #pr-head.fullsize .innerhead    { width:75%; margin: 0 auto; }
+        #pr-head.pagesize .innerhead    { width:100%; }
+
+        #pr-foot.fixed          { width:100%; position:absolute; bottom: 0; }
+        #pr-foot.fullsize       { width:100%; }
+        #pr-foot.pagesize       { width: 75%; margin: 0 auto; }
+        #pr-foot.fixed .innerfoot, 
+        #pr-foot.fullsize .innerfoot    { width:75%; margin: 0 auto; }
+        #pr-foot.pagesize .innerfoot    { width:100%; }
+
+        #pr-body.fixed  { padding-top: 60px; }
+
+        #pr-menu li     { float:left; list-style:none; }
+        #pr-menu .amenu { float:left; list-style:none; color: #{!ProgramLayout__c.Color05__c}; }
+        #menu-active        { color:#{!ProgramLayout__c.ColorFont06__c}; }
+        #pr-menu.tabs li    { border-radius: 4px 4px 0 0; padding:1px 6px; }
+        #pr-menu.pills li   { border-radius: 4px; padding:1px 6px; margin-bottom:3px; }
+        #pr-menu.nav li { padding:1px 6px; }
+
+        #categ-back, #comp-bar1, #comp-bar2, #comp-bar3 { border-radius: 4px; }
+        #comp-bar1  { height:22px; padding:4px 8px; }
+
+        #categ-select, .categ   { padding: 4px 8px; }
+        #comp-bar2 ul li    { float:left; list-style:none; padding: 4px 0; }
+        #compbar-active { padding: 4px 6px 6px !important; }
+
+        .reward     { border-radius:2px; border:1px solid #cccccc; margin:10px 0; height:160px; }
+
+    </style>
+
+    <apex:sectionHeader title="{!$Label.fieloee__titlememberportalsettings}"/>
+    <apex:pagemessages />
+
+    <apex:form >
+    <apex:pageblock title="{!$Label.fieloee__layoutconfiguration}" helpUrl="FieloHelp?hlp=CustomizeSite" helpTitle="" id="pageBlock">
+        <apex:pageBlockButtons >
+            <apex:commandButton value="{!$Label.fieloee__edit}" action="{!edit}" />
+            <apex:commandButton value="{!$Label.fieloee__delete}" action="{!delete}" />
+        </apex:pageBlockButtons>
+
+        <apex:pageBlockSection columns="1">
+            <apex:panelGroup >
+                    <div style="position:relative">
+                        <div id="pr-back">
+                            <div class="backgroundImage">
+                                <div id="pr-head" class="{!ProgramLayout__c.Header__c}" style="background-color: #{!ProgramLayout__c.Color02__c};">
+                                    <div class="innerhead clearfix row-fluid">
+                                        <div class="span3"><img id="imgLogo" class="imgLogo" src="{!logo}" /></div>
+                                        <div class="span9" style="position:relative; height:60px;">
+                                            <ul id="pr-menu" class="{!ProgramLayout__c.Menu__c}" style="position:absolute; bottom:0; margin:0;" role="menu" aria-labelledby="dLabel">
+                                                <li class="amenu-active" id="menu-active" style="background-color: #{!ProgramLayout__c.Color06__c};">{!$Label.SampleText}</li>
+                                                <li class="amenu">{!$Label.SampleText}</li>
+                                                <li class="amenu">{!$Label.SampleText}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                                <div id="pr-body" class="{!ProgramLayout__c.Header__c}" style="background-color: #{!ProgramLayout__c.Color03__c};">
+                                                    <div class="row-fluid">
+                                                        <div class="span3" style="padding:10px">
+                                                            <div id="comp-bar1" class="compbar" style="color: #{!ProgramLayout__c.ColorFont07__c}; background-color: #{!ProgramLayout__c.Color07__c};color: #{!ProgramLayout__c.ColorFont07__c};">{!$Label.SampleText}</div>
+                                                            <div id="categ-back" style="background-color: #{!ProgramLayout__c.Color09__c}">
+                                                                <div class="categ" style="color: #{!ProgramLayout__c.ColorFont09__c}">{!$Label.SampleText}</div>
+                                                                <div id="categ-select" class="categ-select" style="color: #{!ProgramLayout__c.ColorFont10__c}; background-color: #{!ProgramLayout__c.Color10__c};">{!$Label.SampleText}</div>
+                                                                <div class="categ" style="color: #{!ProgramLayout__c.ColorFont09__c}">{!$Label.SampleText}</div>
+                                                                <div class="categ" style="color: #{!ProgramLayout__c.ColorFont09__c}">{!$Label.SampleText}</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="span9" style="padding-right:10px">
+                                                            <div id="comp-bar2" class="compbar" style="height:30px; color: #{!ProgramLayout__c.ColorFont07__c}; background-color: #{!ProgramLayout__c.Color07__c};">
+                                                                <ul>
+                                                                    <li id="compbar-active" class="compbar-active" style="background-color: #{!ProgramLayout__c.Color08__c}">{!$Label.SampleText}</li>
+                                                                    <li>{!$Label.SampleText}</li>
+                                                                    <li>{!$Label.SampleText}</li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="row-fluid">
+                                                                <div class="span3 reward">
+                                                                    <div style="margin:10px; background:#f7f7f7; height:70px;"></div>
+                                                                    <div style="margin:0 10px; line-height:15px;"><b>{!$Label.SampleText}</b><br/>{!$Label.SampleText}</div>
+                                                                    <div style="margin:10px; text-align:center;"><span class="badge" style="color: #{!ProgramLayout__c.ColorFont11__c}; background-color: #{!ProgramLayout__c.Color11__c};">000</span></div>
+                                                                </div>
+                                                                <div class="span3 reward">
+                                                                    <div style="margin:10px; background:#f7f7f7; height:70px;"></div>
+                                                                    <div style="margin:0 10px; line-height:15px;"><b>{!$Label.SampleText}</b><br/>{!$Label.SampleText}</div>
+                                                                    <div style="margin:10px; text-align:center;"><span class="badge" style="color: #{!ProgramLayout__c.ColorFont11__c}; background-color: #{!ProgramLayout__c.Color11__c};">000</span></div>
+                                                                </div>
+                                                                <div class="span3 reward">
+                                                                    <div style="margin:10px; background:#f7f7f7; height:70px;"></div>
+                                                                    <div style="margin:0 10px; line-height:15px;"><b>{!$Label.SampleText}</b><br/>{!$Label.SampleText}</div>
+                                                                    <div style="margin:10px; text-align:center;"><span class="badge" style="color: #{!ProgramLayout__c.ColorFont11__c}; background-color: #{!ProgramLayout__c.Color11__c};">000</span></div>
+                                                                </div>
+                                                                <div class="span3 reward">
+                                                                    <div style="margin:10px; background:#f7f7f7; height:70px;"></div>
+                                                                    <div style="margin:0 10px; line-height:15px;"><b>{!$Label.SampleText}</b><br/>{!$Label.SampleText}</div>
+                                                                    <div style="margin:10px; text-align:center;"><span class="badge" style="color: #{!ProgramLayout__c.ColorFont11__c}; background-color: #{!ProgramLayout__c.Color11__c};">000</span></div>
+                                                                </div>
+                                                            </div>
+                                                            <div id="comp-bar3" style="height:30px; background-color: #{!ProgramLayout__c.Color07__c};"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row-fluid">
+                                                        <div class="span12" style="padding:30px 10px">
+                                                            <table class="table table-hover">
+                                                                <thead>
+                                                                    <tr id="comp-bar4" style="background-color: #{!ProgramLayout__c.Color07__c};">
+                                                                        <th class="compbar" style="color: #{!ProgramLayout__c.ColorFont07__c};">{!$Label.SampleText}</th>
+                                                                        <th class="compbar" style="color: #{!ProgramLayout__c.ColorFont07__c};">{!$Label.SampleText}</th>
+                                                                        <th class="compbar" style="color: #{!ProgramLayout__c.ColorFont07__c};">{!$Label.SampleText}</th>
+                                                                        <th class="compbar" style="color: #{!ProgramLayout__c.ColorFont07__c};">{!$Label.SampleText}</th>
+                                                                        <th class="compbar" style="color: #{!ProgramLayout__c.ColorFont07__c};">{!$Label.SampleText}</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tr><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td style="text-align:center"><span class="badge" style="color: #{!ProgramLayout__c.ColorFont11__c}; background-color: #{!ProgramLayout__c.Color11__c};">000</span></td></tr>
+                                                                <tr><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td style="text-align:center"><span class="badge" style="color: #{!ProgramLayout__c.ColorFont11__c}; background-color: #{!ProgramLayout__c.Color11__c};">000</span></td></tr>
+                                                                <tr><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td style="text-align:center"><span class="badge" style="color: #{!ProgramLayout__c.ColorFont11__c}; background-color: #{!ProgramLayout__c.Color11__c};">000</span></td></tr>
+                                                                <tr><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td style="text-align:center"><span class="badge" style="color: #{!ProgramLayout__c.ColorFont11__c}; background-color: #{!ProgramLayout__c.Color11__c};">000</span></td></tr>
+                                                                <tr><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td>{!$Label.SampleText}</td><td style="text-align:center"><span class="badge" style="color: #{!ProgramLayout__c.ColorFont11__c}; background-color: #{!ProgramLayout__c.Color11__c};">000</span></td></tr>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div id="pr-foot" class="{!ProgramLayout__c.Footer__c}" style="background-color: #{!ProgramLayout__c.Color04__c};">
+                                                    <div class="innerfoot clearfix" style="color:#{!FieloEE__ProgramLayout__c.FieloEE__ColorFont04__c};">
+                                                    	<div class="pull-left">{!$Label.SampleText}</div>
+                                                    	<div class="pull-right"><img id="imgLogoFoot" class="imgLogoFoot" src="{!URLFOR($Resource.images, 'logo/fielo-small-'+ colorLogoFoot +'.png')}" /></div>	
+                                                    </div>
+                                                </div>
+                                            </div>
+                        </div>
+                    </div>
+            </apex:panelGroup>
+        </apex:pageBlockSection>
+
+    </apex:pageblock>
+    </apex:form>
+    
+</apex:page>

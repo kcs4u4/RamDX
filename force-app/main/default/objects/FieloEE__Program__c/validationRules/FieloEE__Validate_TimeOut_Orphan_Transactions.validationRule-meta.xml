@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Validate_TimeOut_Orphan_Transactions</fullName>
+    <active>true</active>
+    <errorConditionFormula>FieloEE__TimeOutOrphanTransactions__c &lt; 0 || FieloEE__TimeOutOrphanTransactions__c &gt; 30</errorConditionFormula>
+    <errorDisplayField>FieloEE__TimeOutOrphanTransactions__c</errorDisplayField>
+    <errorMessage>Value must be between 0 and 30</errorMessage>
+</ValidationRule>

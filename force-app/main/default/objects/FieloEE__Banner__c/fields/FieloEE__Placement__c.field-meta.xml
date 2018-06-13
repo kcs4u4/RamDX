@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Placement__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Where will the banner be shown. You can select the banner to be shown among your different Fielo programs or in a mobile device.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Use this picklist to show the banner in custom pages.</inlineHelpText>
+    <label>Placement</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Home Top</fullName>
+                <default>false</default>
+                <label>Home Top</label>
+            </value>
+            <value>
+                <fullName>Home Side</fullName>
+                <default>false</default>
+                <label>Home Side</label>
+            </value>
+            <value>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+                <label>Mobile</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

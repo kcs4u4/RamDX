@@ -1,0 +1,119 @@
+<apex:page id="page" controller="FieloEE.FeedbackController" sideBar="{!IF( $CurrentPage.parameters.frame == "1" , true, false) }" showHeader="{!IF( $CurrentPage.parameters.frame == "1" , true, false) }">
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'jquery.js')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapMin.css')}"/>
+    <apex:stylesheet value="{!URLFOR($Resource.FieloEE__css, 'bootstrapResponsiveMin.css')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.FieloEE__js, 'bootstrap.js')}"/>
+
+    <style type="text/css">
+    html,
+    body,
+    .feedback {overflow:hidden;}
+
+    .form-horizontal .control-label {
+        font-size: 12px;
+        color: #000;
+    }
+
+    .input-comment {
+        width: 90%;
+        height: 80%;
+    }
+    .input-type,
+    .input-subject{
+        width: 80%;
+    }
+
+    .input-type,
+    .input-subject,
+    .input-comment {
+        font-size: 12px;
+        color: #000;
+    }
+
+    .bPageBlock {
+        border-top: 3px solid #CCCCCC;
+    }
+
+    h2 {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 14px;
+        font-weight: bold;
+        height: 16px;
+        margin: 0 0 20px 0;
+        padding: 0 0 0 12px;
+        display: block;
+        }
+    .item{
+        margin-top: 10px;
+        margin-left: 13px;
+    }
+    .insertHeight{
+        height:154px;
+    }
+    .bPageBlock .message {
+        margin: 0 13px 4px;
+    }
+
+    .form-horizontal .controls {
+        margin-left: 110px;
+    }
+    .form-horizontal .control-label {
+        width: 80px;
+    }
+
+    </style>
+
+    <apex:variable var="insertHeight" value="insertHeight" rendered="{!msgSent}"/>
+
+    <apex:form id="form" styleClass="form-horizontal">
+        <div class="feedback bPageBlock brandSecondaryBrd apexDefaultPageBlock secondaryPalette">
+            <div class="row-fluid section">
+                <h2 class="mainTitle">{!$Label.fieloee__feedback}</h2>
+            </div>
+            <div class="row-fluid section">
+                <apex:pageMessage summary="{!$Label.fieloee__messagesent}" severity="confirm" strength="3" rendered="{!msgSent}" />
+
+                <apex:panelGroup rendered="{!!msgSent}" layout="none">
+                    <div class="span4 item {!insertHeight}">
+                        <div  class="control-group">
+                            <apex:outputLabel styleClass="control-label">{!$Label.fieloee__type}</apex:outputLabel>
+                            <div class="controls">
+                                <apex:selectList value="{!type}" size="1" styleClass="input-type">
+                                    <apex:selectOption itemValue="Bug" itemLabel="{!$Label.fieloee__reportanissue}"/>
+                                    <apex:selectOption itemValue="Suggestion" itemLabel="{!$Label.fieloee__shareanidea}"/>
+                                    <!-- <apex:selectOption itemValue="Question" itemLabel="{!$Label.Question}"/> -->
+                                </apex:selectList>
+                            </div>
+                        </div>
+                        <div  class="control-group">
+                           <apex:outputLabel styleClass="control-label">{!$Label.fieloee__subject}</apex:outputLabel>
+                            <div class="controls">
+                                <apex:inputText value="{!subject}" styleClass="input-subject"/>
+                            </div>
+                        </div>
+                        <div  class="control-group">
+                            <apex:outputLabel styleClass="control-label">{!$Label.fieloee__uploadfile}</apex:outputLabel>
+                            <div class="controls">
+                                <apex:inputFile value="{!archivo.body}" fileName="{!archivo.Name}" size="10" contentType="jpg"/>
+                            </div>
+                        </div>
+                        <div  class="control-group">
+                            <div class="controls">
+                                <apex:commandLink action="{!doSend}" value="{!$Label.fieloee__send}" styleClass="btn" rendered="{!!msgSent}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span8 item">
+                        <div  class="control-group">
+                            <apex:outputLabel styleClass="control-label">{!$Label.fieloee__comment}</apex:outputLabel>
+                            <div class="controls" style="height: 130px;">
+                                <apex:inputTextArea value="{!emailBody}" styleClass="input-comment"/>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- <apex:commandButton value="Load" action="{!importFile}"/> -->
+                </apex:panelGroup>
+            </div>
+        </div>
+    </apex:form>
+</apex:page>

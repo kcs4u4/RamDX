@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__ExtractText__c</fullName>
+    <deprecated>false</deprecated>
+    <description>A short description of the content feed.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Enter a short description for this content feed.</inlineHelpText>
+    <label>Extract Text</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

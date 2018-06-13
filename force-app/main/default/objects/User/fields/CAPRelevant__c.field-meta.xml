@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CAPRelevant__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>SR0 - If checked, user is able to being assigned to an individual commercial action plan.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This checkbox has 2 main outcomes if ticked: 1. User will be counted for Customer Interactions key performance indicators And/ Or 2. User might be assigned to an individual commercial action plan.</inlineHelpText>
+    <label>Customer Facing Time Relevant?</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Checkbox</type>
+</CustomField>

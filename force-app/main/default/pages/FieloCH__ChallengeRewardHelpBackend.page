@@ -1,0 +1,12 @@
+<apex:page showHeader="false" standardStylesheets="false">
+    <apex:stylesheet value="/sCSS/Theme2/en/help.css"/>
+    <style>
+        .headerClassTable{border: 1px #999 solid;}
+        .tabla th{background-color: #737E96;}
+        .tabla tr{border: 1px #999 solid;}
+    </style>
+            <h1 class="helpHead1"><apex:outputText value="Reward Helps" /></h1>
+            <div id="FacetInfo" class="p">
+          Reward of challenge by wins could be a instant reward, transaction, a trophy or update member field. 
+            </div>
+</apex:page>

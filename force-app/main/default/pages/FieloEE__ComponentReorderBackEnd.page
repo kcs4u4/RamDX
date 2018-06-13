@@ -1,0 +1,49 @@
+<apex:page StandardController="FieloEE__Menu__c" extensions="FieloEE.ComponentReorderExtensionBackend" >
+
+	<style>
+        .preview_box	{ border:1px solid #999999; background:#ffffff; width:994px; position:relative; overflow:auto; }
+        .component		{ float:left; margin:10px; background:#dfdfdf; }
+        .text			{ float:left; margin:10px; padding:5px 15px 5px 5px; border-radius:5px; background:#ffffff; font-size:26px; font-weight:bold; color:#999999; }
+        .text img		{ background:#C13828; }
+    </style>
+
+
+	<apex:sectionHeader subtitle="{!FieloEE__Menu__c.Name}" title="{!$ObjectType.FieloEE__Component__c.LabelPlural}"/>
+	
+	<!-- ReOrder table -->
+	<c:OrderRecords nameObject="Component__c" urlSave="{!$CurrentPage.URL}" btnSave="true" urlSaveAndClose="/{!FieloEE__Menu__c.id}" btnSaveAndClose="true" urlCancel="/{!FieloEE__Menu__c.id}" btnCancel="true" condition="Menu__c ='{!FieloEE__Menu__c.id}'"  />
+
+	<!-- Preview -->
+	<apex:pageBlock title="{!$Label.fieloee__preview}">
+		
+		<div class="preview_box">
+		<div style="margin:10px;">
+			<apex:form >
+				<apex:repeat value="{!components}" var="c">
+					<apex:panelGroup rendered="{!c.FieloEE__Width__c != 0}">
+						<apex:commandLink action="/{!c.id}/e?retURL=apex/ComponentReorderBackEnd?id={!Menu__c.id}" style="text-decoration: none;">
+							<div class="component" style="width:{!c.FieloEE__Width__c}px; height:{!c.FieloEE__Height__c}px;">
+								<div class="text">
+									<apex:image value="{!URLFOR($Resource.FieloEE__images, 'components_icons/' + LOWER(c.RecordType.Name) + '.png')}"/>
+									<apex:outputText value="  {!c.Name}"/>
+								</div>
+							</div>
+						</apex:commandLink>
+					</apex:panelGroup>
+					
+					<apex:panelGroup rendered="{!c.FieloEE__Width__c == 0}">
+						<apex:commandLink action="/{!c.id}/e?retURL=apex/ComponentReorderBackEnd?id={!Menu__c.id}" style="text-decoration: none;">
+							<div class="component" style="width:100%; height:100px; margin-left:0; margin-right:0;">
+								<div class="text">
+									<apex:image value="{!URLFOR($Resource.FieloEE__images, 'components_icons/' + LOWER(c.RecordType.Name) + '.png')}"/>
+									<apex:outputText value="  {!c.Name}"/>
+								</div>
+							</div>
+						</apex:commandLink>
+					</apex:panelGroup>
+				</apex:repeat>
+			</apex:form>
+		</div>
+		</div>
+	</apex:pageBlock>
+</apex:page>

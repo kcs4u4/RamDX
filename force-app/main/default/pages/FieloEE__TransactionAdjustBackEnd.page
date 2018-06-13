@@ -1,0 +1,34 @@
+<apex:page controller="FieloEE.TransactionAdjustController" tabStyle="FieloEE__Transaction__c"  >
+
+<apex:sectionHeader title="{!$ObjectType.FieloEE__Transaction__c.Label}" subtitle="{!$Label.fieloee__transactionadjust}"/>
+<apex:form >
+<apex:pageBlock >
+    <apex:pageMessages />
+    <apex:pageBlockButtons >
+        <apex:commandButton value="{!$Label.fieloee__save}" action="{!save}"/>
+    </apex:pageBlockButtons>
+    
+    <apex:pageBlockSection columns="2" title="{!$Label.fieloee__information}" collapsible="false">
+        <apex:pageblockSectionItem >
+            <apex:outputLabel value="{!$objectType.FieloEE__Transaction__c.fields.FieloEE__Points__c.Label}" />
+            <apex:inputField value="{!tran.FieloEE__Points__c}"/>
+        </apex:pageBlockSectionItem>
+        <apex:inputField value="{!tran.FieloEE__Type__c}" />
+        <apex:repeat value="{!$ObjectType.FieloEE__Transaction__c.fieldsets.FieloEE__AdjustTransaction}" var="f" >
+            <apex:inputField value="{!tran[f]}" />
+        </apex:repeat>        
+    </apex:pageBlockSection>    
+    <apex:pageBlockSection columns="2" title="{!$Label.fieloee__transactionmemberdata}" collapsible="false">
+        <apex:outputField value="{!member.Name}"  rendered="{!(member != null)}"/>
+        <apex:outputField value="{!member.FieloEE__Points__c}"  rendered="{!(member != null)}"/>
+        <apex:inputField value="{!tran.FieloEE__MemberCode__c}"   rendered="{!(member == null)}"/>
+        <apex:inputField value="{!tran.FieloEE__IdentificationType__c}" rendered="{!(member == null)}"/>
+        <apex:outputField value="{!tran.FieloEE__MemberCode__c}"   rendered="{!(member != null)}"/>
+        <apex:outputField value="{!tran.FieloEE__IdentificationType__c}" rendered="{!(member != null)}"/>
+        <apex:outputField value="{!member.FieloEE__FirstName__c}"  rendered="{!(member != null)}"/>
+        <apex:outputField value="{!member.FieloEE__LastName__c}"  rendered="{!(member != null)}"/>
+        <apex:inputField value="{!tran.FieloEE__Member__c}"  rendered="{!(member == null)}"/>
+    </apex:pageBlockSection>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

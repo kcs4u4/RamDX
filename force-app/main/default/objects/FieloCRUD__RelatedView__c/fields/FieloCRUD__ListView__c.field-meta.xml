@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloCRUD__ListView__c</fullName>
+    <deprecated>false</deprecated>
+    <externalId>false</externalId>
+    <label>List View</label>
+    <referenceTo>FieloCRUD__ListView__c</referenceTo>
+    <relationshipLabel>Related Views</relationshipLabel>
+    <relationshipName>RelatedViews</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

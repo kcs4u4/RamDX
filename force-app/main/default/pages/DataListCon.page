@@ -1,0 +1,9 @@
+<apex:page controller="dataListCon">
+  <!-- Begin Default Content REMOVE THIS -->
+  <apex:dataList value="{!accounts}" var="a">
+  <apex:outputText value="{a.Name}">
+  </apex:outputText>
+  </apex:dataList>
+  
+  <!-- End Default Content REMOVE THIS -->
+</apex:page>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Validate_points_value</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( OR( ISPICKVAL(FieloEE__ConvertionTypeTransaction__c,&#39;Fix Value&#39;), ISPICKVAL(FieloEE__ConvertionTypeTransaction__c,&#39;Factor&#39;), ISPICKVAL(FieloEE__ConvertionTypeTransaction__c,&#39;Multiplier&#39;) ), OR(FieloEE__ConvertionValue__c == 0, ISNULL(FieloEE__ConvertionValue__c), ISBLANK(FieloEE__ConvertionValue__c)) )</errorConditionFormula>
+    <errorMessage>The quantity of points cannot be empty or be 0</errorMessage>
+</ValidationRule>

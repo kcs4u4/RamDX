@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__Paging__c</fullName>
+    <defaultValue>true</defaultValue>
+    <deprecated>false</deprecated>
+    <description>Checking this option will show a paging section for the component. If left unchecked, all items will show in a single page.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Check this option if you want a paging section.</inlineHelpText>
+    <label>Paging</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

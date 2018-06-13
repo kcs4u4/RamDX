@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>FieloEE__VoucherLink__c</fullName>
+    <deprecated>false</deprecated>
+    <description>Formula to link the voucher.</description>
+    <externalId>false</externalId>
+    <formula>HYPERLINK( &#39;./apex/&#39; +  $Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c + &#39;RedemptionItemVoucher?voucherId=&#39; +  Id, $Label.fieloee__voucher )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Voucher Link</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>
