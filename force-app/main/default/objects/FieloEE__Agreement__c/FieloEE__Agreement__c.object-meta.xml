@@ -47,7 +47,6 @@
     <description>Terms and Conditions that members must accept to participate in one of your Fielo programs. You can save different agreements, but only one will be active for each program.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>true</enableHistory>
     <enableReports>true</enableReports>

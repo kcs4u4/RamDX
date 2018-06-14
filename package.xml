@@ -4,6 +4,7 @@
         <members>AccountResponse</members>
         <members>ArVaultEditSave</members>
         <members>AutoRabitTestClass</members>
+        <members>ExampleController</members>
         <members>FieloCH__AdminPermissionBackendController</members>
         <members>FieloCH__AdminPermissionBackendControllerTest</members>
         <members>FieloCH__BadgeMemberPendingBatch</members>
@@ -521,6 +522,7 @@
         <members>aa</members>
         <members>compositionExample</members>
         <members>dataListCon</members>
+        <members>myController</members>
         <members>myController1</members>
         <members>superSort</members>
         <members>test</members>
@@ -601,6 +603,7 @@
         <members>BPage</members>
         <members>DataListCon</members>
         <members>Dependency_test</members>
+        <members>ExampleController</members>
         <members>FieloCH__AdminPermissionBackEnd</members>
         <members>FieloCH__ChallengeChooseTagBackEnd</members>
         <members>FieloCH__ChallengeHelpBackend</members>
@@ -817,6 +820,7 @@
     </types>
     <types>
         <members>AccountAddressTrigger</members>
+        <members>AccountUpdateTrigger</members>
         <members>FieloCH__Badge</members>
         <members>FieloCH__BadgeMember</members>
         <members>FieloCH__Challenge</members>
@@ -879,9 +883,15 @@
         <name>ApprovalProcess</name>
     </types>
     <types>
+        <members>*</members>
         <members>Case.NewTest</members>
         <members>Lead.Second rule</members>
         <name>AssignmentRule</name>
+    </types>
+    <types>
+        <members>Case</members>
+        <members>Lead</members>
+        <name>AssignmentRules</name>
     </types>
     <types>
         <members>AR_DX</members>
@@ -889,10 +899,16 @@
         <name>AuraDefinitionBundle</name>
     </types>
     <types>
+        <members>*</members>
         <members>Case.NewTestCaseRule</members>
         <members>Lead.NewRule</members>
         <members>Lead.NewTestLead</members>
         <name>AutoResponseRule</name>
+    </types>
+    <types>
+        <members>Case</members>
+        <members>Lead</members>
+        <name>AutoResponseRules</name>
     </types>
     <types>
         <members>Case.NewCase</members>
@@ -2009,6 +2025,7 @@
         <name>CustomField</name>
     </types>
     <types>
+        <members>*</members>
         <members>CLJUL16PAN01</members>
         <members>CLJUL16PAN02</members>
         <members>CLJUL16PAN03</members>
@@ -3057,12 +3074,17 @@
         <name>CustomLabel</name>
     </types>
     <types>
+        <members>CustomLabels</members>
+        <name>CustomLabels</name>
+    </types>
+    <types>
         <members>APR_20__c</members>
         <members>ARVault__c</members>
         <members>A__c</members>
         <members>AutoRabitTest__c</members>
         <members>Branch1__c</members>
         <members>Categorys__x</members>
+        <members>Field_Trip__Object_Analysis__c</members>
         <members>FieloCH__AsynchProcess__c</members>
         <members>FieloCH__ChallengeMember__c</members>
         <members>FieloCH__ChallengeMissionMember__c</members>
@@ -3202,17 +3224,28 @@
         <members>FieloEE__FieloBannerImages</members>
         <members>FieloEE__FieloCategoryImages</members>
         <members>FieloEE__FieloDocs</members>
+        <members>FieloEE__FieloDocs/FieloEE__FieloLogo</members>
         <members>FieloEE__FieloDocs/FieloEE__FieloLogo.png</members>
+        <members>FieloEE__FieloDocs/FieloEE__FieloLogoSmallBackEnd</members>
         <members>FieloEE__FieloDocs/FieloEE__FieloLogoSmallBackEnd.png</members>
         <members>FieloEE__FieloImagesFolders</members>
+        <members>FieloEE__FieloImagesFolders/FieloEE__BranchIcon</members>
         <members>FieloEE__FieloImagesFolders/FieloEE__BranchIcon.png</members>
+        <members>FieloEE__FieloImagesFolders/FieloEE__CategoriesIcon</members>
         <members>FieloEE__FieloImagesFolders/FieloEE__CategoriesIcon.png</members>
+        <members>FieloEE__FieloImagesFolders/FieloEE__LevelsIcon</members>
         <members>FieloEE__FieloImagesFolders/FieloEE__LevelsIcon.png</members>
+        <members>FieloEE__FieloImagesFolders/FieloEE__PriceTagIcon</members>
         <members>FieloEE__FieloImagesFolders/FieloEE__PriceTagIcon.png</members>
+        <members>FieloEE__FieloImagesFolders/FieloEE__PrizeIcon</members>
         <members>FieloEE__FieloImagesFolders/FieloEE__PrizeIcon.png</members>
+        <members>FieloEE__FieloImagesFolders/FieloEE__PropertiesIcon</members>
         <members>FieloEE__FieloImagesFolders/FieloEE__PropertiesIcon.png</members>
+        <members>FieloEE__FieloImagesFolders/FieloEE__RulesIcon</members>
         <members>FieloEE__FieloImagesFolders/FieloEE__RulesIcon.png</members>
+        <members>FieloEE__FieloImagesFolders/FieloEE__SiteTemplateIcon</members>
         <members>FieloEE__FieloImagesFolders/FieloEE__SiteTemplateIcon.png</members>
+        <members>FieloEE__FieloImagesFolders/FieloEE__TransactionIcon</members>
         <members>FieloEE__FieloImagesFolders/FieloEE__TransactionIcon.png</members>
         <members>FieloEE__FieloLevelImages</members>
         <members>FieloEE__FieloMenuImages</members>
@@ -3222,10 +3255,16 @@
         <members>FieloEE__FieloTagImages</members>
         <members>FieloSVY__FieloFieloSVYSurveyImages</members>
         <members>Rabit_force__rabit_img</members>
+        <members>Rabit_force__rabit_img/Rabit_force__AutoRABIT_Logo</members>
         <members>Rabit_force__rabit_img/Rabit_force__AutoRABIT_Logo.png</members>
         <members>SalesTools</members>
+        <members>SalesTools/new_Autorabit_Image</members>
         <members>SalesTools/new_Autorabit_Image.jpg</members>
         <name>Document</name>
+    </types>
+    <types>
+        <members>kcs_dev__Branch1__c.New_Duplicate_On_Branch1</members>
+        <name>DuplicateRule</name>
     </types>
     <types>
         <members>unfiled$public/CommunityChangePasswordEmailTemplate</members>
@@ -3236,9 +3275,14 @@
         <name>EmailTemplate</name>
     </types>
     <types>
+        <members>*</members>
         <members>Case.Help</members>
         <members>Case.sscs</members>
         <name>EscalationRule</name>
+    </types>
+    <types>
+        <members>Case</members>
+        <name>EscalationRules</name>
     </types>
     <types>
         <members>OrderDB</members>
@@ -3250,6 +3294,46 @@
         <members>Branch2__c.Test</members>
         <members>Branch2__c.Test1</members>
         <members>Branch__c.NewFieldSet</members>
+        <members>FieloCH__ChallengeReward__c.FieloCH__ChallengeRewardEdit</members>
+        <members>FieloCH__Challenge__c.FieloCH__ChallengeTab</members>
+        <members>FieloEE__Agreement__c.FieloEE__Agreements</members>
+        <members>FieloEE__Banner__c.FieloEE__BannerEdit</members>
+        <members>FieloEE__Branch__c.FieloEE__AddressInformation</members>
+        <members>FieloEE__Branch__c.FieloEE__PrincipalFields</members>
+        <members>FieloEE__Component__c.FieloEE__ComponentQuery</members>
+        <members>FieloEE__Level__c.FieloEE__Edit</members>
+        <members>FieloEE__Member__c.FieloEE__HighlightSection</members>
+        <members>FieloEE__Member__c.FieloEE__Member</members>
+        <members>FieloEE__Member__c.FieloEE__MemberQuery</members>
+        <members>FieloEE__Member__c.FieloEE__MemberTab</members>
+        <members>FieloEE__Member__c.FieloEE__RedemptionBackEnd</members>
+        <members>FieloEE__Member__c.FieloEE__RegistrationStep1</members>
+        <members>FieloEE__Member__c.FieloEE__RegistrationStep2</members>
+        <members>FieloEE__Member__c.FieloEE__SegmentsEdit</members>
+        <members>FieloEE__Menu__c.FieloEE__Filter</members>
+        <members>FieloEE__News__c.FieloEE__ListView</members>
+        <members>FieloEE__News__c.FieloEE__ListViewDetail</members>
+        <members>FieloEE__News__c.FieloEE__View</members>
+        <members>FieloEE__Point__c.FieloEE__Transaction_View_RelatedList</members>
+        <members>FieloEE__Program__c.FieloEE__ProgramQuery</members>
+        <members>FieloEE__Promotion__c.FieloEE__PromotionTab</members>
+        <members>FieloEE__RedemptionItem__c.FieloEE__ProfileView</members>
+        <members>FieloEE__RedemptionItem__c.FieloEE__Voucher</members>
+        <members>FieloEE__RedemptionRule__c.FieloEE__Edit</members>
+        <members>FieloEE__RedemptionRule__c.FieloEE__SegmentManager</members>
+        <members>FieloEE__Redemption__c.FieloEE__RedemptionBackEnd</members>
+        <members>FieloEE__Redemption__c.FieloEE__RedemptionFrontEnd</members>
+        <members>FieloEE__Redemption__c.FieloEE__RedemptionTab</members>
+        <members>FieloEE__Redemption__c.FieloEE__ViewDetailFrontend</members>
+        <members>FieloEE__Reward__c.FieloEE__RewardTab</members>
+        <members>FieloEE__Reward__c.FieloEE__Reward_Details</members>
+        <members>FieloEE__Rule__c.FieloDRE__EditDRE</members>
+        <members>FieloEE__Rule__c.FieloEE__Edit</members>
+        <members>FieloEE__Transaction__c.FieloEE__AdjustTransaction</members>
+        <members>FieloEE__Transaction__c.FieloEE__GetCode</members>
+        <members>FieloEE__Transaction__c.FieloEE__ProfileView</members>
+        <members>FieloEE__Transaction__c.FieloEE__TransactionNew</members>
+        <members>FieloEE__Transaction__c.FieloEE__TransactionTab</members>
         <members>Object_Depenency__c.NewFieldSet</members>
         <name>FieldSet</name>
     </types>
@@ -3294,6 +3378,9 @@
         <members>Account-Account %28Marketing%29 Layout</members>
         <members>Account-Account %28Sales%29 Layout</members>
         <members>Account-Account %28Support%29 Layout</members>
+        <members>Account-Account (Marketing) Layout</members>
+        <members>Account-Account (Sales) Layout</members>
+        <members>Account-Account (Support) Layout</members>
         <members>Account-Account Layout</members>
         <members>AccountBrand-Account BrandLayout</members>
         <members>AutoRabitTest__c-AutoRabitTest Layout</members>
@@ -3308,6 +3395,9 @@
         <members>Case-Case %28Marketing%29 Layout</members>
         <members>Case-Case %28Sales%29 Layout</members>
         <members>Case-Case %28Support%29 Layout</members>
+        <members>Case-Case (Marketing) Layout</members>
+        <members>Case-Case (Sales) Layout</members>
+        <members>Case-Case (Support) Layout</members>
         <members>Case-Case Layout</members>
         <members>Categorys__x-Categorys Layout</members>
         <members>D__c-D Layout</members>
@@ -3337,6 +3427,7 @@
         <members>FieloCRUD__RelatedView__c-FieloCRUD__CRUD Related View Layout</members>
         <members>FieloDRE__RuleApplied__c-FieloDRE__Fielo Rule Applied Layout</members>
         <members>FieloEE_Test__c-FieloEE%5F%5FTest Layout</members>
+        <members>FieloEE_Test__c-FieloEE__Test Layout</members>
         <members>FieloSVY__SurveyQuestion__c-FieloSVY__Survey Question Layout</members>
         <members>FieloSVY__SurveyResponseQuestion__c-FieloSVY__Survey Response Question Layout</members>
         <members>FieloSVY__SurveyResponse__c-FieloSVY__Survey Response Layout</members>
@@ -3346,6 +3437,9 @@
         <members>Opportunity-Opportunity %28Marketing%29 Layout</members>
         <members>Opportunity-Opportunity %28Sales%29 Layout</members>
         <members>Opportunity-Opportunity %28Support%29 Layout</members>
+        <members>Opportunity-Opportunity (Marketing) Layout</members>
+        <members>Opportunity-Opportunity (Sales) Layout</members>
+        <members>Opportunity-Opportunity (Support) Layout</members>
         <members>Opportunity-Opportunity Layout</members>
         <members>OrderDetails__x-OrderDetails Layout</members>
         <members>Orders__x-Orders Layout</members>
@@ -3363,13 +3457,62 @@
         <name>LeadConvertSettings</name>
     </types>
     <types>
+        <members>ARVault__c.All</members>
+        <members>A__c.All</members>
         <members>Account.PlatinumandGoldSLACustomers</members>
         <members>AutoRabitTest__c.All</members>
+        <members>Branch1__c.All</members>
         <members>Branch1__c.new_Branchh_List_owner_2</members>
         <members>Case.MyCases</members>
         <members>Case.newtestcase</members>
         <members>Categorys__x.All</members>
+        <members>FieloCH__ChallengeMember__c.FieloCH__All</members>
+        <members>FieloCH__Challenge__c.FieloCH__Active_Challenges</members>
+        <members>FieloCH__Challenge__c.FieloCH__All</members>
+        <members>FieloCH__Challenge__c.FieloCH__Escalabilidad</members>
+        <members>FieloCH__Mission__c.FieloCH__All</members>
+        <members>FieloCH__Team__c.FieloCH__All</members>
         <members>FieloCRUD__ObjectSettings__c.FieloCRUD__All</members>
+        <members>FieloEE__Agreement__c.FieloEE__All_Agreements</members>
+        <members>FieloEE__Banner__c.FieloEE__All_Banners</members>
+        <members>FieloEE__Branch__c.FieloEE__All</members>
+        <members>FieloEE__Branch__c.FieloEE__All_Branches</members>
+        <members>FieloEE__Category__c.FieloEE__All</members>
+        <members>FieloEE__Category__c.FieloEE__All_Categories</members>
+        <members>FieloEE__Code__c.FieloEE__All_Codes</members>
+        <members>FieloEE__EmailCampaign__c.FieloEE__All_Email_Campaigns</members>
+        <members>FieloEE__ErrorLog__c.FieloEE__All_Error_Logs</members>
+        <members>FieloEE__Level__c.FieloEE__All_Levels</members>
+        <members>FieloEE__Member__c.FieloEE__All_Members</members>
+        <members>FieloEE__Member__c.FieloEE__Birthdate</members>
+        <members>FieloEE__Member__c.FieloEE__InactiveMembers</members>
+        <members>FieloEE__Member__c.FieloEE__MembersWithoutUser</members>
+        <members>FieloEE__Member__c.FieloEE__New_Last_Week</members>
+        <members>FieloEE__Member__c.FieloEE__New_This_Week</members>
+        <members>FieloEE__Menu__c.FieloEE__All_Menu</members>
+        <members>FieloEE__News__c.FieloEE__All</members>
+        <members>FieloEE__News__c.FieloEE__All_Content_feeds</members>
+        <members>FieloEE__Program__c.FieloEE__All_Programs</members>
+        <members>FieloEE__Promotion__c.FieloEE__All_Promotions</members>
+        <members>FieloEE__RedemptionRule__c.FieloEE__All_Segments</members>
+        <members>FieloEE__Redemption__c.FieloEE__All_Redemptions</members>
+        <members>FieloEE__Redemption__c.FieloEE__Closed</members>
+        <members>FieloEE__Redemption__c.FieloEE__Open</members>
+        <members>FieloEE__Redemption__c.FieloEE__Pending</members>
+        <members>FieloEE__Redemption__c.FieloEE__Rejected</members>
+        <members>FieloEE__Redemption__c.FieloEE__This_Week</members>
+        <members>FieloEE__Reward__c.FieloEE__All_Rewards</members>
+        <members>FieloEE__Reward__c.FieloEE__AvailableRewards</members>
+        <members>FieloEE__Rule__c.FieloEE__All_Rules</members>
+        <members>FieloEE__Tag__c.FieloEE__All</members>
+        <members>FieloEE__Tag__c.FieloEE__All_Tags</members>
+        <members>FieloEE__Transaction__c.FieloEE__All_Transactions</members>
+        <members>FieloEE__Transaction__c.FieloEE__ByTypeCodeInsert</members>
+        <members>FieloEE__Transaction__c.FieloEE__ByTypePurchase</members>
+        <members>FieloEE__Transaction__c.FieloEE__ByTypeReferralCompleteSignup</members>
+        <members>FieloEE__Transaction__c.FieloEE__ByTypeReferralSimpleSignup</members>
+        <members>FieloEE__Transaction__c.FieloEE__ByTypeRegistration</members>
+        <members>FieloEE__Transaction__c.FieloEE__ThisWeek</members>
         <members>FieloSVY__Survey__c.FieloSVY__All</members>
         <members>Lead.Test1_Lead</members>
         <members>Object_Depenency__c.All</members>
@@ -3388,10 +3531,12 @@
         <name>LiveChatDeployment</name>
     </types>
     <types>
+        <members>*</members>
         <members>Branch1__c.NewMatch_1</members>
         <name>MatchingRule</name>
     </types>
     <types>
+        <members>Account</members>
         <members>Branch1__c</members>
         <name>MatchingRules</name>
     </types>
@@ -3426,6 +3571,9 @@
         <members>Custom%3A Marketing Profile</members>
         <members>Custom%3A Sales Profile</members>
         <members>Custom%3A Support Profile</members>
+        <members>Custom: Marketing Profile</members>
+        <members>Custom: Sales Profile</members>
+        <members>Custom: Support Profile</members>
         <members>Customer Community Login User</members>
         <members>Customer Community Plus Login User</members>
         <members>Customer Community Plus User</members>
@@ -3435,6 +3583,8 @@
         <members>External Identity User</members>
         <members>Force%2Ecom - App Subscription User</members>
         <members>Force%2Ecom - Free User</members>
+        <members>Force.com - App Subscription User</members>
+        <members>Force.com - Free User</members>
         <members>Gold Partner User</members>
         <members>Guest</members>
         <members>High Volume Customer Portal User</members>
@@ -3455,6 +3605,7 @@
         <members>StandardAul</members>
         <members>SysAdmin</members>
         <members>Work%2Ecom Only User</members>
+        <members>Work.com Only User</members>
         <name>Profile</name>
     </types>
     <types>
@@ -3471,6 +3622,15 @@
         <name>Queue</name>
     </types>
     <types>
+        <members>A__c.NewAction143</members>
+        <members>A__c.NewLight</members>
+        <members>A__c.newMail123</members>
+        <members>A__c.newUpdate</members>
+        <members>A__c.ssax</members>
+        <members>A__c.xasxsa</members>
+        <members>B__c.NewCompo</members>
+        <members>B__c.NewQuickPage</members>
+        <members>Branch1__c.xsx</members>
         <members>New_Prospect</members>
         <name>QuickAction</name>
     </types>
@@ -3479,6 +3639,10 @@
         <members>A__c.NewTest</members>
         <members>Account.NewAccountRecordType</members>
         <members>Branch1__c.HelpRecordType</members>
+        <members>FieloCH__Challenge__c.FieloCH__Series</members>
+        <members>FieloCH__Challenge__c.FieloCH__Single</members>
+        <members>FieloCH__Mission__c.FieloCH__WithObjective</members>
+        <members>FieloCH__Mission__c.FieloCH__WithoutObjective</members>
         <members>FieloCRUD__ListViewAction__c.FieloCRUD__FieldAction</members>
         <members>FieloCRUD__ListViewAction__c.FieloCRUD__GlobalAction</members>
         <members>FieloCRUD__ListViewAction__c.FieloCRUD__RecordRowAction</members>
@@ -3497,6 +3661,53 @@
         <members>FieloCRUD__PageLayout__c.FieloCRUD__Standard</members>
         <members>FieloCRUD__PageLayout__c.FieloCRUD__Static</members>
         <members>FieloCRUD__RelatedDetailsFields__c.FieloCRUD__StandardField</members>
+        <members>FieloEE__Agreement__c.FieloEE__Default</members>
+        <members>FieloEE__Agreement__c.FieloEE__Draft</members>
+        <members>FieloEE__Banner__c.FieloEE__Component</members>
+        <members>FieloEE__Banner__c.FieloEE__Free</members>
+        <members>FieloEE__Category__c.FieloEE__CategoryItem</members>
+        <members>FieloEE__Category__c.FieloEE__Category_Group</members>
+        <members>FieloEE__Component__c.FieloCH__ChallengeDetail</members>
+        <members>FieloEE__Component__c.FieloCH__ChallengeLeaderboard</members>
+        <members>FieloEE__Component__c.FieloCH__ChallengeMissions</members>
+        <members>FieloEE__Component__c.FieloCH__ChallengeRewards</members>
+        <members>FieloEE__Component__c.FieloCH__Challenges</members>
+        <members>FieloEE__Component__c.FieloCRUD__CRUD</members>
+        <members>FieloEE__Component__c.FieloCRUD__ListView</members>
+        <members>FieloEE__Component__c.FieloEE__Badges</members>
+        <members>FieloEE__Component__c.FieloEE__Banner</members>
+        <members>FieloEE__Component__c.FieloEE__BannerWidget</members>
+        <members>FieloEE__Component__c.FieloEE__Branchs</members>
+        <members>FieloEE__Component__c.FieloEE__Breadcrumb</members>
+        <members>FieloEE__Component__c.FieloEE__Catalog</members>
+        <members>FieloEE__Component__c.FieloEE__Categories</members>
+        <members>FieloEE__Component__c.FieloEE__Content</members>
+        <members>FieloEE__Component__c.FieloEE__ContentWidget</members>
+        <members>FieloEE__Component__c.FieloEE__GetPoints</members>
+        <members>FieloEE__Component__c.FieloEE__IncludePage</members>
+        <members>FieloEE__Component__c.FieloEE__Login</members>
+        <members>FieloEE__Component__c.FieloEE__Menu</members>
+        <members>FieloEE__Component__c.FieloEE__News</members>
+        <members>FieloEE__Component__c.FieloEE__Profile</members>
+        <members>FieloEE__Component__c.FieloEE__Redemptions</members>
+        <members>FieloEE__Component__c.FieloEE__Register</members>
+        <members>FieloEE__Component__c.FieloEE__Search</members>
+        <members>FieloEE__Component__c.FieloEE__ShoppingCart</members>
+        <members>FieloEE__Component__c.FieloEE__Transactions</members>
+        <members>FieloEE__Component__c.FieloSVY__Survey</members>
+        <members>FieloEE__Component__c.FieloSVY__SurveyCatalog</members>
+        <members>FieloEE__Level__c.FieloEE__Active</members>
+        <members>FieloEE__Level__c.FieloEE__Inactive</members>
+        <members>FieloEE__Menu__c.FieloEE__Menu</members>
+        <members>FieloEE__Menu__c.FieloEE__SubMenu</members>
+        <members>FieloEE__Promotion__c.FieloEE__Default_Promotion</members>
+        <members>FieloEE__Promotion__c.FieloEE__Standard_Promotion</members>
+        <members>FieloEE__RedemptionRule__c.FieloEE__Dynamic</members>
+        <members>FieloEE__RedemptionRule__c.FieloEE__Manual</members>
+        <members>FieloEE__Rule__c.FieloEE__Default_Rule</members>
+        <members>FieloEE__Rule__c.FieloEE__Standard_Rule</members>
+        <members>FieloEE__Tag__c.FieloEE__Dynamic</members>
+        <members>FieloEE__Tag__c.FieloEE__Standard</members>
         <members>Object_Depenency__c.NeeTest</members>
         <name>RecordType</name>
     </types>
@@ -3519,12 +3730,14 @@
         <name>Role</name>
     </types>
     <types>
+        <members>*</members>
         <members>Branch2__c.Branch2_Sharing_Rule1</members>
         <members>Branch2__c.cscs</members>
         <members>Branch2__c.scccd</members>
         <name>SharingCriteriaRule</name>
     </types>
     <types>
+        <members>*</members>
         <members>Branch2__c.Branch2_Sharing_Rule</members>
         <members>Expense__c.NewRule123</members>
         <name>SharingOwnerRule</name>
@@ -3539,6 +3752,8 @@
         <members>A__c</members>
         <members>AutoRabitTest__c</members>
         <members>Branch1__c</members>
+        <members>Branch2__c</members>
+        <members>Expense__c</members>
         <members>FieloCH__AsynchProcess__c</members>
         <members>FieloCH__ChallengeMember__c</members>
         <members>FieloCH__ChallengeMissionMember__c</members>
@@ -3642,6 +3857,23 @@
         <members>Branch__c.NewValidation1</members>
         <members>Branch__c.New_VAlidta</members>
         <members>Branch__c.NextValid</members>
+        <members>FieloCH__ChallengeMember__c.FieloCH__FillMemberOrTeam</members>
+        <members>FieloCH__ChallengeReward__c.FieloCH__Edit_Reward</members>
+        <members>FieloCH__ChallengeReward__c.FieloCH__Reward_Program_Validation</members>
+        <members>FieloCH__Challenge__c.FieloCH__Active_Challenge</members>
+        <members>FieloCH__Challenge__c.FieloCH__Competition_Type_Required</members>
+        <members>FieloCH__Challenge__c.FieloCH__Edit_Challenge_Competition</members>
+        <members>FieloCH__Challenge__c.FieloCH__Edit_Challenge_Mode</members>
+        <members>FieloCH__Challenge__c.FieloCH__Edit_Competition_Type</members>
+        <members>FieloCH__Challenge__c.FieloCH__Final_Date_After_Initial_Date</members>
+        <members>FieloCH__Challenge__c.FieloCH__Mode_Required</members>
+        <members>FieloCH__Challenge__c.FieloCH__Program_Required</members>
+        <members>FieloCH__Challenge__c.FieloCH__Recurrence_Type_Valid</members>
+        <members>FieloCH__Challenge__c.FieloCH__Subscription_Mode_Required</members>
+        <members>FieloCH__Challenge__c.FieloCH__Subscription_Period</members>
+        <members>FieloCH__Challenge__c.FieloCH__Subscription_Period_Valid_Date</members>
+        <members>FieloCH__Challenge__c.FieloCH__Visibility_False_for_Subscription_Close</members>
+        <members>FieloCH__Team__c.FieloCH__Program_Required</members>
         <members>FieloCRUD__ListView__c.FieloCRUD__Fielo_ListView_ScrollRowsCheck</members>
         <members>FieloCRUD__ListView__c.FieloCRUD__ListView_ObjectSettingMandatory</members>
         <members>FieloCRUD__ListView__c.FieloCRUD__ListView_PageSizeValidValues</members>
@@ -3654,11 +3886,62 @@
         <members>FieloCRUD__PageLayout__c.FieloCRUD__PageLayout_ProfileOnlyForMember</members>
         <members>FieloCRUD__PageLayout__c.FieloCRUD__PageLayout_Type</members>
         <members>FieloCRUD__PageLayout__c.FieloCRUD__PageLayout_TypeIsMandatory</members>
+        <members>FieloEE__Agreement__c.FieloEE__ModifyProgram</members>
+        <members>FieloEE__Banner__c.FieloEE__ActiveBanner</members>
+        <members>FieloEE__Banner__c.FieloEE__EndDategreaterthanStartDate</members>
+        <members>FieloEE__Banner__c.FieloEE__Name_Required</members>
+        <members>FieloEE__Banner__c.FieloEE__Order_can_not_be_negative</members>
+        <members>FieloEE__Component__c.FieloCH__Challenge_Required</members>
+        <members>FieloEE__EmailCampaign__c.FieloEE__ScheduleDateRequiered</members>
+        <members>FieloEE__EmailCampaign__c.FieloEE__Schedule_Date</members>
+        <members>FieloEE__Level__c.FieloEE__ModifyProgram</members>
+        <members>FieloEE__Member__c.FieloEE__BirthDate</members>
+        <members>FieloEE__Member__c.FieloEE__CPF_Validation</members>
+        <members>FieloEE__Member__c.FieloEE__ModifyProgram</members>
+        <members>FieloEE__Member__c.FieloEE__Modify_Member_Code</members>
+        <members>FieloEE__Member__c.FieloEE__Operator_Password</members>
+        <members>FieloEE__Member__c.FieloEE__RequiredCode</members>
+        <members>FieloEE__Menu__c.FieloEE__ModifyProgram</members>
+        <members>FieloEE__Program__c.FieloEE__Complete_Site_URL</members>
+        <members>FieloEE__Program__c.FieloEE__Open_Redemption_Days</members>
+        <members>FieloEE__Program__c.FieloEE__Validate_Expiration_Period</members>
+        <members>FieloEE__Program__c.FieloEE__Validate_Inactive_Days</members>
+        <members>FieloEE__Program__c.FieloEE__Validate_Numer_of_voucher_digits</members>
+        <members>FieloEE__Program__c.FieloEE__Validate_RecentRewardsDays</members>
+        <members>FieloEE__Program__c.FieloEE__Validate_TimeOut_Orphan_Transactions</members>
+        <members>FieloEE__Promotion__c.FieloEE__Default_Promotion_Profiling</members>
+        <members>FieloEE__Promotion__c.FieloEE__ModifyProgram</members>
+        <members>FieloEE__Promotion__c.FieloEE__Modify_RecordType</members>
+        <members>FieloEE__Promotion__c.FieloEE__Undelete_Default</members>
+        <members>FieloEE__Promotion__c.FieloEE__Validate_Dates</members>
+        <members>FieloEE__RedemptionItem__c.FieloEE__QuantityGreaterThanZero</members>
+        <members>FieloEE__Redemption__c.FieloEE__Closed_Order</members>
+        <members>FieloEE__Reward__c.FieloEE__Available_Days</members>
+        <members>FieloEE__Reward__c.FieloEE__ChangeStockMode</members>
+        <members>FieloEE__Reward__c.FieloEE__ModifyProgram</members>
+        <members>FieloEE__Reward__c.FieloEE__MultiVoucher</members>
+        <members>FieloEE__Reward__c.FieloEE__Points_Required</members>
+        <members>FieloEE__Reward__c.FieloEE__Price_Possitive</members>
+        <members>FieloEE__Reward__c.FieloEE__Quantity_Points_Positive</members>
+        <members>FieloEE__Reward__c.FieloEE__Stock_Positive</members>
+        <members>FieloEE__Reward__c.FieloEE__Unlimited</members>
+        <members>FieloEE__RuleAction__c.FieloEE__Value_Different_of_0</members>
+        <members>FieloEE__RuleCriteria__c.FieloEE__Empty_Field_Criteria</members>
+        <members>FieloEE__Rule__c.FieloEE__ModifyProgram</members>
+        <members>FieloEE__Rule__c.FieloEE__Rule_Name_Empty</members>
+        <members>FieloEE__Rule__c.FieloEE__Validate_points_value</members>
+        <members>FieloEE__Tag__c.FieloEE__OrderMustBePositive</members>
+        <members>FieloEE__Transaction__c.FieloEE__ValidateTransactionType</members>
+        <members>FieloEE__Transaction__c.FieloEE__ValidateTransactionValue</members>
+        <members>FieloEE__Transaction__c.FieloEE__Validate_Member</members>
         <members>Object_Depenency__c.New_Rule</members>
         <name>ValidationRule</name>
     </types>
     <types>
         <members>A__c.NewLink</members>
+        <members>A__c.Send_Email</members>
+        <members>A__c.Send_email1</members>
+        <members>A__c.Temp</members>
         <members>Account.FieloEE__Convert_Account</members>
         <members>B__c.Temp</members>
         <members>Branch1__c.NeButton</members>
@@ -3669,6 +3952,18 @@
         <members>Contact.FieloEE__Convert_Contact</members>
         <members>Contact.FieloEE__InviteContact</members>
         <members>Contact.FieloEE__Invite_Contact</members>
+        <members>FieloCH__ChallengeMember__c.FieloCH__AddMembers</members>
+        <members>FieloCH__ChallengeMission__c.FieloCH__AddExistingMissions</members>
+        <members>FieloCH__ChallengeMission__c.FieloCH__NewMission</members>
+        <members>FieloCH__ChallengeReward__c.FieloCH__ManagePhoto</members>
+        <members>FieloCH__ChallengeReward__c.FieloCH__ManageRewards</members>
+        <members>FieloCH__ChallengeTag__c.FieloCH__AddTag</members>
+        <members>FieloCH__Challenge__c.FieloCH__Active</members>
+        <members>FieloCH__Challenge__c.FieloCH__CreateSeries</members>
+        <members>FieloCH__MissionChallenge__c.FieloCH__AddExistingMissions</members>
+        <members>FieloCH__MissionChallenge__c.FieloCH__NewMission</members>
+        <members>FieloCH__Mission__c.FieloCH__EditContent</members>
+        <members>FieloCH__TeamMember__c.FieloCH__AddMembers</members>
         <members>FieloCRUD__ListView__c.FieloCRUD__AddAttachmentsList</members>
         <members>FieloCRUD__ListView__c.FieloCRUD__NewListView</members>
         <members>FieloCRUD__ListView__c.FieloCRUD__NewRelatedList</members>
@@ -3680,11 +3975,89 @@
         <members>FieloCRUD__RelatedDetailsFields__c.FieloCRUD__ReorderRelatedDetailFields</members>
         <members>FieloCRUD__RelatedView__c.FieloCRUD__AddExistingViews</members>
         <members>FieloCRUD__RelatedView__c.FieloCRUD__ReorderViews</members>
+        <members>FieloEE__Agreement__c.FieloEE__Active</members>
+        <members>FieloEE__Banner__c.FieloEE__ActiveInactive</members>
+        <members>FieloEE__Banner__c.FieloEE__NewBanner</members>
+        <members>FieloEE__Banner__c.FieloEE__OrderBanner</members>
+        <members>FieloEE__Branch__c.FieloEE__SetGeoLocation</members>
+        <members>FieloEE__Category__c.FieloEE__Back</members>
+        <members>FieloEE__Category__c.FieloEE__ReorderChildCategories</members>
+        <members>FieloEE__Category__c.FieloEE__Reorder_Categories</members>
+        <members>FieloEE__Code__c.FieloEE__LoadCodes</members>
+        <members>FieloEE__Component__c.FieloCH__CustomizeFields</members>
+        <members>FieloEE__Component__c.FieloEE__BacktoMenu</members>
+        <members>FieloEE__Component__c.FieloEE__CustomizeFields</members>
+        <members>FieloEE__Component__c.FieloEE__CustomizeListFields</members>
+        <members>FieloEE__Component__c.FieloEE__ReorderComponent</members>
+        <members>FieloEE__Level__c.FieloEE__Active</members>
+        <members>FieloEE__Level__c.FieloEE__ExportLevel</members>
+        <members>FieloEE__Level__c.FieloEE__Inactive</members>
+        <members>FieloEE__Level__c.FieloEE__ReorderLevels</members>
+        <members>FieloEE__Level__c.FieloEE__RunBatch</members>
+        <members>FieloEE__Level__c.FieloEE__UploadPhoto</members>
+        <members>FieloEE__Member__c.FieloEE__LoginAs</members>
+        <members>FieloEE__Member__c.FieloEE__RedeemPoints</members>
+        <members>FieloEE__Member__c.FieloEE__Reset_Password</members>
+        <members>FieloEE__Member__c.FieloEE__SearchVouchers</members>
+        <members>FieloEE__Menu__c.FieloEE__Back</members>
+        <members>FieloEE__Menu__c.FieloEE__BackToFrontEnd</members>
+        <members>FieloEE__Menu__c.FieloEE__DeepClone</members>
+        <members>FieloEE__Menu__c.FieloEE__ExportMenu</members>
+        <members>FieloEE__Menu__c.FieloEE__NewSubMenu</members>
+        <members>FieloEE__Menu__c.FieloEE__OrderMenuFooter</members>
+        <members>FieloEE__Menu__c.FieloEE__OrderMenuTop</members>
+        <members>FieloEE__Menu__c.FieloEE__OrderSubMenu</members>
+        <members>FieloEE__Menu__c.FieloEE__Preview</members>
+        <members>FieloEE__Menu__c.FieloEE__SetHome</members>
+        <members>FieloEE__News__c.FieloEE__EditContent</members>
+        <members>FieloEE__Program__c.FieloEE__AdvanceSettings</members>
+        <members>FieloEE__Program__c.FieloEE__AgreementFieldSet</members>
+        <members>FieloEE__Program__c.FieloEE__BatchManagement</members>
+        <members>FieloEE__Program__c.FieloEE__BatchManagementDetail</members>
+        <members>FieloEE__Program__c.FieloEE__MenuFieldSet</members>
+        <members>FieloEE__Program__c.FieloEE__SetDefault</members>
+        <members>FieloEE__Program__c.FieloEE__SetupExpirationMode</members>
+        <members>FieloEE__PromotionRule__c.FieloEE__Add_Existing_Rule</members>
+        <members>FieloEE__PromotionRule__c.FieloEE__Add_New_Rule</members>
+        <members>FieloEE__Promotion__c.FieloEE__Edit_Default_Rule</members>
+        <members>FieloEE__Promotion__c.FieloEE__Fielo_PromotionDefault</members>
+        <members>FieloEE__RedemptionItem__c.FieloEE__DeliverItems</members>
+        <members>FieloEE__RedemptionItem__c.FieloEE__RevertItems</members>
+        <members>FieloEE__RedemptionItem__c.FieloEE__RevertRedemptionItem</members>
+        <members>FieloEE__Redemption__c.FieloEE__DeliverItems</members>
+        <members>FieloEE__Redemption__c.FieloEE__New</members>
+        <members>FieloEE__Redemption__c.FieloEE__NewRedemption</members>
+        <members>FieloEE__RewardTag__c.FieloEE__NewRedwardTag</members>
+        <members>FieloEE__Reward__c.FieloEE__GenerateItems</members>
+        <members>FieloEE__Reward__c.FieloEE__UploadPhoto</members>
+        <members>FieloEE__Rule__c.FieloEE__RuleChangeStatus</members>
+        <members>FieloEE__SegmentDomain__c.FieloCH__ManageChallengeSegment</members>
+        <members>FieloEE__SegmentDomain__c.FieloEE__ManageBannerSegments</members>
+        <members>FieloEE__SegmentDomain__c.FieloEE__ManageMenuSegments</members>
+        <members>FieloEE__SegmentDomain__c.FieloEE__ManageNewsSegments</members>
+        <members>FieloEE__SegmentDomain__c.FieloEE__ManagePromotionSegments</members>
+        <members>FieloEE__SegmentDomain__c.FieloEE__ManageRewardSegments</members>
+        <members>FieloEE__TagItem__c.FieloEE__ManageTags</members>
+        <members>FieloEE__Tag__c.FieloEE__ReorderTags</members>
+        <members>FieloEE__Transaction__c.FieloEE__Codes</members>
+        <members>FieloEE__Transaction__c.FieloEE__FieloProcessOffline</members>
+        <members>FieloEE__Transaction__c.FieloEE__NewAdjustTransaction</members>
+        <members>FieloEE__Transaction__c.FieloEE__Revert</members>
         <members>FieloSVY__SurveyQuestion__c.FieloSVY__Order</members>
         <members>Object_Depenency__c.newTest</members>
         <name>WebLink</name>
     </types>
     <types>
+        <members>A__c</members>
+        <members>Account</members>
+        <members>Branch1__c</members>
+        <members>Branch3__c</members>
+        <members>Case</members>
+        <members>Opportunity</members>
+        <name>Workflow</name>
+    </types>
+    <types>
+        <members>*</members>
         <members>A__c.Neamaol</members>
         <members>Account.newtime</members>
         <members>Branch1__c.New_Email_to_all</members>
@@ -3696,6 +4069,7 @@
         <name>WorkflowAlert</name>
     </types>
     <types>
+        <members>*</members>
         <members>A__c.NewUpdate1</members>
         <members>A__c.newupdate2</members>
         <members>Branch1__c.New</members>
@@ -3704,16 +4078,27 @@
         <name>WorkflowFieldUpdate</name>
     </types>
     <types>
+        <members>*</members>
+        <name>WorkflowKnowledgePublish</name>
+    </types>
+    <types>
+        <members>*</members>
         <members>Branch1__c.New</members>
         <name>WorkflowOutboundMessage</name>
     </types>
     <types>
+        <members>*</members>
         <members>A__c.A</members>
         <members>A__c.dssd</members>
         <members>Account.abc</members>
         <name>WorkflowRule</name>
     </types>
     <types>
+        <members>*</members>
+        <name>WorkflowSend</name>
+    </types>
+    <types>
+        <members>*</members>
         <members>Account.newMatter</members>
         <name>WorkflowTask</name>
     </types>

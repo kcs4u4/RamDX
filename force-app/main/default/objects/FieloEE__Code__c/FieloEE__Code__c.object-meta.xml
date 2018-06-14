@@ -47,7 +47,6 @@
     <description>Codes you can give to your program’s members so when they upload the code in the members’ portal a transaction is generated and points are earned.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableReports>true</enableReports>

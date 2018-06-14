@@ -47,7 +47,6 @@
     <description>The elements that make up the pages in the members’ portal. Examples of components are “Menu”, “Content”, “Content Feed”, “Banner”, etc.</description>
     <enableActivities>false</enableActivities>
     <enableBulkApi>true</enableBulkApi>
-    <enableChangeDataCapture>false</enableChangeDataCapture>
     <enableEnhancedLookup>false</enableEnhancedLookup>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
