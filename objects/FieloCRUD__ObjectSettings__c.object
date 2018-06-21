@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <label>Object Setting</label>
+    <nameField>
+        <label>Object Setting</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Object Settings</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>FieloCRUD__ObjectAPIName__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FieloCRUD__FieldMember__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FieloCRUD__FieldToDefinePageLayout__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
+        <customTabListAdditionalFields>UPDATEDBY_USER</customTabListAdditionalFields>
+        <lookupDialogsAdditionalFields>FieloCRUD__ObjectAPIName__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FieloCRUD__FieldMember__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FieloCRUD__FieldToDefinePageLayout__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CREATEDBY_USER</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>UPDATEDBY_USER</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FieloCRUD__ObjectAPIName__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FieloCRUD__FieldMember__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FieloCRUD__FieldToDefinePageLayout__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CREATEDBY_USER</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>UPDATEDBY_USER</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>FieloCRUD__ObjectAPIName__c</searchFilterFields>
+        <searchFilterFields>FieloCRUD__FieldMember__c</searchFilterFields>
+        <searchFilterFields>FieloCRUD__FieldToDefinePageLayout__c</searchFilterFields>
+        <searchFilterFields>CREATEDBY_USER</searchFilterFields>
+        <searchResultsAdditionalFields>FieloCRUD__ObjectAPIName__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FieloCRUD__FieldMember__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>FieloCRUD__FieldToDefinePageLayout__c</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>CREATEDBY_USER</searchResultsAdditionalFields>
+        <searchResultsAdditionalFields>UPDATEDBY_USER</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <fields>
+        <fullName>FieloCRUD__FieldMember__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Complete this with the API name of the member lookup field related to this object.
+This will ensure that only the related member can access records related to this object.</inlineHelpText>
+        <label>Field Member</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__FieldToDefinePageLayout__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Define the field API name that will determine which page layout applies to the object.</inlineHelpText>
+        <label>Field To Define Page Layout</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__ObjectAPIName__c</fullName>
+        <caseSensitive>false</caseSensitive>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Object API Name</label>
+        <length>255</length>
+        <required>true</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>true</unique>
+    </fields>
+    <validationRules>
+        <fullName>FieloCRUD__ObjectSetting_DuplicateName</fullName>
+        <active>true</active>
+        <errorConditionFormula>/*
+AND(
+NOT(ISBLANK(VLOOKUP($ObjectType.FieloCRUD__ObjectSettings__c.Fields.Id, $ObjectType.FieloCRUD__ObjectSettings__c.Fields.FieloCRUD__ObjectAPIName__c, FieloCRUD__ObjectAPIName__c))),
+Id != VLOOKUP($ObjectType.FieloCRUD__ObjectSettings__c.Fields.Id, $ObjectType.FieloCRUD__ObjectSettings__c.Fields.FieloCRUD__ObjectAPIName__c, FieloCRUD__ObjectAPIName__c)
+)
+*/
+FALSE</errorConditionFormula>
+        <errorDisplayField>FieloCRUD__ObjectAPIName__c</errorDisplayField>
+        <errorMessage>There is already an object setting with that name!</errorMessage>
+    </validationRules>
+    <listViews>
+        <fullName>FieloCRUD__All</fullName>
+        <columns>NAME</columns>
+        <columns>FieloCRUD__ObjectAPIName__c</columns>
+        <columns>FieloCRUD__FieldMember__c</columns>
+        <columns>FieloCRUD__FieldToDefinePageLayout__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <columns>UPDATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <label>All</label>
+    </listViews>
+</CustomObject>

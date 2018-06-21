@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <label>Page Layout</label>
+    <nameField>
+        <label>Page Layout Name</label>
+        <trackHistory>false</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Page Layouts</pluralLabel>
+    <recordTypeTrackHistory>true</recordTypeTrackHistory>
+    <searchLayouts>
+        <lookupDialogsAdditionalFields>FieloCRUD__ObjectSettings__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>RECORDTYPE</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>FieloCRUD__ValueToDefinePageLayout__c</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>CREATEDBY_USER</lookupDialogsAdditionalFields>
+        <lookupDialogsAdditionalFields>UPDATEDBY_USER</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FieloCRUD__ObjectSettings__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>RECORDTYPE</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FieloCRUD__ValueToDefinePageLayout__c</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>CREATEDBY_USER</lookupPhoneDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>UPDATEDBY_USER</lookupPhoneDialogsAdditionalFields>
+        <searchFilterFields>NAME</searchFilterFields>
+        <searchFilterFields>FieloCRUD__ObjectSettings__c</searchFilterFields>
+        <searchFilterFields>RECORDTYPE</searchFilterFields>
+        <searchFilterFields>FieloCRUD__ValueToDefinePageLayout__c</searchFilterFields>
+        <searchFilterFields>CREATEDBY_USER</searchFilterFields>
+        <searchFilterFields>UPDATEDBY_USER</searchFilterFields>
+    </searchLayouts>
+    <sharingModel>ControlledByParent</sharingModel>
+    <visibility>Public</visibility>
+    <fields>
+        <fullName>FieloCRUD__BackActionMenu__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Menu that handles back action through the page layout. Commonly is the menu that contains the list view component which references this page layout.</inlineHelpText>
+        <label>Back Action Menu</label>
+        <referenceTo>FieloEE__Menu__c</referenceTo>
+        <relationshipLabel>Back Actions from Page Layouts</relationshipLabel>
+        <relationshipName>PageLayoutBackAction</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__ButtonsAlignment__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Defines buttons alignment within the page layout.</inlineHelpText>
+        <label>Buttons Alignment</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Left</fullName>
+                    <default>false</default>
+                    <label>Left</label>
+                </value>
+                <value>
+                    <fullName>Center</fullName>
+                    <default>true</default>
+                    <label>Center</label>
+                </value>
+                <value>
+                    <fullName>Right</fullName>
+                    <default>false</default>
+                    <label>Right</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__ButtonsPlacement__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Defines where buttons will appear, if at the top, at the bottom or in both places.</inlineHelpText>
+        <label>Buttons Placement</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Top</fullName>
+                    <default>false</default>
+                    <label>Top</label>
+                </value>
+                <value>
+                    <fullName>Bottom</fullName>
+                    <default>false</default>
+                    <label>Bottom</label>
+                </value>
+                <value>
+                    <fullName>Both</fullName>
+                    <default>false</default>
+                    <label>Both</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__CSSContent__c</fullName>
+        <defaultValue>&#39;.greenBkg { background:#dff0d8; padding:10px; margin-bottom:10px; font-size: 14px; color: #468847;}&#39;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CSS Content</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__Default__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>System must always have one default page layout which is going to be used for record creation and in case of a misconfiguration on multi-layout functionality.</inlineHelpText>
+        <label>Default</label>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__DeleteActionMenu__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Override the delete action by adding a menu that handles record deletion through page layout.</inlineHelpText>
+        <label>Delete Action Menu</label>
+        <referenceTo>FieloEE__Menu__c</referenceTo>
+        <relationshipLabel>Delete Actions from Page Layouts</relationshipLabel>
+        <relationshipName>PageLayoutDeleteAction</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__DeletionFrom__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Define whether the deletion of the record will be done directly on the page layout, on the delete action menu or if there is no delete action on the page layout.</inlineHelpText>
+        <label>Deletion From</label>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Page Layout</fullName>
+                    <default>false</default>
+                    <label>Page Layout</label>
+                </value>
+                <value>
+                    <fullName>Action Menu</fullName>
+                    <default>false</default>
+                    <label>Action Menu</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__DontCreateMemberUser__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This field is for use on the Member object only. If checked (True), when creating a new member record, Fielo won&#39;t automatically create the User record.</inlineHelpText>
+        <label>Don&#39;t Create Member User</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__EditActionMenu__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Menu that handles record edition through page layout. Commonly is a menu that contains a CRUD component that references this page layout but it can also be a custom page.</inlineHelpText>
+        <label>Edit Action Menu</label>
+        <referenceTo>FieloEE__Menu__c</referenceTo>
+        <relationshipLabel>Edit Actions from Page Layouts</relationshipLabel>
+        <relationshipName>PageLayoutEditAction</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__HTMLContent__c</fullName>
+        <defaultValue>&#39;&lt;p class="greenBkg"&gt;&lt;b&gt;The form was successfully submitted.&lt;/b&gt;&lt;/p&gt;&#39;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>This HTML content will be displayed if the submission of the form is a success.</inlineHelpText>
+        <label>HTML Content</label>
+        <length>131072</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__HideBackButton__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Hide back button</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__LabelSaveButton__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Label Save button</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__ObjectAPIName__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>FieloCRUD__ObjectSettings__r.FieloCRUD__ObjectAPIName__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Object API Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__ObjectSettings__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Object Settings</label>
+        <referenceTo>FieloCRUD__ObjectSettings__c</referenceTo>
+        <relationshipLabel>Page Layouts</relationshipLabel>
+        <relationshipName>PageLayouts</relationshipName>
+        <relationshipOrder>0</relationshipOrder>
+        <reparentableMasterDetail>false</reparentableMasterDetail>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>MasterDetail</type>
+        <writeRequiresMasterRead>false</writeRequiresMasterRead>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__RecordTypeName__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>RecordType.Name</formula>
+        <label>Record Type Name</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__SaveActionMenuOverride__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Override where a record should redirect after creation. If this field is not completed it will take into account the configuration of the list view that references this page layout.</inlineHelpText>
+        <label>Save Action Menu (Override)</label>
+        <referenceTo>FieloEE__Menu__c</referenceTo>
+        <relationshipLabel>Save Actions from Page Layouts</relationshipLabel>
+        <relationshipName>PageLayoutSaveAction</relationshipName>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloCRUD__ValueToDefinePageLayout__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Complete with the value that the field defined in "Field To Define Page Layout" of the related object setting should take in order to display this page layout.</inlineHelpText>
+        <label>Value To Define Page Layout</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <recordTypes>
+        <fullName>FieloCRUD__Form</fullName>
+        <active>true</active>
+        <description>Form page layout is always displayed in editable mode (ex. contact us form).</description>
+        <label>Form</label>
+        <picklistValues>
+            <picklist>FieloCRUD__ButtonsAlignment__c</picklist>
+            <values>
+                <fullName>Center</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloCRUD__ButtonsPlacement__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloCRUD__DeletionFrom__c</picklist>
+            <values>
+                <fullName>Action Menu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Page Layout</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FieloCRUD__Profile</fullName>
+        <active>true</active>
+        <description>Profile page layout allows to create friendlier member&#39;s profile.</description>
+        <label>Profile</label>
+        <picklistValues>
+            <picklist>FieloCRUD__ButtonsAlignment__c</picklist>
+            <values>
+                <fullName>Center</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloCRUD__ButtonsPlacement__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloCRUD__DeletionFrom__c</picklist>
+            <values>
+                <fullName>Action Menu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Page Layout</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FieloCRUD__Standard</fullName>
+        <active>true</active>
+        <description>Standard page layouts can be access through list views in order to create, edit or view details of a record.</description>
+        <label>Standard</label>
+        <picklistValues>
+            <picklist>FieloCRUD__ButtonsAlignment__c</picklist>
+            <values>
+                <fullName>Center</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloCRUD__ButtonsPlacement__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloCRUD__DeletionFrom__c</picklist>
+            <values>
+                <fullName>Action Menu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Page Layout</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FieloCRUD__Static</fullName>
+        <active>true</active>
+        <description>Static page layouts are referenced directly from CRUD components and  can be access through list views or redirect menus.</description>
+        <label>Static</label>
+        <picklistValues>
+            <picklist>FieloCRUD__ButtonsAlignment__c</picklist>
+            <values>
+                <fullName>Center</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloCRUD__ButtonsPlacement__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Bottom</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloCRUD__DeletionFrom__c</picklist>
+            <values>
+                <fullName>Action Menu</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Page Layout</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <webLinks>
+        <fullName>FieloCRUD__DeepClone</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Deep Clone</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT(&#39;/soap/ajax/30.0/connection.js&#39;)}
+{!REQUIRESCRIPT(&#39;/soap/ajax/30.0/apex.js&#39;)}
+
+var output = sforce.apex.execute("FieloCRUD.PageLayoutCloneButton", "doClone", {pageLayoutId:"{!FieloCRUD__PageLayout__c.Id}"});
+
+if(String(output).indexOf(&#39;ID&#39;) == 0){
+   window.location = "/" + String(output).slice(3);
+}else{
+   alert( output );
+}</url>
+    </webLinks>
+    <validationRules>
+        <fullName>FieloCRUD__PageLayout_ProfileOnlyForMember</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+	RecordType.DeveloperName = &#39;Profile&#39;,
+	FieloCRUD__ObjectSettings__r.FieloCRUD__ObjectAPIName__c &lt;&gt; &#39;FieloEE__Member__c&#39;
+)</errorConditionFormula>
+        <errorMessage>Profile record type is only available for object settings related to "FieloEE__Member__c" object.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloCRUD__PageLayout_Type</fullName>
+        <active>true</active>
+        <errorConditionFormula>NOT(ISBLANK(FieloCRUD__ValueToDefinePageLayout__c))
+&amp;&amp;
+ISBLANK(FieloCRUD__ObjectSettings__r.FieloCRUD__FieldToDefinePageLayout__c)</errorConditionFormula>
+        <errorDisplayField>FieloCRUD__ValueToDefinePageLayout__c</errorDisplayField>
+        <errorMessage>Please complete the field "Field To Define Page Layout" in the related "Object Settings" record</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloCRUD__PageLayout_TypeIsMandatory</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND(
+	FieloCRUD__Default__c = FALSE,
+	NOT(ISBLANK(FieloCRUD__ObjectSettings__r.FieloCRUD__FieldToDefinePageLayout__c )),
+	ISBLANK(FieloCRUD__ValueToDefinePageLayout__c),
+	RecordType.DeveloperName = &#39;Standard&#39;
+)</errorConditionFormula>
+        <errorDisplayField>FieloCRUD__ValueToDefinePageLayout__c</errorDisplayField>
+        <errorMessage>You must include type if the object setting has a field that defines layout.</errorMessage>
+    </validationRules>
+</CustomObject>

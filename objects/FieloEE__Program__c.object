@@ -1,0 +1,1193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Settings of each of your Fielo programs. You can create up to XXXX different programs.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <label>Program</label>
+    <nameField>
+        <label>Program Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Program</pluralLabel>
+    <searchLayouts>
+        <listViewButtons>FieloEE__BatchManagement</listViewButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <fields>
+        <fullName>FieloCRUD__StaticResources__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Names with extensions separated by comma</inlineHelpText>
+        <label>CRUD Static Resources</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ActiveContactsCalculation__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this option for the system to create a new account when you surpass 10,000 users.</inlineHelpText>
+        <label>ActiveContactsCalculation</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__AgreementFieldSet__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Agreement Field Set</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__AgreementView__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This page will be the one that overwrites the standard one to show the Agreement in the Front End.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This page will be the one that overwrites the standard one to show the Agreement in the front end.</inlineHelpText>
+        <label>Agreement View</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__AttachmentId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Attachment Id</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__AuditPoints__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box for auditing this member&#39;s points.</inlineHelpText>
+        <label>Audit Points</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__AutomaticCode__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Automatic Code</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__AutonumericMemberCode__c</fullName>
+        <defaultValue>100000000000</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Autonumeric MemberCode</label>
+        <precision>15</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__BannerInjectQuery__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Banner Inject Query</label>
+        <length>1000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__CaptchaPublicKey__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A public key obtained at Google.</description>
+        <externalId>false</externalId>
+        <label>Public Key</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__CaptchaSecretKey__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A private key obtained at Google.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Copy here the Private Key obtained at Google.</inlineHelpText>
+        <label>Secret Key</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__CaptchaURL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The URL from where you get a Captcha system.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the URL that provides your Captcha system.</inlineHelpText>
+        <label>Captcha URL</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Captcha__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will allow a Captcha system in the members&#39; portal.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Click here to enable Captcha. You need to create an account in a site providing a Captcha system.</inlineHelpText>
+        <label>Captcha</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__CategoryInjectQuery__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Category Inject Query</label>
+        <length>1000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ChangePasswordPage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Change Password Page</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ComponentFieldsQuery__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Component Fields Query</label>
+        <length>1000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__CustomPage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate the page you want to use instead of Fielo’s CMS.</inlineHelpText>
+        <label>Custom Page</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__CustomVoucherCss__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the CSS code to be applied to customized vouchers.</inlineHelpText>
+        <label>Custom Voucher CSS</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Default__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option makes this your default program.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Chek this box if you want to make this your default program.</inlineHelpText>
+        <label>Default</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__EmailTemplateRegister__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The template for the email that will be sent when a new member finishes the first step of registration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Indicate the template that will be sent when the new member finishes the first step of registration.</inlineHelpText>
+        <label>Email Template Register</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ExpirationMode__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Pick "None" if member inactivity will not result in the expiration of points. Pick "Total" if member inactivity will result in the expiration of the total of points. The value "Partial" allows for a number of points to expire.</inlineHelpText>
+        <label>Expiration Mode</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ExpirationPeriod__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Number of months during which the member&#39;s points will be valid.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set the quantity of months that the member will have active points.</inlineHelpText>
+        <label>Expiration Period</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ExpirationTypeDetail__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Expiration Type Detail</label>
+        <length>100</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__FacebookAplicationId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Your Facebook Application ID number, for Facebook integration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter your Facebook Application ID number for Facebook integration.</inlineHelpText>
+        <label>Aplication Id</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__FacebookAplicationSecret__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Your Facebook Secret Key, for Facebook integration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter your Facebook Secret Key for Facebook integration.</inlineHelpText>
+        <label>Aplication Secret</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__FacebookRecomendationDescription__c</fullName>
+        <defaultValue>&#39;Join Our Loyalty Program&#39;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a description of your program that will be shown in recommendations.</inlineHelpText>
+        <label>Recomendation Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__FacebookRecomendationName__c</fullName>
+        <defaultValue>&#39;Fielo Loyalty&#39;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the title to be used on the members’ recommendations.</inlineHelpText>
+        <label>Recomendation Title</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__FacebookRecomendationSubtitle__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The subtitle for this recomendation.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a subtitle for the recommendation.</inlineHelpText>
+        <label>Recomendation Subtitle</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Facebook__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Facebook</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__FieldSet__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>FieldSet</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__FirstBuyIntencive__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>First Buy Intencive</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Google__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Copy here the public key obtained at Google.</inlineHelpText>
+        <label>Google</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__HTMLHeadGeneral__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Advanced HTML for head element.</description>
+        <externalId>false</externalId>
+        <label>HTML head general</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>6</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__IdentificationCodeType__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose here to validate the Member Code during signup.</inlineHelpText>
+        <label>Identification Code Type</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__InactiveDays__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of days whitout generating transactions that will make a member to become inactive.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set the number of days a member may be without generating transactions before being inactivated.</inlineHelpText>
+        <label>Member Inactivity (in days)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__InstructionsReward__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The instructions for redeeming a reward.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the instructions for redeeming a reward. It will also be shown in the vouchers.</inlineHelpText>
+        <label>Reward Instructions</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__InstructionsVoucher__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the instructions that will be shown in the vouchers.</inlineHelpText>
+        <label>Voucher Instructions</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Language__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Language</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>en_US</fullName>
+                    <default>false</default>
+                    <label>en_US</label>
+                </value>
+                <value>
+                    <fullName>es</fullName>
+                    <default>false</default>
+                    <label>es</label>
+                </value>
+                <value>
+                    <fullName>pt_BR</fullName>
+                    <default>false</default>
+                    <label>pt_BR</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Linkedin__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Linkedin</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Locale__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Locale</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>en_US</fullName>
+                    <default>false</default>
+                    <label>en_US</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__MemberCodeClass__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Member Code Class</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__MemberCodeClasse__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Member Code Classe</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__MemberCode__c</fullName>
+        <defaultValue>1</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Member Code</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__MenuFieldSet__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Menu Field Set</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__MetricPeriod__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Specify the frequency of metric calculations.</inlineHelpText>
+        <label>Metric Period</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__NewsInjectQuery__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Content Feed Inject Query</label>
+        <length>1000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__NewsView__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Content Feed View</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__NumberOfVoucherDigits__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of digits in automatic vouchers.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set the number of digits for the automatic vouchers.</inlineHelpText>
+        <label>Number of Voucher Digits</label>
+        <precision>2</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__OneStepRegistration__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will enable registration in one step.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set if the registration is in one or two steps.</inlineHelpText>
+        <label>One Step Registration</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__OpenRedemptionDays__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of days that a redemption will stay open.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the number of days during which a redemption will be open. After that time lapse,  the redemption will be deleted.</inlineHelpText>
+        <label>Open Redemption Days</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__PackagePrefix__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Package Prefix</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__PointCost__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Actual Point Cost</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RecentRewardsDays__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Days during which a reward will show in the Most Recent list in the members&#39; portal.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set the number of days a product will appear in the Most Recent list in the members&#39; portal.</inlineHelpText>
+        <label>Most Recent reward status (in days)</label>
+        <precision>3</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RecommendPage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Recommend Page</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RedemptionApproval__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will establish an approval process for reward redemptions.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this option if you wish to establish an approval process for the redemptions.</inlineHelpText>
+        <label>Request Redemption Authorization</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RedemptionView__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Redemption View</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ReferalTransactionStep1__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will give points to members who refer new members.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box if you want to reward additional points when the referred member completes the registration (points are given to the member who referred the new one).</inlineHelpText>
+        <label>Referral Incentive Step 1</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ReferalTransactionStep2__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Points given as incentive for members to complete the registration process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box if you want to reward with points an existing member who refers someone else. The points are issued when the new member signs up.</inlineHelpText>
+        <label>Referral Incentive Step 2</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RegistrationTransaction__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will give points to new members for registering in the program.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this option if you want to reward new members for registering.</inlineHelpText>
+        <label>Registration Incentive</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RequestAutorization__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will make members registration subject to an approval process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Define whether new member registration is subject to an approval process. By checking this option, the user establishes a workflow to approve new members.</inlineHelpText>
+        <label>Request User Authorization</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RequestTransactionAuthorization__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Request Transaction Authorization</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RewardInjectQuery__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Reward Inject Query</label>
+        <length>1000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RewardView__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Reward View</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__SearchRewardMenu__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Search Reward Menu</label>
+        <length>18</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__SegmentInjectQuery__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Segment Inject Query</label>
+        <length>1000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__SenderDisplayName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The sender name for all emails sent from the application.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the sender name that will be shown in all the emails sent from the application.</inlineHelpText>
+        <label>Sender Display Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ShoppingCartPage__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Shopping Cart Page</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ShoppingCart__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Shopping Cart</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ShowVoucherCode__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Show Voucher Code</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__SiteDomain__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Site Domain</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__SiteProfile__c</fullName>
+        <defaultValue>&#39;Fielo Member Site&#39;</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Pick the profile name for new users in your program.</inlineHelpText>
+        <label>Site Profile</label>
+        <length>100</length>
+        <required>true</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__SiteURL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The URL used to complete the registration process.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>URL of the site used to send the links to continue the registration process</inlineHelpText>
+        <label>Site URL</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Step1RegistrationMessage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A message to be showed to members in the first step of registration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a message to be shown to new members in the first step of the registration.</inlineHelpText>
+        <label>Step 1 Registration Message</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Step2RegistrationMessage__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A message to be showed to members in the second step of registration.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a message that will be shown to new members in the second step of the registration.</inlineHelpText>
+        <label>Step 2 Registration Message</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__StockControl__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Stock Control</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__TagInjectQuery__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Tag Inject Query</label>
+        <length>1000</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__TimeOutOrphanTransactions__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of days after which a transaction will expire if the person who performed it does not register in your program.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set the time in days for transactions to expire if the member doesn&#39;t register in Fielo.</inlineHelpText>
+        <label>TimeOut Orphan Transactions</label>
+        <precision>6</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__TimeZone__c</fullName>
+        <deprecated>false</deprecated>
+        <description>International time zone you want to set for your program.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Set the time zone for your program.</inlineHelpText>
+        <label>Time Zone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>en_US</fullName>
+                    <default>false</default>
+                    <label>en_US</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__TransactionProcessOnline__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checkin this option will record all transactions online when they occur. If unchecked, you will have to register them offline.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Decide if you would rather register every transaction online when it happens, or offline altogether as a pack.</inlineHelpText>
+        <label>Transaction Process Online</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Twitter__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Twitter</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__UseAgreement__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>When checked, the Program will have active the Agreement functionality.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>When checked, the Program will have active the Agreement functionality.</inlineHelpText>
+        <label>Use Agreement</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__UserCreationClass__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the class you want to use for reflection of the user creation process.</inlineHelpText>
+        <label>User Creation Class</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ValidatePointsByItem__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Validate Points By Item</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <webLinks>
+        <fullName>FieloEE__AdvanceSettings</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Advance Settings</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}SettingsBackEnd?id={!FieloEE__Program__c.Id}&amp;isAdvanced=true</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__AgreementFieldSet</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Agreement Field Set</masterLabel>
+        <openType>replace</openType>
+        <page>FieloEE__ProgramFieldSetAgreement</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__BatchManagement</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Batch Management</masterLabel>
+        <openType>sidebar</openType>
+        <page>FieloEE__BatchExecutionBackEnd</page>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__BatchManagementDetail</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Batch Management</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}BatchExecutionBackEnd</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__MenuFieldSet</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>page</linkType>
+        <masterLabel>Menu Field Set</masterLabel>
+        <openType>replace</openType>
+        <page>FieloEE__ProgramFieldSetMenu</page>
+        <protected>false</protected>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__SetDefault</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Set Default</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT("/soap/ajax/22.0/connection.js")}
+
+var programUpdate = [];
+
+var idProgram = "{!FieloEE__Program__c.Id}";
+var resultProgram = sforce.connection.query("SELECT Id, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Default__c FROM {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__c WHERE Id = \&#39;{!FieloEE__Program__c.Id}\&#39; ");
+
+var program = resultProgram.getArray("records")[0];
+program.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Default__c = &#39;true&#39;;
+programUpdate.push(program);
+
+if(confirm(&#39;{!$Label.fieloee__programsetdefault}&#39;)){
+  result = sforce.connection.update(programUpdate);
+  parent.location.href = idProgram;
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__SetupExpirationMode</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Setup Expiration Mode</masterLabel>
+        <openType>sidebar</openType>
+        <page>FieloEE__SettingsBackEnd</page>
+        <protected>false</protected>
+    </webLinks>
+    <validationRules>
+        <fullName>FieloEE__Complete_Site_URL</fullName>
+        <active>true</active>
+        <errorConditionFormula>FieloEE__Default__c  =  FALSE &amp;&amp; FieloEE__SiteURL__c  = NULL</errorConditionFormula>
+        <errorDisplayField>FieloEE__SiteURL__c</errorDisplayField>
+        <errorMessage>Complete Site URL. You can find it going to Setup -&gt; Develop -&gt; Sites</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloEE__Open_Redemption_Days</fullName>
+        <active>true</active>
+        <errorConditionFormula>FieloEE__OpenRedemptionDays__c &lt; 0</errorConditionFormula>
+        <errorDisplayField>FieloEE__OpenRedemptionDays__c</errorDisplayField>
+        <errorMessage>Value cannot be negative</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloEE__Validate_Expiration_Period</fullName>
+        <active>true</active>
+        <errorConditionFormula>FieloEE__ExpirationPeriod__c &lt; 0</errorConditionFormula>
+        <errorDisplayField>FieloEE__ExpirationPeriod__c</errorDisplayField>
+        <errorMessage>Value cannot be negative</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloEE__Validate_Inactive_Days</fullName>
+        <active>true</active>
+        <errorConditionFormula>FieloEE__InactiveDays__c &lt; 1</errorConditionFormula>
+        <errorDisplayField>FieloEE__InactiveDays__c</errorDisplayField>
+        <errorMessage>Quantity should be positive</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloEE__Validate_Numer_of_voucher_digits</fullName>
+        <active>true</active>
+        <errorConditionFormula>FieloEE__NumberOfVoucherDigits__c &lt; 4</errorConditionFormula>
+        <errorDisplayField>FieloEE__NumberOfVoucherDigits__c</errorDisplayField>
+        <errorMessage>Must be greater than 4 digits</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloEE__Validate_RecentRewardsDays</fullName>
+        <active>true</active>
+        <errorConditionFormula>FieloEE__RecentRewardsDays__c &lt; 1</errorConditionFormula>
+        <errorDisplayField>FieloEE__RecentRewardsDays__c</errorDisplayField>
+        <errorMessage>The quantity should be positive</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloEE__Validate_TimeOut_Orphan_Transactions</fullName>
+        <active>true</active>
+        <errorConditionFormula>FieloEE__TimeOutOrphanTransactions__c &lt; 0 || FieloEE__TimeOutOrphanTransactions__c &gt; 30</errorConditionFormula>
+        <errorDisplayField>FieloEE__TimeOutOrphanTransactions__c</errorDisplayField>
+        <errorMessage>Value must be between 0 and 30</errorMessage>
+    </validationRules>
+    <listViews>
+        <fullName>FieloEE__All_Programs</fullName>
+        <columns>NAME</columns>
+        <columns>FieloEE__Default__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Programs</label>
+        <language>en_US</language>
+    </listViews>
+    <fieldSets>
+        <fullName>FieloEE__ProgramQuery</fullName>
+        <description>Program API to optimize query</description>
+        <label>Program Query</label>
+    </fieldSets>
+</CustomObject>

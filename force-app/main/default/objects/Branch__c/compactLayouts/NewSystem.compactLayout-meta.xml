@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>NewSystem</fullName>
-    <fields>Branch1__c</fields>
-    <fields>Branch1_formula__c</fields>
-    <fields>Branch2__c</fields>
-    <fields>Branch3_formula__c</fields>
-    <label>NewSystem</label>
-</CompactLayout>

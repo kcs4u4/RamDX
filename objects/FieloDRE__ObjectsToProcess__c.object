@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <enableFeeds>false</enableFeeds>
+    <label>Fielo Objects to process</label>
+    <visibility>Public</visibility>
+    <fields>
+        <fullName>FieloDRE__APINameObject__c</fullName>
+        <deprecated>false</deprecated>
+        <description>API Name del Objeto a procesar</description>
+        <externalId>false</externalId>
+        <inlineHelpText>API Name del Objeto a procesar</inlineHelpText>
+        <label>Object API Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloDRE__FieldMember__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Se debe completar con el Nombre de API del campo lookup a Member en el objeto que va a ser procesado</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Se debe completar con el Nombre de API del campo lookup a Member en el objeto que va a ser procesado</inlineHelpText>
+        <label>Field Member</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloDRE__FieldProcessed__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Se debe completar con el Nombre de API del campo (Checkbox) en donde se va a indicar que el registro fue procesado por el DRE</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Se debe completar con el Nombre de API del campo (Checkbox) en donde se va a indicar que el registro fue procesado por el DRE</inlineHelpText>
+        <label>FieldProcessed</label>
+        <length>40</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloDRE__FieldToRuleAppliedMasterLookup__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Se debe completar con el Nombre de API del campo lookup del objeto a procesar que se quiere copiar en el Padre del objeto "Fielo Rule Applied"</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Se debe completar con el Nombre de API del campo lookup del objeto a procesar que se quiere copiar en el Padre del objeto "Fielo Rule Applied"</inlineHelpText>
+        <label>Field To Rule Applied Master Lookup</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloDRE__FieldTotalPoints__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Se debe completar con el Nombre de API del campo en donde van a ser almacenados el total de puntos que aplican para el registro</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Se debe completar con el Nombre de API del campo en donde van a ser almacenados el total de puntos que aplican para el registro</inlineHelpText>
+        <label>Field Total Points</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloDRE__RuleAppliedMasterLookup__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Se debe completar con el Nombre de API del campo lookup al objeto a procesar en el objeto "Fielo Rule Applied"</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Se debe completar con el Nombre de API del campo lookup al objeto a procesar en el objeto "Fielo Rule Applied"</inlineHelpText>
+        <label>Rule Applied Master Lookup</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloDRE__RuleRecordTypeDevName__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Se debe completar con el DeveloperName del objeto Rule que van a aplicar para el objeto a procesar</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Se debe completar con el DeveloperName del objeto Rule que van a aplicar para el objeto a procesar</inlineHelpText>
+        <label>Rule Record Type Developer Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+</CustomObject>

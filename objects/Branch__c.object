@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Branch_Code__c</fullName>
+        <defaultValue>$Label.kcs_dev__dx_api</defaultValue>
+        <externalId>false</externalId>
+        <label>Branch Code</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Currency__c</fullName>
+        <externalId>false</externalId>
+        <label>Currency</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>Formula2__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(Branch2__r.Name !=Null , $Label.kcs_dev__dx_api +  $Label.kcs_dev__dx_api2 ,  Branch3__r.Name  )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Formula2</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Formula3__c</fullName>
+        <externalId>false</externalId>
+        <formula>TRIM(LEFT( Branch2__r.Name ,
+5))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Formula3</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Formula4__c</fullName>
+        <externalId>false</externalId>
+        <formula>Branch2__r.Name  +  TRIM(RIGHT(Branch3__r.Name ,3))</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Formula4</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Formula5__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF(AND( Branch2__r.Salary__c &lt;1, Branch1__r.NewEmail__c ==&#39;bc@abc.com&#39;)," $Label.DX_API ",
+ $Label.kcs_dev__dx_api2 )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Formula5</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ImageFormula__c</fullName>
+        <externalId>false</externalId>
+        <formula>IMAGE("/sfc/servlet.shepherd/version/download/06828000007fAGiAAM", &#39;image alternate text&#39;,240,320)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>ImageFormula</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>NewFormula1__c</fullName>
+        <externalId>false</externalId>
+        <formula>IF( Branch2__r.Salary__c &gt;= 10000, (Currency__c * 10) / 100, (Currency__c *5) / 100)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>NewFormula1</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>New_Dte__c</fullName>
+        <defaultValue>$System.OriginDateTime</defaultValue>
+        <externalId>false</externalId>
+        <label>New Dte</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>New_Email__c</fullName>
+        <defaultValue>UPPER( $Setup.Custom_Test1__c.a__c )</defaultValue>
+        <externalId>false</externalId>
+        <label>New Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>New_Num__c</fullName>
+        <externalId>false</externalId>
+        <label>New Num</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>New_Phone__c</fullName>
+        <defaultValue>$User.MobilePhone</defaultValue>
+        <externalId>false</externalId>
+        <label>New Phone</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>New_text__c</fullName>
+        <defaultValue>($Label.kcs_dev__dx_api ) &amp;  ($Label.kcs_dev__dx_api2 )</defaultValue>
+        <externalId>false</externalId>
+        <label>New text</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>new_url__c</fullName>
+        <defaultValue>$Organization.GoogleAppsDomain</defaultValue>
+        <externalId>false</externalId>
+        <label>new url</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>photos__c</fullName>
+        <externalId>false</externalId>
+        <label>photos</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>Html</type>
+        <visibleLines>25</visibleLines>
+    </fields>
+    <fields>
+        <fullName>vsv__c</fullName>
+        <externalId>false</externalId>
+        <formula>$Label.kcs_dev__dx_api  +  $Label.kcs_dev__dx_api2</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>vsv</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <compactLayouts>
+        <fullName>NewSystem</fullName>
+        <fields>Branch1__c</fields>
+        <fields>Branch1_formula__c</fields>
+        <fields>Branch2__c</fields>
+        <fields>Branch3_formula__c</fields>
+        <label>NewSystem</label>
+    </compactLayouts>
+    <webLinks>
+        <fullName>NewTest13</fullName>
+        <availability>online</availability>
+        <displayType>link</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>NewTest13</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!$Action.Branch__c.NewTest13}</url>
+    </webLinks>
+    <validationRules>
+        <fullName>NewValid</fullName>
+        <active>false</active>
+        <errorConditionFormula>$Label.kcs_dev__dx_api !=Null</errorConditionFormula>
+        <errorDisplayField>New_Dte__c</errorDisplayField>
+        <errorMessage>New Error</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>NewValidation1</fullName>
+        <active>false</active>
+        <errorConditionFormula>$Label.kcs_dev__dx_api2 +$Label.kcs_dev__dx_api = Branch1_formula__c +                                                                  Branch1_formula__c+ &#39;$ObjectType.kcs_dev__A__c.Fields.kcs_dev__Email__c&#39; + &#39;$Permission.New_Permission&#39;+ &#39;$Setup.kcs_dev__Custom_Test1__c.kcs_dev__Checked__c &#39;</errorConditionFormula>
+        <errorMessage>No Error</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>New_VAlidta</fullName>
+        <active>false</active>
+        <errorConditionFormula>Branch1__r.Branch2__c  &lt;&gt; Null</errorConditionFormula>
+        <errorMessage>NEW ERROR</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>NextValid</fullName>
+        <active>false</active>
+        <errorConditionFormula>ISBLANK(Branch2__c)</errorConditionFormula>
+        <errorMessage>nulll</errorMessage>
+    </validationRules>
+    <fieldSets>
+        <fullName>NewFieldSet</fullName>
+        <description>Apex</description>
+        <displayedFields>
+            <field>Branch3__r.Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Branch1__r.NewForm__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Branch2__r.Branch_Code2__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Branch1__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Branch1__r.Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Branch1_formula__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Branch3_formula__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Branch_Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>Branch1__r.Branch_Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>NewFieldSet</label>
+    </fieldSets>
+</CustomObject>

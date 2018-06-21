@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Rules that determine the points a member earns with a transaction.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <label>Rule</label>
+    <nameField>
+        <label>Rule Name</label>
+        <trackHistory>true</trackHistory>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Rule</pluralLabel>
+    <recordTypeTrackHistory>false</recordTypeTrackHistory>
+    <searchLayouts>
+        <customTabListAdditionalFields>FieloEE__IsActive__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATEDBY_USER</customTabListAdditionalFields>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <fields>
+        <fullName>FieloEE__ActionDescription__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Action Description</label>
+        <length>255</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ConvertionTypeReward__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Convertion Type Reward</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Fix Value</fullName>
+                    <default>false</default>
+                    <label>Fix Value</label>
+                </value>
+                <value>
+                    <fullName>Reward Field</fullName>
+                    <default>false</default>
+                    <label>Reward Field</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ConvertionTypeTransaction__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Convertion Type Transaction</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Fix Value</fullName>
+                    <default>false</default>
+                    <label>Fix Value</label>
+                </value>
+                <value>
+                    <fullName>Factor</fullName>
+                    <default>false</default>
+                    <label>Factor</label>
+                </value>
+                <value>
+                    <fullName>Multiplier</fullName>
+                    <default>true</default>
+                    <label>Multiplier</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ConvertionValue__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Convertion Value</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A description of this rule.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a description for this rule.</inlineHelpText>
+        <label>Description</label>
+        <length>32768</length>
+        <trackHistory>true</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>10</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ExpirationMonth__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of months during which the points created by this rule will be valid.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the number of months during which the points created by the rule will remain vaild.</inlineHelpText>
+        <label>Months untill Expiration</label>
+        <precision>4</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__FieldNameReward__c</fullName>
+        <defaultValue>"Value__c"</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Field Name Reward</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__FieldNameTransaction__c</fullName>
+        <defaultValue>"Value__c"</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Field Name Transaction</label>
+        <length>80</length>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__InstantReward__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Instant Reward</label>
+        <lookupFilter>
+            <active>true</active>
+            <filterItems>
+                <field>FieloEE__Reward__c.FieloEE__isInstantReward__c</field>
+                <operation>equals</operation>
+                <value>True</value>
+            </filterItems>
+            <isOptional>false</isOptional>
+        </lookupFilter>
+        <referenceTo>FieloEE__Reward__c</referenceTo>
+        <relationshipLabel>Rules</relationshipLabel>
+        <relationshipName>Rules</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__IsActive__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will make the rule active.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this option in order to activate this rule.</inlineHelpText>
+        <label>Active</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Program__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The program to which this rule belongs.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the program to which this rule belongs.</inlineHelpText>
+        <label>Program</label>
+        <referenceTo>FieloEE__Program__c</referenceTo>
+        <relationshipLabel>Rules</relationshipLabel>
+        <relationshipName>Rules</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__StockControl__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will make that a transaction is not processed if its reward is out of stock. If left unchecked, the transaction will be processed although the reward can not be delivered.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this option if you want that a transaction is not processed when its reward is out of stock.</inlineHelpText>
+        <label>Stock Control</label>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The type of this rule, which decides when the rule is applied.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Choose when to use the given rule. "Best Option": Among applicable rules,  the best option will be chosen. "No Competition": This rule will always be applied.</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Best Option</fullName>
+                    <default>true</default>
+                    <label>Best Option</label>
+                </value>
+                <value>
+                    <fullName>No Competition</fullName>
+                    <default>false</default>
+                    <label>No Competition</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <recordTypes>
+        <fullName>FieloEE__Default_Rule</fullName>
+        <active>true</active>
+        <label>Default Rule</label>
+        <picklistValues>
+            <picklist>FieloEE__ConvertionTypeReward__c</picklist>
+            <values>
+                <fullName>Fix Value</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reward Field</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__ConvertionTypeTransaction__c</picklist>
+            <values>
+                <fullName>Factor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fix Value</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multiplier</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__Type__c</picklist>
+            <values>
+                <fullName>Best Option</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Competition</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FieloEE__Standard_Rule</fullName>
+        <active>true</active>
+        <label>Standard Rule</label>
+        <picklistValues>
+            <picklist>FieloEE__ConvertionTypeReward__c</picklist>
+            <values>
+                <fullName>Fix Value</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Reward Field</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__ConvertionTypeTransaction__c</picklist>
+            <values>
+                <fullName>Factor</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Fix Value</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Multiplier</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__Type__c</picklist>
+            <values>
+                <fullName>Best Option</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>No Competition</fullName>
+                <default>true</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <webLinks>
+        <fullName>FieloEE__RuleChangeStatus</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Active/Inactive</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT ("/soap/ajax/23.0/connection.js")}
+if(confirm(&#39;{!$Label.fieloee__fielo_changestatus}?&#39;)){
+     var c = new sforce.SObject("{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Rule__c");
+     var toUpdate = [];
+     c.id = &#39;{!FieloEE__Rule__c.Id}&#39;;
+     c.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}IsActive__c = {!IF(FieloEE__Rule__c.FieloEE__IsActive__c, &#39;false&#39;, &#39;true&#39;)};
+    toUpdate.push(c);
+    sforce.connection.update(toUpdate);
+
+    window.location.reload();
+}</url>
+    </webLinks>
+    <validationRules>
+        <fullName>FieloEE__ModifyProgram</fullName>
+        <active>true</active>
+        <description>Is not possible to modify the associated Program</description>
+        <errorConditionFormula>ISCHANGED(FieloEE__Program__c) &amp;&amp; NOT(ISBLANK(PRIORVALUE(FieloEE__Program__c)))</errorConditionFormula>
+        <errorDisplayField>FieloEE__Program__c</errorDisplayField>
+        <errorMessage>Is not possible to modify the associated Program</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloEE__Rule_Name_Empty</fullName>
+        <active>true</active>
+        <errorConditionFormula>ISBLANK( Name )</errorConditionFormula>
+        <errorDisplayField>Name</errorDisplayField>
+        <errorMessage>Name must be completed</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloEE__Validate_points_value</fullName>
+        <active>true</active>
+        <errorConditionFormula>AND( OR( ISPICKVAL(FieloEE__ConvertionTypeTransaction__c,&#39;Fix Value&#39;), ISPICKVAL(FieloEE__ConvertionTypeTransaction__c,&#39;Factor&#39;), ISPICKVAL(FieloEE__ConvertionTypeTransaction__c,&#39;Multiplier&#39;) ), OR(FieloEE__ConvertionValue__c == 0, ISNULL(FieloEE__ConvertionValue__c), ISBLANK(FieloEE__ConvertionValue__c)) )</errorConditionFormula>
+        <errorMessage>The quantity of points cannot be empty or be 0</errorMessage>
+    </validationRules>
+    <listViews>
+        <fullName>FieloEE__All_Rules</fullName>
+        <columns>NAME</columns>
+        <columns>FieloEE__Description__c</columns>
+        <columns>FieloEE__IsActive__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Rules</label>
+        <language>en_US</language>
+    </listViews>
+    <fieldSets>
+        <fullName>FieloDRE__EditDRE</fullName>
+        <availableFields>
+            <field>FieloEE__Description__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>RuleEditBackEnd page(DRE)</description>
+        <label>EditDRE</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>FieloEE__Edit</fullName>
+        <availableFields>
+            <field>FieloEE__Description__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>RuleEditBackEnd page</description>
+        <label>Edit</label>
+    </fieldSets>
+</CustomObject>

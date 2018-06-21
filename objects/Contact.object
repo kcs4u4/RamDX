@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>FieloEE__Member__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Member</label>
+        <referenceTo>FieloEE__Member__c</referenceTo>
+        <relationshipLabel>Contacts</relationshipLabel>
+        <relationshipName>Contacts</relationshipName>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RegistrationURL__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>FieloEE__Member__r.FieloEE__Program__r.FieloEE__SiteURL__c +  $Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c + &#39;RegisterStep2?mId=&#39; + FieloEE__Member__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Registration URL</label>
+        <required>false</required>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <webLinks>
+        <fullName>FieloEE__ConvertContact</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Convert Contact</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}ContactConvertion?contactId={!Contact.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__Convert_Contact</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Convert Contacts</masterLabel>
+        <openType>sidebar</openType>
+        <page>FieloEE__ContactConvertion</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__InviteContact</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Invite Contact</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}ContactInvite?contactId={!Contact.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__Invite_Contact</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Invite Contacts</masterLabel>
+        <openType>sidebar</openType>
+        <page>FieloEE__ContactInvite</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+</CustomObject>

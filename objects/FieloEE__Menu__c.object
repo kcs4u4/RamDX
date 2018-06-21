@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>The members’ portal&#39;s pages. It is equivalent to the site map.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <label>Menu</label>
+    <nameField>
+        <label>Menu Name</label>
+        <type>Text</type>
+    </nameField>
+    <pluralLabel>Menu</pluralLabel>
+    <searchLayouts>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <listViewButtons>FieloEE__OrderMenuTop</listViewButtons>
+        <listViewButtons>FieloEE__OrderMenuFooter</listViewButtons>
+        <lookupDialogsAdditionalFields>FieloEE__Program__c</lookupDialogsAdditionalFields>
+        <lookupPhoneDialogsAdditionalFields>FieloEE__Program__c</lookupPhoneDialogsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>ReadWrite</sharingModel>
+    <visibility>Public</visibility>
+    <fields>
+        <fullName>FieloEE__AttachmentId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Attachment Id</label>
+        <length>30</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__CSSClasses__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>CSSClasses</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__CSS__c</fullName>
+        <deprecated>false</deprecated>
+        <description>CSS code to modify the look and formatting of this menu.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a CSS code for this menu.</inlineHelpText>
+        <label>CSS</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__CustomURL__c</fullName>
+        <deprecated>false</deprecated>
+        <description>An external or internal link to a customized page.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the URL to where you want to redirect. The link must be of the form http://www.domain.com.</inlineHelpText>
+        <label>Custom URL</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Description__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A description of this menu, for your use only.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a description for this menu (only visible from the back end).</inlineHelpText>
+        <label>Description</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Desktop__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will make this menu show in a desktop computer.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this option for making this menu visible on a desktop computer.</inlineHelpText>
+        <label>Desktop</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ExternalName__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>External Name</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__HasMultiSegments__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Has Multi Segments</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Home__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will make this the home page of the members&#39; portal.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this option for making this the Home page.</inlineHelpText>
+        <label>Home</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ImagePosition__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Image Position</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Only Image</fullName>
+                    <default>false</default>
+                    <label>Only Image</label>
+                </value>
+                <value>
+                    <fullName>Left</fullName>
+                    <default>false</default>
+                    <label>Left</label>
+                </value>
+                <value>
+                    <fullName>Right</fullName>
+                    <default>false</default>
+                    <label>Right</label>
+                </value>
+                <value>
+                    <fullName>Only Name</fullName>
+                    <default>false</default>
+                    <label>Only Name</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Image__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IMAGE("/servlet/servlet.FileDownload?file="+FieloEE__AttachmentId__c, "photo",50, 50)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Image</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Layout__c</fullName>
+        <deprecated>false</deprecated>
+        <description>This field will be populated by the trigger and it will contain the CSS classes depending on the visibility of the Menu by device.</description>
+        <externalId>false</externalId>
+        <label>Display Device</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>One Column</fullName>
+                    <default>true</default>
+                    <label>One Column</label>
+                </value>
+                <value>
+                    <fullName>Two Columns</fullName>
+                    <default>false</default>
+                    <label>Two Columns</label>
+                </value>
+                <value>
+                    <fullName>Banner + Two Columns</fullName>
+                    <default>false</default>
+                    <label>Banner + Two Columns</label>
+                </value>
+                <value>
+                    <fullName>Advanced</fullName>
+                    <default>false</default>
+                    <label>Advanced</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Link__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Field to indicate if the menu has components</description>
+        <externalId>false</externalId>
+        <label>Has components</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Internal</fullName>
+                    <default>false</default>
+                    <label>Internal</label>
+                </value>
+                <value>
+                    <fullName>External</fullName>
+                    <default>false</default>
+                    <label>External</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Menu__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Lookup to the father menu</description>
+        <externalId>false</externalId>
+        <label>Menu</label>
+        <referenceTo>FieloEE__Menu__c</referenceTo>
+        <relationshipLabel>Sub Menus</relationshipLabel>
+        <relationshipName>Menu</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Mobile__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will make this menu show in a cell phone.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this option for making this menu to be visible on a mobile device.</inlineHelpText>
+        <label>Mobile</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Order__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The order in which this menu will show in the members&#39; portal.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the order in which this menu will be showed in the members&#39; portal.</inlineHelpText>
+        <label>Order</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Placement__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The placement of this menu. It can be Top, Main or Footer.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Pick the placement for this menu.</inlineHelpText>
+        <label>Placement</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Main</fullName>
+                    <default>false</default>
+                    <label>Main</label>
+                </value>
+                <value>
+                    <fullName>Top</fullName>
+                    <default>false</default>
+                    <label>Top</label>
+                </value>
+                <value>
+                    <fullName>Footer</fullName>
+                    <default>false</default>
+                    <label>Footer</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Program__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The program to which this menu belongs.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Select the program to which this menu belongs.</inlineHelpText>
+        <label>Program</label>
+        <referenceTo>FieloEE__Program__c</referenceTo>
+        <relationshipLabel>Menu</relationshipLabel>
+        <relationshipName>Menu</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__RedemptionRule__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>This field is being used to determine if a Menu has segments. When this lookup is null, it doesn&#39;t have any Segment Domain.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box in order to activate this content feed.</inlineHelpText>
+        <label>Segment</label>
+        <referenceTo>FieloEE__RedemptionRule__c</referenceTo>
+        <relationshipLabel>Menu</relationshipLabel>
+        <relationshipName>Menu</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__SEODescription__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>SEO Description</label>
+        <length>32768</length>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>FieloEE__SEOKeywords__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>SEO Keywords</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>TextArea</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__SEOTitle__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>SEO Title</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Tablet__c</fullName>
+        <defaultValue>true</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Checking this option will make this menu show in a tablet computer.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this option for making this menu visible on a tablet computer.</inlineHelpText>
+        <label>Tablet</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Title__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A title that will show on top of the page.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter a title that will show on top of the page.</inlineHelpText>
+        <label>Title</label>
+        <length>255</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__visibility__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Who will be able to see this menu: nobody, everybody or only logged in users.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Define who will see the menu.</inlineHelpText>
+        <label>Visibility</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>Both</fullName>
+                    <default>false</default>
+                    <label>Both</label>
+                </value>
+                <value>
+                    <fullName>Public</fullName>
+                    <default>false</default>
+                    <label>Public</label>
+                </value>
+                <value>
+                    <fullName>Private</fullName>
+                    <default>false</default>
+                    <label>Private</label>
+                </value>
+                <value>
+                    <fullName>Hidden</fullName>
+                    <default>true</default>
+                    <label>Hidden</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <recordTypes>
+        <fullName>FieloEE__Menu</fullName>
+        <active>true</active>
+        <label>Menu</label>
+        <picklistValues>
+            <picklist>FieloEE__ImagePosition__c</picklist>
+            <values>
+                <fullName>Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Only Image</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Only Name</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__Layout__c</picklist>
+            <values>
+                <fullName>Advanced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner %2B Two Columns</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One Column</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Two Columns</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__Link__c</picklist>
+            <values>
+                <fullName>External</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__Placement__c</picklist>
+            <values>
+                <fullName>Footer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Main</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__visibility__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Hidden</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <recordTypes>
+        <fullName>FieloEE__SubMenu</fullName>
+        <active>true</active>
+        <label>Sub Menu</label>
+        <picklistValues>
+            <picklist>FieloEE__ImagePosition__c</picklist>
+            <values>
+                <fullName>Left</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Only Image</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Only Name</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Right</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__Layout__c</picklist>
+            <values>
+                <fullName>Advanced</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Banner %2B Two Columns</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>One Column</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Two Columns</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__Link__c</picklist>
+            <values>
+                <fullName>External</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Internal</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__Placement__c</picklist>
+            <values>
+                <fullName>Footer</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Main</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Top</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+        <picklistValues>
+            <picklist>FieloEE__visibility__c</picklist>
+            <values>
+                <fullName>Both</fullName>
+                <default>true</default>
+            </values>
+            <values>
+                <fullName>Private</fullName>
+                <default>false</default>
+            </values>
+            <values>
+                <fullName>Public</fullName>
+                <default>false</default>
+            </values>
+        </picklistValues>
+    </recordTypes>
+    <webLinks>
+        <fullName>FieloEE__Back</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Back</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}FrontEndLandingPageBackEnd</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__BackToFrontEnd</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>Back to Front End</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}FrontEndLandingPageBackEnd</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__DeepClone</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Deep Clone</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT("/soap/ajax/30.0/connection.js")}
+{!REQUIRESCRIPT("/soap/ajax/30.0/apex.js")}
+
+
+var menu = &#39;{!FieloEE__Menu__c.Id}&#39;;
+
+var saveURL = "/apex/" + "{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}" + "MenuCloneBackEnd" + "%3F" + "menuId=" + menu;
+
+var cancelURL = "/apex/" + "{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}" + "FrontEndLandingPageBackEnd";
+
+window.location = "/{!FieloEE__Menu__c.Id}/e?clone=1&amp;saveURL="+saveURL+"&amp;cancelURL="+cancelURL;</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__ExportMenu</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Export Menu</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>window.location = &#39;/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}XMLExport?type=Menu&amp;id={!FieloEE__Menu__c.Id}&#39;;</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__NewSubMenu</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <linkType>url</linkType>
+        <masterLabel>New SubMenu</masterLabel>
+        <openType>replace</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>{!URLFOR($Action.FieloEE__Menu__c.New, null, [parentId=FieloEE__Menu__c.Id])}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__OrderMenuFooter</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Order Menu Footer</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}MenuOrderBackEnd?placement=Footer</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__OrderMenuTop</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Order Menu Main</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}MenuOrderBackEnd?placement=Main</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__OrderSubMenu</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Order Sub Menus</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}MenuOrderBackEnd?Id={!FieloEE__Menu__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__Preview</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Preview</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT("/soap/ajax/22.0/connection.js")}
+
+var menus= sforce.connection.query("SELECT {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}SiteURL__c, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}CustomPage__c FROM {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Menu__c WHERE Id = \&#39;{!FieloEE__Menu__c.Id}\&#39; ");
+var menu = menus.getArray("records")[0];
+
+if(null==menu.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}CustomPage__c || &#39;&#39;==menu.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}CustomPage__c){
+     window.open(menu.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}SiteURL__c+&#39;{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Page?idMenu=&#39;+&#39;{!FieloEE__Menu__c.Id}&#39;+&#39;&amp;isPreview=1&#39;);
+}else{
+     window.open(menu.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}SiteURL__c+&#39;apex/&#39;+menu.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Program__r.{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}CustomPage__c+&#39;?idMenu=&#39;+&#39;{!FieloEE__Menu__c.Id}&#39;+&#39;&amp;isPreview=1&#39;);
+}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__SetHome</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Set Home</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT("/soap/ajax/22.0/connection.js")}
+
+var menuUpdate = [];
+var homeResult = sforce.connection.query("SELECT Id, {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Home__c  from {!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Menu__c WHERE Id = &#39;{!FieloEE__Menu__c.Id}&#39; ");
+var homeMenu = homeResult.getArray("records");
+homeMenu[0][&#39;{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}Home__c&#39;] = &#39;true&#39;;
+menuUpdate.push(homeMenu[0]);
+
+var result = sforce.connection.update(menuUpdate);
+
+window.location.reload();</url>
+    </webLinks>
+    <validationRules>
+        <fullName>FieloEE__ModifyProgram</fullName>
+        <active>true</active>
+        <description>Is not possible to modify the associated Program</description>
+        <errorConditionFormula>ISCHANGED(FieloEE__Program__c) &amp;&amp; NOT(ISBLANK(PRIORVALUE(FieloEE__Program__c)))</errorConditionFormula>
+        <errorDisplayField>FieloEE__Program__c</errorDisplayField>
+        <errorMessage>Is not possible to modify the associated Program</errorMessage>
+    </validationRules>
+    <listViews>
+        <fullName>FieloEE__All_Menu</fullName>
+        <columns>NAME</columns>
+        <columns>FieloEE__Program__c</columns>
+        <columns>FieloEE__Home__c</columns>
+        <columns>FieloEE__Placement__c</columns>
+        <columns>FieloEE__visibility__c</columns>
+        <columns>FieloEE__Menu__c</columns>
+        <columns>FieloEE__Desktop__c</columns>
+        <columns>FieloEE__Tablet__c</columns>
+        <columns>FieloEE__Mobile__c</columns>
+        <columns>CREATED_DATE</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Menu</label>
+        <language>en_US</language>
+    </listViews>
+    <fieldSets>
+        <fullName>FieloEE__Filter</fullName>
+        <description>FrontEndLandingPage</description>
+        <displayedFields>
+            <field>FieloEE__Placement__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Filter</label>
+    </fieldSets>
+</CustomObject>

@@ -1,0 +1,975 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <allowInChatterGroups>false</allowInChatterGroups>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <deprecated>false</deprecated>
+    <description>Actions that generate points performed by members.</description>
+    <enableActivities>false</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableEnhancedLookup>false</enableEnhancedLookup>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>false</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <label>Transaction</label>
+    <nameField>
+        <displayFormat>T-{0000000}</displayFormat>
+        <label>Transaction Name</label>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Transaction</pluralLabel>
+    <searchLayouts>
+        <customTabListAdditionalFields>FieloEE__Processed__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FieloEE__Value__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FieloEE__Points__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FieloEE__Member__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>FieloEE__Branch__c</customTabListAdditionalFields>
+        <customTabListAdditionalFields>CREATED_DATE</customTabListAdditionalFields>
+        <excludedStandardButtons>Accept</excludedStandardButtons>
+        <excludedStandardButtons>ChangeOwner</excludedStandardButtons>
+        <listViewButtons>FieloEE__FieloProcessOffline</listViewButtons>
+        <listViewButtons>FieloEE__Codes</listViewButtons>
+        <searchResultsAdditionalFields>CREATED_DATE</searchResultsAdditionalFields>
+    </searchLayouts>
+    <sharingModel>Read</sharingModel>
+    <visibility>Public</visibility>
+    <fields>
+        <fullName>FieloCH__Challenge__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Challenge</label>
+        <referenceTo>FieloCH__Challenge__c</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Adjust__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Read only field.</inlineHelpText>
+        <label>Adjust Transaction</label>
+        <referenceTo>FieloEE__Transaction__c</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ApprovedReadOnly__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF(  FieloEE__Approved__c , $Label.fieloee__approved , $Label.fieloee__notapproved )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Approved (Read Only)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Approved__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>It indicates whether the transaction was or not approved (read only field).</description>
+        <externalId>false</externalId>
+        <label>Approved</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__AttachmentId__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Attachment Id</label>
+        <length>80</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__BranchCode__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Branch where the transaction was done.</description>
+        <externalId>false</externalId>
+        <label>Branch Code</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Branch__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>Branch where transaction was done</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Look up the branch where the transaction took place.</inlineHelpText>
+        <label>Branch</label>
+        <referenceTo>FieloEE__Branch__c</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__CodeItem__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Code Item</label>
+        <referenceTo>FieloEE__Code__c</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Code__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Code</label>
+        <length>15</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Cost__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Cost related to each point.</description>
+        <externalId>false</externalId>
+        <formula>IF(ISNULL(FieloEE__PointCost__c), FieloEE__Points__c * FieloEE__Member__r.FieloEE__Program__r.FieloEE__PointCost__c, FieloEE__Points__c * FieloEE__PointCost__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Cost</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__DateReadOnly__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>FieloEE__Date__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Date &amp; Time (Read Only)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Date__c</fullName>
+        <defaultValue>now()</defaultValue>
+        <deprecated>false</deprecated>
+        <description>Date and time of this transaction.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter date and time of this transaction.</inlineHelpText>
+        <label>Date &amp; Time</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>DateTime</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__IdentificationType__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Identification of the member entered in the transaction.</description>
+        <externalId>false</externalId>
+        <label>Identification Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Mobile</fullName>
+                    <default>false</default>
+                    <label>Mobile</label>
+                </value>
+                <value>
+                    <fullName>Passport</fullName>
+                    <default>false</default>
+                    <label>Passport</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Location__c</fullName>
+        <deprecated>false</deprecated>
+        <displayLocationInDecimal>false</displayLocationInDecimal>
+        <externalId>false</externalId>
+        <label>Location</label>
+        <required>false</required>
+        <scale>5</scale>
+        <trackTrending>false</trackTrending>
+        <type>Location</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__MemberCode__c</fullName>
+        <deprecated>false</deprecated>
+        <description>ID of the member that made the transaction.</description>
+        <externalId>false</externalId>
+        <label>Identification Number</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__MemberReadOnly__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>HYPERLINK(&#39;/&#39; + FieloEE__Member__c ,  FieloEE__Member__r.FieloEE__Name__c )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Member (Read Only)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Member__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>The member who peformed the transaction.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the member who performed this transaction.</inlineHelpText>
+        <label>Member</label>
+        <referenceTo>FieloEE__Member__c</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Offline__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <inlineHelpText>Check this box for the transaction to be processed offline.</inlineHelpText>
+        <label>Offline</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__PointCost__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The value of a point in real life currency.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter actual cost, in the  currency of your choice, of a point in your program.</inlineHelpText>
+        <label>Point Cost</label>
+        <precision>12</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__PointsReadOnly__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>FieloEE__Points__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Points (Read Only)</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Points__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The number of points produced by the transaction.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the number of points produced by this transaction.</inlineHelpText>
+        <label>Points</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__ProcessedStatusReadOnly__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>IF(  FieloEE__Processed__c ,  $Label.fieloee__processed ,  $Label.fieloee__notprocessed )</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Processed Status (Read Only)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Processed__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <description>It indicates whether the transaction was or not processed (read only field).</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Read only field.</inlineHelpText>
+        <label>Processed</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Referral__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <description>On case of a referral transaction, here is the link to the referred.</description>
+        <externalId>false</externalId>
+        <label>Referral</label>
+        <referenceTo>FieloEE__Member__c</referenceTo>
+        <relationshipLabel>Transactions (Referral)</relationshipLabel>
+        <relationshipName>TransactionsFromReferrals</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Revenue__c</fullName>
+        <deprecated>false</deprecated>
+        <description>Value earned in the transaction: It is equivalent to Value - Cost, and it has to be positive.</description>
+        <externalId>false</externalId>
+        <formula>FieloEE__Value__c - FieloEE__Cost__c</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Revenue</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Reverted__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Reverted</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Reward__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Reward</label>
+        <referenceTo>FieloEE__Reward__c</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__SkipEngine__c</fullName>
+        <defaultValue>false</defaultValue>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Skip Engine</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>FieloEE__StatusReadOnly__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <formula>TEXT(FieloEE__Status__c)</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Status (Read Only)</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Status__c</fullName>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Status</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>OK</fullName>
+                    <default>false</default>
+                    <label>OK</label>
+                </value>
+                <value>
+                    <fullName>Unapproved Transaction</fullName>
+                    <default>false</default>
+                    <label>Unapproved Transaction</label>
+                </value>
+                <value>
+                    <fullName>Error in the Approval Process</fullName>
+                    <default>false</default>
+                    <label>Error in the Approval Process</label>
+                </value>
+                <value>
+                    <fullName>Transaction without Member</fullName>
+                    <default>false</default>
+                    <label>Transaction without Member</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__TransactionId__c</fullName>
+        <deprecated>false</deprecated>
+        <description>A code you can assign to this transaction in order to identify it later.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter an unique code in order to identify this transaction (optional).</inlineHelpText>
+        <label>Transaction Id</label>
+        <length>20</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Type__c</fullName>
+        <deprecated>false</deprecated>
+        <description>The type of the transaction.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Pick the type of transaction.</inlineHelpText>
+        <label>Type</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+        <valueSet>
+            <valueSetDefinition>
+                <sorted>true</sorted>
+                <value>
+                    <fullName>Adjust</fullName>
+                    <default>false</default>
+                    <label>Adjust</label>
+                </value>
+                <value>
+                    <fullName>Code Insert</fullName>
+                    <default>false</default>
+                    <label>Code Insert</label>
+                </value>
+                <value>
+                    <fullName>Expiration</fullName>
+                    <default>false</default>
+                    <label>Expiration</label>
+                </value>
+                <value>
+                    <fullName>Purchase</fullName>
+                    <default>true</default>
+                    <label>Purchase</label>
+                </value>
+                <value>
+                    <fullName>Referral - Step 1</fullName>
+                    <default>false</default>
+                    <label>Referral - Step 1</label>
+                </value>
+                <value>
+                    <fullName>Referral - Step 2</fullName>
+                    <default>false</default>
+                    <label>Referral - Step 2</label>
+                </value>
+                <value>
+                    <fullName>Registration</fullName>
+                    <default>false</default>
+                    <label>Registration</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+    </fields>
+    <fields>
+        <fullName>FieloEE__Value__c</fullName>
+        <defaultValue>0</defaultValue>
+        <deprecated>false</deprecated>
+        <description>The value of the purchase originating this transaction.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Enter the purchase value.</inlineHelpText>
+        <label>Purchase Value</label>
+        <precision>14</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>FieloSVY__SurveyResponse__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <deprecated>false</deprecated>
+        <externalId>false</externalId>
+        <label>Survey Response</label>
+        <referenceTo>FieloSVY__SurveyResponse__c</referenceTo>
+        <relationshipLabel>Transactions</relationshipLabel>
+        <relationshipName>Transactions</relationshipName>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <webLinks>
+        <fullName>FieloEE__Codes</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>Codes</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>false</requireRowSelection>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}CodeUploadBackEnd</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__FieloProcessOffline</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <height>600</height>
+        <linkType>page</linkType>
+        <masterLabel>Process Offline</masterLabel>
+        <openType>sidebar</openType>
+        <page>FieloEE__TransactionOfflineProcessBackEnd</page>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__NewAdjustTransaction</fullName>
+        <availability>online</availability>
+        <displayType>massActionButton</displayType>
+        <encodingKey>UTF-8</encodingKey>
+        <height>600</height>
+        <linkType>url</linkType>
+        <masterLabel>New Adjust Transaction</masterLabel>
+        <openType>sidebar</openType>
+        <protected>false</protected>
+        <requireRowSelection>true</requireRowSelection>
+        <url>/apex/{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}TransactionAdjust?memberId={!FieloEE__Member__c.Id}</url>
+    </webLinks>
+    <webLinks>
+        <fullName>FieloEE__Revert</fullName>
+        <availability>online</availability>
+        <displayType>button</displayType>
+        <linkType>javascript</linkType>
+        <masterLabel>Revert</masterLabel>
+        <openType>onClickJavaScript</openType>
+        <protected>false</protected>
+        <url>{!REQUIRESCRIPT("/soap/ajax/25.0/connection.js")}
+{!REQUIRESCRIPT("/soap/ajax/15.0/apex.js")}
+
+var prefix = &#39;{!$Setup.FieloEE__PublicSettings__c.FieloEE__PackagePrefix__c}&#39;.replace(&#39;__&#39;, &#39;.&#39;);
+
+var status = sforce.apex.execute(prefix+&#39;TransactionUtil&#39;, &#39;revertTransaction&#39;, {tranId: &#39;{!FieloEE__Transaction__c.Id}&#39;});
+
+alert(status);</url>
+    </webLinks>
+    <validationRules>
+        <fullName>FieloEE__ValidateTransactionType</fullName>
+        <active>true</active>
+        <errorConditionFormula>FieloEE__Value__c != 0 &amp;&amp; ( ISPICKVAL(FieloEE__Type__c, &#39;Code Insert&#39; ) || ISPICKVAL(FieloEE__Type__c, &#39;Referral - Step 1&#39; ) || ISPICKVAL(FieloEE__Type__c, &#39;Referral - Step 2&#39; ) || ISPICKVAL(FieloEE__Type__c, &#39;Registration&#39; ) )</errorConditionFormula>
+        <errorMessage>You must enter "Purchase value = 0" for transactions of types: Registration, Code insert, Referral - Simple signup, and Referral - Complete signup.</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloEE__ValidateTransactionValue</fullName>
+        <active>false</active>
+        <errorConditionFormula>FieloEE__Value__c = 0 &amp;&amp; ISPICKVAL(FieloEE__Type__c, &#39;Purchase&#39; )</errorConditionFormula>
+        <errorDisplayField>FieloEE__Value__c</errorDisplayField>
+        <errorMessage>Value cannot be 0</errorMessage>
+    </validationRules>
+    <validationRules>
+        <fullName>FieloEE__Validate_Member</fullName>
+        <active>true</active>
+        <errorConditionFormula>(FieloEE__Member__c == null)  &amp;&amp; ( FieloEE__MemberCode__c == null || ISPICKVAL(FieloEE__IdentificationType__c,&#39;&#39;) )</errorConditionFormula>
+        <errorMessage>You must complete the Member Code and Identification Type, or the Member Field.</errorMessage>
+    </validationRules>
+    <listViews>
+        <fullName>FieloEE__All_Transactions</fullName>
+        <columns>NAME</columns>
+        <columns>FieloEE__Type__c</columns>
+        <columns>FieloEE__Value__c</columns>
+        <columns>FieloEE__MemberReadOnly__c</columns>
+        <columns>FieloEE__DateReadOnly__c</columns>
+        <columns>FieloEE__ApprovedReadOnly__c</columns>
+        <columns>FieloEE__ProcessedStatusReadOnly__c</columns>
+        <columns>FieloEE__StatusReadOnly__c</columns>
+        <columns>FieloEE__PointsReadOnly__c</columns>
+        <filterScope>Everything</filterScope>
+        <label>All Transactions</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>FieloEE__ByTypeCodeInsert</fullName>
+        <columns>NAME</columns>
+        <columns>FieloEE__Processed__c</columns>
+        <columns>FieloEE__Member__c</columns>
+        <columns>FieloEE__IdentificationType__c</columns>
+        <columns>FieloEE__MemberCode__c</columns>
+        <columns>FieloEE__Value__c</columns>
+        <columns>FieloEE__Points__c</columns>
+        <columns>FieloEE__Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FieloEE__Type__c</field>
+            <operation>equals</operation>
+            <value>Code Insert</value>
+        </filters>
+        <label>By Type Code Insert</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>FieloEE__ByTypePurchase</fullName>
+        <columns>NAME</columns>
+        <columns>FieloEE__Processed__c</columns>
+        <columns>FieloEE__Member__c</columns>
+        <columns>FieloEE__IdentificationType__c</columns>
+        <columns>FieloEE__MemberCode__c</columns>
+        <columns>FieloEE__Value__c</columns>
+        <columns>FieloEE__Points__c</columns>
+        <columns>FieloEE__Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FieloEE__Type__c</field>
+            <operation>equals</operation>
+            <value>Purchase</value>
+        </filters>
+        <label>By Type Purchase</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>FieloEE__ByTypeReferralCompleteSignup</fullName>
+        <columns>NAME</columns>
+        <columns>FieloEE__Processed__c</columns>
+        <columns>FieloEE__Member__c</columns>
+        <columns>FieloEE__IdentificationType__c</columns>
+        <columns>FieloEE__MemberCode__c</columns>
+        <columns>FieloEE__Value__c</columns>
+        <columns>FieloEE__Points__c</columns>
+        <columns>FieloEE__Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FieloEE__Type__c</field>
+            <operation>equals</operation>
+            <value>Referral - Step 2</value>
+        </filters>
+        <label>By Type Referral - Complete Signup</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>FieloEE__ByTypeReferralSimpleSignup</fullName>
+        <columns>NAME</columns>
+        <columns>FieloEE__Processed__c</columns>
+        <columns>FieloEE__Member__c</columns>
+        <columns>FieloEE__IdentificationType__c</columns>
+        <columns>FieloEE__MemberCode__c</columns>
+        <columns>FieloEE__Value__c</columns>
+        <columns>FieloEE__Points__c</columns>
+        <columns>FieloEE__Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FieloEE__Type__c</field>
+            <operation>equals</operation>
+            <value>Referral - Step 1</value>
+        </filters>
+        <label>By Type Referral - Simple Signup</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>FieloEE__ByTypeRegistration</fullName>
+        <columns>NAME</columns>
+        <columns>FieloEE__Processed__c</columns>
+        <columns>FieloEE__Member__c</columns>
+        <columns>FieloEE__IdentificationType__c</columns>
+        <columns>FieloEE__MemberCode__c</columns>
+        <columns>FieloEE__Value__c</columns>
+        <columns>FieloEE__Points__c</columns>
+        <columns>FieloEE__Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>FieloEE__Type__c</field>
+            <operation>equals</operation>
+            <value>Registration</value>
+        </filters>
+        <label>By Type Registration</label>
+        <language>en_US</language>
+    </listViews>
+    <listViews>
+        <fullName>FieloEE__ThisWeek</fullName>
+        <columns>NAME</columns>
+        <columns>FieloEE__Processed__c</columns>
+        <columns>FieloEE__Member__c</columns>
+        <columns>FieloEE__IdentificationType__c</columns>
+        <columns>FieloEE__MemberCode__c</columns>
+        <columns>FieloEE__Value__c</columns>
+        <columns>FieloEE__Points__c</columns>
+        <columns>FieloEE__Date__c</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>CREATED_DATE</field>
+            <operation>equals</operation>
+            <value>THIS_WEEK</value>
+        </filters>
+        <label>This Week</label>
+        <language>en_US</language>
+    </listViews>
+    <fieldSets>
+        <fullName>FieloEE__AdjustTransaction</fullName>
+        <availableFields>
+            <field>FieloEE__BranchCode__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__Branch__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__Location__Latitude__s</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__Location__Longitude__s</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__Referral__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>TransactionAdjustBackEnd</description>
+        <label>Adjust Transaction</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>FieloEE__GetCode</fullName>
+        <availableFields>
+            <field>FieloEE__Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__Value__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>It is used in Get Code page</description>
+        <displayedFields>
+            <field>FieloEE__Code__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__BranchCode__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Get Code</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>FieloEE__ProfileView</fullName>
+        <availableFields>
+            <field>FieloEE__IdentificationType__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>LastModifiedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>Name</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__ProcessedStatusReadOnly__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__TransactionId__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Is used in participant profile</description>
+        <displayedFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__Points__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__Value__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Profile View</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>FieloEE__TransactionNew</fullName>
+        <availableFields>
+            <field>FieloEE__Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Fielo Create Transaction</description>
+        <displayedFields>
+            <field>FieloEE__IdentificationType__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__MemberCode__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__Value__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__Date__c</field>
+            <isFieldManaged>true</isFieldManaged>
+            <isRequired>true</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__TransactionId__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Transaction New</label>
+    </fieldSets>
+    <fieldSets>
+        <fullName>FieloEE__TransactionTab</fullName>
+        <availableFields>
+            <field>FieloEE__Approved__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__Date__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__IdentificationType__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__MemberCode__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <availableFields>
+            <field>FieloEE__Type__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </availableFields>
+        <description>Transaction Tab</description>
+        <displayedFields>
+            <field>FieloEE__Processed__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__Value__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>FieloEE__Points__c</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <displayedFields>
+            <field>CreatedDate</field>
+            <isFieldManaged>false</isFieldManaged>
+            <isRequired>false</isRequired>
+        </displayedFields>
+        <label>Transaction Tab</label>
+    </fieldSets>
+</CustomObject>
