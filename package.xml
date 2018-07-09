@@ -809,4 +809,8 @@
         <members>A_XLS</members>
         <name>ApexPage</name>
     </types>
+    <types>
+        <members>App1</members>
+        <name>PermissionSet</name>
+    </types>
 </Package>
