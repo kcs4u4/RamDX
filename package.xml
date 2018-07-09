@@ -2,6 +2,10 @@
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <version>41.0</version>
     <types>
+        <members>App1</members>
+        <name>PermissionSet</name>
+    </types>
+    <types>
         <members>SysAdmin</members>
         <name>Profile</name>
     </types>
