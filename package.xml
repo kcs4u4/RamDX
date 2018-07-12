@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
-    <version>41.0</version>
-    <types>
-        <members>Test1</members>
-        <members>Test10</members>
-        <members>Test11</members>
-        <members>Test2</members>
-        <members>test</members>
-        <name>ApexClass</name>
-    </types>
+  <types>
+    <name>ApexClass</name>
+    <members>Test1</members>
+    <members>Test10</members>
+    <members>Test11</members>
+    <members>Test2</members>
+    <members>test</members>
+  </types>
+  <version>43.0</version>
+  <fullName>force-app</fullName>
 </Package>
